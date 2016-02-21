@@ -67,14 +67,18 @@
 		width: 100%;
 	}
 
-/* BG */
+/* BG 
+
+		
+
+*/
 
 	#bg {
-		-moz-animation: bg 60s linear infinite;
-		-webkit-animation: bg 60s linear infinite;
-		-o-animation: bg 60s linear infinite;
-		-ms-animation: bg 60s linear infinite;
-		animation: bg 60s linear infinite;
+		-moz-animation: bg 180s linear infinite;
+		-webkit-animation: bg 180s linear infinite;
+		-o-animation: bg 180s linear infinite;
+		-ms-animation: bg 180s linear infinite;
+		animation: bg 180s linear infinite;
 		-moz-backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
 		-o-backface-visibility: hidden;
@@ -87,13 +91,13 @@
 		transform: translate3d(0,0,0);
 		background-color: #348cb2;
 		background-image: url("images/bg.jpg");
-		background-position: bottom left;
-		background-repeat: repeat-x;
+		background-position: center;
 		height: 100%;
 		left: 0;
 		opacity: 1;
 		position: fixed;
 		top: 0;
+		background-repeat:repeat-x;
 	}
 	@-moz-keyframes bg { 0% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); } 100% { -moz-transform: translate3d(-2250px,0,0); -webkit-transform: translate3d(-2250px,0,0); -o-transform: translate3d(-2250px,0,0); -ms-transform: translate3d(-2250px,0,0); transform: translate3d(-2250px,0,0); } }
 	@-webkit-keyframes bg { 0% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); } 100% { -moz-transform: translate3d(-2250px,0,0); -webkit-transform: translate3d(-2250px,0,0); -o-transform: translate3d(-2250px,0,0); -ms-transform: translate3d(-2250px,0,0); transform: translate3d(-2250px,0,0); } }
