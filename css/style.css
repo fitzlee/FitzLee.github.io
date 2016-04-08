@@ -89,8 +89,9 @@
 		-o-transform: translate3d(0,0,0);
 		-ms-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
-		background-color: #348cb2;
-		background-image: url("images/bg.jpg");
+		background-color: teal;  
+		/*darkslateblue darkcyan teal steelblue slateblue seagreen rebeccapurple*/
+		/*background-image: url("images/bg.jpg"); */
 		background-position: center;
 		height: 100%;
 		left: 0;
@@ -124,7 +125,7 @@
 		-ms-animation: overlay 0s 0.25s forwards;
 		animation: overlay 0s 0.25s forwards;
 		background-attachment: fixed, fixed;
-		background-image: url("images/overlay-pattern.png"), url("images/overlay.svg");
+		/* background-image: url("images/overlay-pattern.png"), url("images/overlay.svg"); */
 		background-position: top left, center center;
 		background-repeat: repeat, no-repeat;
 		background-size: auto, cover;
@@ -228,8 +229,8 @@
 				-ms-transform: translate3d(0,0,0);
 				transform: translate3d(0,0,0);
 				display: inline-block;
-				height: 5.35em;
-				line-height: 5.885em;
+				height: 4.35em;
+				/*line-height: 5.885em; */
 				opacity: 0;
 				position: relative;
 				top: 0;
@@ -367,11 +368,13 @@
 /* Footer */
 
 	#footer {
+		/*
 		background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: -o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
+		*/
 		bottom: 0;
 		cursor: default;
 		height: 6em;
