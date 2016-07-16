@@ -43,15 +43,16 @@ page_nav:
 #  - name: 友链
 #    url: /link/
 #    target_blank: false
+  - name: About
+    url: /about/
+    target_blank: false
   - name: RSS
     url: /atom.xml
     target_blank: true # 在新页面打开
   - name: Search
     url: /search/
     target_blank: false # 在新页面打开
-  - name: About
-    url: /about/
-    target_blank: false
+
 
 page_nav_style: CIRCLE  # CIRCLE|ROUND_RECT
 
