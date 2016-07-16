@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '5'
+branches:
+  only:
+  - master
+#before_install:
+#- npm install -g hexo
+#- npm install -g hexo-cli
+before_script:
+- git config --global user.name 'fitzlee'
+- git config --global user.email 'fitz.lee@outlook.com'
+- sed -i'' "s~git@github.com:fitzlee/FitzLee.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/fitzlee/FitzLee.github.io.git~" _config.yml
+install:
+- npm install
+script:
+- hexo generate
+- hexo deploy --silent
+#cache:
+#  directories:
+#    - node_modules
+env:
+  global:
+    secure: PQH9xkS8i7dahpBGknOELYaCvwhrVFGR290iZe6mXk5h8pneZBTZiD15hLcXJuclOpuO9XmfviY1gRvhImj68FqclmdwytGFnNJQY4THbgWHPHEHAAbfUewr4IcJKuwKIjWdUdTyOlJKtLXNnhWcoKvrqvQGOMahDvLnTklFjL+srfHaZ8sIOnWUFmrMeKI21V1RoUNpQE6c9NzTTjaZFwhlCUKNutk3ifG4VB97+i7u0IeYxddSqPaDILS2MQ8GjJg8gzAYkMLvG3BvqJmitlSXQfE+Svz6yMlbI5iWgmmouOClO4k7Hyi8GSGc8cVCnxiYE8cvgp6KuAxIimZ6P14h4JfRcFIA1TaQvYOqBpzzJWhcvSUT1vBNMbMffdf37yJg+qlykMdp8PUMcd39DdRHVv3yligEWtePRo5X4SgeYVqXduPoq6VycWA5NrYRBtln4RCvEArVx3bWHbOToodSQuS3tGmVJ/96kNzxw52NHpmapRNJhb6OwxgSoGRTkTP8THM0OgIFN1U3HczeXGZH6z0hkPGLLBHiv4od6MH0gCfT+xQsjx/APT7U+yGnMg493tYunQMSgclLGJ1LYvGVzeOSAjZ1NzKipsXk+Yj8Naar811QIKrFxAtS126dz2O/ofoxTyCN032f6WTXiHN3ZIDx4XQynXbKc2Jo9rc=
