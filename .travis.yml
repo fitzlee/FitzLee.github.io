@@ -7,8 +7,8 @@ branches:
 before_script:
 - git config --global user.name 'fitzlee'
 - git config --global user.email 'fitz.lee@outlook.com'
-- sed -i'' "s~git@github.com:fitzlee/FitzLee.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/fitzlee/FitzLee.github.io.git~"
-  _config.yml
+- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
+  
 install:
 - npm install
 script:
