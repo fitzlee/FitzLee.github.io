@@ -69,5 +69,5 @@ theme: fexo #landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:fitzlee/FitzLee.github.io.git
+  repo: https://github.com/fitzlee/FitzLee.github.io
   branch: master
