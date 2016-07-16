@@ -1,19 +1,20 @@
 language: node_js
 node_js:
-- '5'
+- '0.12'
 branches:
   only:
   - source
+before_install:
+- npm install -g hexo-cli
+install:
+- npm install
 before_script:
 - git config --global user.name 'fitzlee'
 - git config --global user.email 'fitz.lee@outlook.com'
 - sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
-  
-install:
-- npm install
 script:
 - hexo generate
 - hexo deploy --silent
 env:
   global:
-    secure: aFt+q5gj0yNkvTSmq93JpMIVOttO4xXvV7rURphN5s+6Lz2tP8ol1tX7lDzvsU2fmfqHnWQJeTsmtDLwy0tMX+nnQ55vgsH8jW0i+EhUTwjdldcVxW5+MeoPZwzpQYb2qdwEW0n5miol/mOtItG/Hmu+RyGHqaIMGVXRqHscqLcIHHRfSpySbKFR9IErhvkV9vXkBzd6oz8MsVo2RWKTpyG9mg9j74pfgHMId7p4eZGUCRQnIJXQleuYnBIoogdL4fmcjs+ElqKn2x1RUcEvZ+2YIqVLF4EJYLaqNA9LQYJFjfCziocu49S5q3IdhwFrMFeof0BbJD6NRC2pMG0fZVFh5kWHczO5BAh6TWJNoNN5PsofqwjjX9dxjOeJeuT9qWPg/ceCdCGD/FtMKTsn1IIBOHPF5ifIeX1KixeKYpec8HLQVKyEt6Hc5OkoYfnhSfQ/Gvn/W0jpf14S1Hq8+n2tRp7zbyvfhKUM4jqGhURTAjJW7j+LOl1Di9pjU+l/HaE/f0r5Atrw841XvV9DnFMGLMg8Ml4l1lLL2v0rtrOPMqx45wIpK3N/IHsnHsjGAIznE3YyAF6B7L1Hjd22v4UxIu/JNszQxcXu10CwAqsI6ZwjnpM/vmEkEfGR/glTg0RvDnhYw/zct3DzZHg9hGtDktXRL81dhbqrxGayZD0=
+    secure: m2rgsIDqH7XKydy3wovqxDdozOwaQiLyzQ5o2YttE0udR9rkF8k6BijvE5KzQu+xmuCm9IUzdih4F53sE/vL3PZJl64vGIxzkFlA8oRcDYrmBj4etb8SkObULgPZXkAz5/TRtHaJRgJ6cHKdjA6OiVx5IrNpq+Q0DjPaeO3wnxj10UmW2/+XkjLgwB5bPdGujgGfnTbHxem7J+0zyA8bgQu7w5Jo/+lzKW969y+UqFFcC6cDvogLsrKb/Y5XpEN/bmqfNttiqyXjEYKoVlc+KKfzTX3U1wH6pvI+hju0+DgbY6tc08NSHbYsFIMEbj/Y8yKncGCsThnilbMwjo44asOzBIGhfkPy0zsDuL45ohqWKnynhMEDiG3ba4Nj+T3mdw5cmMPAnyKx99DoC/YKDpKyL1Z6WQbvTcA/AI0zyRMSzIaZ9jlhmajG9pCqm5xUgaHxOr30nf3upy0CtD1mzMB71O3DP5PXMv6gTj1mrocM937XtQxoTILkrLWkfchjfgIucGcB6s1I/WknDH8m12s60rzCb/OSaQAwjGh3aaCcuv7IsGWZKdrw2mwoZCfvT06WkjaSy52YJt4MijZ3je2AeujZbFJ7t/Lm8VLUhehpThWp4R6dP6RfDt+gc2aEHQpX4F5SRtfEHKkbUR54gdY9Jq1yg/LMFYw4GB2Jemw=
