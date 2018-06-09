@@ -16,8 +16,8 @@ timezone:
 url: https://fitzlee.github.io
 root: /
 #permalink: :year/:month/:day/:title/
+permalink: posts/:urlname.html
 permalink_defaults:
-permalink: /posts/:urlname.html
 
 # Directory
 source_dir: source
