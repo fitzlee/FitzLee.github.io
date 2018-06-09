@@ -3,19 +3,21 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Fitz.Lee | 不畏将来，不念过去，不怨现在
-subtitle: 不畏将来，不念过去，不怨现在
-description: fitzlee.github.io
-author: Fitz Lee
+title: Fitz.Lee
+subtitle:
+description: Security & Android & Java
+keywords:
+author: Fitz.Lee
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://fitzlee.github.io
+url: https://fitzlee.github.io
 root: /
-permalink: :year/:month/:day/:title/
+#permalink: :year/:month/:day/:title/
 permalink_defaults:
+permalink: /posts/:urlname.html
 
 # Directory
 source_dir: source
@@ -34,7 +36,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
 highlight:
@@ -42,7 +44,16 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+  
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -63,7 +74,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: fexo #landscape
+theme: next #landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

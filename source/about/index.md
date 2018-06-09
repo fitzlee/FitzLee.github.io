@@ -1,5 +1,4 @@
 ---
 title: about
-layout: about
-comments: false
+date: 2018-06-09 10:38:43
 ---

@@ -1,20 +1,27 @@
 language: node_js
-node_js:
-- '0.12'
+node_js: stable
+
+install:
+  - npm install
+
+before_script:
+  - git config user.name 'fitzlee'
+  - git config user.email 'fitz.lee@outlook.com'
+
+script:
+  - hexo generate
+
+after_script:
+  - cd ./public
+  - git init
+  - git add -A
+  - git commit -m "update blog"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" HEAD:master
+
 branches:
   only:
-  - source
-before_install:
-- npm install -g hexo-cli
-install:
-- npm install
-before_script:
-- git config --global user.name 'fitzlee'
-- git config --global user.email 'fitz.lee@outlook.com'
-- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
-script:
-- hexo generate
-- hexo deploy --silent
+    - source
+
 env:
-  global:
-    secure: Je9HVACH6EfD+ul4E1Njd61nCu+4kAfgflZEAVrxczU502P1pAhSAfTPgUGwTfKA4wr7t0AI6ZAQioWF9KI7Zoqz4EwtYD1iK75QD48zS9a9pwl4S5o8XInTPQLMDtR25uZ6TW5gdpdCJOYfq0qW365tLAETmpDWbGMBdBu63HwxJzL6K41/AYfUTCm6Top3nqcFx/VDJRsRoVCaeQAr8TDYDEv6mhKe+LwcZQtxscOEVXaJtGpi6DX+SowP2xhdCKOHRi/v2WOcpgSq+InGueqZGmLbi684nRuxamqMCdPWaH0NoOmj+M2pF1IT2K/kOmHbsmytsPuFScjcLdjScdJoOS9Ge8XAnPtC9soXPNspDofDaJ94Zjm3YQlmZJUfGh3M6sD2gz/uRk7aA8Fv5m+Ja3zM3ugNddYp/wkWHahi6TpLuQGJ1l0l3kQxB0VL+Bd7zSuhxugugKxc/LpFjmSCrRAJFyLqXxU1qftmzoNiR4n+LGOW2Zjdp3DwfSDnKy1vM+iCADibJDxCHao8B/q92RhrilSrN/5G0Um4aLKUGZz6ku0XyHZfOPiE7Nxcwk9FrdoTdU80G7jf2k7RM5GQ61DDFJtdtmr2THZSx8UOFthV0Xxo9LyGvwpBokiA0mhggJuU3AmDjMSA5QMwQuS3wVZnVTqNKOIgc6ahqYU=
+ global:
+   - GH_REF: github.com/fitzlee/FitzLee.github.io.git
