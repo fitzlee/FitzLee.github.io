@@ -1,6 +1,6 @@
 ---
-title: 计算机系统安全书籍推荐
-urlname: android_security_cs_book_recommand
+title: Android应用安全
+urlname: android_security_android_security
 date: 2017-10-20
 comments: true
 top: true
@@ -9,8 +9,8 @@ top: true
 #keywords: git
 categories: 11Android_Security
 tags:
-    - 计算机系统安全
-    - 书记推荐
+    - Android
+    - 应用安全
     - 安全
 ---
 
