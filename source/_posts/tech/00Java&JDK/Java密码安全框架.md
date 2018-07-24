@@ -1339,7 +1339,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 /**
- * @author l00382572
+ * @author fitz
  * @version 1.0
  */
 public class Client implements Runnable {
