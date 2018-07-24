@@ -55,9 +55,9 @@ lbm.registerReceiver(new BroadcastReceiver(){
  public void onReceive(Context arg0, Intent arg1) {
   // TODO Auto-generated method stub
  }  
-}, new IntentFilter("com.huawei.action.PRIVATE_BROADCAST"));
+}, new IntentFilter("com.android.action.PRIVATE_BROADCAST"));
 最后调用sendBroadcast方法发送广播：
-Intent intent=new Intent("com.huawei.action.PRIVATE_BROADCAST");
+Intent intent=new Intent("com.android.action.PRIVATE_BROADCAST");
 intent.putExtra(KEY, SENSITIVE_DATA);
 lbm.sendBroadcast(intent);
 
