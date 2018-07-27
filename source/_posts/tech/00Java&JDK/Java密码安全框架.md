@@ -1192,8 +1192,8 @@ openssl.exe genrsa -out private/ca1.key.pem 2048
 !openssl.exe genrsa -aes256 -out private/ca.key.pem 2048
 
 echo 生成根证书请求 ca.csr
-openssl.exe req -new -key private/ca.key.pem -out private/ca.csr -subj "/C=CN/ST=SH/L=PD/O=HW/OU=CBG/CN=com.huawei.security"
-openssl.exe req -new -key private/ca1.key.pem -out private/ca1.csr -subj "/C=CN/ST=SH/L=PD/O=HW/OU=CBG/CN=com.huawei.security1"
+openssl.exe req -new -key private/ca.key.pem -out private/ca.csr -subj "/C=CN/ST=SH/L=PD/O=COM/OU=ANDROID/CN=com.android.security"
+openssl.exe req -new -key private/ca1.key.pem -out private/ca1.csr -subj "/C=CN/ST=SH/L=PD/O=COM/OU=ANDROID/CN=com.android.security1"
 
 echo 签发根证书 ca.cer
 openssl.exe x509 -req -days 10000 -sha1 -extensions v3_ca -signkey private/ca.key.pem -in private/ca.csr -out certs/ca.cer
@@ -1206,7 +1206,7 @@ echo 颁发服务器证书
 openssl.exe genrsa -out private/server.key.pem 2048
 
 echo 生成服务器证书请求 server.csr
-openssl.exe req -new -key private/server.key.pem -out private/server.csr -subj "/C=CN/ST=SH/L=PD/O=HW/OU=CBG/CN=com.huawei.security.server"
+openssl.exe req -new -key private/server.key.pem -out private/server.csr -subj "/C=CN/ST=SH/L=PD/O=COM  /OU=ANDROID/CN=com.android.security.server"
 
 echo 签发服务器证书 server.cer
 openssl.exe x509 -req -days 3650 -sha1 -extensions v3_req -CA certs/ca.cer -CAkey private/ca.key.pem -CAserial ca.srl -CAcreateserial -in private/server.csr -out certs/server.cer
@@ -1218,7 +1218,7 @@ echo 产生客户私钥
 openssl.exe genrsa -out private/client.key.pem 2048
 
 echo 生成客户证书请求 client.csr
-openssl.exe req -new -key private/client.key.pem -out private/client.csr -subj "/C=CN/ST=SH/L=PD/O=HW/OU=CBG/CN=com.huawei.security.client"
+openssl.exe req -new -key private/client.key.pem -out private/client.csr -subj "/C=CN/ST=SH/L=PD/O=COM/OU=ANDROID/CN=com.android.security.client"
 
 echo 签发客户证书 client.cer
 openssl.exe x509 -req -days 3650 -sha1 -extensions v3_req -CA certs/ca.cer -CAkey private/ca.key.pem -CAserial ca.srl -CAcreateserial -in private/client.csr -out certs/client.cer
@@ -1339,7 +1339,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 /**
- * @author l00382572
+ * @author fitz
  * @version 1.0
  */
 public class Client implements Runnable {
@@ -1677,7 +1677,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 /**
- * @author l00382572
+ * @author fitz
  * @version 1.0
  */
 public class HttpsCertificate {
