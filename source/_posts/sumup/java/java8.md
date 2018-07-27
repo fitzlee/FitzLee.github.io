@@ -108,6 +108,8 @@ System.out.println(converted);    // 123
 
 记住，有`@FunctionalInterface`注解的也是有效的代码。
 
+<!-- more -->
+
 ### 方法和构造函数引用
 
 上面的例子代码可以进一步简化，利用静态方法引用：

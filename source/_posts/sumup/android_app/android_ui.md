@@ -52,6 +52,10 @@ bundle的内部结构其实是Map，传递的数据可以是boolean、byte、int
 ## Binder 线程池
 Binder线程池：每个Server进程在启动时会创建一个binder线程池，并向其中注册一个Binder线程；之后Server进程也可以向binder线程池注册新的线程，或者Binder驱动在探测到没有空闲binder线程时会主动向Server进程注册新的的binder线程。对于一个Server进程有一个最大Binder线程数限制，默认为16个binder线程，例如Android的system_server进程就存在16个线程。对于所有Client端进程的binder请求都是交由Server端进程的binder线程来处理的。
 
+
+<!-- more -->
+
+
 ## LocalBroadcastmanager使用
 首先获取LocalBroadcastManager实例：
 LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);

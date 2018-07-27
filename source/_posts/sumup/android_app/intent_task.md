@@ -45,6 +45,8 @@ FLAG_ACTIVITY_SINGLE_TOP  = singleTop
 FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK = singleTask
 
 
+<!-- more -->
+
 ## ActivityRecord、TaskRecord、ActivityStack之间的关系
 ActivityStackSupervisor.mActivityDisplays-> ActivityDisplay.mStacks -> ActivityStack.mTaskHistory -> TaskRecord.mActivities -> ActivityRecord
 简单来说就是一下类的关系图，ActivityStackSupervisor与ActivityDisplay都是系统唯一，ActivityDisplay负责管理很多ActivityStack，ActivityDisplay主要有Home Stack和App Stack这两个栈；一个ActivityStack负责管理很多TaskRecord，一个TaskRecord又包含很多ActivityRecord。一个activityRecord包含

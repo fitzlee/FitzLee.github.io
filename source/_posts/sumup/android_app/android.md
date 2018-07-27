@@ -60,6 +60,10 @@ https://yq.aliyun.com/articles/7239
 - 稳定**更稳** ```Crash， ANR```
 - 节省**更省** ```内存，CPU，安装包大小，存储，功耗电量，网络```
 
+
+<!-- more -->
+
+
 ### 更快-流畅性
 #### 启动速度
 https://developer.android.com/topic/performance/launch-time.html

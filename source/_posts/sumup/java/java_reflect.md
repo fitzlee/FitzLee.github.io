@@ -123,6 +123,8 @@ com.tengj.reflect.ReflectDemo
 com.tengj.reflect.ReflectDemo
 ```
 
+<!-- more -->
+
 # Java反射相关操作
 
 > 在这里先看一下sun为我们提供了那些反射机制中的类：

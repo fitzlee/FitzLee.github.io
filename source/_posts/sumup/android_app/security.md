@@ -57,6 +57,9 @@ startActivity(intent); 
 </provider> 
 
 
+<!-- more -->
+
+
 ## android:exported说明
 
 Activity 是否可由其他应用的组件启动 —“true”表示可以，“false”表示不可以。若为“false”，则 Activity 只能由同一应用的组件或使用同一用户 ID 的不同应用启动。

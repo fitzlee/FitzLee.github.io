@@ -88,6 +88,9 @@ BlockingQueue<Runnable> workQueue,
 RejectedExecutionHandler handler
 );
 
+
+<!-- more -->
+
 ```
 public class ThreadPoolTest {
     private static final int CORE_POOL_SIZE = 5;

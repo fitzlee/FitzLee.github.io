@@ -27,6 +27,10 @@ new com.yuanhh.appbinderdemo.IRemoteService.Stub.Proxy(obj);
 
 ![image.png](https://upload-images.jianshu.io/upload_images/11010834-2d27b1713cde4eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/11010834-af22fcd4e3bf86b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+<!-- more -->
+
 ```
 package com.yuanhh.appbinderdemo;
 public interface IRemoteService extends android.os.IInterface {

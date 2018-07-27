@@ -196,6 +196,9 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 ```
 
 
+<!-- more -->
+
+
 ## LinkedList
 1. 实现接口，implements List<E>, Deque<E>, Cloneable, java.io.Serializable
 2. 基本原理是双端队列，注意下Node的新建方式，直接赋值pre和next节点, 代码结果如下：

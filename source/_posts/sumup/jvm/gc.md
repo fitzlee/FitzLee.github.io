@@ -52,6 +52,9 @@ JDK1.2后，Java对引用概念进行了扩充，将引用分为强引用（Stro
 
 copyfrom：http://www.cnblogs.com/z-sm/p/6243378.html
 
+
+<!-- more -->
+
 ## 判断对象是否存活？
 
 ### GC的两种判定方法：引用计数与根搜索算法

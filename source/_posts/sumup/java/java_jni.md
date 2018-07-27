@@ -200,7 +200,7 @@ java -Djava.library.path=. HelloWorld
 
 -D命令行选项设置了一个Java平台属性。将java.library.path设置为“.”，“.”表明Java虚拟机会在当前路径中搜索本地库。
 
-
+<!-- more -->
 
 # 第二章 内容补充
 

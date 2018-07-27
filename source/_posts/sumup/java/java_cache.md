@@ -171,6 +171,10 @@ public LruCache(int maxSize) {
 
 我们再来看看LruCache是如何进行缓存的写入、获取和删除的。
 
+
+<!-- more -->
+
+
 ### 2.1 写入缓存
 
 写入缓存是通过LruCache的put()方法实现的，如下所示：

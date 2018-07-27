@@ -147,7 +147,7 @@ Java语法中，接口中的字段默认包含ACC_PUBLIC, ACC_STATIC, ACC_FINAL�
 
 紧跟其后的name_index和descriptor_index是对常量池的引用，分别代表着字段的简单名和方法的描述符。
 
-
+<!-- more -->
 
 #### 3.8方法表
 

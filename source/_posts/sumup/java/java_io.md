@@ -135,6 +135,8 @@ System.out.println(str2);
 byte[] bytes = str1.getBytes();
 ```
 
+<!-- more -->
+
 # 五、对象操作
 
 序列化就是将一个对象转换成字节序列，方便存储和传输。
