@@ -2,6 +2,7 @@
 title: java 线程原理及锁同步分析
 urlname: java_jdk_base_thread_lock
 #date: 2016-03-06
+top: true
 comments: true
 #description: 
 #tags: [git,hah,hha]

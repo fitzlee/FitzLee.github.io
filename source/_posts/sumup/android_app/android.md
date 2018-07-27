@@ -2,6 +2,7 @@
 title: Android 架构和性能优化
 urlname: android_app_art_opt_sum
 #date: 2017-04-10
+top: true
 comments: true
 #description: 
 #tags: [git,hah,hha]

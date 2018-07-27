@@ -2,6 +2,7 @@
 title: 设计模式UML和23种分类解析
 urlname: design_pattern_uml_23gof_analysis
 #date: 2016-06-07
+top: true
 comments: true
 #description: 
 #tags: [git,hah,hha]

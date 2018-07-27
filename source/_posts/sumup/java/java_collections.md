@@ -2,6 +2,7 @@
 title: java collections源码分析原理
 urlname: java_jdk_base_collections_analysis
 #date: 2016-03-06
+top: true
 comments: true
 #description: 
 #tags: [git,hah,hha]

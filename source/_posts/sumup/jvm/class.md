@@ -2,6 +2,7 @@
 title: Jvm class结构和加载原理
 urlname: jvm_art_class_load
 #date: 2016-10-09
+top: true
 comments: true
 #description: 
 #tags: [git,hah,hha]

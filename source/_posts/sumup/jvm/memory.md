@@ -2,6 +2,7 @@
 title: Jvm 内存结构
 urlname: jvm_art_mem_analysis
 #date: 2016-10-09
+top: true
 comments: true
 #description: 
 #tags: [git,hah,hha]
