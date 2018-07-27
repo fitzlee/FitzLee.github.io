@@ -3,7 +3,7 @@ title: leetcode 习题解析
 urlname: algo_leetcode
 #date: 2016-10-09
 comments: true
-top: true
+#top: true
 #description: 
 #tags: [git,hah,hha]
 #keywords: git
