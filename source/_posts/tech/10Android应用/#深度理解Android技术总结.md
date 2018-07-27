@@ -3,7 +3,7 @@ title: 深度理解Android技术总结
 urlname: android_app_tech_summup
 date: 2017-03-03
 comments: true
-top: true
+#top: true
 #description: 
 #tags: [git,hah,hha]
 #keywords: git
