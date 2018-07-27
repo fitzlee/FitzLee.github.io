@@ -1,0 +1,2617 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Security &amp; Android &amp; Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fitz.Lee">
+<meta property="og:url" content="https://fitzlee.github.io/page/7/index.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Security &amp; Android &amp; Java">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fitz.Lee">
+<meta name="twitter:description" content="Security &amp; Android &amp; Java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/page/7/"/>
+
+
+
+
+
+  <title>Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_java_syntactic sugar.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_java_syntactic sugar.html" itemprop="url">Java语法糖</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-15T00:00:00+00:00">
+                2016-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Java语法糖："><a href="#Java语法糖：" class="headerlink" title="Java语法糖："></a>Java语法糖：</h2><p>语法糖（Syntactic Sugar），也称糖衣语法，指在计算机语言中添加的某种语法，这种语法对语言本身功能来说没有什么影响，只是为了方便程序员的开发，提高开发效率。说白了，语法糖就是对现有语法的一个封装。</p>
+<p>Java作为一种与平台无关的高级语言，当然也含有语法糖，这些语法糖并不被虚拟机所支持，在编译成字节码阶段就自动转换成简单常用语法。一般来说Java中的语法糖主要有以下几种： </p>
+<ol>
+<li>泛型与类型擦除 </li>
+<li>自动装箱与拆箱，变长参数、 </li>
+<li>增强for循环 </li>
+<li>内部类与枚举类</li>
+</ol>
+<h2 id="泛型与类型擦除"><a href="#泛型与类型擦除" class="headerlink" title="泛型与类型擦除"></a>泛型与类型擦除</h2><p>Java语言并不是一开始就支持泛型的。在早期的JDK中，只能通过Object类是所有类型的父类和强制类型转换来实现泛型的功能。强制类型转换的缺点就是把编译期间的问题延迟到运行时，JVM并不能为我们提供编译期间的检查。</p>
+<p>在JDK1.5中，Java语言引入了泛型机制。但是这种泛型机制是通过类型擦除来实现的，即Java中的泛型只在程序源代码中有效（源代码阶段提供类型检查），在编译后的字节码中自动用强制类型转换进行替代。也就是说，Java语言中的泛型机制其实就是一颗语法糖，相较与C++、C#相比，其泛型实现实在是不那么优雅。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 在源代码中存在泛型</span><br><span class="line">*/</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Map&lt;String,String&gt; map = new HashMap&lt;String,String&gt;();</span><br><span class="line">    map.put(&quot;hello&quot;,&quot;你好&quot;);</span><br><span class="line">    String hello = map.get(&quot;hello&quot;);</span><br><span class="line">    System.out.println(hello);</span><br></pre></td></tr></table></figure></p>
+<p>当上述源代码被编译为class文件后，泛型被擦除且引入强制类型转换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    HashMap map = new HashMap(); //类型擦除</span><br><span class="line">    map.put(&quot;hello&quot;, &quot;你好&quot;);</span><br><span class="line">    String hello = (String)map.get(&quot;hello&quot;);//强制转换</span><br><span class="line">    System.out.println(hello);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="自动装箱与拆箱"><a href="#自动装箱与拆箱" class="headerlink" title="自动装箱与拆箱"></a>自动装箱与拆箱</h2><p>Java中的自动装箱与拆箱指的是基本数据类型与他们的包装类型之间的相互转换。</p>
+<p>我们知道Java是一门面向对象的语言，在Java世界中有一句话是这么说的：“万物皆对象”。但是Java中的基本数据类型却不是对象，他们不需要进行new操作，也不能调用任何方法，这在使用的时候有诸多不便。因此Java为这些基本类型提供了包装类，并且为了使用方便，提供了自动装箱与拆箱功能。自动装箱与拆箱在使用的过程中，其实是一个语法糖，内部还是调用了相应的函数进行转换。</p>
+<p>下面代码演示了自动装箱和拆箱功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Integer a = 1;</span><br><span class="line">    int b = 2;</span><br><span class="line">    int c = a + b;</span><br><span class="line">    System.out.println(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>经过编译后，代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Integer a = Integer.valueOf(1); // 自动装箱</span><br><span class="line">    byte b = 2;</span><br><span class="line">    int c = a.intValue() + b;//自动拆箱</span><br><span class="line">    System.out.println(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="变长参数"><a href="#变长参数" class="headerlink" title="变长参数"></a>变长参数</h2><p>所谓变长参数，就是方法可以接受长度不定确定的参数</p>
+<p>变长参数特性是在JDK1.5中引入的，使用变长参数有两个条件，一是变长的那一部分参数具有相同的类型，二是变长参数必须位于方法参数列表的最后面。变长参数同样是Java中的语法糖，其内部实现是Java数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Varargs &#123;</span><br><span class="line">    public static void print(String... args) &#123;</span><br><span class="line">        for(String str : args)&#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        print(&quot;hello&quot;, &quot;world&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译为class文件后如下，从中可以很明显的看出变长参数内部是通过数组实现的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Varargs &#123;</span><br><span class="line">    public Varargs() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void print(String... args) &#123;</span><br><span class="line">        String[] var1 = args;</span><br><span class="line">        int var2 = args.length;</span><br><span class="line">        //增强for循环的数组实现方式</span><br><span class="line">        for(int var3 = 0; var3 &lt; var2; ++var3) &#123;</span><br><span class="line">            String str = var1[var3];</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //变长参数转换为数组</span><br><span class="line">        print(new String[]&#123;&quot;hello&quot;, &quot;world&quot;&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="增强for循环"><a href="#增强for循环" class="headerlink" title="增强for循环"></a>增强for循环</h2><p>增强for循环与普通for循环相比，功能更强并且代码更简洁</p>
+<p>增强for循环的对象要么是一个数组，要么实现了Iterable接口。这个语法糖主要用来对数组或者集合进行遍历，其在循环过程中不能改变集合的大小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    String[] params = new String[]&#123;&quot;hello&quot;,&quot;world&quot;&#125;;</span><br><span class="line">    //增强for循环对象为数组</span><br><span class="line">    for(String str : params)&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    List&lt;String&gt; lists = Arrays.asList(&quot;hello&quot;,&quot;world&quot;);</span><br><span class="line">    //增强for循环对象实现Iterable接口</span><br><span class="line">    for(String str : lists)&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译后的class文件为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">   String[] params = new String[]&#123;&quot;hello&quot;, &quot;world&quot;&#125;;</span><br><span class="line">   String[] lists = params;</span><br><span class="line">   int var3 = params.length;</span><br><span class="line">   //数组形式的增强for退化为普通for</span><br><span class="line">   for(int str = 0; str &lt; var3; ++str) &#123;</span><br><span class="line">       String str1 = lists[str];</span><br><span class="line">       System.out.println(str1);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   List var6 = Arrays.asList(new String[]&#123;&quot;hello&quot;, &quot;world&quot;&#125;);</span><br><span class="line">   Iterator var7 = var6.iterator();</span><br><span class="line">   //实现Iterable接口的增强for使用iterator接口进行遍历</span><br><span class="line">   while(var7.hasNext()) &#123;</span><br><span class="line">       String var8 = (String)var7.next();</span><br><span class="line">       System.out.println(var8);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>内部类就是定义在一个类内部的类</p>
+<p>Java语言中之所以引入内部类，是因为有些时候一个类只在另一个类中有用，我们不想让其在另外一个地方被使用。内部类之所以是语法糖，是因为其只是一个编译时的概念，一旦编译完成，编译器就会为内部类生成一个单独的class文件，名为outer$innter.class。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class Outer &#123;</span><br><span class="line">    class Inner&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用javac编译后，生成两个class文件Outer.class和Outer$Inner.class，其中Outer$Inner.class的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Outer$Inner &#123;</span><br><span class="line">    Outer$Inner(Outer var1) &#123;</span><br><span class="line">        this.this$0 = var1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>内部类分为四种：成员内部类、局部内部类、匿名内部类、静态内部类，每一种都有其用法，这里就不介绍了</p>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><p>枚举类型就是一些具有相同特性的类常量</p>
+<p>java中类的定义使用class，枚举类的定义使用enum。在Java的字节码结构中，其实并没有枚举类型，枚举类型只是一个语法糖，在编译完成后被编译成一个普通的类。这个类继承java.lang.Enum，并被final关键字修饰。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public enum Fruit &#123;</span><br><span class="line">    APPLE,ORINGE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用jad对编译后的class文件进行反编译后得到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//继承java.lang.Enum并声明为final</span><br><span class="line">public final class Fruit extends Enum</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public static Fruit[] values()</span><br><span class="line">    &#123;</span><br><span class="line">        return (Fruit[])$VALUES.clone();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Fruit valueOf(String s)</span><br><span class="line">    &#123;</span><br><span class="line">        return (Fruit)Enum.valueOf(Fruit, s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Fruit(String s, int i)</span><br><span class="line">    &#123;</span><br><span class="line">        super(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">    //枚举类型常量</span><br><span class="line">    public static final Fruit APPLE;</span><br><span class="line">    public static final Fruit ORANGE;</span><br><span class="line">    private static final Fruit $VALUES[];//使用数组进行维护</span><br><span class="line"></span><br><span class="line">    static</span><br><span class="line">    &#123;</span><br><span class="line">        APPLE = new Fruit(&quot;APPLE&quot;, 0);</span><br><span class="line">        ORANGE = new Fruit(&quot;ORANGE&quot;, 1);</span><br><span class="line">        $VALUES = (new Fruit[] &#123;</span><br><span class="line">            APPLE, ORANGE</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="断言语句-运行时需要加上-VM参数-ea"><a href="#断言语句-运行时需要加上-VM参数-ea" class="headerlink" title="断言语句//运行时需要加上 VM参数 -ea"></a>断言语句//运行时需要加上 VM参数 -ea</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    String str = &quot;fans2&quot;;</span><br><span class="line">    boolean flag = &quot;fans&quot;.equals(str);</span><br><span class="line">    assert (flag);</span><br><span class="line">&#125;//程序结果Exception in thread &quot;main&quot; java.lang.AssertionError</span><br><span class="line"></span><br><span class="line">at sugar.JavaTenSugar.main(JavaTenSugar.java:102)</span><br></pre></td></tr></table></figure>
+<h2 id="对枚举和字符串的switch支持"><a href="#对枚举和字符串的switch支持" class="headerlink" title="对枚举和字符串的switch支持"></a>对枚举和字符串的switch支持</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void enumStringSwitch() &#123;</span><br><span class="line">    String str = &quot;fans&quot;;</span><br><span class="line">    switch (str) &#123;</span><br><span class="line">    case &quot;fans&quot;:</span><br><span class="line">        break;</span><br><span class="line">    case &quot;leiwen&quot;:</span><br><span class="line">        break;</span><br><span class="line">    default:</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在try语句中定义和关闭资源"><a href="#在try语句中定义和关闭资源" class="headerlink" title="在try语句中定义和关闭资源"></a>在try语句中定义和关闭资源</h2><p> jdk7提供了try-with-resources,可以自动关闭相关的资源(只要该资源实现了AutoCloseable接口，jdk7为绝大部分资源对象都实现了这个接口)</p>
+<p>static String readFirstLineFromFile(String path) throws IOException{<br>    try(BufferedReader br = new BufferedReader(new FileReader(path))){<br>        return br.readLine();<br>    }<br>}</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/books_recommand_operating_system_deeplearn.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/books_recommand_operating_system_deeplearn.html" itemprop="url">操作系统安全深入</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-03T00:00:00+00:00">
+                2016-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/000书籍推荐/" itemprop="url" rel="index">
+                    <span itemprop="name">000书籍推荐</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#Linux内核<br>ORANGE’S：一个操作系统的实现<br>Linux内核设计与实现_第三版<br>Linux内核设计的艺术<br>Linux内核完全注释V3.0书签版<br>30天自制操作系统.川合秀实</p>
+<p>#系统安全原理篇<br>计算机安全原理与实践<br>黑客攻防技术宝典.系统实战篇.第二版.pdf<br>黑客之道：漏洞发的艺术.Jon.Erickson.扫描版<br>黑客调试技术揭密.美.Kaspersky.扫描版.pdf<br>0day安全：软件漏洞分析技术（第2版）<br>Shellcoder编程揭秘<br>老码识途 从机器码到框架的系统观逆向修炼之路</p>
+<p>#Android系统移动安全<br>ANDROID安全架构深究<br>Android安全攻防权威指南<br>Android软件安全与逆向分析<br>Android安全技术揭秘与防范_13877446<br>Android安全攻防实战 (南非)keith makan, 崔孝晨;武晓音(译)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_review_four_component_ui.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_review_four_component_ui.html" itemprop="url">Android查缺补漏-四大组件UI</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-01T00:00:00+00:00">
+                2016-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/21Android-review/" itemprop="url" rel="index">
+                    <span itemprop="name">21Android_review</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Service-onStartCommand返回参数说明"><a href="#Service-onStartCommand返回参数说明" class="headerlink" title="Service onStartCommand返回参数说明"></a>Service onStartCommand返回参数说明</h2><p>方法onStartCommand()的返回值为int类型，主要的作用是当Service进程被意外kill掉时，Service服务下一步要做哪些行为，主要有3种值。<br>START_STICKY：Service被异外终止时不调用onDestroy()回调，并且终止后自动重启Service服务，只执行Service对象的onCreate()生命周期方法。<br>START_NOT_STICKY：Service被异外终止时不调用onDestroy()回调，并且不自动重启服务。<br>START_REDELIVER_INTENT：Service被异外终止时不调用onDestroy()回调，并且终止后自动重启Service服务，还要执行Service对象的onCreate()和onStartCommand()生命周期方法，并且从Intent中能取到值。<br><a href="http://book.51cto.com/art/201211/363296.htm" target="_blank" rel="noopener">http://book.51cto.com/art/201211/363296.htm</a></p>
+<h2 id="Service-stopSelf"><a href="#Service-stopSelf" class="headerlink" title="Service stopSelf"></a>Service stopSelf</h2><p>一直知道stopself是停掉Service的方法，但是却不知道什么时候停止。以为调用了stopself就会马上停止，实际上我错了.在onStartCommond方法里面调用stopself方法时，不会马上停止，而是onStartCommond方法执行结束才会停止。<br>还有一点，调用stopself方法之后，service会执行onDestory方法。<br>另外，如果onStartCommond中启动一个线程，调用stopself，线程也不会被杀死。<br>来自 <a href="http://blog.csdn.net/hello0370/article/details/46781523" target="_blank" rel="noopener">http://blog.csdn.net/hello0370/article/details/46781523</a> </p>
+<p>当调用finish方法时，onCreate方法会继续执行，之后调用onDestory方法。<br>最后，总结一下，Service的stopself方法的功能是，当完成所有功能之后，将service停掉，而不是等着系统回收。同样finish方法，是当系统执行完onCreate方法之后，调用onDestory方法销毁Activity。<br>来自 <a href="http://blog.csdn.net/hello0370/article/details/46781523" target="_blank" rel="noopener">http://blog.csdn.net/hello0370/article/details/46781523</a> </p>
+<h2 id="ACTION-CANCEL-请简述Android事件传递机制，-ACTION-CANCEL事件何时触发？"><a href="#ACTION-CANCEL-请简述Android事件传递机制，-ACTION-CANCEL事件何时触发？" class="headerlink" title="ACTION_CANCEL 请简述Android事件传递机制， ACTION_CANCEL事件何时触发？"></a>ACTION_CANCEL 请简述Android事件传递机制， ACTION_CANCEL事件何时触发？</h2><p>关于第一个问题，不做任何解释。<br>关于ACTION_CANCEL何时被触发，系统文档有这么一种使用场景：在设计设置页面的滑动开关时，如果不监听ACTION_CANCEL，在滑动到中间时，如果你手指上下移动，就是移动到开关控件之外，则此时会触发ACTION_CANCEL，而不是ACTION_UP，造成开关的按钮停顿在中间位置。<br>意思是当滑动的时候就会触发，不知道大家搞没搞过微信的长按录音，有一种状态是“松开手指，取消发送”，这时候就会触发ACTION_CANCEL。</p>
+<h2 id="简述Android的View绘制流程，Android的wrap-content是如何计算的"><a href="#简述Android的View绘制流程，Android的wrap-content是如何计算的" class="headerlink" title="简述Android的View绘制流程，Android的wrap_content是如何计算的"></a>简述Android的View绘制流程，Android的wrap_content是如何计算的</h2><p><a href="https://blog.csdn.net/qinjuning/article/details/8051811" target="_blank" rel="noopener">https://blog.csdn.net/qinjuning/article/details/8051811</a><br><a href="https://blog.csdn.net/qinjuning/article/details/8074262" target="_blank" rel="noopener">https://blog.csdn.net/qinjuning/article/details/8074262</a><br><a href="https://www.cnblogs.com/duanweishi/p/4301742.html" target="_blank" rel="noopener">https://www.cnblogs.com/duanweishi/p/4301742.html</a></p>
+<h2 id="bundle的数据结构，如何存储，既然有了Intent-putExtra，为啥还要用bundle。"><a href="#bundle的数据结构，如何存储，既然有了Intent-putExtra，为啥还要用bundle。" class="headerlink" title="bundle的数据结构，如何存储，既然有了Intent.putExtra，为啥还要用bundle。"></a>bundle的数据结构，如何存储，既然有了Intent.putExtra，为啥还要用bundle。</h2><p>bundle的内部结构其实是Map，传递的数据可以是boolean、byte、int、long、float、double、string等基本类型或它们对应的数组，也可以是对象或对象数组。当Bundle传递的是对象或对象数组时，必须实现Serializable 或Parcelable接口。</p>
+<h2 id="LocalBroadcastmanager使用"><a href="#LocalBroadcastmanager使用" class="headerlink" title="LocalBroadcastmanager使用"></a>LocalBroadcastmanager使用</h2><p>首先获取LocalBroadcastManager实例：<br>LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);<br>然后通过函数 registerReceiver方法来注册监听器：<br>lbm.registerReceiver(new BroadcastReceiver(){<br> @Override<br> public void onReceive(Context arg0, Intent arg1) {<br>  // TODO Auto-generated method stub<br> }<br>}, new IntentFilter(“com.android.action.PRIVATE_BROADCAST”));<br>最后调用sendBroadcast方法发送广播：<br>Intent intent=new Intent(“com.android.action.PRIVATE_BROADCAST”);<br>intent.putExtra(KEY, SENSITIVE_DATA);<br>lbm.sendBroadcast(intent);</p>
+<h2 id="Sticky-broadcast"><a href="#Sticky-broadcast" class="headerlink" title="Sticky broadcast"></a>Sticky broadcast</h2><p>首先点击next Activity从代码中可以看到receiver已经注册，但Log无输出，这是当然的了~~~因为没有广播发出自然就不会有人响应了。<br>按back后退到上图<br>下面分别点击send broadcast 和 send stickybroadcast按钮，随便点击几次，此时对应的receiver并没有注册，所以是不会有人响应这两条广播的。然后点击next activity，当打开新的activity后对应的receiver被注册，此时从日志中就能看出已经收到了send stickybroadcast发出的广播，但没有send broadcast发出的广播。这就是sendStickyBroadcast的特别之处，它将发出的广播保存起来，一旦发现有人注册这条广播，则立即能接收到。<br>日志打印为： action = com.android.action.sticky.broadcastand count = 4<br>从上面的日志信息可以看出sendStickyBroadcast只保留最后一条广播，并且一直保留下去，这样即使已经处理了这条广播但当再一次注册这条广播后依然可以收到它。<br>如果你只想处理一遍，removeStickyBroadcast方法可以帮你，处理完了后就将它删除吧。<br><a href="http://blog.csdn.net/yihua0607/article/details/6890805" target="_blank" rel="noopener">http://blog.csdn.net/yihua0607/article/details/6890805</a></p>
+<p> 要知道区别首先需要看一下Android Developers Reference， 它可是我们最好的老师了，sendBroadcast 大家应该都会用了我就不赘述了，下面来看看sendStickyBroadcast<br>google官方的解释是：<br>Perform a sendBroadcast(Intent) that is “sticky,” meaning the Intent you are sending stays around after the broadcast is complete, so that others can quickly retrieve that data through the return value ofregisterReceiver(BroadcastReceiver, IntentFilter). In all other ways, this behaves the same as sendBroadcast(Intent).<br>You must hold the BROADCAST_STICKY permission in order to use this API. If you do not hold that permission,SecurityException will be thrown.<br>大概的意思是说： 发出的广播会一直滞留（等待），以便有人注册这则广播消息后能尽快的收到这条广播。其他功能与sendBroadcast相同。但是使用sendStickyBroadcast 发送广播需要获得BROADCAST_STICKY permission，如果没有这个permission则会抛出异常。</p>
+<h2 id="Activity生命周期"><a href="#Activity生命周期" class="headerlink" title="Activity生命周期"></a>Activity生命周期</h2><p><a href="http://www.cnblogs.com/zyw-205520/p/3313268.html" target="_blank" rel="noopener">http://www.cnblogs.com/zyw-205520/p/3313268.html</a><br><a href="https://developer.android.com/guide/components/activities/activity-lifecycle.html#tba" target="_blank" rel="noopener">https://developer.android.com/guide/components/activities/activity-lifecycle.html#tba</a></p>
+<h2 id="按back键处理流程"><a href="#按back键处理流程" class="headerlink" title="按back键处理流程"></a>按back键处理流程</h2><p>我们在使用安卓手机时候，常常会用到back（返回）键来退出当前正在使用的Activity。这个事件的主要流程可以概括为两个步骤。</p>
+<ol>
+<li>InputReader，InputDispatcher对输入事件的分发处理，包括调用PhoneWindowManager的interceptKeyBeforeDispatching和View，ViewGroup的dispatchTouchEvent等方法。<br>2.事件分发到该Activity后，Activity方法调用finish方法退出，销毁Activity。众多第三方软件常常设置连续两次按下back键退出应用程序的功能，或者是在各浏览器APP中返回上一页浏览过的网页的功能，就是通过重写这一步骤中涉及的方法而实现的。<br>本文分析的是第二步流程，第1步过程将在随后《android输入事件分发机制》一文中进行探讨。<br>由于大部分Activity不会重写onBackPressed()方法，因此它们在接受到back键输入事件后，最终会辗转调用到父类Activity.Java的onBackPressed()方法。<br><a href="http://blog.csdn.net/jakioneplus/article/details/50034653" target="_blank" rel="noopener">http://blog.csdn.net/jakioneplus/article/details/50034653</a></li>
+</ol>
+<h2 id="Android事件分发机制"><a href="#Android事件分发机制" class="headerlink" title="Android事件分发机制"></a>Android事件分发机制</h2><p>Activity ViewGroup View<br>View是所有ViewGroup TextView LinearLayout等的基类<br>LinearLayout/RelativeLayout还有一些可以包含多个TextView、Button等的组装均继承自ViewGroup，因此也是一个view<br>Android事件分发主要是从Activity到ViewGroup到具体某个View响应的过程，事件都是以MotionEvent.ACTION_DOWN事件开始、UP事件结束，中间有无数的MOVE事件。<br>主要是dispatchTouchEvent  onTouchEvent onInterceptTouchEvent之间的传递和拦截处理。基本思路是从Activity-&gt;ViewGroup-&gt;View的dispatchTouchEvent一直往下执行，如果有一个返回false那么直接向上返回onTouchEvent执行，如果返回true那么直接消费掉结束，如果不返回那么继续下一层dispatchTouchEvent； 如果到最后一层dispatchTouchEvent还没有返回，那么执行onTouchEvent依次往上执行，如果onTouchEvent返回true，那么就消费掉结束，否则一直向上执行onTouchEvent，到最上层结束。<br><a href="https://www.jianshu.com/p/38015afcdb58" target="_blank" rel="noopener">https://www.jianshu.com/p/38015afcdb58</a><br>查看解析步骤：<br><a href="https://upload-images.jianshu.io/upload_images/944365-aea821bbb613c195.png?imageMogr2/auto-orient/" target="_blank" rel="noopener">https://upload-images.jianshu.io/upload_images/944365-aea821bbb613c195.png?imageMogr2/auto-orient/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_key_words_learn.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_key_words_learn.html" itemprop="url">Java关键字50个深度解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-09T00:00:00+00:00">
+                2016-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java关键字列表如下，包含50个关键，所有字符都是小写<br><a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html</a><br><img src="https://upload-images.jianshu.io/upload_images/11010834-e9cd503d0ff9d506.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>先介绍基本类型关键字如下<br><img src="https://upload-images.jianshu.io/upload_images/11010834-80f1b8d7b9feb159.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>有关基本类型的解释，主要是整形byte/short/int/long，浮点float/double，字符型char, 布尔值boolean，参考解释<a href="https://blog.csdn.net/qwe969153746/article/details/53353534" target="_blank" rel="noopener">https://blog.csdn.net/qwe969153746/article/details/53353534</a></p>
+<p>注意：Java浮点数默认是double， 整形默认是int，另外有一个常量池的缓存也需要注意，还有Integer.valueof()方法是Integer a = 10语句的默认赋值方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 8种基本类型的包装类和对象池</span><br><span class="line"> * 		包装类：java提供的为原始数据类型的封装类，如：int(基本数据类型)，Integer封装类。</span><br><span class="line"> * 		对象池：为了一定程度上减少频繁创建对象，将一些对象保存到一个&quot;容器&quot;中。</span><br><span class="line"> * </span><br><span class="line"> * 	Byte,Short,Integer,Long,Character。这5种整型的包装类的对象池范围在-128~127之间，也就是说，</span><br><span class="line"> * 	超出这个范围的对象都会开辟自己的堆内存。</span><br><span class="line"> * </span><br><span class="line"> *  Boolean也实现了对象池技术。Double,Float两种浮点数类型的包装类则没有实现。</span><br><span class="line"> * 	String也实现了常量池技术。</span><br><span class="line"> * </span><br><span class="line"> * 自动装箱拆箱技术</span><br><span class="line"> * 	JDK5.0及之后允许直接将基本数据类型的数据直接赋值给其对应地包装类。</span><br><span class="line"> *  如：Integer i = 3;（这就是自动装箱）</span><br><span class="line"> *  实际编译代码是：Integer i=Integer.valueOf(3); 编译器自动转换</span><br><span class="line"> * 	自动拆箱则与装箱相反：int i = (Integer)5;</span><br><span class="line"> */</span><br><span class="line">public class Test &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		//基本数据类型常量池范围-128~127</span><br><span class="line">		Integer n1 = -129;</span><br><span class="line">		Integer n2 = -129;</span><br><span class="line">		Long n3 = 100L;</span><br><span class="line">		Long n4 = 100L;</span><br><span class="line">		Double n5 =  12.0;</span><br><span class="line">		Double n6 = 12.0;</span><br><span class="line">		//false</span><br><span class="line">		System.out.println(n1 == n2);</span><br><span class="line">		//true</span><br><span class="line">		System.out.println(n3 == n4);</span><br><span class="line">		//false</span><br><span class="line">		System.out.println(n5 == n6);</span><br><span class="line">		</span><br><span class="line">		//String常量池技术,注意：这里String不是用new创建的对象</span><br><span class="line">		String str1 = &quot;abcd&quot;;</span><br><span class="line">		String str2 = &quot;abcd&quot;;</span><br><span class="line">		//true</span><br><span class="line">		System.out.println(str1 == str2);</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   //5种整形的包装类Byte,Short,Integer,Long,Character的对象，</span><br><span class="line"></span><br><span class="line">   //在值小于127时可以使用常量池</span><br><span class="line"></span><br><span class="line">   Integer i1=127;</span><br><span class="line"></span><br><span class="line">   Integer i2=127;</span><br><span class="line"></span><br><span class="line">   System.out.println(i1==i2)//输出true</span><br><span class="line"></span><br><span class="line">   //值大于127时，不会从常量池中取对象</span><br><span class="line"></span><br><span class="line">   Integer i3=128;</span><br><span class="line"></span><br><span class="line">   Integer i4=128;</span><br><span class="line"></span><br><span class="line">   System.out.println(i3==i4)//输出false</span><br><span class="line"></span><br><span class="line">   //Boolean类也实现了常量池技术</span><br><span class="line"></span><br><span class="line">   Boolean bool1=true;</span><br><span class="line"></span><br><span class="line">   Boolean bool2=true;</span><br><span class="line"></span><br><span class="line">   System.out.println(bool1==bool2);//输出true</span><br><span class="line"></span><br><span class="line">   //浮点类型的包装类没有实现常量池技术</span><br><span class="line"></span><br><span class="line">   Double d1=1.0;</span><br><span class="line"></span><br><span class="line">   Double d2=1.0;</span><br><span class="line"></span><br><span class="line">   System.out.println(d1==d2)//输出false</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>char 字符<br>Java语言的一个关键字，用来定义一个字符类型 。</p>
+</li>
+<li><p>short  短的<br>Java语言的关键字，用来定义一个short类型的变量。 </p>
+</li>
+<li><p>int  整数类型<br>Java(TM)的一个关键字，用来定义一个整形变量<br>Java(TM)的一个关键字，用来定义一系列的方法和常量。它可以被类实现，通过implements关键字。 </p>
+</li>
+<li><p>long  长整型<br>Java语言的一个关键字，用来定义一个long类型的变量。 </p>
+</li>
+<li><p>float 浮点数<br>一个Java语言的关键字，用来定义一个浮点数变量 。</p>
+</li>
+<li><p>double 双精度型<br>一个Java语言的关键字，用来定义一个double类型的变量 。</p>
+</li>
+</ul>
+<p>##<strong>以下是条件分支和循环语句关键字</strong></p>
+<ul>
+<li><p>for 为了（循环语句）<br>一个Java语言的关键字，用来声明一个循环。程序员可以指定要循环的语句，推出条件和初始化变量。 </p>
+</li>
+<li><p>if  如果<br>Java编程语言的一个关键字，用来生成一个条件测试，如果条件为真，就执行if下的语句。 </p>
+</li>
+<li><p>else 否则<br>一个Java语言的关键字，如果if语句的条件不满足就会执行该语句。 </p>
+</li>
+<li><p>break  跳出<br>一个Java的关键字，用来改变程序执行流程，立刻从当前语句的下一句开始执行从。如果后面跟有一个标签，则从标签对应的地方开始执行 。</p>
+</li>
+<li><p>case 实例<br>Java语言的关键字，用来定义一组分支选择，如果某个值和switch中给出的值一样，就会从该分支开始执行。 </p>
+</li>
+<li><p>continue  继续<br>一个Java的关键字，用来打断当前循环过程，从当前循环的最后重新开始执行，如果后面跟有一个标签，则从标签对应的地方开始执行。 </p>
+</li>
+<li><p>do<br>一个Java语言的关键字，用来声明一个循环，这个循环的结束条件可以通过while关键字设置 </p>
+</li>
+<li><p>while  一会儿（循环语句）<br>Java语言的一个关键字，用来定义一段反复执行的循环语句。循环的退出条件是while语句的一部分。</p>
+</li>
+<li><p>关于break和continue。<br>continue语句与break语句相关，但较少用到。continue语句用于使其所在的for、while或do-while语句开始下一次循环。在while与do-while语句中，continue语句的执行意味着立即执行测试部分；在for循环语句中，continue语句的执行则意味着使控制传递到增量部分。</p>
+</li>
+</ul>
+<h2 id="以下是异常处理机制"><a href="#以下是异常处理机制" class="headerlink" title="以下是异常处理机制"></a><strong>以下是异常处理机制</strong></h2><ul>
+<li><p>throw  投、抛<br>Java语言的关键字，允许用户抛出一个exception对象或者任何实现 </p>
+</li>
+<li><p>throwable的对象<br>throws 声明抛弃异常<br>Java语言的关键字，用在方法的声明中来说明哪些异常这个方法是不处理的，而是提交到程序的更高一层。</p>
+</li>
+<li><p>try  尝试、审判<br>Java语言的关键字，用来定义一个可能抛出异常语句块。如果一个异常被抛出，一个可选的catch语句块会处理try语句块中抛出的异常。同时，一个finally语句块会被执行，无论一个异常是否被抛出。</p>
+</li>
+<li><p>catch 捕捉<br>Java的一个关键字，用来声明当try语句块中发生运行时错误或非运行时异常时运行的一个块。 </p>
+</li>
+<li><p>finally  最后<br>一个Java语言的关键字，用来执行一段代码不管在前面定义的try语句中是否有异常或运行时错误发生。 </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">package test;  </span><br><span class="line">//jdk 1.8  </span><br><span class="line">public class TestException1 &#123;  </span><br><span class="line">  </span><br><span class="line">      </span><br><span class="line">    /** </span><br><span class="line">     * catch中的return和throw是不能共存的(无论谁先谁后都编译不通过) </span><br><span class="line">     * 如果只throw e，则必须try-catch捕捉异常e或用throws抛出异常e </span><br><span class="line">     * 如果只return ，则在catch段正常返回值 </span><br><span class="line">     */  </span><br><span class="line">    int testEx0()&#123;  </span><br><span class="line">        boolean ret = true;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return 0;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            ret = false;  </span><br><span class="line">            return -1;  </span><br><span class="line">            throw e;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * 在finally中的return和throw是不能共存的(无论谁先谁后都编译不通过) </span><br><span class="line">     * 如果只throw e，则必须try-catch捕捉异常e或用throws抛出异常e </span><br><span class="line">     * 如果只return ，则在catch段正常返回值 </span><br><span class="line">     */  </span><br><span class="line">    int testEx00()&#123;  </span><br><span class="line">        int  ret = 0;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            ret = -1;  </span><br><span class="line">        &#125;finally&#123;  </span><br><span class="line">            ret = 1;  </span><br><span class="line">            System.out.println(&quot;testEx, finally; return value=&quot; + ret);  </span><br><span class="line">            throw e;  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * 结果： </span><br><span class="line">        testEx, catch exception </span><br><span class="line">        testEx, finally; return value=false </span><br><span class="line">        false </span><br><span class="line">        结论：在finally里没有return的时候：先执行finally的语句，再执行catch的return </span><br><span class="line">     */  </span><br><span class="line">    boolean testEx01()&#123;  </span><br><span class="line">        boolean ret = true;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return true;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            ret = false;  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125;finally&#123;  </span><br><span class="line">            System.out.println(&quot;testEx, finally; return value=&quot; + ret);  </span><br><span class="line">              </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     *  结果： </span><br><span class="line">     *  testEx, catch exception </span><br><span class="line">        testEx, finally; return value=1 </span><br><span class="line">        1 </span><br><span class="line">        结论：在finally里有return的时候：先执行finally的语句和return，忽略catch的return </span><br><span class="line">     */  </span><br><span class="line">    int testEx02()&#123;  </span><br><span class="line">        int ret = 0;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            ret = -1;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125;finally&#123;  </span><br><span class="line">            ret = 1;  </span><br><span class="line">            System.out.println(&quot;testEx, finally; return value=&quot; + ret);  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * 编译能通过， </span><br><span class="line">     * 但运行时抛异常（当然也没有返回值） </span><br><span class="line">     * @return </span><br><span class="line">     */  </span><br><span class="line">    boolean testEx03()&#123;  </span><br><span class="line">        boolean ret = true;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return true;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            ret = false;  </span><br><span class="line">            throw e;  </span><br><span class="line">        &#125;finally&#123;  </span><br><span class="line">            System.out.println(&quot;testEx, finally; return value=&quot; + ret);  </span><br><span class="line">              </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * 编译不能通过（必须加throws主动抛异常，或try-catch捕捉，） </span><br><span class="line">     * 但运行时抛异常（当然也没有返回值） </span><br><span class="line">     * @return </span><br><span class="line">     * @throws Exception  </span><br><span class="line">     */  </span><br><span class="line">    boolean testEx031()&#123;  </span><br><span class="line">        boolean ret = true;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return true;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            ret = false;  </span><br><span class="line">            throw new Exception(e);  </span><br><span class="line">        &#125;finally&#123;  </span><br><span class="line">            System.out.println(&quot;testEx, finally; return value=&quot; + ret);  </span><br><span class="line">              </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * 结果： </span><br><span class="line">     *  testEx, catch exception </span><br><span class="line">        testEx, finally; return value=1 </span><br><span class="line">        1  </span><br><span class="line">        结论： </span><br><span class="line">        函数在finally里正常返回return的值，无异常，显然catch中的throw被忽略 </span><br><span class="line">     */  </span><br><span class="line">    int testEx04()&#123;  </span><br><span class="line">        int ret = 0;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            int c = 12 / 0;  </span><br><span class="line">            System.out.println(&quot;testEx,successfully&quot;);  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            System.out.println(&quot;testEx, catch exception&quot;);  </span><br><span class="line">            ret = -1;  </span><br><span class="line">            throw e;  </span><br><span class="line">        &#125;finally&#123;  </span><br><span class="line">            ret = 1;  </span><br><span class="line">            System.out.println(&quot;testEx, finally; return value=&quot; + ret);  </span><br><span class="line">            return ret;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    public static void main(String[] args) &#123;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            System.out.println(new TestException1().testEx0());  </span><br><span class="line">            //System.out.println(new TestException1().testEx00());  </span><br><span class="line">            //System.out.println(new TestException1().testEx01());  </span><br><span class="line">            //System.out.println(new TestException1().testEx02());  </span><br><span class="line">            //System.out.println(new TestException1().testEx03());  </span><br><span class="line">            //System.out.println(new TestException1().testEx031());  </span><br><span class="line">            //System.out.println(new TestException1().testEx04());  </span><br><span class="line">        &#125; catch (Exception e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="以下是类或这变量的权限控制"><a href="#以下是类或这变量的权限控制" class="headerlink" title="以下是类或这变量的权限控制"></a><strong>以下是类或这变量的权限控制</strong></h2><p><img src="https://upload-images.jianshu.io/upload_images/11010834-ba0b12f3a3feac40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li><p>private  私有的<br>Java语言的一个关键字，用在方法或变量的声中。它表示这个方法或变量只能被这个类的其它元素所访问。 </p>
+</li>
+<li><p>protected  保护类型<br>Java语言的一个关键字，在方法和变量的声明中使用，它表示这个方法或变量只能被同一个类中的，子类中的或者同一个包中的类中的元素所访问。 </p>
+</li>
+<li><p>public  公共的<br>Java语言的一个关键字，在方法和变量的声明中使用，它表示这个方法或变量能够被其它类中的元素访问。 </p>
+</li>
+</ul>
+<h2 id="以下修饰字段变量的关键字"><a href="#以下修饰字段变量的关键字" class="headerlink" title="以下修饰字段变量的关键字"></a><strong>以下修饰字段变量的关键字</strong></h2><p><img src="https://upload-images.jianshu.io/upload_images/11010834-26aa017cd7bb6ac9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li><p>final 最终、不可更改的<br>一个Java语言的关键字。你只能定义一个实体一次，以后不能改变它或继承它。更严格的讲：一个final修饰的类不能被子类化，一个final修饰的方法不能被重写，一个final修饰的变量不能改变其初始值。 </p>
+</li>
+<li><p>volatile  挥发性、易挥发的<br>Java语言的关键字，用在变量的声明中表示这个变量是被同时运行的几个线程异步修改的。<br>volatile是一个类型修饰符（type specifier）。它是被设计用来修饰被不同线程访问和修改的变量。如果没有volatile，基本上会导致这样的结果：要么无法编写多线程程序，要么编译器失去大量优化的机会。</p>
+</li>
+<li><p>static  静态的<br>Java语言的关键字，用来定义一个变量为类变量。类只维护一个类变量的拷贝，不管该类当前有多少个实例。”static” 同样能够用来定义一个方法为类方法。类方法通过类名调用而不是特定的实例，并且只能操作类变量。</p>
+</li>
+<li><p>transient  短暂的、瞬时的<br>Java语言的关键字，用来表示一个域不是该对象串行化的一部分。当一个对象被串行化的时候，transient型变量的值不包括在串行化的表示中，然而非transient型的变量是被包括进去的。 </p>
+</li>
+</ul>
+<p><strong>synchronized同步控制</strong><br><img src="https://upload-images.jianshu.io/upload_images/11010834-ffe76c4abf05a067.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>简单来说原理是</p>
+<ol>
+<li><p>synchronized修饰对象或类<br>重量级锁也就是通常说synchronized的对象锁，锁标识位为10，其中指针指向的是monitor对象（在 Synchronized 代码块中的监视器 ）的起始地址。每个对象都存在着一个 monitor 与之关联，对象与其 monitor 之间的关系有存在多种实现方式，如 monitor 可以与对象一起创建销毁或当线程试图获取对象锁时自动生成，但当一个 monitor 被某个线程持有后，它便处于锁定状态。 有monitorenter和monitorexit的操作</p>
+</li>
+<li><p>synchronized修饰方法<br>当方法调用时，调用指令将会 检查方法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执行线程将先持有 monitor ， 然后再执行方法，最后再方法完成(无论是正常完成还是非正常完成)时释放monitor<br><img src="https://upload-images.jianshu.io/upload_images/11010834-a28014c3b6713c36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/11010834-074402f7eda1b1d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ol start="3">
+<li>轻量级锁和重量级锁<br><strong>轻量级锁。</strong>他的基本思想是，当线程要获取锁时把锁对象的 Mark Word 复制一份到当前线程的栈顶，然后执行一个 CAS 操作把锁对象的 Mark Word 更新为指向栈顶的副本的指针，如果成功则当前线程拥有了锁。<br><strong>偏向锁。</strong>获取的过程如下，当锁对象第一次被线程获取的时候，虚拟机把对象头中的标志位设为“01”，即偏向模式。同时使用CAS操作把获取到这个锁的线程的ID记录在对象的Mark Word之中的偏向线程ID，并将是否偏向锁的状态位置置为1。如果CAS操作成功，持有偏向锁的线程以后每次进入这个锁相关的同步块时，直接检查ThreadId是否和自身线程Id一致，如果一致，则认为当前线程已经获取了锁，虚拟机就可以不再进行任何同步操作（例如Locking、Unlocking及对Mark Word的Update等）。<br><strong>详见原理：</strong> <a href="https://www.jianshu.com/p/ce4f5e43e0a8?utm_campaign=haruki&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weixin" target="_blank" rel="noopener">https://www.jianshu.com/p/ce4f5e43e0a8?utm_campaign=haruki&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weixin</a></li>
+</ol>
+<h2 id="其他关键字"><a href="#其他关键字" class="headerlink" title="其他关键字"></a>其他关键字</h2><ul>
+<li><p>this 这个<br>Java语言的关键字，用来代表它出现的类的一个实例。this可以用来访问类变量和类方法。 </p>
+</li>
+<li><p>void  空<br>Java语言的关键字，用在Java语言的方法声明中说明这个方法没有任何返回值。”void”也可以用来表示一句没有任何功能的语句。 </p>
+</li>
+</ul>
+<ul>
+<li><p>return  返回<br>Java语言的一个关键字，用来结束一个方法的执行。它后面可以跟一个方法声明中要求的值。 </p>
+</li>
+<li><p>import 导入<br>Java(TM)编程语言的一个关键字，在源文件的开始部分指明后面将要引用的一个类或整个包，这样就不必在使用的时候加上包的名字。 </p>
+</li>
+<li><p>implements  实现<br>Java(TM)编程语言的一个关键字，在类的声明中是可选的，用来指明当前类实现的接口。 tm=tradeMark（Java商标的意思）</p>
+</li>
+<li><p>Abstract  抽象的<br>一个Java语言中的关键字，用在类的声明中来指明一个类是不能被实例化的，但是可以被其它类继承。一个抽象类可以使用抽象方法，抽象方法不需要实现，但是需要在子类中被实现 。<br><strong>多态实现原理参考：</strong><br>从虚拟机角度看Java多态-&gt;（重写override）的实现原理<br><a href="https://www.cnblogs.com/2014asm/p/8633660.html" target="_blank" rel="noopener">https://www.cnblogs.com/2014asm/p/8633660.html</a></p>
+</li>
+<li><p>instanceof 判断对象类型<br>一个二操作数的Java(TM)语言关键字，用来测试第一个参数的运行时类型是否和第二个参数兼容。 </p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_review_android_tools_adb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_review_android_tools_adb.html" itemprop="url">Android查缺补漏-常用工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-16T00:00:00+00:00">
+                2016-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/21Android-review/" itemprop="url" rel="index">
+                    <span itemprop="name">21Android_review</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Proguard"><a href="#Proguard" class="headerlink" title="Proguard"></a>Proguard</h2><p>useProguard minifyEnabled<br><a href="https://developer.android.com/studio/build/shrink-code.html?hl=zh-cn" target="_blank" rel="noopener">https://developer.android.com/studio/build/shrink-code.html?hl=zh-cn</a></p>
+<p>minifyEnabled true<br>            proguardFiles getDefaultProguardFile(‘proguard-android.txt’),<br>                    ‘proguard-rules.pro’</p>
+<p>除了 minifyEnabled 属性外，还有用于定义 ProGuard 规则的 proguardFiles 属性：</p>
+<p>getDefaultProguardFile(‘proguard-android.txt’) 方法可从 Android SDK tools/proguard/ 文件夹获取默认的 ProGuard 设置。<br>提示：要想做进一步的代码压缩，请尝试使用位于同一位置的 proguard-android-optimize.txt 文件。它包括相同的 ProGuard 规则，但还包括其他在字节码一级（方法内和方法间）执行分析的优化，以进一步减小 APK 大小和帮助提高其运行速度。</p>
+<p>proguard-rules.pro 文件用于添加自定义 ProGuard 规则。默认情况下，该文件位于模块根目录（build.gradle 文件旁）。</p>
+<p><a href="https://stuff.mit.edu/afs/sipb/project/android/sdk/android-sdk-linux/tools/proguard/docs/index.html#manual/introduction.html" target="_blank" rel="noopener">https://stuff.mit.edu/afs/sipb/project/android/sdk/android-sdk-linux/tools/proguard/docs/index.html#manual/introduction.html</a></p>
+<h2 id="资源压缩"><a href="#资源压缩" class="headerlink" title="资源压缩"></a>资源压缩</h2><p>请在 build.gradle 文件中将 shrinkResources 属性设置为 true<br>自定义要保留的资源<br>如果您有想要保留或舍弃的特定资源，请在您的项目中创建一个包含 <resources> 标记的 XML 文件，并在 tools:keep 属性中指定每个要保留的资源，在 tools:discard 属性中指定每个要舍弃的资源。这两个属性都接受逗号分隔的资源名称列表。您可以使用星号字符作为通配符。</resources></p>
+<p>例如：<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+<p><resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@layout/l_used*_c,@layout/l_used_a,@layout/l_used_b*" tools:discard="@layout/unused2"><br>将该文件保存在项目资源中，例如，保存在 res/raw/keep.xml。构建不会将该文件打包到 APK 之中。</resources></p>
+<h2 id="Framework-jar-非dex的编译方式"><a href="#Framework-jar-非dex的编译方式" class="headerlink" title="Framework.jar 非dex的编译方式"></a>Framework.jar 非dex的编译方式</h2><p>in Android M, you can achieve that by using LOCAL_JACK_ENABLED = disabled variable in your makefile.<br>In Android N it is more tricky…it is broken and the solution to this is yet to come in AOSP mainline of Android N.<br>Solution is available in master.<br>Checked in 7.1.1 Android N.<br>You need to make use of javac-check target. This has been implemented for this purpose.<br>make javac-check-$(LOCAL_MODULE)<br>So, if your module name is “ABCD”<br>make javac-check-ABCD<br>This generates a classes-full-debug.jar, in the common\obj\JAVA_LIBRARIES\ABCD_intermediates.<br>This is the jar which you can use in your Studio environment.<br>Most important, this solution is not yet visible in any of the tags on Android N branch. It is part of the master hence you need to add this solution to your branch manually.<br><a href="https://android.googlesource.com/platform/build/+/32bd0adf9c5dcd1560d77bdb886c7acc78496657" target="_blank" rel="noopener">https://android.googlesource.com/platform/build/+/32bd0adf9c5dcd1560d77bdb886c7acc78496657</a><br>来自 <a href="https://groups.google.com/forum/#!topic/android-building/gRuDxqEB1H8" target="_blank" rel="noopener">https://groups.google.com/forum/#!topic/android-building/gRuDxqEB1H8</a> </p>
+<h2 id="AM常见的用法"><a href="#AM常见的用法" class="headerlink" title="AM常见的用法"></a>AM常见的用法</h2><p>我们可以通过命令启动android中的Activity，Service，BroadcastReceiver 等组件</p>
+<ol>
+<li><p>拨打一个电话：</p>
+<p> am start -a android.intent.action.CALL -d tel:10086</p>
+<p> 这里-a表示动作，-d表述传入的数据，还有-t表示传入的类型。</p>
+</li>
+<li><p>打开一个网页：</p>
+<p> am start -a android.intent.action.VIEW -d  <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> （这里-d表示传入的data）</p>
+</li>
+<li><p>打开音乐播放器：</p>
+<p> am start -a android.intent.action.MUSIC_PLAYER 或者<br> am start -n com.android.music/om.android.music.MusicBrowserActivity</p>
+</li>
+<li><p>启动一个服务：</p>
+<p> am startservice &lt;服务名称&gt;</p>
+<p> 例如：am startservice -n com.android.music/com.android.music.MediaPlaybackService (这里-n表示组件)<br> 或者   am startservice -a com.smz.myservice (这里-a表示动作，就是你在Androidmanifest里定义的) </p>
+</li>
+<li><p>发送一个广播：</p>
+<p> am broadcast -a &lt;广播动作&gt;</p>
+<p> 例如： am broadcast -a com.smz.mybroadcast</p>
+</li>
+</ol>
+<p>am还有很多的用法，有待研究。</p>
+<p>来自 <a href="http://blog.csdn.net/electricity/article/details/6409354" target="_blank" rel="noopener">http://blog.csdn.net/electricity/article/details/6409354</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/design_pattern_libs_source_dp.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/design_pattern_libs_source_dp.html" itemprop="url">框架源码设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-20T00:00:00+00:00">
+                2016-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/02DesignPattern/" itemprop="url" rel="index">
+                    <span itemprop="name">02DesignPattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/design_pattern_android_source_dp.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/design_pattern_android_source_dp.html" itemprop="url">Andriod源码设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-15T00:00:00+00:00">
+                2016-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/02DesignPattern/" itemprop="url" rel="index">
+                    <span itemprop="name">02DesignPattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>简要说明Android中设计模式，以加深对设计的理解。</p>
+<ol>
+<li><p>工厂方法模式： 接口 Iterable 中的 iterator 就是一个工厂方法， Activity 中的 onCreate 也可以看作是工厂方法</p>
+</li>
+<li><p>抽象工厂模式： MediaPlayerFactory 是一个抽象工厂</p>
+</li>
+<li><p>单例模式： 单例模式的应用非常广泛， Application 就是单例的， WindowManagerService 、 ActivityService 等系统级的 Service 也是单例的，具体可见 <a href="http://weiqianghu.github.io/2016/09/08/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">单例模式</a></p>
+</li>
+<li><p>建造者模式 ：建造者模式在图片加载库中使用非常普遍，例如 Picasso 、 Glide 、UniversalImageLoader 中都有建造者模式的身影。在 Android 源码中 AlertDialog 中应用了建造者模式，详见 <a href="http://weiqianghu.github.io/2016/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B-Builder-%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">设计模式之 Builder 模式</a></p>
+</li>
+<li><p>原型模式：原型模式就是实现接口 Cloneable ，这个太多了。。。</p>
+</li>
+<li><p>适配器模式：这个不用说了， AbsListView 和 RecyclerView 都使用了适配器模式。详见：<a href="http://weiqianghu.github.io/2016/10/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">设计模式之适配器模式</a></p>
+</li>
+<li><p>装饰器模式：Context 、 ContextImpl 、 ContextWrapper 、ContextThemeWrapper</p>
+</li>
+<li><p>代理模式： AIDL ，ActivityProxy（其实这也是 AIDL ）</p>
+</li>
+<li><p>外观模式：Context 作为 Android 系统中的上帝类，封装了很多功能，这也是外观模式的应用</p>
+</li>
+<li><p>桥接模式：Adapter 与 AdapterView 的桥接，Window 与 WindowManager 的桥接 详见：<a href="http://weiqianghu.github.io/2016/10/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">设计模式之桥接模式</a></p>
+</li>
+<li><p>组合模式： View 、 ViewGroup</p>
+</li>
+<li><p>享元模式：Message 中的 MessagePool 是用链表实现的。</p>
+</li>
+<li><p>策略模式：动画中的 InterPolator 和 TypeEvaluator 。详见<a href="http://weiqianghu.github.io/2016/08/23/Android-%E5%8A%A8%E7%94%BB%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">Android 动画分析</a></p>
+</li>
+<li><p>模板方法模式: 模板模式的应用非常广泛， Android 中 AsyncTask 的几个回调可以看作模板。</p>
+</li>
+<li><p>观察者模式： AbsListView 和 RecyclerView 都使用了观察者模式，详见<a href="http://weiqianghu.github.io/2016/09/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">设计模式之观察者模式</a></p>
+</li>
+<li><p>迭代子模式： 这个不用说了，在 JDK 中的集合类都是迭代子模式。</p>
+</li>
+<li><p>责任链模式： View 中对于事件的分发处理可以看作是责任链模式。详见<a href="http://weiqianghu.github.io/2016/07/14/%E5%88%A9%E7%94%A8%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%90%8C%E6%9D%A5%E6%BA%90%E7%9A%84%E6%95%B0%E6%8D%AE/" target="_blank" rel="noopener">利用责任链模式实现加载不同来源的数据</a></p>
+</li>
+<li><p>命令模式： Android 事件的底层 NotifyArgs 就是一个命令对象。</p>
+</li>
+<li><p>备忘录模式： Android 的状态保存， onSaveInstanceState 、 onRestoreInstaceState</p>
+</li>
+<li><p>状态模式： WIFI 管理</p>
+</li>
+<li><p>访问者模式： Java 注解 APT</p>
+</li>
+<li><p>中介者模式： KeyGuard 功能的实现</p>
+</li>
+<li><p>解释器模式： PackageParser 中有解释器模式的影子</p>
+</li>
+</ol>
+<p><strong>Copy from</strong><br><a href="http://weiqianghu.github.io/2016/10/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">http://weiqianghu.github.io/2016/10/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/design_pattern_JDK_source_dp.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/design_pattern_JDK_source_dp.html" itemprop="url">JDK源码设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-10T00:00:00+00:00">
+                2016-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/02DesignPattern/" itemprop="url" rel="index">
+                    <span itemprop="name">02DesignPattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><p><strong>抽象工厂模式</strong><br>(通过创建的方法返回工厂本身, 可以依次创建另一个抽象/接口类型)<br>javax.xml.parsers.DocumentBuilderFactory#newInstance()<br>javax.xml.transform.TransformerFactory#newInstance()<br>javax.xml.xpath.XPathFactory#newInstance()</p>
+<p><strong>生成器模式</strong><br>(通过创建的方法返回实例本身)<br>java.lang.StringBuilder#append() (非同步的)<br>java.lang.StringBuffer#append() (支持同步)<br>java.nio.ByteBuffer#put() (与之相同的有: CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer 和 DoubleBuffer)<br>javax.swing.GroupLayout.Group#addComponent()<br>java.lang.Appendabled 的所有实现</p>
+<p><strong>工厂模式</strong><br>(通过创建的方法返回一个抽象/接口类型的实现)<br>java.util.Calendar#getInstance()<br>java.util.ResourceBundle#getBundle()<br>java.text.NumberFormat#getInstance()<br>java.nio.charset.Charset#forName()<br>java.net.URLStreamHandlerFactory#createURLStreamHandler(String)<br>(按协议返回单例对象)</p>
+<p><strong>原型模式</strong><br>(通过创建的方法返回一个包含相同属性的不同实例)<br>java.lang.Object#clone() (类必须实现 java.lang.Cloneable)</p>
+<p><strong>单例模式</strong><br>(通过创建的方法在任何时间都返回一个相同实例(通常是它本身))<br>java.lang.Runtime#getRuntime()<br>java.awt.Desktop#getDesktop()</p>
+<h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><p><strong>适配器模式</strong><br>(接收不同抽象或接口类型的一个实例, 并返回一个装饰或重写了该实例的本身/其他的抽象/接口类型的指定实现)<br>java.util.Arrays#asList()<br>java.io.InputStreamReader(InputStream) (返回一个Reader)<br>java.io.OutputStreamWriter(OutputStream) (返回一个Writer)<br>javax.xml.bind.annotation.adapters.XmlAdapter#marshal() 和 #unmarshal()</p>
+<p><strong>桥接模式</strong><br>(接收不同抽象或接口类型的一个实例, 并返回一个委托或使用了该实例的本身/其他的抽象/接口类型的指定实现)<br>一时之间没有想到. 一个虚构的例子: new LinkedHashMap(LinkedHashSet<k>, List<v>)返回一个不可变的链式map, 并且不会克隆内部元素而是直接使用他们. java.util.Collections#newSetFromMap() 和 singletonXXX()方法是有些接近这个模式的.</v></k></p>
+<p><strong>组合模式</strong><br>(通过行为式的方法接收一个相同的抽象或接口类型的实例转换为一个树状结构)<br>java.awt.Container#add(Component) (几乎所有Swing都是这样)<br>javax.faces.component.UIComponent#getChildren() (几乎所有JSF UI都是这样)</p>
+<p><strong>装饰器模式</strong><br>(通过创建的方法接收一个相同的抽象或接口类型的实例, 并添加附加的行为)<br>java.io.InputStream, OutputStream, Reader 和 Writer的子类拥有一个持有相同类型的实例构造器.<br>java.util.Collections, checkedXXX(), synchronizedXXX() 和 unmodifiableXXX().<br>javax.servlet.http.HttpServletRequestWrapper 和 HttpServletResponseWrapper</p>
+<p><strong>门面模式</strong><br>(通过行为式的方法实现, 该方法内部使用不同的独立的抽象或接口类型的实例)<br>javax.faces.context.FacesContext, 它内部之间使用 LifeCycle, ViewHandler, NavigationHandler 和很多无需最终能够用户关心的抽象/接口类型(可通过注入覆写).<br>javax.faces.context.ExternalContext, 它内部使用ServletContext, HttpSession, HttpServletRequest, HttpServletResponse等.</p>
+<p><strong>享元模式</strong><br>(通过创建的方法返回一个缓存的实例, 有一些”多例”的思想)<br>java.lang.Integer#valueOf(int) (类似的还包括: Boolean, Byte, Character, Short 和 Long)</p>
+<p><strong>代理模式</strong><br>(通过创建的方法返回指定的抽象或接口类型的实现, 该实现依次委托或使用了指定抽象或接口类型的不同实现)<br>java.lang.reflect.Proxy<br>java.rmi.*下所有API.</p>
+<p>##行为型模式</p>
+<p><strong>责任链模式</strong><br>(通过行为方法(间接地)在一个队列中调用另一个相同抽象/接口类型的相同方法)<br>java.util.logging.Logger#log()<br>javax.servlet.Filter#doFilter()</p>
+<p><strong>命令模式</strong><br>(一个抽象/接口类型内的行为方法中, 调用一个不同的象/接口类型的实现的方法, 该实现已经在其创建过程中被命令实现封装)<br>java.lang.Runnable的所有实现<br>javax.swing.Action的所有实现</p>
+<p><strong>解释器模式</strong><br>(行为方法返回一个有结构的并且与被提供的实例/类型不同的实例/类型; 注意parsing/formatting不是这个模式的组成部分, 而是用来确定该模式以及如何应用模式)<br>java.util.Pattern<br>java.text.Normalizer<br>java.text.Format的所有子类<br>javax.el.ELResolver的所有子类</p>
+<p><strong>迭代器模式</strong><br>(行为方法按顺序的自一个队列中返回不同类型的实例)<br>java.util.Iterator的所有实现 (除此以外, 还有 java.util.Scanner!).<br>java.util.Enumeration的所有实现</p>
+<p><strong>中介者模式</strong><br>(行为方法接收一个不同抽象/接口类型的实例(通常使用命令模式), 该实例委托或使用了指定实例)<br>java.util.Timer (所有 scheduleXXX() 方法)<br>java.util.concurrent.Executor#execute()<br>java.util.concurrent.ExecutorService (invokeXXX() 和 submit() 方法)<br>java.util.concurrent.ScheduledExecutorService (所有 scheduleXXX() 方法)<br>java.lang.reflect.Method#invoke()</p>
+<p><strong>备忘录模式</strong><br>(行为方法内部改变了整个实例的状态)<br>java.util.Date ( setter 方法就是这么做的, Date 内部通过长整型long表示)<br>java.io.Serializable的所有实现<br>javax.faces.component.StateHolder的所有实现<br>观察者或发布/订阅模式(行为方法在另一个抽象/接口类型的实例上调用方法, 并取决于自身状态)<br>java.util.Observer/java.util.Observable (在现实世界中很少使用)<br>java.util.EventListener 的所有实现 (几乎所有的Swing都是这样)<br>javax.servlet.http.HttpSessionBindingListener<br>javax.servlet.http.HttpSessionAttributeListener<br>javax.faces.event.PhaseListener</p>
+<p><strong>状态模式</strong><br>(行为方法通过外部可控的实例状态改变它的行为)<br>javax.faces.lifecycle.LifeCycle#execute() (通过FacesServlet控制, 行为取决于当前JSF生命周期的阶段(状态)</p>
+<p><strong>策略模式</strong><br>(行为方法内一个抽象/接口类型调用不同抽象/接口类型的不同实现内的方法, 该实现以方法参数型式被传进策略实现内)<br>java.util.Comparator#compare(), 在Collections#sort()中执行.<br>javax.servlet.http.HttpServlet, service() 和所有 doXXX() 方法接收 HttpServletRequest, HttpServletResponse, 并且实现者必须处理它们(而不是作为实例变量持有它们)<br>javax.servlet.Filter#doFilter()</p>
+<p><strong>模板模式</strong><br>(行为方法已拥有一个被抽象类型定义的”默认”行为)<br>java.io.InputStream, java.io.OutputStream, java.io.Reader 和 java.io.Writer 的所有非抽象方法.<br>java.util.AbstractList, java.util.AbstractSet 和 java.util.AbstractMap 的所有非抽象方法.<br>javax.servlet.http.HttpServlet, 所有 doXXX() 方法默认发送 HTTP 405 “Method Not Allowed” 错误到响应中. 你可以任意实现这些方法.</p>
+<p><strong>访问者模式</strong><br>(两个不同的抽象/接口类型中包含互相接收对方抽象/接口类型的方法; 实际调用的是另一个类型的方法和它上面的其他执行所需求的策略)<br>javax.lang.model.element.AnnotationValue 和 AnnotationValueVisitor<br>javax.lang.model.element.Element 和 ElementVisitor<br>javax.lang.model.type.TypeMirror 和 TypeVisitor</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/design_pattern_books_recommand.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/design_pattern_books_recommand.html" itemprop="url">设计模式经典书籍推荐</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-07T00:00:00+00:00">
+                2016-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/02DesignPattern/" itemprop="url" rel="index">
+                    <span itemprop="name">02DesignPattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#书籍学习<br>外话：用书和文档镇楼，站在巨人的肩膀上，才能进步的更快，才能少踩坑，赶紧阅读吧少年们。</p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p>设计模式之禅（第2版）<br>大话设计模式<br>Android源码设计模式解析与实战<br>Java设计模式经典搞笑珍藏版</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>Github源码<br><a href="https://github.com/iluwatar/java-design-patterns" target="_blank" rel="noopener">https://github.com/iluwatar/java-design-patterns</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_book_recommand.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_book_recommand.html" itemprop="url">JVM和ART经典书籍推荐</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-05T00:00:00+00:00">
+                2016-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#书籍学习<br>外话：用书和文档镇楼，站在巨人的肩膀上，才能进步的更快，才能少踩坑，赶紧阅读吧少年们。</p>
+<p>#Java虚拟机<br>深入理解Java虚拟机：JVM高级特性与最佳实践<br>自己动手写Java虚拟机 (Java核心技术系列)<br>Java虚拟机精讲<br>HotSpot实战<br>深入java虚拟机第二版</p>
+<p>#Dalvik-ART虚拟机<br>Android Dalvik 虚拟机结构及机制剖析<br>深入解析Android 虚拟机</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

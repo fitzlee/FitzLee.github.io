@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,thread," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Android线程的几种方式AsyncTask/HandlerThread/Thread/IntentServicehttps://www.jianshu.com/p/34cffd700f75 AsyncTask单个线程的线程池，一个一个执行，会阻塞后边线程。可以设置 AsyncTask.executeOnExecutor()来同时执行任务。写的时候注意避免内存泄露 HandlerThread实质">
+<meta name="keywords" content="Android,thread">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 后台线程">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_app_thread_bg_sum.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Android线程的几种方式AsyncTask/HandlerThread/Thread/IntentServicehttps://www.jianshu.com/p/34cffd700f75 AsyncTask单个线程的线程池，一个一个执行，会阻塞后边线程。可以设置 AsyncTask.executeOnExecutor()来同时执行任务。写的时候注意避免内存泄露 HandlerThread实质">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.675Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 后台线程">
+<meta name="twitter:description" content="Android线程的几种方式AsyncTask/HandlerThread/Thread/IntentServicehttps://www.jianshu.com/p/34cffd700f75 AsyncTask单个线程的线程池，一个一个执行，会阻塞后边线程。可以设置 AsyncTask.executeOnExecutor()来同时执行任务。写的时候注意避免内存泄露 HandlerThread实质">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_app_thread_bg_sum.html"/>
+
+
+
+
+
+  <title>Android 后台线程 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_thread_bg_sum.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 后台线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Android线程的几种方式"><a href="#Android线程的几种方式" class="headerlink" title="Android线程的几种方式"></a>Android线程的几种方式</h2><p>AsyncTask/HandlerThread/Thread/IntentService<br><a href="https://www.jianshu.com/p/34cffd700f75" target="_blank" rel="noopener">https://www.jianshu.com/p/34cffd700f75</a></p>
+<h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><p>单个线程的线程池，一个一个执行，会阻塞后边线程。可以设置 AsyncTask.executeOnExecutor()来同时执行任务。写的时候注意避免内存泄露</p>
+<h2 id="HandlerThread"><a href="#HandlerThread" class="headerlink" title="HandlerThread"></a>HandlerThread</h2><p>实质是一个Thread，不过添加了Looper和MessageQueue，这样就可以使用Handler来进行控制代码执行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个线程，线程名字 : handlerThreadTest</span><br><span class="line">        mHandlerThread = new HandlerThread(&quot;handlerThreadTest&quot;);</span><br><span class="line">        mHandlerThread.start();</span><br><span class="line">        </span><br><span class="line">        // Handler 接收消息</span><br><span class="line">        final Handler mHandler = new Handler(mHandlerThread.getLooper()) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleMessage(Message msg) &#123;</span><br><span class="line">                Log.e(&quot;Test&quot;, &quot;收到 &quot; + msg.obj.toString() + &quot; 在 &quot;</span><br><span class="line">                        + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        mTextView = (TextView) findViewById(R.id.text_view);</span><br><span class="line">        // 主线程发出消息</span><br><span class="line">        mTextView.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                Message msg = new Message();</span><br><span class="line">                msg.obj = &quot;第一条信息&quot;;</span><br><span class="line">                mHandler.sendMessage(msg);</span><br><span class="line">                Log.e(&quot;Test&quot;, &quot;发出 &quot; + msg.obj.toString() + &quot; 在 &quot;</span><br><span class="line">                        + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        // 子线程发出消息</span><br><span class="line">        new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message msg = new Message();</span><br><span class="line">                msg.obj = &quot;第二条信息&quot;;</span><br><span class="line">                mHandler.sendMessage(msg);</span><br><span class="line">                Log.e(&quot;Test&quot;, &quot;发出 &quot; + msg.obj.toString() + &quot; 在 &quot;</span><br><span class="line">                        + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start()；</span><br></pre></td></tr></table></figure></p>
+<p>但是最后不要忘记mHandlerThread.quit();否则将一直循环。另外可以在run方法里设置不同优先级android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);同样HandlerThread的构造方法也提供了设置优先级的功能，new HandlerThread(“LightTaskThread”, Process.THREAD_PRIORITY_BACKGROUND);AsyncTask同样设置了优先级THREAD_PRIORITY_BACKGROUND。<br>HandlerThread的默认优先级是Process.THREAD_PRIORITY_DEFAULT,具体值为0。线程的优先级的取值范围为-20到19。优先级高的获得的CPU资源更多，反之则越少。-20代表优先级最高，19最低。0位于中间位置，但是作为工作线程的HandlerThread没有必要设置这么高的优先级，因而需要我们降低其优先级。<br>THREAD_PRIORITY_DEFAULT，默认的线程优先级，值为0。<br>THREAD_PRIORITY_LOWEST，最低的线程级别，值为19。<br>THREAD_PRIORITY_BACKGROUND 后台线程建议设置这个优先级，值为10。<br>THREAD_PRIORITY_MORE_FAVORABLE 相对THREAD_PRIORITY_DEFAULT稍微优先，值为-1。<br>THREAD_PRIORITY_LESS_FAVORABLE 相对THREAD_PRIORITY_DEFAULT稍微落后一些，值为1。</p>
+<h2 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h2><p>使用了HandlerThread使得IntentService可以运行耗时任务，一般使用时结合主线程Handler或者LocalBroadCastManager来通知主界面UI的更新。</p>
+<h2 id="ThreadPool线程池"><a href="#ThreadPool线程池" class="headerlink" title="ThreadPool线程池"></a>ThreadPool线程池</h2><p>线程池不允许使用 Executors 去创建，而是通过ThreadPoolExecutor 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。<br>说明： Executors 返回的线程池对象的弊端如下：<br>1） FixedThreadPool 和 SingleThreadPool:<br>允许的请求队列长度为 Integer.MAX_VALUE ，可能会堆积大量的请求，从而导致 OOM 。<br>2） CachedThreadPool 和ScheduledThreadPool :<br>允许的创建线程数量为 Integer.MAX_VALUE ，可能会创建大量的线程，从而导致 OOM 。</p>
+<p><a href="https://liuzho.github.io/2017/04/17/%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E6%88%96%E8%AE%B8%E5%B0%B1%E5%A4%9F%E4%BA%86/" target="_blank" rel="noopener">https://liuzho.github.io/2017/04/17/%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E6%88%96%E8%AE%B8%E5%B0%B1%E5%A4%9F%E4%BA%86/</a></p>
+<p>ThreadPoolExecutor(<br>int corePoolSize,<br>int maximumPoolSize,<br>long keepAliveTime,<br>TimeUnit unit,<br>BlockingQueue<runnable> workQueue,<br>RejectedExecutionHandler handler<br>);</runnable></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadPoolTest &#123;</span><br><span class="line">    private static final int CORE_POOL_SIZE = 5;</span><br><span class="line">    private static final int MAX_POOL_SIZE = 10;</span><br><span class="line">    private static final int BLOCK_POOL_SIZE = 2;</span><br><span class="line">    private static final int ALIVE_POOL_SIZE = 2;</span><br><span class="line">    private static ThreadPoolExecutor executor;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        executor = new ThreadPoolExecutor(</span><br><span class="line">                CORE_POOL_SIZE,// 核心线程数 最小</span><br><span class="line">                MAX_POOL_SIZE,// 最大执行线程数</span><br><span class="line">                ALIVE_POOL_SIZE,// 空闲线程超时</span><br><span class="line">                TimeUnit.SECONDS,// 超时时间单位</span><br><span class="line">                // 当线程池达到corePoolSize时，新提交任务将被放入workQueue中，</span><br><span class="line">                // 等待线程池中任务调度执行</span><br><span class="line">                new ArrayBlockingQueue&lt;Runnable&gt;(BLOCK_POOL_SIZE),// 阻塞队列大小</span><br><span class="line">                // 线程工厂，为线程池提供创建新线程的功能，它是一个接口，</span><br><span class="line">                // 只有一个方法：Thread newThread(Runnable r)</span><br><span class="line">                Executors.defaultThreadFactory(),</span><br><span class="line">                // 线程池对拒绝任务的处理策略。一般是队列已满或者无法成功执行任务，</span><br><span class="line">                // 这时ThreadPoolExecutor会调用handler的rejectedExecution</span><br><span class="line">                // 方法来通知调用者</span><br><span class="line">                new ThreadPoolExecutor.AbortPolicy()</span><br><span class="line">        );</span><br><span class="line">        executor.allowCoreThreadTimeOut(true);</span><br><span class="line">        /*</span><br><span class="line">         * ThreadPoolExecutor默认有四个拒绝策略：</span><br><span class="line">         *</span><br><span class="line">         * 1、ThreadPoolExecutor.AbortPolicy()   直接抛出异常RejectedExecutionException</span><br><span class="line">         * 2、ThreadPoolExecutor.CallerRunsPolicy()    直接调用run方法并且阻塞执行</span><br><span class="line">         * 3、ThreadPoolExecutor.DiscardPolicy()   直接丢弃后来的任务</span><br><span class="line">         * 4、ThreadPoolExecutor.DiscardOldestPolicy()  丢弃在队列中队首的任务</span><br><span class="line">         */</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                executor.execute(new WorkerThread(&quot;线程 --&gt; &quot; + i));</span><br><span class="line">                LOG();</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                System.out.println(&quot;AbortPolicy...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        executor.shutdown();</span><br><span class="line"></span><br><span class="line">        // 所有任务执行完毕后再次打印日志</span><br><span class="line">        new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                    System.out.println(&quot;\n\n---------执行完毕---------\n&quot;);</span><br><span class="line">                    LOG();</span><br><span class="line">                &#125; catch (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 打印 Log 信息</span><br><span class="line">     */</span><br><span class="line">    private static void LOG() &#123;</span><br><span class="line">        System.out.println(&quot; ==============线程池===============\n&quot;</span><br><span class="line">                + &quot;   线程池中线程数 : &quot; + executor.getPoolSize()</span><br><span class="line">                + &quot;   等待执行线程数 : &quot; + executor.getQueue().size()</span><br><span class="line">                + &quot;   所有的任务数 : &quot; + executor.getTaskCount()</span><br><span class="line">                + &quot;   执行任务的线程数 : &quot; + executor.getActiveCount()</span><br><span class="line">                + &quot;   执行完毕的任务数 : &quot; + executor.getCompletedTaskCount()</span><br><span class="line"></span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 模拟线程任务</span><br><span class="line">    public static class WorkerThread implements Runnable &#123;</span><br><span class="line">        private String threadName;</span><br><span class="line"></span><br><span class="line">        public WorkerThread(String threadName) &#123;</span><br><span class="line">            this.threadName = threadName;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public synchronized void run() &#123;</span><br><span class="line"></span><br><span class="line">            int i = 0;</span><br><span class="line">            boolean flag = true;</span><br><span class="line">            try &#123;</span><br><span class="line">                while (flag) &#123;</span><br><span class="line">                    i++;</span><br><span class="line">                    if (i &gt; 2) flag = false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public String getThreadName() &#123;</span><br><span class="line">            return threadName;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="请解释下在单线程模型中Message-Handler-Message-Queue-Looper之间的关系。"><a href="#请解释下在单线程模型中Message-Handler-Message-Queue-Looper之间的关系。" class="headerlink" title="请解释下在单线程模型中Message,Handler,Message Queue,Looper之间的关系。"></a>请解释下在单线程模型中Message,Handler,Message Queue,Looper之间的关系。</h2><p>拿主线程来说，主线程启动时会调用Looper.prepare()方法，会初始化一个Looper，放入Threadlocal中，接着调用Looper.loop()不断遍历Message Queue，Handler的创建依赖与当前线程中的Looper，如果当前线程没有Looper则必须调用Looper.prepare()。Handler , sendMessage到MessageQueue，Looper不断从MessageQueue中取出消息，回调handleMessage方法。 </p>
+<ul>
+<li>Looper  Message Queue 和 Handler， HandlerThread源码<br><a href="https://blog.csdn.net/lovedren/article/details/51701477" target="_blank" rel="noopener">https://blog.csdn.net/lovedren/article/details/51701477</a><br><a href="https://blog.csdn.net/charles674611395/article/details/51914659" target="_blank" rel="noopener">https://blog.csdn.net/charles674611395/article/details/51914659</a></li>
+</ul>
+<h2 id="Android的进程间通信，Liunx操作系统的进程间通信"><a href="#Android的进程间通信，Liunx操作系统的进程间通信" class="headerlink" title="Android的进程间通信，Liunx操作系统的进程间通信"></a>Android的进程间通信，Liunx操作系统的进程间通信</h2><p>binder(所有android上层几乎都是binder)/socket(zygote-systemserver)<br>Linux机制： 管道、消息队列、共享内存、套接字、信号量、信号这些IPC机制<br>handler线程之间通信</p>
+<h2 id="asynctask的原理"><a href="#asynctask的原理" class="headerlink" title="asynctask的原理"></a>asynctask的原理</h2><p>AsyncTask是对Thread和Handler的组合包装。<br><a href="https://blog.csdn.net/iispring/article/details/50670388" target="_blank" rel="noopener">https://blog.csdn.net/iispring/article/details/50670388</a><br><a href="https://blog.csdn.net/epubit17/article/details/80342004" target="_blank" rel="noopener">https://blog.csdn.net/epubit17/article/details/80342004</a></p>
+<h2 id="Alarm机制"><a href="#Alarm机制" class="headerlink" title="Alarm机制"></a>Alarm机制</h2><p>Timer TimerTask<br><a href="http://coderlin.coding.me/2016/04/02/Android-%E5%88%9D%E6%AD%A5%E4%B9%8BTimmer-AlarmManager-JobSchedule/&gt;" target="_blank" rel="noopener">http://coderlin.coding.me/2016/04/02/Android-%E5%88%9D%E6%AD%A5%E4%B9%8BTimmer-AlarmManager-JobSchedule/&gt;</a></p>
+<h2 id="JobScheduler"><a href="#JobScheduler" class="headerlink" title="JobScheduler"></a>JobScheduler</h2><p><a href="http://blog.csdn.net/bboyfeiyu/article/details/44809395" target="_blank" rel="noopener">http://blog.csdn.net/bboyfeiyu/article/details/44809395</a></p>
+<h2 id="ELAPSED-REALTIME-WAKEUP和RTC-WAKEUP的区别"><a href="#ELAPSED-REALTIME-WAKEUP和RTC-WAKEUP的区别" class="headerlink" title="ELAPSED_REALTIME_WAKEUP和RTC_WAKEUP的区别"></a>ELAPSED_REALTIME_WAKEUP和RTC_WAKEUP的区别</h2><p>AlarmManager.ELAPSED_REALTIME_WAKEUP type is used to trigger the alarm since boot time:<br>alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 600000, pendingIntent);<br>will actually make the alarm go off 10 min after the device boots.<br>There is a timer that starts running when the device boots up to measure the uptime of the device and this is the type that triggers your alarm according to the uptime of the device.<br>Whereas, AlarmManager.RTC_WAKEUP will trigger the alarm according to the time of the clock. For example if you do:<br>long thirtySecondsFromNow = System.currentTimeMillis() + 30 * 1000;<br>alarmManager.set(AlarmManager.RTC_WAKEUP, thirtySecondsFromNow , pendingIntent);<br>this, on the other hand, will trigger the alarm 30 seconds from now.<br>AlarmManager.ELAPSED_REALTIME_WAKEUP type is rarely used compared to AlarmManager.RTC_WAKEUP</p>
+<p>来自 <a href="http://stackoverflow.com/questions/5938213/android-alarmmanager-rtc-wakeup-vs-elapsed-realtime-wakeup" target="_blank" rel="noopener">http://stackoverflow.com/questions/5938213/android-alarmmanager-rtc-wakeup-vs-elapsed-realtime-wakeup</a> </p>
+<h2 id="handler和timer的延迟对比"><a href="#handler和timer的延迟对比" class="headerlink" title="handler和timer的延迟对比"></a>handler和timer的延迟对比</h2><p>Handler vs Timer<br>在我们Android开发过程中，经常需要执行一些短周期的定时任务，这时候有两个选择Timer或者Handler。然而个人认为：Handler在多个方面比Timer更为优秀，更推荐使用。<br>一.易用性</p>
+<ol>
+<li>可重复执行<br> • Handler可以重复执行某个任务。<br> • Timer若在某个任务执行/取消之后，再次执行则会抛出一个IllegalStateException异常。为了避免这个异常，需要重新创建一个Timer对象。</li>
+<li>周期可调整<br>若想要执行一个越来越快的定时任务，Handler可以做到，而Timer则消耗较大。<br> • Handler<br>private Handler handler = new Handler();<br>int mDelayTime = 1000;<br>private Runnable runnable = new Runnable() {<br>public void run() {<br>   update();<br>   if （mDelayTime &gt; 0） {<pre><code>handler.postDelayed(this,mDelayTime); 
+mDelayTime -= 100;
+</code></pre>   }<br>}<br>};<br>handler.postDelayed(runnable,1000);<br>如以上例子，就可以实现对周期的动态调整。<br> • Timer的scheduleAtFixedRate(TimerTask task, long delay, long period)只能执行固定周期的任务，所以不可以动态地调整周期。若想要动态调整，则需要在执行玩一个定时器任务后，再启动一个新的任务时设置新的时间。</li>
+<li>UI界面更新<br> • Handler：在创建的时候可以指定所在的线程，一般在Activity中构建的，即主线程上，所以可以在回调方法中很方便的更新界面。<br> • Timer：异步回调，所以必须借助Handler去更新界面，不方便。<br>既然都得用Handler去更新界面了，为何不如把定时的功能也交给Handler去做呢？<br>二.内存占比<br>Timer比Handler更占内存。<br>接下来的Demo例子通过两种方法循环地打印日志，然后通过MAT插件来查看这两个类所需要调用的对象所产生的占比。</li>
+</ol>
+<h2 id="Async转sync的方法-异步-gt-同步"><a href="#Async转sync的方法-异步-gt-同步" class="headerlink" title="Async转sync的方法 异步-&gt;同步"></a>Async转sync的方法 异步-&gt;同步</h2><p>You could do this with CountdownLatch, which might be the lightest synchronization primitive in java.util.concurrent:<br>private boolean findPrinter(final Context ctx) {<br>    final CountdownLatch latch = new CountdownLatch(1);<br>    final boolean[] result = {false};<br>…<br>BluetoothDiscoverer.findPrinters(ctx, new DiscoveryHandler() {<br>…<br>public void discoveryFinished() {<br>            result[0] = true;<br>            latch.countDown();<br>        }<br>public void discoveryError(String arg0) {<br>            result[0] = false;<br>            latch.countDown();<br>        }<br>…<br>    }<br>// before final return<br>    // wait for 10 seconds for the response<br>    latch.await(10, TimeUnit.SECONDS);<br>//return the result, it will return false when there is timeout<br>    return result[0];<br>}<br>来自 <a href="https://stackoverflow.com/questions/20659961/java-synchronous-callback" target="_blank" rel="noopener">https://stackoverflow.com/questions/20659961/java-synchronous-callback</a> </p>
+<h2 id="Handler集中形式原理"><a href="#Handler集中形式原理" class="headerlink" title="Handler集中形式原理"></a>Handler集中形式原理</h2><p><a href="https://blog.csdn.net/reakingf/article/details/52054598" target="_blank" rel="noopener">https://blog.csdn.net/reakingf/article/details/52054598</a><br><strong>Looper</strong><br>其中threadlocal保证一个线程只有一个Looper<br>一个Looper一个MessageQueue<br>不断循环获取msg，从target中取得相应得handler来进行dispatchmsg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private static void prepare(boolean quitAllowed) &#123;</span><br><span class="line">    if (sThreadLocal.get() != null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(new Looper(quitAllowed));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private Looper(boolean quitAllowed) &#123;</span><br><span class="line">    mQueue = new MessageQueue(quitAllowed);</span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void loop() &#123;</span><br><span class="line">    for (;;) &#123;</span><br><span class="line">            Message msg = queue.next(); // might block</span><br><span class="line">            msg.target.dispatchMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>处理顺序Handler.dispatchMessage</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void dispatchMessage(Message msg) &#123;</span><br><span class="line">    if (msg.callback != null) &#123;</span><br><span class="line">        handleCallback(msg);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (mCallback != null) &#123;</span><br><span class="line">            if (mCallback.handleMessage(msg)) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        handleMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>msg</strong></p>
+<ul>
+<li><p>sendEmptyMessageDelayed(what, time)-&gt;sendMessageAtTime<br>msg.what = what</p>
+</li>
+<li><p>postAtTime(Runnable r, long uptimeMillis)<br>sendMessageDelayed(getPostMessage(r), 0);<br>getPostMessage()<br>m.callback = r</p>
+</li>
+<li><p>enqueue msg<br>msg.target = 记录不同handler</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis) &#123;</span><br><span class="line">    msg.target = this;</span><br><span class="line">    if (mAsynchronous) &#123;</span><br><span class="line">        msg.setAsynchronous(true);</span><br><span class="line">    &#125;</span><br><span class="line">    return queue.enqueueMessage(msg, uptimeMillis);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>hanlder</strong><br>Handler(Handler.Callback callback)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/thread/" rel="tag"># thread</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/android_app_intent_start_mode.html" rel="next" title="Android intent和启动模式">
+                <i class="fa fa-chevron-left"></i> Android intent和启动模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/design_pattern_uml_23gof_analysis.html" rel="prev" title="设计模式UML和23种分类解析">
+                设计模式UML和23种分类解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android线程的几种方式"><span class="nav-number">1.</span> <span class="nav-text">Android线程的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncTask"><span class="nav-number">2.</span> <span class="nav-text">AsyncTask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HandlerThread"><span class="nav-number">3.</span> <span class="nav-text">HandlerThread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntentService"><span class="nav-number">4.</span> <span class="nav-text">IntentService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadPool线程池"><span class="nav-number">5.</span> <span class="nav-text">ThreadPool线程池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请解释下在单线程模型中Message-Handler-Message-Queue-Looper之间的关系。"><span class="nav-number">6.</span> <span class="nav-text">请解释下在单线程模型中Message,Handler,Message Queue,Looper之间的关系。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android的进程间通信，Liunx操作系统的进程间通信"><span class="nav-number">7.</span> <span class="nav-text">Android的进程间通信，Liunx操作系统的进程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asynctask的原理"><span class="nav-number">8.</span> <span class="nav-text">asynctask的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alarm机制"><span class="nav-number">9.</span> <span class="nav-text">Alarm机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JobScheduler"><span class="nav-number">10.</span> <span class="nav-text">JobScheduler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELAPSED-REALTIME-WAKEUP和RTC-WAKEUP的区别"><span class="nav-number">11.</span> <span class="nav-text">ELAPSED_REALTIME_WAKEUP和RTC_WAKEUP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#handler和timer的延迟对比"><span class="nav-number">12.</span> <span class="nav-text">handler和timer的延迟对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async转sync的方法-异步-gt-同步"><span class="nav-number">13.</span> <span class="nav-text">Async转sync的方法 异步-&gt;同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler集中形式原理"><span class="nav-number">14.</span> <span class="nav-text">Handler集中形式原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

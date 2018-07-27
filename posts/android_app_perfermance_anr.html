@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,书籍推荐,anr,性能优化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="ANR基本分析定位方法ANR分析主要是Input、Broadcast、Service三种ANR， 对应的时间主要有以下几种：其中后台时间相对长一些，broadcast可以达到60s，但是前台一般最高10s，后台service是20s。类型                  前台        后台Input                   8s          8sForground Bro">
+<meta name="keywords" content="Android,书籍推荐,anr,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能-ANR">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_app_perfermance_anr.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="ANR基本分析定位方法ANR分析主要是Input、Broadcast、Service三种ANR， 对应的时间主要有以下几种：其中后台时间相对长一些，broadcast可以达到60s，但是前台一般最高10s，后台service是20s。类型                  前台        后台Input                   8s          8sForground Bro">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能-ANR">
+<meta name="twitter:description" content="ANR基本分析定位方法ANR分析主要是Input、Broadcast、Service三种ANR， 对应的时间主要有以下几种：其中后台时间相对长一些，broadcast可以达到60s，但是前台一般最高10s，后台service是20s。类型                  前台        后台Input                   8s          8sForground Bro">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_app_perfermance_anr.html"/>
+
+
+
+
+
+  <title>Android性能-ANR | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_perfermance_anr.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android性能-ANR</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-20T00:00:00+00:00">
+                2017-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="ANR基本分析定位方法"><a href="#ANR基本分析定位方法" class="headerlink" title="ANR基本分析定位方法"></a>ANR基本分析定位方法</h2><p>ANR分析主要是Input、Broadcast、Service三种ANR， 对应的时间主要有以下几种：其中后台时间相对长一些，broadcast可以达到60s，但是前台一般最高10s，后台service是20s。<br>类型                  前台        后台<br>Input                   8s          8s<br>Forground Broadcast      10s         20s<br>Background Broadcast     10s         60s<br>Service                 10s         20s</p>
+<p>定位问题思路是，首先查看anr的进程，类型，cpu占用，iowait等指标<br>activity、broadcast、还是service，是前台还是后台。<br>cpu占用是否过高，iowait是否正常，是否是由于整机问题影响</p>
+<p>查看线程调用栈，main主线程是由于什么原因导致的anr， 等锁lock，是否死锁？ 是否binder卡住了？ 是否no focus windows可能是由于进程被杀，搜索是否有window change查看界面切换的影响？wait和notifiy导致的死锁，查看相关代码？其他卡住的地方File、database、sharepreference可以怀疑文件系统等。</p>
+<p>引起ANR问题的根本原因，总的来说可以归纳为两类：<br>    • 应用进程自身引起的，例如：<br>主线程阻塞、挂起、死循环<br>应用进程的其他线程的CPU占用率高，使得主线程无法抢占到CPU时间片<br>    • 其他进程间接引起的，例如：<br>当前应用进程进行进程间通信请求其他进程，其他进程的操作长时间没有反馈<br>其他进程的CPU占用率高，使得当前应用进程无法抢占到CPU时间片<br>分析ANR问题时，以上述可能的几种原因为线索，通过分析各种日志信息，大多数情况下你就可以很容易找到问题所在了。<br><a href="http://www.cnblogs.com/zl1991/p/5947157.html" target="_blank" rel="noopener">http://www.cnblogs.com/zl1991/p/5947157.html</a></p>
+<h2 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h2><ul>
+<li>ANR原理分析  <a href="http://rayleeya.iteye.com/blog/1955652" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1955652</a></li>
+<li>稳定性问题 <a href="http://gityuan.com/2016/06/19/stability_summary/" target="_blank" rel="noopener">http://gityuan.com/2016/06/19/stability_summary/</a></li>
+<li>ANR超时源码解析 <a href="http://gityuan.com/2016/07/02/android-anr/" target="_blank" rel="noopener">http://gityuan.com/2016/07/02/android-anr/</a></li>
+<li>ANR信息收集 <a href="http://gityuan.com/2016/12/02/app-not-response/" target="_blank" rel="noopener">http://gityuan.com/2016/12/02/app-not-response/</a>  </li>
+<li>ANR input  <a href="http://gityuan.com/2017/01/01/input-anr/" target="_blank" rel="noopener">http://gityuan.com/2017/01/01/input-anr/</a></li>
+</ul>
+<h3 id="anr处理思路"><a href="#anr处理思路" class="headerlink" title="anr处理思路"></a>anr处理思路</h3><p><strong>ANR原因</strong><br>Application Not Responding 三种类型，主线程事件长时间无法执行</p>
+<ul>
+<li>KeyDispatchTimeout(input)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static final int KEY_DISPATCHING_TIMEOUT = 5*1000;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>BroadcastTimeout(broadcast)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static final int BROADCAST_FG_TIMEOUT = 10*1000;  </span><br><span class="line">static final int BROADCAST_BG_TIMEOUT = 60*1000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ServiceTimeout(service)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static final int SERVICE_TIMEOUT = (20*1000);</span><br><span class="line">static final int SERVICE_BACKGROUND_TIMEOUT = SERVICE_TIMEOUT * 10;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>查看日志</strong></p>
+<ol>
+<li>ANR存储路径  /data/anr/ </li>
+<li>dropbox存储路径   /data/system/dropbox/ </li>
+<li>tombstones存储路径  /data/tombstones</li>
+</ol>
+<p>Process: com.android.contacts 进程名字<br>Flags: 0x38d8be4d 应用安装标志，预装还是安装等<br>Package: com.android.contacts v24 (1.2) (报名和版本号)<br>Foreground: Yes (anr在前台还是后台)<br>Activity: com.android.contacts/com.mediatek.contacts.list.ContactListMultiChoiceActivity<br>Subject: Input dispatching timed out (Waiting to send key event because the focused window has not finished processing all of the input events that were previously delivered to it.  Outbound queue length: 0.  Wait queue length: 1.)   （ANR类型信息）<br>Build: D-171117V33:user/release-keys</p>
+<p>CPU usage from 74494ms to 0ms ago (2019-11-09 21:32:06.966 to 2019-11-09 21:33:21.460):<br>  104% 323/mobile_log_d: 17% user + 86% kernel / faults: 2622 minor<br>  56% 1041/system_server: 41% user + 14% kernel / faults: 30698 minor 36 major<br>  34% 1408/com.android.phone: 28% user + 6% kernel / faults: 17027 minor 35 major<br>  15% 5541/android.process.acore: 13% user + 2.3% kernel / faults: 10865 minor 49 major<br>  10% 248/servicemanager: 4.4% user + 6.5% kernel / faults: 63 minor<br>  10% 249/surfaceflinger: 5.1% user + 5.6% kernel / faults: 1645 minor 1 major<br>  8.6% 215/logd: 2.7% user + 5.8% kernel / faults: 310 minor 11 major<br>  5.6% 1848/com.android.contacts: 4.4% user + 1.1% kernel / faults: 9569 minor 677 major<br>  3.7% 1155/com.android.systemui: 2.9% user + 0.7% kernel / faults: 12145 minor 50 major<br>98% TOTAL: 54% user + 42% kernel + 0.1% iowait + 0% softirq<br><strong>单进程信息</strong><br>读取/proc/<pid>/task/<pid>/stat，utime，stime两次相差/两次采样周期的系统uptime；进程差值时间<br>56% 1041/system_server: 41% user + 14% kernel / faults: 30698 minor 36 major<br>cpu占用信息  进程信息: 用户态时间执行比 + kernel执行时间比 / 发生page faults的次数，一个minor，一个是major<br><strong>总TOTAL信息</strong><br>读取/proc/stat信息  <a href="http://www.linuxhowtos.org/System/procstat.htm" target="_blank" rel="noopener">http://www.linuxhowtos.org/System/procstat.htm</a><br>98% TOTAL: 54% user + 42% kernel + 0.1% iowait + 0% softirq<br>user: normal processes executing in user mode<br>nice: niced processes executing in user mode<br>system: processes executing in kernel mode<br>idle: twiddling thumbs<br>iowait: waiting for I/O to complete<br>irq: servicing interrupts<br>softirq: servicing softirqs</pid></pid></p>
+<p><strong>ANR分析套路</strong><br><a href="http://maoao530.github.io/2017/02/21/anr-analyse/" target="_blank" rel="noopener">http://maoao530.github.io/2017/02/21/anr-analyse/</a><br><a href="https://blog.csdn.net/sinat_34157462/article/details/78651870" target="_blank" rel="noopener">https://blog.csdn.net/sinat_34157462/article/details/78651870</a><br><a href="https://blog.csdn.net/wei_lei/article/details/70311702" target="_blank" rel="noopener">https://blog.csdn.net/wei_lei/article/details/70311702</a><br><a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="noopener">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
+<ol>
+<li>trace日志和logcat日志要结合起来看。</li>
+<li>trace中的ANR原因，进程号，时间，首个调用栈等信息非常关键。</li>
+<li>logcat日志中一方面查找对应时间的日志，检查应用的行为，检查具体导致SIG:3发出的原因。</li>
+<li>ANR in XXX也是一个关键字，可以在logcat日志中检索。不过这句日志打印的时间通常要比ANR发生的时间晚一些。找到这部分log后，应该顺着向前继续查找ANR发生的日志。</li>
+<li>线程状态，锁，binder等。</li>
+</ol>
+<p>查看main线程调用栈，确认ANR栈类型，不同栈类型问题分析方法有所差异<br>等锁<br>Binder对端<br>wait栈<br>java标准接口<br>NativePollOnce</p>
+<p>ANR时间点确认：logcat里搜索“anr in”，或者在log_events里直接搜索anr。请注意logcat搜到的anr in时间很可能比anr时间滞后几秒。这么做是为了确认我们anr的时间范围。之前讲过了各种类型的anr时间。结合我们可以知道我们重点要关注的是什么时间段。例如后台广播在后台anr。那么我们重点关注日志范围是 （ANR时间-60秒）~ ANR时间<br>查看kmsgcat-log。确认线程是否D状态、是否多个线程Block<br>可以搜索卡住的线程是否被hungtask打印，hungtask发现D状态会主动触发打印</p>
+<h3 id="crash处理思路"><a href="#crash处理思路" class="headerlink" title="crash处理思路"></a>crash处理思路</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/书籍推荐/" rel="tag"># 书籍推荐</a>
+          
+            <a href="/tags/anr/" rel="tag"># anr</a>
+          
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/android_app_perfermance_oom.html" rel="next" title="Android性能分析与优化">
+                <i class="fa fa-chevron-left"></i> Android性能分析与优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/android_app_perfermance_oom.html" rel="prev" title="Android性能-内存泄漏">
+                Android性能-内存泄漏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ANR基本分析定位方法"><span class="nav-number">1.</span> <span class="nav-text">ANR基本分析定位方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稳定性"><span class="nav-number">2.</span> <span class="nav-text">稳定性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#anr处理思路"><span class="nav-number">2.1.</span> <span class="nav-text">anr处理思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crash处理思路"><span class="nav-number">2.2.</span> <span class="nav-text">crash处理思路</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

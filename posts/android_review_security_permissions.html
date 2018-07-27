@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,安全,查缺补漏,权限,broadcast," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Binder实现原理用法总结：http://gityuan.com/2015/11/22/binder-use/http://gityuan.com/2015/11/23/binder-aidl/主要思路是:  aidl两端：服务端stub端，实现aidl接口，通过onTransact接收数据。客户端proxy端，实现aidl接口，通过mRemote.transact传送数据。 asInterfa">
+<meta name="keywords" content="Android,安全,查缺补漏,权限,broadcast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android查缺补漏-安全权限">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_review_security_permissions.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Binder实现原理用法总结：http://gityuan.com/2015/11/22/binder-use/http://gityuan.com/2015/11/23/binder-aidl/主要思路是:  aidl两端：服务端stub端，实现aidl接口，通过onTransact接收数据。客户端proxy端，实现aidl接口，通过mRemote.transact传送数据。 asInterfa">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11010834-2d27b1713cde4eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11010834-af22fcd4e3bf86b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android查缺补漏-安全权限">
+<meta name="twitter:description" content="Binder实现原理用法总结：http://gityuan.com/2015/11/22/binder-use/http://gityuan.com/2015/11/23/binder-aidl/主要思路是:  aidl两端：服务端stub端，实现aidl接口，通过onTransact接收数据。客户端proxy端，实现aidl接口，通过mRemote.transact传送数据。 asInterfa">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11010834-2d27b1713cde4eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_review_security_permissions.html"/>
+
+
+
+
+
+  <title>Android查缺补漏-安全权限 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_review_security_permissions.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android查缺补漏-安全权限</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-22T00:00:00+00:00">
+                2017-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/21Android-review/" itemprop="url" rel="index">
+                    <span itemprop="name">21Android_review</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Binder实现原理"><a href="#Binder实现原理" class="headerlink" title="Binder实现原理"></a>Binder实现原理</h2><p><strong>用法总结：</strong><br><a href="http://gityuan.com/2015/11/22/binder-use/" target="_blank" rel="noopener">http://gityuan.com/2015/11/22/binder-use/</a><br><a href="http://gityuan.com/2015/11/23/binder-aidl/" target="_blank" rel="noopener">http://gityuan.com/2015/11/23/binder-aidl/</a><br>主要思路是:</p>
+<ul>
+<li>aidl两端：<br>服务端stub端，实现aidl接口，通过onTransact接收数据。<br>客户端proxy端，实现aidl接口，通过mRemote.transact传送数据。</li>
+<li>asInterface:<br>new com.yuanhh.appbinderdemo.IRemoteService.Stub.Proxy(obj);</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/11010834-2d27b1713cde4eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/11010834-af22fcd4e3bf86b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">package com.yuanhh.appbinderdemo;</span><br><span class="line">public interface IRemoteService extends android.os.IInterface &#123;</span><br><span class="line">    /** * Local-side IPC implementation stub class. */</span><br><span class="line">    public static abstract class Stub extends android.os.Binder implements com.yuanhh.appbinderdemo.IRemoteService &#123;</span><br><span class="line">        private static final java.lang.String DESCRIPTOR = &quot;com.yuanhh.appbinderdemo.IRemoteService&quot;;</span><br><span class="line"></span><br><span class="line">        /** * Stub构造函数 */</span><br><span class="line">        public Stub() &#123;</span><br><span class="line">            this.attachInterface(this, DESCRIPTOR);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /** * 将IBinder 转换为IRemoteService interface */</span><br><span class="line">        public static com.yuanhh.appbinderdemo.IRemoteService asInterface(android.os.IBinder obj) &#123;</span><br><span class="line">            if ((obj == null)) &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">            android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);</span><br><span class="line">            if (((iin != null) &amp;&amp; (iin instanceof com.yuanhh.appbinderdemo.IRemoteService))) &#123;                 return ((com.yuanhh.appbinderdemo.IRemoteService) iin);</span><br><span class="line">            &#125;</span><br><span class="line">            return new com.yuanhh.appbinderdemo.IRemoteService.Stub.Proxy(obj);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public android.os.IBinder asBinder() &#123;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) throws android.os.RemoteException &#123;</span><br><span class="line">            switch (code) &#123;</span><br><span class="line">                case INTERFACE_TRANSACTION: &#123;</span><br><span class="line">                    reply.writeString(DESCRIPTOR);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">                case TRANSACTION_getPid: &#123;</span><br><span class="line">                    data.enforceInterface(DESCRIPTOR);</span><br><span class="line">                    int _result = this.getPid();</span><br><span class="line">                    reply.writeNoException();</span><br><span class="line">                    reply.writeInt(_result);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">                case TRANSACTION_getMyData: &#123;</span><br><span class="line">                    data.enforceInterface(DESCRIPTOR);</span><br><span class="line">                    com.yuanhh.appbinderdemo.MyData _result = this.getMyData();</span><br><span class="line">                    reply.writeNoException();</span><br><span class="line">                    if ((_result != null)) &#123;                         reply.writeInt(1);</span><br><span class="line">                        _result.writeToParcel(reply, android.os.Parcelable.PARCELABLE_WRITE_RETURN_VALUE);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        reply.writeInt(0);</span><br><span class="line">                    &#125;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return super.onTransact(code, data, reply, flags);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private static class Proxy implements com.yuanhh.appbinderdemo.IRemoteService &#123;</span><br><span class="line">            private android.os.IBinder mRemote;</span><br><span class="line"></span><br><span class="line">            /** * Proxy构造函数 */</span><br><span class="line">            Proxy(android.os.IBinder remote) &#123;</span><br><span class="line">                mRemote = remote;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public android.os.IBinder asBinder() &#123;</span><br><span class="line">                return mRemote;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            public java.lang.String getInterfaceDescriptor() &#123;</span><br><span class="line">                return DESCRIPTOR;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public int getPid() throws android.os.RemoteException &#123;</span><br><span class="line">                android.os.Parcel _data = android.os.Parcel.obtain();</span><br><span class="line">                android.os.Parcel _reply = android.os.Parcel.obtain();</span><br><span class="line">                int _result;</span><br><span class="line">                try &#123;</span><br><span class="line">                    _data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">                    mRemote.transact(Stub.TRANSACTION_getPid, _data, _reply, 0);</span><br><span class="line">                    _reply.readException();</span><br><span class="line">                    _result = _reply.readInt();</span><br><span class="line">                &#125; finally &#123;</span><br><span class="line">                    _reply.recycle();</span><br><span class="line">                    _data.recycle();</span><br><span class="line">                &#125;</span><br><span class="line">                return _result;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public com.yuanhh.appbinderdemo.MyData getMyData() throws android.os.RemoteException &#123;</span><br><span class="line">                android.os.Parcel _data = android.os.Parcel.obtain();</span><br><span class="line">                android.os.Parcel _reply = android.os.Parcel.obtain();</span><br><span class="line">                com.yuanhh.appbinderdemo.MyData _result;</span><br><span class="line">                try &#123;</span><br><span class="line">                    _data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">                    mRemote.transact(Stub.TRANSACTION_getMyData, _data, _reply, 0);</span><br><span class="line">                    _reply.readException();</span><br><span class="line">                    if ((0 != _reply.readInt())) &#123;                         _result = com.yuanhh.appbinderdemo.MyData.CREATOR.createFromParcel(_reply);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        _result = null;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; finally &#123;</span><br><span class="line">                    _reply.recycle();</span><br><span class="line">                    _data.recycle();</span><br><span class="line">                &#125;</span><br><span class="line">                return _result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static final int TRANSACTION_getPid = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);</span><br><span class="line">        static final int TRANSACTION_getMyData = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getPid() throws android.os.RemoteException;</span><br><span class="line"></span><br><span class="line">    public com.yuanhh.appbinderdemo.MyData getMyData() throws android.os.RemoteException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>binder die处理思路</strong><br>比较简单之间直接在客户端注册相应callback即可。<br>IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient()<br><a href="https://blog.csdn.net/lea_fy/article/details/52987004" target="_blank" rel="noopener">https://blog.csdn.net/lea_fy/article/details/52987004</a><br>具体机制可以参考：<br><a href="http://gityuan.com/2016/10/03/binder_linktodeath/" target="_blank" rel="noopener">http://gityuan.com/2016/10/03/binder_linktodeath/</a></p>
+<h2 id="provider权限"><a href="#provider权限" class="headerlink" title="provider权限"></a>provider权限</h2><p><a href="http://blog.csdn.net/flowingflying/article/details/17412609&gt;" target="_blank" rel="noopener">http://blog.csdn.net/flowingflying/article/details/17412609&gt;</a><br><strong>全局权限</strong></p>
+<provider android:name="com.xxx.ExampleProvider " android:authorities="com.xxx.provider " android:exported="true" android:readpermission="com.xxx.permission.READ" android:writepermission="com.xxx.permission.WRITE"><br><br><uses-permission android:name="com.xxx.permission.READ"><br><br><strong>uri权限</strong><br><provider android:name=".PrivProvider" android:authorities="xxx.xxx.flowingflying.propermission.PrivProvider" android:readpermission="xxx.permission.READ_CONTENTPROVIDER" android:exported="true"><br>    <path-permission android:pathprefix="/hello" android:readpermission="READ_HELLO_CONTENTPROVIDER"><br></path-permission></provider> 
+
+
+<p>全局Uri granting权限传递</p>
+<provider android:name=".PrivProvider" android:authorities="xxx.xxx.flowingflying.propermission.PrivProvider" android:readpermission="xxx.permission.READ_CONTENTPROVIDER" android:granturipermissions="true" android:exported="true"><br><br>Intent intent = new Intent(this,ReadProvider.class);<br>intent.setClassName(“com.example.propermissiongrant”, “com.example.propermissiongrant.MainActivity”);<br>intent.setData(Uri.parse(“content://xxx.xxx.flowingflying.propermission.PrivProvider/world/1”));<br>intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);  //传递权限<br>startActivity(intent);<br><br><strong>部分uri权限传递</strong><br><provider android:name=".PrivProvider" android:authorities="xxx.xxx.flowingflying.propermission.PrivProvider" android:readpermission="xxx.permission.READ_CONTENTPROVIDER" android:exported="true"><br>     <grant-uri-permission android:pathprefix="/hello"><br></grant-uri-permission></provider> 
+
+
+<h2 id="android-exported说明"><a href="#android-exported说明" class="headerlink" title="android:exported说明"></a>android:exported说明</h2><p>Activity 是否可由其他应用的组件启动 —“true”表示可以，“false”表示不可以。若为“false”，则 Activity 只能由同一应用的组件或使用同一用户 ID 的不同应用启动。</p>
+<p>默认值取决于 Activity 是否包含 Intent 过滤器。没有任何过滤器意味着 Activity 只能通过指定其确切的类名称进行调用。 这意味着 Activity 专供应用内部使用（因为其他应用不知晓其类名称）。 因此，在这种情况下，默认值为“false”。另一方面，至少存在一个过滤器意味着 Activity 专供外部使用，因此默认值为“true”。</p>
+<p>该属性并非限制 Activity 对其他应用开放度的唯一手段。 您还可以利用权限来限制哪些外部实体可以调用 Activity（请参阅 permission 属性）。</p>
+<p><a href="https://developer.android.com/guide/topics/manifest/activity-element.html?hl=zh-cn#exported" target="_blank" rel="noopener">https://developer.android.com/guide/topics/manifest/activity-element.html?hl=zh-cn#exported</a></p>
+<h2 id="Broadcast权限"><a href="#Broadcast权限" class="headerlink" title="Broadcast权限"></a>Broadcast权限</h2><p><a href="https://www.cnblogs.com/whoislcj/p/5497409.html" target="_blank" rel="noopener">https://www.cnblogs.com/whoislcj/p/5497409.html</a><br><a href="https://blog.csdn.net/javensun/article/details/7334230" target="_blank" rel="noopener">https://blog.csdn.net/javensun/article/details/7334230</a></p>
+<p><strong>在Android应用开发中，有时会遇到以下两种情况</strong></p>
+<ol>
+<li>一些敏感的广播并不想让第三方的应用收到 ；</li>
+<li>要限制自己的Receiver接收某广播来源，避免被恶意的同样的ACTION的广播所干扰。</li>
+</ol>
+<p>在这些场景下就需要用到广播的权限限制。</p>
+<p><strong>第一种场景： 谁有权收我的广播</strong><br>在这种情况下，可以在自己应用发广播时添加参数声明Receiver所需的权限。<br>首先，在Androidmanifest.xml中定义新的权限RECV_XXX，例如：</p>
+<pre><code>1. &lt;permission android:name = &quot;com.android.permission.RECV_XXX&quot;/&gt;  
+</code></pre><p>然后，在Sender app发送广播时将此权限作为参数传入，如下：</p>
+<pre><code>1. sendBroadcast(&quot;com.android.XXX_ACTION&quot;, &quot;com.android.permission.RECV_XXX&quot;);  
+</code></pre><p>这样做之后就使得只有具有RECV_XXX权限的Receiver才能接收此广播要接收该广播，在Receiver应用的AndroidManifest.xml中要添加对应的RECV_XXX权限。<br>例如：</p>
+<pre><code>1. &lt;uses-permission android:name=&quot;com.android.permission.RECV_XXX&quot;&gt;&lt;/uses-permission&gt;  
+</code></pre><p><strong>第二种场景： 谁有权给我发广播？</strong><br>在这种情况下，需要在Receiver app的<receiver> tag中声明一下Sender app应该具有的权限。<br>首先同上，在AndroidManifest.xml中定义新的权限SEND_XXX，例如：</receiver></p>
+<pre><code>1. &lt;permission android:name=&quot;com.android.SEND_XXX&quot;/&gt;  
+</code></pre><p>然后，在Receiver app的Androidmanifest.xml中的<receiver>tag里添加权限SEND_XXX的声明，如下：</receiver></p>
+<pre><code>1. &lt;receiver android:name=&quot;.XXXReceiver&quot;   
+2.           android:permission=&quot;com.android.permission.SEND_XXX&quot;&gt;   
+3.     &lt;intent-filter&gt;  
+4.          &lt;action android:name=&quot;com.android.XXX_ACTION&quot; /&gt;   
+5.     &lt;/intent-filter&gt;  
+6. &lt;/receiver&gt;  
+</code></pre><p>这样一来，该Receiver便只能接收来自具有该SEND_XXX权限的应用发出的广播。<br>要发送这种广播，需要在Sender app的AndroidManifest.xml中也声明使用该权限即可，如下：</p>
+<pre><code>1. &lt;uses-permission android:name=&quot;com.android.permission.SEND_XXX&quot;&gt;&lt;/uses-permission&gt;  
+</code></pre><p>如此，可以用来对广播的来源与去处进行简单的控制。<br>同样，对Activity 和 ContentProvider的访问权限控制也类似。</p>
+<p><strong>Protected-broadcast</strong><br>只有系统应用才能发送。<br>• Process.SYSTEM_UID<br>• Process.PHONE_UID<br>• Process.SHELL_UID<br>• Process.BLUETOOTH_UID<br>• or 0<br>• 其他应用不能发送</p>
+<p>参考：<br><a href="https://crashpost.wordpress.com/2014/01/11/android-protected-broadcasts/" target="_blank" rel="noopener">https://crashpost.wordpress.com/2014/01/11/android-protected-broadcasts/</a><br><a href="http://blog.csdn.net/u013553529/article/details/78409382" target="_blank" rel="noopener">http://blog.csdn.net/u013553529/article/details/78409382</a></p>
+<h2 id="Android存储"><a href="#Android存储" class="headerlink" title="Android存储"></a>Android存储</h2><p><a href="https://bboyfeiyu.gitbooks.io/android-tech-frontier/content/others/%E6%B8%85%E6%99%B0%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/readme.html" target="_blank" rel="noopener">https://bboyfeiyu.gitbooks.io/android-tech-frontier/content/others/%E6%B8%85%E6%99%B0%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/readme.html</a><br><a href="https://github.com/Blankj/AndroidStandardDevelop" target="_blank" rel="noopener">https://github.com/Blankj/AndroidStandardDevelop</a><br><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="noopener">https://github.com/googlesamples/android-architecture</a><br><a href="http://kernel.meizu.com/android-m-external-storage.html" target="_blank" rel="noopener">http://kernel.meizu.com/android-m-external-storage.html</a><br><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0923/1557.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0923/1557.html</a><br><a href="http://blog.csdn.net/liuxu0703/article/details/53897702" target="_blank" rel="noopener">http://blog.csdn.net/liuxu0703/article/details/53897702</a><br><a href="http://blog.csdn.net/qq_23940659/article/details/50639787" target="_blank" rel="noopener">http://blog.csdn.net/qq_23940659/article/details/50639787</a></p>
+<p>相信很多新手对于Android的一些系统默认路径不太了解，在这里以5.1的Nexus5为例来介绍一下，希望对新手有点帮助，当然我也是新手啦。<br>Environment.getDataDirectory().getPath()=/data<br>Environment.getDownloadCacheDirectory().getPath()=/cache<br>Environment.getExternalStorageDirectory()=/storage/emulated/0    /sdcard/  /storage/self/primary   /mnt/user/0/primary<br>Environment.getRootDirectory().getPath()=/system<br>//警报的铃声<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_ALARMS).getPath()=/storage/emulated/0/Alarms<br>//相机拍摄的图片和视频保存的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath()=/storage/emulated/0/DCIM<br>//下载文件保存的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()=/storage/emulated/0/Download<br>//电影保存的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).getPath()=/storage/emulated/0/Movies<br>//音乐保存的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getPath()=/storage/emulated/0/Music<br>//通知音保存的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_NOTIFICATIONS).getPath()=/storage/emulated/0/Notifications<br>//下载的图片保存的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()=/storage/emulated/0/Pictures<br>//用于保存podcast（博客）的音频文件<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS).getPath()=/storage/emulated/0/Podcasts<br>//保存铃声的位置<br>Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES).getPath()=/storage/emulated/0/Ringtones</p>
+</provider></uses-permission></provider>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+            <a href="/tags/查缺补漏/" rel="tag"># 查缺补漏</a>
+          
+            <a href="/tags/权限/" rel="tag"># 权限</a>
+          
+            <a href="/tags/broadcast/" rel="tag"># broadcast</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/source_read_list.html" rel="next" title="源码阅读汇总">
+                <i class="fa fa-chevron-left"></i> 源码阅读汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/android_security_system_security.html" rel="prev" title="Android系统安全">
+                Android系统安全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binder实现原理"><span class="nav-number">1.</span> <span class="nav-text">Binder实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider权限"><span class="nav-number">2.</span> <span class="nav-text">provider权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#android-exported说明"><span class="nav-number">3.</span> <span class="nav-text">android:exported说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Broadcast权限"><span class="nav-number">4.</span> <span class="nav-text">Broadcast权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android存储"><span class="nav-number">5.</span> <span class="nav-text">Android存储</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

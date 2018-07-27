@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Security &amp; Android &amp; Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fitz.Lee">
+<meta property="og:url" content="https://fitzlee.github.io/page/3/index.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Security &amp; Android &amp; Java">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fitz.Lee">
+<meta name="twitter:description" content="Security &amp; Android &amp; Java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/page/3/"/>
+
+
+
+
+
+  <title>Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_jni.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_jni.html" itemprop="url">java jni原理分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="JNI原理解析"><a href="#JNI原理解析" class="headerlink" title="JNI原理解析"></a>JNI原理解析</h1><h1 id="第二章-开始"><a href="#第二章-开始" class="headerlink" title="第二章 开始"></a>第二章 开始</h1><p>  本章将引导你了解如何使用Java本地接口。我们将编写一个Java应用程序调用一个C函数来答应“Hello World！”。</p>
+<h2 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h2><p>  图2.1表明使用JDK或者Java SDK 2发行版编写一个调用C函数来打印“Hello World！”的Java应用程序的过程。这个过程有以下步骤组成：</p>
+<p><img src="https://i1.wp.com/blog4jimmy.com/wp-content/uploads/2017/11/JNI2.1.png" alt="《(译文) JNI编程指南与规范 第二章 开始编程》"></p>
+<ul>
+<li>创建申明了本地方法的类（HelloWorld.java）</li>
+<li>使用javac去编译这个HelloWorld源文件，得到一个HelloWorld.class的class文件。javac编译工具是JDK或者Java 2 SDK发行版中提供的。</li>
+<li>使用javah -jni去生成包含本地方法函数原型的C头文件（HelloWorld.h）。javah工具也是在JDK或者Java 2 SDK发行版中带有的。</li>
+<li>编写本地方法的C实现（HelloWorld.c）</li>
+<li>将C实现编译成一个本地库helloWorld.dll或者libHelloWorld.so，使用主机环境中可用的C编译器和连接器</li>
+<li>使用Java运行时解析器运行hello world程序。类文件（HelloWorld.class）和本机库（HelloWorld.dll或者HelloWorld.so）都在运行时加载。</li>
+</ul>
+<p>本章的剩余部分将详细讲解这些步骤。</p>
+<h2 id="2-2-定义本地方法"><a href="#2-2-定义本地方法" class="headerlink" title="2.2 定义本地方法"></a>2.2 定义本地方法</h2><p>  首先用Java编程语言编写以下程序。这个程序定义了一个包含本地方法print，类名为HelloWorld的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class HelloWorld &#123;</span><br><span class="line">    private native void print();</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        new HelloWorld().print();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    static &#123;</span><br><span class="line">        System.loadLibrary(&quot;HelloWorld&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  HelloWorld类定义从打印本地方法的声明开始。之后是实例化HelloWorld类并调用此示例的print本地方法。类定义最后一部分是一个静态初始化器，它加载包含本地print方法的本地库。</p>
+<p>  定义一个本地方法例如print和使用Java编程语言定义一个常规的方法存在两个不同的地方。一个本地方法声明必须包含native修饰符。native修饰符表明该方法由其他编程语言实现。此外本地方法声明以分号终结（语句终结符），因为在这个类中没有实现这个本地方法。我们会在独立的c文件中完成print方法的编写。</p>
+<p>  在本地方法print能够被调用前，实现了print方法的本地库必须被加载。在这个例子中，我们在HelloWorld类的静态初始化块中将本地库加载进来。Java虚拟机在调用HelloWorld类的任何方法前先运行静态初始化块的代码，因此可以肯定在本地方法print被调用前，本地库就已经被加载了。</p>
+<p>  我们定义了一个可以运行HelloWorld类的main方法。HelloWorld.main方法以与常规方法相同的方式调用print本地方法。</p>
+<p>  System.loadLibrary使用库名字，找到与库名字相关的本地库，并将本地库加载到应用程序中。我们会在本书的后面部分讨论准确的加载过程。现在只需要记住，为了使System.loadLibrary(“HelloWorld”)能够成功，我们需要在win32系统上创建一个HelloWorld.dll文件，在Solaris系统中创建一个libHelloWorld.so文件。</p>
+<h2 id="2-3-编译HelloWorld类"><a href="#2-3-编译HelloWorld类" class="headerlink" title="2.3 编译HelloWorld类"></a>2.3 编译HelloWorld类</h2><p>  在你完成HelloWorld类的编写，将源码保存到一个名为HelloWorld.java的文件中。使用JDK或者Java SDK 2中带有的javac工具进行编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac HelloWorld.java</span><br></pre></td></tr></table></figure>
+<p>  这条指令会在当前目录中产生一个HelloWorld.class文件。</p>
+<h2 id="2-4-创建本地方法的头文件"><a href="#2-4-创建本地方法的头文件" class="headerlink" title="2.4 创建本地方法的头文件"></a>2.4 创建本地方法的头文件</h2><p>  接下来我们会使用javah工具来生成一个JNI类型的头文件，这个文件在后面使用C语言完成本地方法时是非常有用的。执行javah的指令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javah -jni HelloWorld</span><br></pre></td></tr></table></figure>
+<p>  头文件的名字是类名并在其后面加上”.h”结尾。上面的指令会生成一个名字为HelloWorld.h的文件。在这里我们不会列出这个头文件的内容。这个文件的最重要的部分是Java_HelloWorld_print函数原型，它是实现了HelloWorld.print方法的C函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JNIEXPORT void JNICALL Java_HelloWorld_print</span><br><span class="line">  (JNIEnv *, jobject);</span><br></pre></td></tr></table></figure>
+<p>  现在先忽略JNIEXPORT和JNICALL宏。你可能有注意到本地方法的C实现接受两个参数，尽管相应本地方法的定义（指HelloWorld.java中的定义）却没有接受任何参数。每一个本地方法实现的第一个参数是一个JNIEnv接口指针。第二个参数是引用HelloWorld对象本身，类似于C++的this指针。在本书的后面我们会讨论如何使用JNIEnv接口指针和jobject参数，但是在这个例子将忽略这两个参数。</p>
+<h2 id="2-5-编写本地方法实现"><a href="#2-5-编写本地方法实现" class="headerlink" title="2.5 编写本地方法实现"></a>2.5 编写本地方法实现</h2><p>  使用javah来生成的JNI类型头文件能够帮助你使用C/C++来完成本地方法的实现。你编写的函数必须遵循生成的头文件中的函数原型。在C文件HelloWorld.c中，你可以按照下面的代码来实现HelloWorld.print方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;jni.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;HelloWorld.h&gt;</span><br><span class="line"></span><br><span class="line">JNIEXPORT void JNICALL Java_HelloWorld_print</span><br><span class="line">  (JNIEnv *env, jobject obj)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello World!\n&quot;);</span><br><span class="line">    return ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  这个本地方法的实现是非常简单的。它使用printf函数来显示字符串“Hello World！”，然后就返回。就像前面提到的，JNIEnv指针和obj对象引用都忽略了。</p>
+<p>  这个C程序包含三个头文件：</p>
+<ul>
+<li>jni.h：此头文件提供本地代码调用JNI函数所需的信息。 编写本机方法时，必须始终将此文件包含在C或C源文件中。</li>
+<li>stdio.h：上面的代码片段还包括了stdio.h因为它使用printf函数</li>
+<li>HelloWorld.h：通过javah工具生成的头文件。它包含Java_HelloWorld_print的函数原型。</li>
+</ul>
+<h2 id="2-6-编译C源码并生成一个本地库"><a href="#2-6-编译C源码并生成一个本地库" class="headerlink" title="2.6 编译C源码并生成一个本地库"></a>2.6 编译C源码并生成一个本地库</h2><p>  请记住，你在文件HelloWorld.java文件中创建一个HelloWorld类时，包含一条将本地库加载到程序中的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.loadLibrary(&quot;HelloWorld&quot;);</span><br></pre></td></tr></table></figure>
+<p>  现在所有需要的C源码都已经编写完成了，现在你需要编译HelloWorld.c文件并创建一个本地库。</p>
+<p>  不同的操作系统提供不同的方式去创建本地库。在Solaris上，下述命令能够创建一个名为libHelloWorld.so的动态库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc -G -I/java/include -I/java/include/solaris HelloWorld.c -o libHelloWorld.so</span><br></pre></td></tr></table></figure>
+<p>-G编译选项表明让C编译器生成一个动态库而不是常规的Solaris可执行文件。在win32系统中，下面的指令使用Microsoft Visual C++编译器创建的动态链接库（DLL）HelloWold.dll</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cl -Ic:\java\include -Ic:\java\include\win32 -MD -LD HelloWorld.c -FeHelloWorld.dll</span><br></pre></td></tr></table></figure>
+<p>-MD编译选项表明HelloWorld.dll和win32多线程C库链接。-LD编译选项表明C编译器产生一个DLL文件而不是常规的Win32可执行文件。当然不管在Win32还是Solaris系统，你都需要在你的电脑上设置好头文件的包含路径。</p>
+<p><strong>博主注：我使用的编译环境是Ubuntu 16.04版本，JDK版本是openjdk 1.8，使用上面的指令是不行的，下面是我使用的编译指令</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -I. -fPIC -shared HelloWorld.c -o libHelloWorld.so</span><br></pre></td></tr></table></figure>
+<p><strong>当然你也可以使用gcc，其中，JAVA_HOME是我配置到.bashrc中的路径：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64</span><br></pre></td></tr></table></figure>
+<p><strong>大家可以按照各自的JAVA_HOME进行配置，这样就能够编译成功了。</strong></p>
+<h2 id="2-7-运行程序"><a href="#2-7-运行程序" class="headerlink" title="2.7 运行程序"></a>2.7 运行程序</h2><p>  到这里，运行该程序的两个主件都已经准备好了。类文件（HelloWor.class）调用一个本地方法，本地库（HelloWorld.dll）实现这个本地方法。因为HelloWorld类包含它自己的main方法，在Solaris和Win32上，可以通过如下方法执行这个程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloWorld</span><br></pre></td></tr></table></figure>
+<p>你能够看到程序输出如下信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World！</span><br></pre></td></tr></table></figure>
+<p>  为了让你的程序能够正确的运行，正确设置好本地库的路径是非常重要的。本地库路径是一系列文件目录，当Java虚拟机加载本地库时会搜索这些路径。如果你没有正确设置本地库路径，你会看到如下类似的错误log：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsatisfiedLinkError: no HelloWorld in library path </span><br><span class="line">    at java.lang.Runtime.loadLibrary(Runtime.java)</span><br><span class="line">    at java.lang.System.loadLibrary(System.java) </span><br><span class="line">    at HelloWorld.main(HelloWorld.java)</span><br></pre></td></tr></table></figure>
+<p>  需要确保本地库在设置的本地库路径的其中一个目录中。如果你在Solaris系统上运行，LD_LIBRARY_PATH环境变量是用来设置本地库路径的。确保该环境变量的路径包含动态库libHelloWorld.so文件所在的目录。如果libHelloWorld.so文件在当前目录，在标准shell或者KornShell中，你可以通过如下两条指令来设置LD_LIBRARY_PATH环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LD_LIBRARY_PATH=. </span><br><span class="line">export LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
+<p>在C Shell中的等价指令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenv LD_LIBRARY_PATH .</span><br></pre></td></tr></table></figure>
+<p>  如果你是在Windows 95或者Windows NT上运行，确保HelloWorld.dll在当前目录，或者其所在的目录已经列在PATH环境变量中。</p>
+<p>  在Java 2 SDK 1.2发行版中，你可以像下面的指令一样，通过java命令行来指定本地库的的路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Djava.library.path=. HelloWorld</span><br></pre></td></tr></table></figure>
+<p>-D命令行选项设置了一个Java平台属性。将java.library.path设置为“.”，“.”表明Java虚拟机会在当前路径中搜索本地库。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_jni.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_io.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_io.html" itemprop="url">java io源码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="一、概览"><a href="#一、概览" class="headerlink" title="一、概览"></a>一、概览</h1><p>Java 的 I/O 大概可以分成以下几类：</p>
+<ul>
+<li>磁盘操作：File</li>
+<li>字节操作：InputStream 和 OutputStream</li>
+<li>字符操作：Reader 和 Writer</li>
+<li>对象操作：Serializable</li>
+<li>网络操作：Socket</li>
+<li>新的输入/输出：NIO</li>
+</ul>
+<h1 id="二、磁盘操作"><a href="#二、磁盘操作" class="headerlink" title="二、磁盘操作"></a>二、磁盘操作</h1><p>File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。</p>
+<p>递归地输出一个目录下所有文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static void listAllFiles(File dir)</span><br><span class="line">&#123;</span><br><span class="line">    if (dir == null || !dir.exists()) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (dir.isFile()) &#123;</span><br><span class="line">        System.out.println(dir.getName());</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for (File file : dir.listFiles()) &#123;</span><br><span class="line">        listAllFiles(file);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、字节操作"><a href="#三、字节操作" class="headerlink" title="三、字节操作"></a>三、字节操作</h1><p>使用字节流操作进行文件复制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void copyFile(String src, String dist) throws IOException</span><br><span class="line">&#123;</span><br><span class="line">    FileInputStream in = new FileInputStream(src);</span><br><span class="line">    FileOutputStream out = new FileOutputStream(dist);</span><br><span class="line">    byte[] buffer = new byte[20 * 1024];</span><br><span class="line">    // read() 最多读取 buffer.length 个字节</span><br><span class="line">    // 返回的是实际读取的个数</span><br><span class="line">    // 返回 -1 的时候表示读到 eof，即文件尾</span><br><span class="line">    while (in.read(buffer, 0, buffer.length) != -1) &#123;</span><br><span class="line">        out.write(buffer);</span><br><span class="line">    &#125;</span><br><span class="line">    in.close();</span><br><span class="line">    out.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/CyC2018/Interview-Notebook/blob/master/pics/DP-Decorator-java.io.png" target="_blank" rel="noopener"><img src="https://github.com/CyC2018/Interview-Notebook/raw/master/pics/DP-Decorator-java.io.png" alt="img"></a></p>
+<p>Java I/O 使用了装饰者模式来实现。以 InputStream 为例，InputStream 是抽象组件，FileInputStream 是 InputStream 的子类，属于具体组件，提供了字节流的输入操作。FilterInputStream 属于抽象装饰者，装饰者用于装饰组件，为组件提供额外的功能，例如 BufferedInputStream 为 FileInputStream 提供缓存的功能。</p>
+<p>实例化一个具有缓存功能的字节流对象时，只需要在 FileInputStream 对象上再套一层 BufferedInputStream 对象即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = new FileInputStream(filePath);</span><br><span class="line">BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);</span><br></pre></td></tr></table></figure>
+<p>DataInputStream 装饰者提供了对更多数据类型进行输入的操作，比如 int、double 等基本类型。</p>
+<h1 id="四、字符操作"><a href="#四、字符操作" class="headerlink" title="四、字符操作"></a>四、字符操作</h1><p>不管是磁盘还是网络传输，最小的存储单元都是字节，而不是字符。但是在程序中操作的通常是字符形式的数据，因此需要提供对字符进行操作的方法。</p>
+<ul>
+<li>InputStreamReader 实现从字节流解码成字符流；</li>
+<li>OutputStreamWriter 实现字符流编码成为字节流。</li>
+</ul>
+<p>逐行输出文本文件的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static void readFileContent(String filePath) throws IOException</span><br><span class="line">&#123;</span><br><span class="line">    FileReader fileReader = new FileReader(filePath);</span><br><span class="line">    BufferedReader bufferedReader = new BufferedReader(fileReader);</span><br><span class="line">    String line;</span><br><span class="line">    while ((line = bufferedReader.readLine()) != null) &#123;</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line">    // 装饰者模式使得 BufferedReader 组合了一个 Reader 对象</span><br><span class="line">    // 在调用 BufferedReader 的 close() 方法时会去调用 fileReader 的 close() 方法</span><br><span class="line">    // 因此只要一个 close() 调用即可</span><br><span class="line">    bufferedReader.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编码就是把字符转换为字节，而解码是把字节重新组合成字符。</p>
+<p>如果编码和解码过程使用不同的编码方式那么就出现了乱码。</p>
+<ul>
+<li>GBK 编码中，中文字符占 2 个字节，英文字符占 1 个字节；</li>
+<li>UTF-8 编码中，中文字符占 3 个字节，英文字符占 1 个字节；</li>
+<li>UTF-16be 编码中，中文字符和英文字符都占 2 个字节。</li>
+</ul>
+<p>UTF-16be 中的 be 指的是 Big Endian，也就是大端。相应地也有 UTF-16le，le 指的是 Little Endian，也就是小端。</p>
+<p>Java 使用双字节编码 UTF-16be，这不是指 Java 只支持这一种编码方式，而是说 char 这种类型使用 UTF-16be 进行编码。char 类型占 16 位，也就是两个字节，Java 使用这种双字节编码是为了让一个中文或者一个英文都能使用一个 char 来存储。</p>
+<p>String 可以看成一个字符序列，可以指定一个编码方式将它转换为字节序列，也可以指定一个编码方式将一个字节序列转换为 String。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str1 = &quot;中文&quot;;</span><br><span class="line">byte[] bytes = str1.getBytes(&quot;UTF-8&quot;);</span><br><span class="line">String str2 = new String(bytes, &quot;UTF-8&quot;);</span><br><span class="line">System.out.println(str2);</span><br></pre></td></tr></table></figure>
+<p>在调用无参数 getBytes() 方法时，默认的编码方式不是 UTF-16be。双字节编码的好处是可以使用一个 char 存储中文和英文，而将 String 转为 bytes[] 字节数组就不再需要这个好处，因此也就不再需要双字节编码。getBytes() 的默认编码方式与平台有关，一般为 UTF-8。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte[] bytes = str1.getBytes();</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_io.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_guava_cache.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_guava_cache.html" itemprop="url">Guava Cache原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Guava-Cache的使用"><a href="#Guava-Cache的使用" class="headerlink" title="Guava Cache的使用"></a>Guava Cache的使用</h2><p>Guava是Google提供的Java工具框架，包括一些工具类，Java集合框架的扩展，还有更重要的guava cache。</p>
+<p>相比Java的HashMap，ConcurrentHashMap，提供更加灵活的配置和功能，比如控制缓存大小，缓存过期时间等，来试试。</p>
+<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>我使用了<a href="https://github.com/google/guava" target="_blank" rel="noopener">Guava</a>最新的版本<a href="https://github.com/google/guava/wiki/Release20" target="_blank" rel="noopener">20.0</a> Gradle,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile(&quot;com.google.guava:guava:20.0&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="Cache接口"><a href="#Cache接口" class="headerlink" title="Cache接口"></a>Cache接口</h2><p>Cache接口，是最顶层的缓存接口，没有结合数据获取功能，看源码，省去一些代码和注释，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">public interface Cache&lt;K, V&gt; &#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Returns the value associated with &#123;@code key&#125; in this cache, or &#123;@code null&#125; if there is no</span><br><span class="line">   * cached value for &#123;@code key&#125;.</span><br><span class="line">   *</span><br><span class="line">   * @since 11.0</span><br><span class="line">   */</span><br><span class="line">  @Nullable</span><br><span class="line">  V getIfPresent(Object key);</span><br><span class="line"></span><br><span class="line">  V get(K key, Callable&lt;? extends V&gt; loader) throws ExecutionException;</span><br><span class="line"></span><br><span class="line">  ImmutableMap&lt;K, V&gt; getAllPresent(Iterable&lt;?&gt; keys);</span><br><span class="line"></span><br><span class="line">  void put(K key, V value);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  void putAll(Map&lt;? extends K, ? extends V&gt; m);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Discards any cached value for key &#123;@code key&#125;.</span><br><span class="line">   */</span><br><span class="line">  void invalidate(Object key);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Discards any cached values for keys &#123;@code keys&#125;.</span><br><span class="line">   *</span><br><span class="line">   * @since 11.0</span><br><span class="line">   */</span><br><span class="line">  void invalidateAll(Iterable&lt;?&gt; keys);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Discards all entries in the cache.</span><br><span class="line">   */</span><br><span class="line">  void invalidateAll();</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Returns the approximate number of entries in this cache.</span><br><span class="line">   */</span><br><span class="line">  long size();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  CacheStats stats();</span><br><span class="line"></span><br><span class="line">  ConcurrentMap&lt;K, V&gt; asMap();</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Performs any pending maintenance operations needed by the cache. Exactly which activities are</span><br><span class="line">   * performed -- if any -- is implementation-dependent.</span><br><span class="line">   */</span><br><span class="line">  void cleanUp();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试代码，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">    Cache&lt;String,TradeAccount&gt; cache = CacheBuilder.newBuilder().</span><br><span class="line">                            expireAfterWrite(5L, TimeUnit.SECONDS).</span><br><span class="line">                            maximumSize(5000L).</span><br><span class="line">                            ticker(Ticker.systemTicker()).</span><br><span class="line">                            build();</span><br><span class="line">    TradeAccount account1 = new TradeAccount();</span><br><span class="line">    cache.put(&quot;key&quot;, account1);</span><br><span class="line"></span><br><span class="line">    TimeUnit.SECONDS.sleep(6);</span><br><span class="line"></span><br><span class="line">    TradeAccount a1 = cache.getIfPresent(&quot;key&quot;);</span><br><span class="line">    TradeAccount a2 = cache.getIfPresent(&quot;key2&quot;);</span><br><span class="line">    a2 = cache.getIfPresent(&quot;key2&quot;);</span><br><span class="line">    a2 = cache.getIfPresent(&quot;key3&quot;);</span><br><span class="line">    System.out.println(a1 == account1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>get方法，如果没有数据，需要自己添加一个loader继续callable接口，不够灵活，参数传入不方便。 建议使用getIfPresent方法，通用代码如下，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">value = cache.getIfPresent(key);</span><br><span class="line">if(value == null)&#123;</span><br><span class="line">    value = someService.retrieveValue();</span><br><span class="line">    cache.put(key,value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LoadingCache接口"><a href="#LoadingCache接口" class="headerlink" title="LoadingCache接口"></a>LoadingCache接口</h2><p>LoadingCache，继承Cache接口，可以跟数据获取的服务结合使用。 测试代码，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ITradeAccountService service = new TradeAccountService();</span><br><span class="line">    LoadingCache&lt;String,TradeAccount&gt; cache = CacheBuilder.newBuilder().</span><br><span class="line">                            expireAfterWrite(5L, TimeUnit.MINUTES).</span><br><span class="line">                            maximumSize(5000L).</span><br><span class="line">                            ticker(Ticker.systemTicker()).</span><br><span class="line">                            build(new CacheLoader&lt;String, TradeAccount&gt;() &#123;</span><br><span class="line">                                @Override</span><br><span class="line">                                public TradeAccount load(String key) throws Exception &#123;</span><br><span class="line">                                    return service.getTradeAccountById(key);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">    TradeAccount account1 = new TradeAccount();</span><br><span class="line">    cache.put(&quot;key&quot;, account1);</span><br><span class="line">    TradeAccount a1 = cache.get(&quot;key&quot;);</span><br><span class="line">    TradeAccount a2 = cache.get(&quot;key2&quot;);</span><br><span class="line">    a2 = cache.get(&quot;key2&quot;);</span><br><span class="line">    a2 = cache.get(&quot;key3&quot;);</span><br><span class="line">    System.out.println(a1 == account1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class TradeAccount &#123;</span><br><span class="line">	private String id;</span><br><span class="line">	private String owner;</span><br><span class="line">	private double balance;</span><br><span class="line">    ...get/set</span><br><span class="line">&#125;</span><br><span class="line">public interface ITradeAccountService &#123;</span><br><span class="line">	TradeAccount getTradeAccountById(String key);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据自己的业务的场景，选择使用Cache还是LoadingCache。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_guava_cache.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_lru_disk_cache.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_lru_disk_cache.html" itemprop="url">LruCache与DiskLruCache</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="LruCache与DiskLruCache"><a href="#LruCache与DiskLruCache" class="headerlink" title="LruCache与DiskLruCache"></a>LruCache与DiskLruCache</h1><p><strong>文章目录</strong></p>
+<ul>
+<li>一 Lru算法</li>
+<li>二 LruCache原理分析<ul>
+<li>2.1 写入缓存</li>
+<li>2.2 读取缓存</li>
+<li>2.3 删除缓存</li>
+</ul>
+</li>
+<li>三 DiskLruCache原理分析<ul>
+<li>3.1 写入缓存</li>
+<li>3.2 读取缓存</li>
+<li>3.3 删除缓存</li>
+</ul>
+</li>
+</ul>
+<p>更多Android开源框架源码分析文章请参见<a href="https://github.com/guoxiaoxing/android-open-framwork-analysis" target="_blank" rel="noopener">Android open framework analysis</a>。</p>
+<h2 id="一-Lru算法"><a href="#一-Lru算法" class="headerlink" title="一 Lru算法"></a>一 Lru算法</h2><p>在分析LruCache与DiskLruCache之前，我们先来简单的了解下LRU算法的核心原理。</p>
+<p>LRU算法可以用一句话来描述，如下所示：</p>
+<blockquote>
+<p>LRU是Least Recently Used的缩写，最近最久未使用算法，从它的名字就可以看出，它的核心原则是如果一个数据在最近一段时间没有使用到，那么它在将来被<br>访问到的可能性也很小，则这类数据项会被优先淘汰掉。</p>
+</blockquote>
+<p>LRU算法流程图如下所示：</p>
+<p><img src="https://github.com/guoxiaoxing/android-open-framwork-analysis/raw/master/art/lru/lru_structure.png"></p>
+<p>了解了算法原理，我们来思考一下如果是我们来做，应该如何实现这个算法。从上图可以看出，双向链表是一个好主意。</p>
+<blockquote>
+<p>假设我们从表尾访问数据，在表头删除数据，当访问的数据项在链表中存在时，则将该数据项移动到表尾，否则在表尾新建一个数据项。当链表容量超过一定阈值，则移除表头的数据。</p>
+</blockquote>
+<p>好，以上便是整个Lru算法的原理，我们接着来分析LruCache与DiskLruCache的实现。</p>
+<h2 id="二-LruCache原理分析"><a href="#二-LruCache原理分析" class="headerlink" title="二 LruCache原理分析"></a>二 LruCache原理分析</h2><p>理解了Lru算法的原理，我们接着从LruCache的使用入手，逐步分析LruCache的源码实现。</p>
+<p>👉 <a href="https://android.googlesource.com/platform/frameworks/support.git/+/795b97d901e1793dac5c3e67d43c96a758fec388/v4/java/android/support/v4/util/LruCache.java" target="_blank" rel="noopener">LruCache.java</a></p>
+<p>在分析LruCache的源码实现之前，我们先来看看LruCache的简单使用，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> maxMemorySize = (<span class="keyword">int</span>) (Runtime.getRuntime().totalMemory() / <span class="number">1024</span>);</span><br><span class="line"><span class="keyword">int</span> cacheMemorySize = maxMemorySize / <span class="number">8</span>;</span><br><span class="line">LruCache&lt;String, Bitmap&gt; lrucache = <span class="keyword">new</span> LruCache&lt;String, Bitmap&gt;(cacheMemorySize) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getBitmapSize(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">entryRemoved</span><span class="params">(<span class="keyword">boolean</span> evicted, String key, Bitmap oldValue, Bitmap newValue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.entryRemoved(evicted, key, oldValue, newValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">create</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.create(key);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注：getBitmapSize()用来计算图片占内存的大小，具体方法参见附录。</p>
+<p>可以发现，在使用LruCache的过程中，需要我们关注的主要有三个方法：</p>
+<ul>
+<li>sizeOf()：覆写此方法实现自己的一套定义计算entry大小的规则。</li>
+<li>V create(K key)：如果key对象缓存被移除了，则调用次方法重建缓存。</li>
+<li>entryRemoved(boolean evicted, K key, V oldValue, V newValue) ：当key对应的缓存被删除时回调该方法。</li>
+</ul>
+<p>我们来看看这三个方法的默认实现，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LruCache</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//该方法默认返回1，也就是以entry的数量来计算entry的大小，这通常不符合我们的需求，所以我们一般会覆写此方法。</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">entryRemoved</span><span class="params">(<span class="keyword">boolean</span> evicted, K key, V oldValue, V newValue)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> V <span class="title">create</span><span class="params">(K key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现entryRemoved()方法为空实现，create()方法也默认返回null。sizeOf()方法默认返回1，也就是以entry的数量来计算entry的大小，这通常不符合我们的需求，所以我们一般会覆写此方法。</p>
+<p>我们前面提到，要实现Lru算法，可以利用双向链表。</p>
+<blockquote>
+<p>假设我们从表尾访问数据，在表头删除数据，当访问的数据项在链表中存在时，则将该数据项移动到表尾，否则在表尾新建一个数据项。当链表容量超过一定阈值，则移除表头的数据。</p>
+</blockquote>
+<p>LruCache使用的是LinkedHashMap，为什么会选择LinkedHashMap呢？🤔</p>
+<p>这跟LinkedHashMap的特性有关，LinkedHashMap的构造函数里有个布尔参数accessOrder，当它为true时，LinkedHashMap会以访问顺序为序排列元素，否则以插入顺序为序排序元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LruCache</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedHashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity,</span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="keyword">float</span> loadFactor,</span></span></span><br><span class="line"><span class="function"><span class="params">                        <span class="keyword">boolean</span> accessOrder)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">super</span>(initialCapacity, loadFactor);</span><br><span class="line">       <span class="keyword">this</span>.accessOrder = accessOrder;</span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来写个小例子验证一下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(<span class="number">5</span>, <span class="number">0.75F</span>, <span class="keyword">true</span>);</span><br><span class="line">map.put(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">map.put(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">map.put(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">map.put(<span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">map.put(<span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">Log.d(TAG, <span class="string">"before visit"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">    Log.d(TAG, String.valueOf(entry.getValue()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问3，4两个元素</span></span><br><span class="line">map.get(<span class="number">3</span>);</span><br><span class="line">map.get(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">Log.d(TAG, <span class="string">"after visit"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">    Log.d(TAG, String.valueOf(entry.getValue()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输入Log：</p>
+<p><img src="https://github.com/guoxiaoxing/android-open-framwork-analysis/raw/master/art/lru/linked_hash_map_sort.png"></p>
+<p>注：在LinkedHashMap中最近被方位的元素会被移动到表尾，LruCache也是从从表尾访问数据，在表头删除数据，</p>
+<p>可以发现，最后访问的数据就会被移动最尾端，这是符合我们的预期的。所有在LruCache的构造方法中构造了一个这样的LinkedHashMap。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LruCache</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (maxSize &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"maxSize &lt;= 0"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.maxSize = maxSize;</span><br><span class="line">    <span class="keyword">this</span>.map = <span class="keyword">new</span> LinkedHashMap&lt;K, V&gt;(<span class="number">0</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们再来看看LruCache是如何进行缓存的写入、获取和删除的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_lru_disk_cache.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_thread_lock.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_thread_lock.html" itemprop="url">java 8简明指南</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Java8简明指南"><a href="#Java8简明指南" class="headerlink" title="Java8简明指南"></a>Java8简明指南</h2><blockquote>
+<p>欢迎来到Java8简明指南。本教程将一步一步指导你通过所有新语言特性。由短而简单的代码示例,带你了解如何使用默认接口方法,lambda表达式,方法引用和可重复注解。本文的最后你会熟悉最新的API的变化如Stream,Fcuntional,Map API扩展和新的日期API。</p>
+</blockquote>
+<h3 id="接口的默认方法"><a href="#接口的默认方法" class="headerlink" title="接口的默认方法"></a>接口的默认方法</h3><p>在Java8中，利用<code>default</code>关键字使我们能够添加非抽象方法实现的接口。此功能也被称为扩展方法，这里是我们的第一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface Formula &#123;</span><br><span class="line">    double calculate(int a);</span><br><span class="line"></span><br><span class="line">    default double sqrt(int a) &#123;</span><br><span class="line">        return Math.sqrt(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除了接口抽象方法<code>calculate</code>，还定义了默认方法<code>sqrt</code>的返回值。具体类实现抽象方法<code>calculate</code>。默认的方法<code>sqrt</code>可以开箱即用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Formula formula = new Formula() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public double calculate(int a) &#123;</span><br><span class="line">        return sqrt(a * 100);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">formula.calculate(100);     // 100.0</span><br><span class="line">formula.sqrt(16);           // 4.0</span><br></pre></td></tr></table></figure>
+<p>该公式被实现为匿名对象。这段代码是相当长的：非常详细的一个计算：6行代码完成这样一个简单的计算。正如我们将在下一节中看到的，Java8有一个更好的方法来实现单方法对象。</p>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>让我们以一个简单的例子来开始，在以前的版本中对字符串进行排序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; names = Arrays.asList(&quot;peter&quot;, &quot;anna&quot;, &quot;mike&quot;, &quot;xenia&quot;);</span><br><span class="line"></span><br><span class="line">Collections.sort(names, new Comparator&lt;String&gt;() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public int compare(String a, String b) &#123;</span><br><span class="line">        return b.compareTo(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>静态的集合类方法<code>Collections.sort</code>，为比较器的给定列表中的元素排序。你会发现自己经常创建匿名比较器并将它们传递给方法。 Java8支持更短的语法而不总是创建匿名对象， <strong>Lambda表达式：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names, (String a, String b) -&gt; &#123;</span><br><span class="line">    return b.compareTo(a);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>正如你可以看到的代码更容易阅读。但它甚至更短：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names, (String a, String b) -&gt; b.compareTo(a));</span><br></pre></td></tr></table></figure>
+<p>一行方法的方法体可以跳过<code>{}</code>和参数类型，使它变得更短：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names, (a, b) -&gt; b.compareTo(a));</span><br></pre></td></tr></table></figure>
+<p>Java编译器知道参数类型，所以你可以跳过它们，接下来让我们深入了解lambda表达式。</p>
+<h3 id="函数式接口-Functional-Interfaces"><a href="#函数式接口-Functional-Interfaces" class="headerlink" title="函数式接口(Functional Interfaces)"></a>函数式接口(Functional Interfaces)</h3><p>如何适应Java lambda表达式类型系统？每个<code>lambda</code>由一个指定的接口对应于一个给定的类型。所谓的函数式接口必须包含一个确切的<strong>一个抽象方法声明</strong>。该类型将匹配这个抽象方法每个lambda表达式。因为默认的方法是不抽象的，你可以自由添加默认的方法到你的函数式接口。</p>
+<p>我们可以使用任意的接口为lambda表达式，只要接口只包含一个抽象方法。确保你的接口满足要求，你应该添加<code>@FunctionalInterface</code>注解。当你尝试在接口上添加第二个抽象方法声明时，编译器会注意到这个注释并抛出一个编译器错误。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface Converter&lt;F, T&gt; &#123;</span><br><span class="line">    T convert(F from);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Converter&lt;String, Integer&gt; converter = (from) -&gt; Integer.valueOf(from);</span><br><span class="line">Integer converted = converter.convert(&quot;123&quot;);</span><br><span class="line">System.out.println(converted);    // 123</span><br></pre></td></tr></table></figure>
+<p>记住，有<code>@FunctionalInterface</code>注解的也是有效的代码。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_thread_lock.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_intent_start_mode.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_intent_start_mode.html" itemprop="url">Android intent和启动模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="taskAffinity、launchmode、Intent-FLAG-ACTIVITY-XXX-有关的堆栈和back键返回等"><a href="#taskAffinity、launchmode、Intent-FLAG-ACTIVITY-XXX-有关的堆栈和back键返回等" class="headerlink" title="taskAffinity、launchmode、Intent.FLAG_ACTIVITY_XXX 有关的堆栈和back键返回等"></a>taskAffinity、launchmode、Intent.FLAG_ACTIVITY_XXX 有关的堆栈和back键返回等</h2><p><a href="http://www.voidcn.com/blog/fengniuma/article/p-3214732.html" target="_blank" rel="noopener">http://www.voidcn.com/blog/fengniuma/article/p-3214732.html</a><br><a href="https://blog.piasy.com/2017/01/16/Android-Basics-Task-and-LaunchMode" target="_blank" rel="noopener">https://blog.piasy.com/2017/01/16/Android-Basics-Task-and-LaunchMode</a><br><a href="http://blog.csdn.net/scnuxisan225/article/details/44930321" target="_blank" rel="noopener">http://blog.csdn.net/scnuxisan225/article/details/44930321</a><br><a href="http://blog.csdn.net/tuhuolong/article/details/8844936" target="_blank" rel="noopener">http://blog.csdn.net/tuhuolong/article/details/8844936</a></p>
+<p><strong>taskAffinity解释：</strong><br>taskAffinity 标示以该Activity为root的所在task的名字。属性值推荐用.开头。<br>可以通过<application>给所有activity设置taskAffinity。</application></p>
+<p><application taskaffinity=".newtask"><br>   <activity ***=""><br>    ***<br></activity></application><br>也可以单独设置activity 的taskAffinity</p>
+<p><activity taskaffinity=".newtask"><br>如果<application>或<acitivity>都没有设置taskAffinity，则系统默认赋值为应用程序包名。也就是说taskAffinity要么是自己定义的值，要么去应用程序包名。<br>值得注意的是，如果launcher activity使用默认taskAffinity，通过launcher activity启动的一个activity B，【B配置了taskAffinity属性，并且没有设置启动新的task, 那么其实B的taskAffinity就失效了】，因为task的名字是由root activity的taskAffinity决定的。<br>taskAffinity结合singleTask和SingleIntance和FLAG_ACTIVITY_NEW_TASK 一起使用会产生效果，单独的task只存在一个activity，该task上的activity清除等。</acitivity></application></activity></p>
+<p><strong>Launchmode</strong><br>Standard  singleTop  singleTask singleInstance主要有这几种模式。<br>其中standard模式比较简单，直接在当前栈启动一个新的activity，而不管之前是否存在相同activity实例。<br>其中singleTop模式也比较简单，直接在当前栈查找是否存在该activity实例，如果存在直接调用onNewIntent方法，如果不存在那么直接创建改Activity。 不关注TaskAffinity。<br>其中singleTask模式较为麻烦，先寻找名字为taskAffnity指定的task，如果该task存在这个activity，那么清楚之上的所有activity，然后调用OnNewIntent方法。如果不存在该task，那么创建task，创建activity。<br>其中singleIntance模式，要求Activity实例独占task，所以先寻找是否存在该Activity，存在那么直接调用onNewIntent，如果不存在，那么创建该task和activity。 如果从该activity调用其他Activity那么会切换到其他task栈上，因为该activity独占task。<br>Intent.FLAG_ACTIVITY_XXX<br>FLAG_ACTIVITY_NEW_TASK 配合FLAG_ACTIVITY_CLEAR_TOP的时候，才会和“singleTask”行为一致–在已经存在目标activity的情况下，清除上层全部Activity.<br>FLAG_ACTIVITY_SINGLE_TOP  = singleTop<br>FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK = singleTask</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_app_intent_start_mode.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_thread_bg_sum.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_thread_bg_sum.html" itemprop="url">Android 后台线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Android线程的几种方式"><a href="#Android线程的几种方式" class="headerlink" title="Android线程的几种方式"></a>Android线程的几种方式</h2><p>AsyncTask/HandlerThread/Thread/IntentService<br><a href="https://www.jianshu.com/p/34cffd700f75" target="_blank" rel="noopener">https://www.jianshu.com/p/34cffd700f75</a></p>
+<h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><p>单个线程的线程池，一个一个执行，会阻塞后边线程。可以设置 AsyncTask.executeOnExecutor()来同时执行任务。写的时候注意避免内存泄露</p>
+<h2 id="HandlerThread"><a href="#HandlerThread" class="headerlink" title="HandlerThread"></a>HandlerThread</h2><p>实质是一个Thread，不过添加了Looper和MessageQueue，这样就可以使用Handler来进行控制代码执行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个线程，线程名字 : handlerThreadTest</span><br><span class="line">        mHandlerThread = new HandlerThread(&quot;handlerThreadTest&quot;);</span><br><span class="line">        mHandlerThread.start();</span><br><span class="line">        </span><br><span class="line">        // Handler 接收消息</span><br><span class="line">        final Handler mHandler = new Handler(mHandlerThread.getLooper()) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handleMessage(Message msg) &#123;</span><br><span class="line">                Log.e(&quot;Test&quot;, &quot;收到 &quot; + msg.obj.toString() + &quot; 在 &quot;</span><br><span class="line">                        + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        mTextView = (TextView) findViewById(R.id.text_view);</span><br><span class="line">        // 主线程发出消息</span><br><span class="line">        mTextView.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                Message msg = new Message();</span><br><span class="line">                msg.obj = &quot;第一条信息&quot;;</span><br><span class="line">                mHandler.sendMessage(msg);</span><br><span class="line">                Log.e(&quot;Test&quot;, &quot;发出 &quot; + msg.obj.toString() + &quot; 在 &quot;</span><br><span class="line">                        + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        // 子线程发出消息</span><br><span class="line">        new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message msg = new Message();</span><br><span class="line">                msg.obj = &quot;第二条信息&quot;;</span><br><span class="line">                mHandler.sendMessage(msg);</span><br><span class="line">                Log.e(&quot;Test&quot;, &quot;发出 &quot; + msg.obj.toString() + &quot; 在 &quot;</span><br><span class="line">                        + Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start()；</span><br></pre></td></tr></table></figure></p>
+<p>但是最后不要忘记mHandlerThread.quit();否则将一直循环。另外可以在run方法里设置不同优先级android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);同样HandlerThread的构造方法也提供了设置优先级的功能，new HandlerThread(“LightTaskThread”, Process.THREAD_PRIORITY_BACKGROUND);AsyncTask同样设置了优先级THREAD_PRIORITY_BACKGROUND。<br>HandlerThread的默认优先级是Process.THREAD_PRIORITY_DEFAULT,具体值为0。线程的优先级的取值范围为-20到19。优先级高的获得的CPU资源更多，反之则越少。-20代表优先级最高，19最低。0位于中间位置，但是作为工作线程的HandlerThread没有必要设置这么高的优先级，因而需要我们降低其优先级。<br>THREAD_PRIORITY_DEFAULT，默认的线程优先级，值为0。<br>THREAD_PRIORITY_LOWEST，最低的线程级别，值为19。<br>THREAD_PRIORITY_BACKGROUND 后台线程建议设置这个优先级，值为10。<br>THREAD_PRIORITY_MORE_FAVORABLE 相对THREAD_PRIORITY_DEFAULT稍微优先，值为-1。<br>THREAD_PRIORITY_LESS_FAVORABLE 相对THREAD_PRIORITY_DEFAULT稍微落后一些，值为1。</p>
+<h2 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h2><p>使用了HandlerThread使得IntentService可以运行耗时任务，一般使用时结合主线程Handler或者LocalBroadCastManager来通知主界面UI的更新。</p>
+<h2 id="ThreadPool线程池"><a href="#ThreadPool线程池" class="headerlink" title="ThreadPool线程池"></a>ThreadPool线程池</h2><p>线程池不允许使用 Executors 去创建，而是通过ThreadPoolExecutor 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。<br>说明： Executors 返回的线程池对象的弊端如下：<br>1） FixedThreadPool 和 SingleThreadPool:<br>允许的请求队列长度为 Integer.MAX_VALUE ，可能会堆积大量的请求，从而导致 OOM 。<br>2） CachedThreadPool 和ScheduledThreadPool :<br>允许的创建线程数量为 Integer.MAX_VALUE ，可能会创建大量的线程，从而导致 OOM 。</p>
+<p><a href="https://liuzho.github.io/2017/04/17/%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E6%88%96%E8%AE%B8%E5%B0%B1%E5%A4%9F%E4%BA%86/" target="_blank" rel="noopener">https://liuzho.github.io/2017/04/17/%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E8%BF%99%E4%B8%80%E7%AF%87%E6%88%96%E8%AE%B8%E5%B0%B1%E5%A4%9F%E4%BA%86/</a></p>
+<p>ThreadPoolExecutor(<br>int corePoolSize,<br>int maximumPoolSize,<br>long keepAliveTime,<br>TimeUnit unit,<br>BlockingQueue<runnable> workQueue,<br>RejectedExecutionHandler handler<br>);</runnable></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_app_thread_bg_sum.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_ui_sum.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_ui_sum.html" itemprop="url">Android ui组件总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Service-onStartCommand返回参数说明"><a href="#Service-onStartCommand返回参数说明" class="headerlink" title="Service onStartCommand返回参数说明"></a>Service onStartCommand返回参数说明</h2><p>方法onStartCommand()的返回值为int类型，主要的作用是当Service进程被意外kill掉时，Service服务下一步要做哪些行为，主要有3种值。<br>START_STICKY：Service被异外终止时不调用onDestroy()回调，并且终止后自动重启Service服务，只执行Service对象的onCreate()生命周期方法。<br>START_NOT_STICKY：Service被异外终止时不调用onDestroy()回调，并且不自动重启服务。<br>START_REDELIVER_INTENT：Service被异外终止时不调用onDestroy()回调，并且终止后自动重启Service服务，还要执行Service对象的onCreate()和onStartCommand()生命周期方法，并且从Intent中能取到值。<br><a href="http://book.51cto.com/art/201211/363296.htm" target="_blank" rel="noopener">http://book.51cto.com/art/201211/363296.htm</a></p>
+<h2 id="Service-stopSelf"><a href="#Service-stopSelf" class="headerlink" title="Service stopSelf"></a>Service stopSelf</h2><p>一直知道stopself是停掉Service的方法，但是却不知道什么时候停止。以为调用了stopself就会马上停止，实际上我错了.在onStartCommond方法里面调用stopself方法时，不会马上停止，而是onStartCommond方法执行结束才会停止。<br>还有一点，调用stopself方法之后，service会执行onDestory方法。<br>另外，如果onStartCommond中启动一个线程，调用stopself，线程也不会被杀死。<br>来自 <a href="http://blog.csdn.net/hello0370/article/details/46781523" target="_blank" rel="noopener">http://blog.csdn.net/hello0370/article/details/46781523</a> </p>
+<p>当调用finish方法时，onCreate方法会继续执行，之后调用onDestory方法。<br>最后，总结一下，Service的stopself方法的功能是，当完成所有功能之后，将service停掉，而不是等着系统回收。同样finish方法，是当系统执行完onCreate方法之后，调用onDestory方法销毁Activity。</p>
+<h2 id="ACTION-CANCEL-请简述Android事件传递机制，-ACTION-CANCEL事件何时触发？"><a href="#ACTION-CANCEL-请简述Android事件传递机制，-ACTION-CANCEL事件何时触发？" class="headerlink" title="ACTION_CANCEL 请简述Android事件传递机制， ACTION_CANCEL事件何时触发？"></a>ACTION_CANCEL 请简述Android事件传递机制， ACTION_CANCEL事件何时触发？</h2><p>关于第一个问题，不做任何解释。<br>关于ACTION_CANCEL何时被触发，系统文档有这么一种使用场景：在设计设置页面的滑动开关时，如果不监听ACTION_CANCEL，在滑动到中间时，如果你手指上下移动，就是移动到开关控件之外，则此时会触发ACTION_CANCEL，而不是ACTION_UP，造成开关的按钮停顿在中间位置。<br>意思是当滑动的时候就会触发，不知道大家搞没搞过微信的长按录音，有一种状态是“松开手指，取消发送”，这时候就会触发ACTION_CANCEL。</p>
+<h2 id="简述Android的View绘制流程，Android的wrap-content是如何计算的"><a href="#简述Android的View绘制流程，Android的wrap-content是如何计算的" class="headerlink" title="简述Android的View绘制流程，Android的wrap_content是如何计算的"></a>简述Android的View绘制流程，Android的wrap_content是如何计算的</h2><p><a href="https://blog.csdn.net/qinjuning/article/details/7110211" target="_blank" rel="noopener">https://blog.csdn.net/qinjuning/article/details/7110211</a><br>  绘制流程的三个步骤，即：<br>1、  measure过程 — 测量过程<br>2、    layout 过程     — 布局过程<br>3、    draw 过程      — 绘制过程<br><a href="https://blog.csdn.net/qinjuning/article/details/8051811" target="_blank" rel="noopener">https://blog.csdn.net/qinjuning/article/details/8051811</a><br><a href="https://blog.csdn.net/qinjuning/article/details/8074262" target="_blank" rel="noopener">https://blog.csdn.net/qinjuning/article/details/8074262</a><br><a href="https://www.cnblogs.com/duanweishi/p/4301742.html" target="_blank" rel="noopener">https://www.cnblogs.com/duanweishi/p/4301742.html</a></p>
+<h2 id="bundle的数据结构，如何存储，既然有了Intent-putExtra，为啥还要用bundle。"><a href="#bundle的数据结构，如何存储，既然有了Intent-putExtra，为啥还要用bundle。" class="headerlink" title="bundle的数据结构，如何存储，既然有了Intent.putExtra，为啥还要用bundle。"></a>bundle的数据结构，如何存储，既然有了Intent.putExtra，为啥还要用bundle。</h2><p>bundle的内部结构其实是Map，传递的数据可以是boolean、byte、int、long、float、double、string等基本类型或它们对应的数组，也可以是对象或对象数组。当Bundle传递的是对象或对象数组时，必须实现Serializable 或Parcelable接口。</p>
+<h2 id="Binder-线程池"><a href="#Binder-线程池" class="headerlink" title="Binder 线程池"></a>Binder 线程池</h2><p>Binder线程池：每个Server进程在启动时会创建一个binder线程池，并向其中注册一个Binder线程；之后Server进程也可以向binder线程池注册新的线程，或者Binder驱动在探测到没有空闲binder线程时会主动向Server进程注册新的的binder线程。对于一个Server进程有一个最大Binder线程数限制，默认为16个binder线程，例如Android的system_server进程就存在16个线程。对于所有Client端进程的binder请求都是交由Server端进程的binder线程来处理的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_app_ui_sum.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_binder_sumup.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_binder_sumup.html" itemprop="url">Android binder原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Binder实现原理"><a href="#Binder实现原理" class="headerlink" title="Binder实现原理"></a>Binder实现原理</h2><p><strong>用法总结：</strong><br><a href="http://gityuan.com/2015/11/22/binder-use/" target="_blank" rel="noopener">http://gityuan.com/2015/11/22/binder-use/</a><br><a href="http://gityuan.com/2015/11/23/binder-aidl/" target="_blank" rel="noopener">http://gityuan.com/2015/11/23/binder-aidl/</a><br><a href="http://qiangbo.space/2017-01-15/AndroidAnatomy_Binder_Driver/" target="_blank" rel="noopener">http://qiangbo.space/2017-01-15/AndroidAnatomy_Binder_Driver/</a><br>主要思路是:</p>
+<ul>
+<li>aidl两端：<br>服务端stub端，实现aidl接口，通过onTransact接收数据。继承binder，实现aidl接口，是一个binder对象。注册到ServiceManager中，或者通过serviceConnected获取。</li>
+</ul>
+<p>客户端proxy端，实现aidl接口，通过mRemote.transact传送数据。通过ServiceManager获取binder对象，然后asInterface活的aidl接口，即可通过Proxy transact调用相关方法。</p>
+<ul>
+<li>asInterface:<br>new com.yuanhh.appbinderdemo.IRemoteService.Stub.Proxy(obj);</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/11010834-2d27b1713cde4eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/11010834-af22fcd4e3bf86b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_app_binder_sumup.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_web_scrapy_crawler.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_web_scrapy_crawler.html" itemprop="url">Scrapy爬虫-反爬虫解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-16T00:00:00+00:00">
+                2018-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/12Java-web/" itemprop="url" rel="index">
+                    <span itemprop="name">12Java_web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="爬虫入门文章"><a href="#爬虫入门文章" class="headerlink" title="爬虫入门文章"></a>爬虫入门文章</h1><p><a href="https://zhuanlan.zhihu.com/p/24669128" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24669128</a><br><a href="https://zhuanlan.zhihu.com/p/24769534" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24769534</a><br><a href="https://zhuanlan.zhihu.com/p/25200262" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25200262</a><br><a href="https://zhuanlan.zhihu.com/p/26257790" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26257790</a></p>
+<h2 id="userAgent-和-动态IP设置"><a href="#userAgent-和-动态IP设置" class="headerlink" title="userAgent 和 动态IP设置"></a>userAgent 和 动态IP设置</h2><p><a href="http://lawtech0902.com/2017/06/11/scrapy-useragent-proxyip/" target="_blank" rel="noopener">http://lawtech0902.com/2017/06/11/scrapy-useragent-proxyip/</a><br><a href="https://zhuanlan.zhihu.com/p/29733174" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29733174</a><br><a href="https://github.com/hellysmile/fake-useragent" target="_blank" rel="noopener">https://github.com/hellysmile/fake-useragent</a></p>
+<h2 id="延迟和禁止cookies"><a href="#延迟和禁止cookies" class="headerlink" title="延迟和禁止cookies"></a>延迟和禁止cookies</h2><p><a href="https://blkstone.github.io/2016/03/02/crawler-anti-anti-cheat/" target="_blank" rel="noopener">https://blkstone.github.io/2016/03/02/crawler-anti-anti-cheat/</a></p>
+<h2 id="PhantomJs-和-selenium-处理Ajax"><a href="#PhantomJs-和-selenium-处理Ajax" class="headerlink" title="PhantomJs 和 selenium 处理Ajax"></a>PhantomJs 和 selenium 处理Ajax</h2><p><a href="https://my.oschina.net/lewisgong/blog/872257" target="_blank" rel="noopener">https://my.oschina.net/lewisgong/blog/872257</a><br><a href="https://chaycao.github.io/2016/08/19/Scrapy-Selenium-Phantomjs/" target="_blank" rel="noopener">https://chaycao.github.io/2016/08/19/Scrapy-Selenium-Phantomjs/</a></p>
+<h2 id="页面解析-Beautiful-xpath-css"><a href="#页面解析-Beautiful-xpath-css" class="headerlink" title="页面解析 Beautiful xpath css."></a>页面解析 Beautiful xpath css.</h2><p><a href="https://cuiqingcai.com/1319.html" target="_blank" rel="noopener">https://cuiqingcai.com/1319.html</a></p>
+<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><h3 id="lxml安装"><a href="#lxml安装" class="headerlink" title="lxml安装"></a>lxml安装</h3><p><a href="https://pypi.org/project/lxml/#files" target="_blank" rel="noopener">https://pypi.org/project/lxml/#files</a><br>pip install lxml-4.2.1-cp27-cp27m-win_amd64.whl<br><a href="https://blog.csdn.net/g1apassz/article/details/46574963" target="_blank" rel="noopener">https://blog.csdn.net/g1apassz/article/details/46574963</a><br><a href="https://blog.csdn.net/acingdreamer/article/details/53348649" target="_blank" rel="noopener">https://blog.csdn.net/acingdreamer/article/details/53348649</a></p>
+<h3 id="pip升级"><a href="#pip升级" class="headerlink" title="pip升级"></a>pip升级</h3><p>pip install –upgrade pip</p>
+<h3 id="requirements-txt的创建及使用"><a href="#requirements-txt的创建及使用" class="headerlink" title="requirements.txt的创建及使用"></a>requirements.txt的创建及使用</h3><p><a href="https://blog.csdn.net/orangleliu/article/details/60958525" target="_blank" rel="noopener">https://blog.csdn.net/orangleliu/article/details/60958525</a></p>
+<h3 id="python-path-引用"><a href="#python-path-引用" class="headerlink" title="python path 引用"></a>python path 引用</h3><p><a href="https://blog.csdn.net/tony_wong/article/details/18044273" target="_blank" rel="noopener">https://blog.csdn.net/tony_wong/article/details/18044273</a></p>
+<h3 id="Scrapy安装错误：Microsoft-Visual-C-14-0-is-required…"><a href="#Scrapy安装错误：Microsoft-Visual-C-14-0-is-required…" class="headerlink" title="Scrapy安装错误：Microsoft Visual C++ 14.0 is required…"></a>Scrapy安装错误：Microsoft Visual C++ 14.0 is required…</h3><p><a href="https://blog.csdn.net/nima1994/article/details/74931621?locationNum=10&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/nima1994/article/details/74931621?locationNum=10&amp;fps=1</a></p>
+<h3 id="Scrapy-shell"><a href="#Scrapy-shell" class="headerlink" title="Scrapy shell"></a>Scrapy shell</h3><p><a href="https://blog.csdn.net/laoyang360/article/details/52809927" target="_blank" rel="noopener">https://blog.csdn.net/laoyang360/article/details/52809927</a><br>Scrapy运行ImportError: No module named win32api错误<br><a href="https://blog.csdn.net/u013687632/article/details/57075514" target="_blank" rel="noopener">https://blog.csdn.net/u013687632/article/details/57075514</a></p>
+<h3 id="xpath"><a href="#xpath" class="headerlink" title="xpath"></a>xpath</h3><p><a href="https://blog.csdn.net/manongpengzai/article/details/77109600" target="_blank" rel="noopener">https://blog.csdn.net/manongpengzai/article/details/77109600</a></p>
+<h3 id="python-log"><a href="#python-log" class="headerlink" title="python log"></a>python log</h3><p><a href="https://blog.csdn.net/chosen0ne/article/details/7319306" target="_blank" rel="noopener">https://blog.csdn.net/chosen0ne/article/details/7319306</a></p>
+<h3 id="scrapy-link-extrator"><a href="#scrapy-link-extrator" class="headerlink" title="scrapy link extrator"></a>scrapy link extrator</h3><p><a href="https://www.jianshu.com/p/ff9125650697" target="_blank" rel="noopener">https://www.jianshu.com/p/ff9125650697</a></p>
+<h3 id="启动爬虫"><a href="#启动爬虫" class="headerlink" title="启动爬虫"></a>启动爬虫</h3><p>进入项目的根目录，执行下列命令启动spider:<br>scrapy crawl dmoz</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

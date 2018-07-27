@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Security &amp; Android &amp; Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fitz.Lee">
+<meta property="og:url" content="https://fitzlee.github.io/index.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Security &amp; Android &amp; Java">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fitz.Lee">
+<meta name="twitter:description" content="Security &amp; Android &amp; Java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/"/>
+
+
+
+
+
+  <title>Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_mem_analysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_mem_analysis.html" itemprop="url">Jvm 内存结构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="JVM虚拟机内存结构-运行数据区域"><a href="#JVM虚拟机内存结构-运行数据区域" class="headerlink" title="JVM虚拟机内存结构-运行数据区域"></a>JVM虚拟机内存结构-运行数据区域</h2><p>线程私有：栈区，本地方法栈，pc指针<br>线程共有：方法区，堆区</p>
+<ol>
+<li>程序计数器</li>
+</ol>
+<p>当前线程所执行的字节码的行号指示器。</p>
+<ol start="2">
+<li>Java虚拟机栈</li>
+</ol>
+<p>线程私有，与线程具有相同生命周期。用于存储<strong>局部变量表、操作数栈、动态链表、方法出口等信息</strong>。</p>
+<p>局部变量表存放内容：</p>
+<ul>
+<li>基本数据类型（boolean、byte、char、short、int、float、long、double）</li>
+<li>对象引用（区别于符号引用，符号引用存放在常量池）</li>
+<li>returnAddress类型（指向一条字节码指令的地址）</li>
+</ul>
+<p>64位长度的long和double类型数据占用2个局部变量空间（slot），其余占用1个slot。</p>
+<p>两种异常：</p>
+<ul>
+<li>StackOverflowError：线程请求的栈深度&gt;虚拟机允许的深度</li>
+<li>OutOfMemoryError: 动态扩展时无法申请到足够内存</li>
+</ul>
+<ol start="3">
+<li>本地方法栈（Native Method Stack）</li>
+</ol>
+<p>与虚拟机栈类似，区别是Native Method Stack服务于Native方法，而虚拟机栈服务于Java方法。</p>
+<ol start="4">
+<li>Java堆（Java Heap）</li>
+</ol>
+<p>所有线程共享，存放<strong>对象实例、数组</strong>。</p>
+<p>垃圾收集器管理的主要区域，也称“GC堆（Garbage Collected Heap）”</p>
+<p>包含新生代（Eden空间、From Survivor空间、To Survivor空间）、老生代。</p>
+<p>可划分出多个线程私有的分配缓冲区（Thread Local Allocation Buffer，TLAB）。</p>
+<p>物理上可以不连续，逻辑上连续。</p>
+<p>可扩展：-Xmx和-Xms控制。-Xmx最大堆内存大小，-Xms初始堆内存大小。</p>
+<p>当堆中没有可用内存完成实例分配，并且也无法再扩展时——OutOfMemoryError</p>
+<ol start="5">
+<li>方法区（别名Non-Heap）</li>
+</ol>
+<p>也是所有线程共享，用于存储<strong>已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据</strong>。</p>
+<p>也称“永久代（Permanent Generation）”，但本质上并不等价。</p>
+<p>永久代有-XX:MaxPermSize的上限。</p>
+<ol start="6">
+<li>运行时常量池（Runtime Constant Pool）</li>
+</ol>
+<p>属于方法区的一部分。</p>
+<ol start="7">
+<li>直接内存（Direct Memory）</li>
+</ol>
+<p>JDK1.4新加入的NIO（New Input/Output）类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O方式，它可使用Native函数库直接分配<strong>堆外内存</strong>。不受Java堆大小（-Xmx）限制，从而可能造成各个内存区域总和大于物理内存限制而造成动态扩展时出现OutOfMemoryError。</p>
+<p>小结：</p>
+<ul>
+<li>1、2、3三种内存区域是各个线程私有的</li>
+<li>4、5是所有线程共有的</li>
+<li>6是5的一部分</li>
+<li>7不是虚拟机运行时数据区的一部分，属于虚拟机的内存区域外的其他物理内存</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/jvm_art_mem_analysis.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_thread_lock.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_thread_lock.html" itemprop="url">java 线程原理及锁同步分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><p>内存模型：在特定的操作协议下，对特定的内存或高速缓存进行读写访问的过程抽象。 </p>
+<p>Java虚拟机规范定义了<strong>Java内存模型（Java Memory Model，JMM）</strong>来屏蔽各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到一致的内存访问效果（C/C++等则直接使用物理机和OS的内存模型，使得程序须针对特定平台编写），它在多线程的情况下尤其重要。</p>
+<p>JMM的主要目标是定义程序中各个变量的访问规则，即在虚拟机中将变量存储到内存和从内存中取出变量这样的底层细节。这里的变量是指共享变量，存在竞争问题的变量，如实例字段、静态字段、数组对象元素等，不包括线程私有的局部变量、方法参数等，因为私有变量不存在竞争问题。可以JMM认为包括内存划分、变量访问操作与规则两部分。</p>
+<h3 id="内存划分"><a href="#内存划分" class="headerlink" title="内存划分"></a>内存划分</h3><p>物理机中的内存模型：</p>
+<p><img src="https://images2015.cnblogs.com/blog/568153/201707/568153-20170717154306331-490912881.png" alt="点击全屏显示"></p>
+<p>Java内存划分如下所示（可与上述物理机中的内存模型作类比）：</p>
+<p> <img src="https://images2015.cnblogs.com/blog/568153/201707/568153-20170717160643128-1712699420.png" alt="点击全屏显示"></p>
+<p>分为主内存和工作内存，每个线程都有自己的工作内存，它们共享主内存。</p>
+<p>主内存（Main Memory）存储所有共享变量的值。</p>
+<p>工作内存（Working Memory）存储该线程使用到的共享变量在主内存的的值的副本拷贝。</p>
+<ul>
+<li>线程对共享变量的所有读写操作都在自己的工作内存中进行，不能直接读写主内存中的变量（volatile变量也不例外，虽然它看起来如同直接访问主内存一般）。</li>
+<li>不同线程间也无法直接访问对方工作内存中的变量，线程间变量值的传递必须通过主内存完成。</li>
+</ul>
+<p>注：这种划分与Java内存区域中堆、栈、方法区等的划分是不同层次的划分，两者基本没有关系。硬要联系的话，大致上主内存对应Java堆中对象的实例数据部分、工作内存对应栈的部分区域；从更低层次上说，主内存对应物理硬件内存、工作内存对应寄存器和高速缓存。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_thread_lock.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_class_load.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_class_load.html" itemprop="url">Jvm class结构和加载原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Class类文件结构"><a href="#Class类文件结构" class="headerlink" title="Class类文件结构"></a>Class类文件结构</h2><h3 id="ClassFile结构"><a href="#ClassFile结构" class="headerlink" title="ClassFile结构"></a>ClassFile结构</h3><p>一个Class类文件是由一个ClassFile结构组成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">    u4             magic;               //魔数，固定值0xCAFEBABE</span><br><span class="line">    u2             minor_version;       //次版本号</span><br><span class="line">    u2             major_version;       //主版本号</span><br><span class="line">    u2             constant_pool_count; //常量的个数</span><br><span class="line">    cp_info        constant_pool[constant_pool_count-1];  //具体的常量池内容</span><br><span class="line">    u2             access_flags;        //访问标识</span><br><span class="line">    u2             this_class;          //当前类索引</span><br><span class="line">    u2             super_class;         //父类索引</span><br><span class="line">    u2             interfaces_count;    //接口的个数</span><br><span class="line">    u2             interfaces[interfaces_count];          //具体的接口内容</span><br><span class="line">    u2             fields_count;        //字段的个数</span><br><span class="line">    field_info     fields[fields_count];                  //具体的字段内容</span><br><span class="line">    u2             methods_count;       //方法的个数</span><br><span class="line">    method_info    methods[methods_count];                //具体的方法内容</span><br><span class="line">    u2             attributes_count;    //属性的个数</span><br><span class="line">    attribute_info attributes[attributes_count];          //具体的属性内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个Class文件的大小：26 + cp_info[] + u2[] + field_info[] + method_info[] + attribute_info[]</p>
+<h3 id="ClassFile文件组成"><a href="#ClassFile文件组成" class="headerlink" title="ClassFile文件组成"></a>ClassFile文件组成</h3><h4 id="3-1-魔数"><a href="#3-1-魔数" class="headerlink" title="3.1 魔数"></a>3.1 魔数</h4><p>每个Class文件头4个字节称为魔数(Magic Number),作用是用于确定这个Class文件是否能被虚拟机所接受，魔数固定值0xCAFEBABE。这是身份识别，比如jpeg等图片文件头也会有魔数。</p>
+<h4 id="3-2-版本号"><a href="#3-2-版本号" class="headerlink" title="3.2 版本号"></a>3.2 版本号</h4><p>紧跟魔数，也占用4个字节。从第5字节到第8字节存储的分别是 次版本号，主版本号。</p>
+<h4 id="3-3-常量池"><a href="#3-3-常量池" class="headerlink" title="3.3 常量池"></a>3.3 常量池</h4><p>常量池是Class文件空间最大的数据项之一，长度不固定。</p>
+<p>a. 常量池长度 用u2类型代表常量池容量计数值，u2紧跟版本号。u2的大小等于常量池的常量个数+1。对于u2=0的特殊情况，代表没有使用常量池。</p>
+<p>b. 常量池内容,格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp_info &#123;</span><br><span class="line">    u1 tag;</span><br><span class="line">    u1 info[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包括两个类常量，字面量和符号引用：</p>
+<ul>
+<li><p>字面量：与Java语言层面的常量概念相近，包含文本字符串、声明为final的常量值等。</p>
+</li>
+<li><p>符号引用：编译语言层面的概念，包括以下3类：</p>
+<ul>
+<li><p>类和接口的全限定名</p>
+</li>
+<li><p>字段的名称和描述符</p>
+</li>
+<li><p>方法的名称和描述符</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>常量池中每一项常量都是一个表结构，每个表的开始第一位是u1类型的标志位tag, 代表当前这个常量的类型。在JDK 1.7.中共有14种不同的表结构的类型，如下：</p>
+<p><img src="http://gityuan.com/images/jvm/constant_type.png" alt="constant_type"></p>
+<p>Class文件都是二进制格式，可通过<code>Jdk/bin/javap.exe</code>工具，分析Class文件字节码。关于javap用法，可通过<code>javap --help</code>来查看。</p>
+<h4 id="3-4访问标识"><a href="#3-4访问标识" class="headerlink" title="3.4访问标识"></a>3.4访问标识</h4><p>2个字节代表，标示用于识别一些类或者接口层次的访问信息.</p>
+<table>
+<thead>
+<tr>
+<th>标识名</th>
+<th>标识值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>声明为public;可以从包外部访问</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>被声明为final;不允许子类修改</td>
+</tr>
+<tr>
+<td>ACC_SUPER</td>
+<td>0x0020</td>
+<td>当被invokespecial指令调用时，将特殊对待父类的方法</td>
+</tr>
+<tr>
+<td>ACC_INTERFACE</td>
+<td>0x0200</td>
+<td>接口标识符</td>
+</tr>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td>声明为abstract;不能被实例化</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>声明为synthetic;不存在于源代码，由编译器生成</td>
+</tr>
+<tr>
+<td>ACC_ANNOTATION</td>
+<td>0x2000</td>
+<td>声明为注释类型</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>声明为枚举类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-5-类-父类索引"><a href="#3-5-类-父类索引" class="headerlink" title="3.5 类/父类索引"></a>3.5 类/父类索引</h4><p>当前类索引和父类索引占用大小都为u2类型，由于一个类智能继承一个父类，故父类索引只有一个。除了java.lang.Object对象的父类索引为0，其他所有类都有父类。</p>
+<h4 id="3-6-接口索引"><a href="#3-6-接口索引" class="headerlink" title="3.6 接口索引"></a>3.6 接口索引</h4><p>一个类可以实现多个接口，故利用interfaces_count来记录该类所实现的接口个数，interfaces[interfaces_count]来记录所有实现的接口内容。</p>
+<h4 id="3-7-字段表"><a href="#3-7-字段表" class="headerlink" title="3.7 字段表"></a>3.7 字段表</h4><p>字段表用于描述类或接口中声明的变量，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">field_info &#123;</span><br><span class="line">    u2             access_flags; //访问标识</span><br><span class="line">    u2             name_index;  //名称索引</span><br><span class="line">    u2             descriptor_index; //描述符索引</span><br><span class="line">    u2             attributes_count; //属性个数</span><br><span class="line">    attribute_info attributes[attributes_count];  //属性表的具体内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字段访问标识如下：(表中加粗项是字段独有的)</p>
+<table>
+<thead>
+<tr>
+<th>标识名</th>
+<th>标识值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>声明为 public; 可以从包外部访问</td>
+</tr>
+<tr>
+<td>ACC_PRIVATE</td>
+<td>0x0002</td>
+<td>声明为 private; 只有定义的类可以访问</td>
+</tr>
+<tr>
+<td>ACC_PROTECTED</td>
+<td>0x0004</td>
+<td>声明为 protected;只有子类和相同package的类可访问</td>
+</tr>
+<tr>
+<td>ACC_STATIC</td>
+<td>0x0008</td>
+<td>声明为 static；属于类变量</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>声明为 final; 对象构造后无法直接修改值</td>
+</tr>
+<tr>
+<td><strong>ACC_VOLATILE</strong></td>
+<td>0x0040</td>
+<td>声明为 volatile; 不会被缓存,直接刷新到主屏幕</td>
+</tr>
+<tr>
+<td><strong>ACC_TRANSIENT</strong></td>
+<td>0x0080</td>
+<td>声明为 transient; 不能被序列化</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>声明为 synthetic; 不存在于源代码，由编译器生成</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>声明为enum</td>
+</tr>
+</tbody>
+</table>
+<p>Java语法中，接口中的字段默认包含ACC_PUBLIC, ACC_STATIC, ACC_FINAL标识。ACC_FINAL，ACC_VOLATILE不能同时选择等规则。</p>
+<p>紧跟其后的name_index和descriptor_index是对常量池的引用，分别代表着字段的简单名和方法的描述符。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/jvm_art_class_load.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_base_collections_analysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_base_collections_analysis.html" itemprop="url">java collections源码分析原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="collections大纲"><a href="#collections大纲" class="headerlink" title="collections大纲"></a>collections大纲</h2><p><img src="https://upload-images.jianshu.io/upload_images/11010834-d3932f2726ac3e77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>List<br>ArrayList<br>LinkedList<br>CopyOnWriteArrayList</li>
+<li>Queue<br>LinkedList<br>ArrayDeque<br>PriorityQueue<br>ConcurrentLinkedQueue/Deque<br>ArrayBlockingQueue<br>LinkedBlockingQueue/Deque<br>PriorityBlockingQueue<br>SynchronousQueue<br>DelayQueue</li>
+<li>Set<br>HashSet<br>LinkedHashSet<br>TreeSet<br>ConcurrentSkipListSet<br>CopyOnWriteArraySet</li>
+<li>Stack</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/11010834-a4847c318e44f943.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>Map<br>HashMap<br>LinkedHashMap<br>TreeMap<br>ConcurrentHashMap<br>ConcurrentSkipListMap<br>WeakHashMap</li>
+</ul>
+<h2 id="ArrayList概述"><a href="#ArrayList概述" class="headerlink" title="ArrayList概述"></a>ArrayList概述</h2><p>重要知识点：</p>
+<ol>
+<li>实现原理private transient Object[] elementData;</li>
+<li>构造函数<code>public ArrayList()</code>可以构造一个默认初始容量为10的空列表；</li>
+<li>实现接口List<e>, RandomAccess, Cloneable, java.io.Serializable</e></li>
+<li><p>扩容原理，如下：<br> <strong>复制system.copyof Arrays.copyOf</strong>，<code>System.arraycopy(elementData, index+1, elementData, index, numMoved);  elementData = Arrays.copyOf(elementData, size, Object[].class);</code><br> <strong>扩容条件</strong>：在add(<code>ensureCapacityInternal(size + 1);</code>)或者addAll(<code>ensureCapacityInternal(size + 1);</code>)进行判断是否需要扩容。<br> <strong>扩容方法</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityInternal</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Increases the capacity to ensure that it can hold at least the</span></span><br><span class="line"><span class="comment"> * number of elements specified by the minimum capacity argument.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> minCapacity the desired minimum capacity</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fail-fast机制<br> ArrayList也采用了快速失败的机制，通过记录modCount参数来实现。在面对并发的修改时，迭代器很快就会完全失败，而不是冒着在将来某个不确定时间发生任意不确定行为的风险。<br> 机制详解：<a href="http://www.cnblogs.com/skywang12345/p/3308762.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3308762.html</a></p>
+</li>
+</ol>
+<p>iterater初始化过程中保存一个int expectedModCount = modCount;当remove会修改expectedModCount, 每次执行next或者remove都会checkForComodification，看expectedModCount和modCount是否匹配， modCount会被其他线程在list.add或remove操作给修改掉，就变得不一致了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="comment">// AbstractList中唯一的属性</span></span><br><span class="line">    <span class="comment">// 用来记录List修改的次数：每修改一次(添加/删除等操作)，将modCount+1</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">transient</span> <span class="keyword">int</span> modCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">        modCount++; <span class="comment">//修改modCount</span></span><br><span class="line">        <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">        <span class="keyword">if</span> (minCapacity &gt; oldCapacity) &#123;</span><br><span class="line">            Object oldData[] = elementData;</span><br><span class="line">            <span class="keyword">int</span> newCapacity = (oldCapacity * <span class="number">3</span>)/<span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (newCapacity &lt; minCapacity)</span><br><span class="line">                newCapacity = minCapacity;</span><br><span class="line">            <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">            elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除指定位置的元素 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        RangeCheck(index);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改modCount</span></span><br><span class="line">        modCount++;</span><br><span class="line">        E oldValue = (E) elementData[index];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">            System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index, numMoved);</span><br><span class="line">        elementData[--size] = <span class="keyword">null</span>; <span class="comment">// Let gc do its work</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回List对应迭代器。实际上，是返回Itr对象。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Itr();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Itr是Iterator(迭代器)的实现类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cursor = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> lastRet = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改数的记录值。</span></span><br><span class="line">        <span class="comment">// 每次新建Itr()对象时，都会保存新建该对象时对应的modCount；</span></span><br><span class="line">        <span class="comment">// 以后每次遍历List中的元素的时候，都会比较expectedModCount和modCount是否相等；</span></span><br><span class="line">        <span class="comment">// 若不相等，则抛出ConcurrentModificationException异常，产生fail-fast事件。</span></span><br><span class="line">        <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> cursor != size();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 获取下一个元素之前，都会判断“新建Itr对象时保存的modCount”和“当前的modCount”是否相等；</span></span><br><span class="line">            <span class="comment">// 若不相等，则抛出ConcurrentModificationException异常，产生fail-fast事件。</span></span><br><span class="line">            checkForComodification();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                E next = get(cursor);</span><br><span class="line">                lastRet = cursor++;</span><br><span class="line">                <span class="keyword">return</span> next;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</span><br><span class="line">                checkForComodification();</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (lastRet == -<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">            checkForComodification();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                AbstractList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">                <span class="keyword">if</span> (lastRet &lt; cursor)</span><br><span class="line">                    cursor--;</span><br><span class="line">                lastRet = -<span class="number">1</span>;</span><br><span class="line">                expectedModCount = modCount;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_base_collections_analysis.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/design_pattern_uml_23gof_analysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/design_pattern_uml_23gof_analysis.html" itemprop="url">设计模式UML和23种分类解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/02DesignPattern/" itemprop="url" rel="index">
+                    <span itemprop="name">02DesignPattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="设计模式之-UML-类图"><a href="#设计模式之-UML-类图" class="headerlink" title="设计模式之 UML 类图"></a>设计模式之 UML 类图</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>为什么要学习设计模式？</p>
+<p><strong>个人觉得设计模式传授的是一种思想，是一种脱离语言的编程习惯。</strong>对于一个没有太多经验的程序员，如何写出 <strong>简洁优雅，可复用性高，可扩展性强，高内聚低耦合</strong> 的代码至关重要。学习别人的设计模式就是为了在没有经验的情况下写出一手不错的代码，只看不写并不能深刻体验到设计模式的巧妙之处。</p>
+<p>设计模式讲的是别人千锤百炼出来的精华，如果有那么一天你再次看设计模式觉得，这些没什么特别的，那么说明你已经走上正轨，你的编程习惯已经向设计模式靠拢了。</p>
+<p>这是我学习设计模式的开篇第一章，主要介绍下 UML 类图。在之后的文章我也会介绍设计模式的一些基本原则以及 23 种设计模式，并给出详细的代码说明。</p>
+<h2 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a><strong>UML 类图</strong></h2><p>学习设计模式必定需要先读懂 UML 类图，下面就谈谈具体 UML 类图中的概念。</p>
+<p>首先是关于类本身，下面我以人为例，先看 UML 图：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-92bf9082359ed12dfae4476d7286674c_hd.jpg" alt="img"></p>
+<p>用 Java 代码可表示为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Student &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">    &#125;</span><br><span class="line">    public void takeExam(Course course) &#123;</span><br><span class="line">        course.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Course &#123;</span><br><span class="line">    private String courseName;</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        // take exam...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>类名叫做 Student 和 Course</li>
+<li>+ 代表 public 公共，- 代表 private 私有，# 代表 protected</li>
+<li>成员变量类型写在前，参数名称写在后</li>
+<li>函数传递参数，参数名写在前，类型写在后</li>
+<li>函数返回值写在函数签名的后面</li>
+<li>两个类之间若存在关系，可使用箭头进行关联，具体关联规则在下文介绍</li>
+<li>箭头上的数字代表 1 个学生可以不参加课程，也可以无限制参加各种课程</li>
+<li>1 代表一个，0..* 代表 0 个到无限个</li>
+</ul>
+<p><strong>在 Java 或其它面向对象设计模式中，类与类之间主要有 6 种关系，他们分别为：依赖，关联，聚合，组合，继承，实现。他们的耦合度依次增强。</strong></p>
+<h2 id="1-依赖-Dependency"><a href="#1-依赖-Dependency" class="headerlink" title="1. 依赖 (Dependency)"></a>1. 依赖 (Dependency)</h2><p>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。</p>
+<p>可以简单的理解为：类 A 使用到了类 B，而这种使用关系具有偶然性，临时性，非常弱的，但是 B 类中的变化会影响到类 A，比如某个学生要用笔写字，学生与笔的关系就是一种依赖关系，如果笔没水了，那学生就不能写字了(B 类的变化会影响类 A) 或者换另一只笔继续写字(临时性体现)。</p>
+<p>思考下面这样的场景：</p>
+<p>你是一名出租车司机，每天开着公司给你分配的车去载客，而每天出租车可能不同，我只是个司机，公司给我什么车我就开什么车，我使用这个车。</p>
+<p><strong>具体 UML 类图表现为：</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-dce9c2eb387354bb7de9a3a47d5f3ed5_hd.jpg" alt="img"></p>
+<p>Java 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Driver &#123;</span><br><span class="line">    public void drive(Car car) &#123;</span><br><span class="line">	car.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Car &#123;</span><br><span class="line">    public void run()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>依赖关系不一定表现为形参，一共可以有三种表现形式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Driver &#123;</span><br><span class="line">    //通过形参方式发生依赖关系 </span><br><span class="line">    public void drive1(Car car) &#123;</span><br><span class="line">	car.run();</span><br><span class="line">    &#125;</span><br><span class="line">     //通过局部变量发生依赖关系</span><br><span class="line">    public void drive2() &#123;</span><br><span class="line">	Car car = new Car();</span><br><span class="line">	car.run();</span><br><span class="line">    &#125;</span><br><span class="line">    //通过静态变量发生依赖关系</span><br><span class="line">    public void drive3() &#123;</span><br><span class="line">	Car.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/design_pattern_uml_23gof_analysis.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_system_security.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_security_system_security.html" itemprop="url">Android系统安全</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-25T00:00:00+00:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="系统安全"><a href="#系统安全" class="headerlink" title="系统安全"></a>系统安全</h2><p><a href="https://source.android.google.cn/security/overview/kernel-security" target="_blank" rel="noopener">https://source.android.google.cn/security/overview/kernel-security</a></p>
+<p>android安全机制如下：</p>
+<h3 id="系统和内核安全"><a href="#系统和内核安全" class="headerlink" title="系统和内核安全"></a>系统和内核安全</h3><p>在操作系统级别，Android 平台不仅提供 Linux 内核的安全功能，而且还提供安全的进程间通信 (IPC) 机制，以便在不同进程中运行的应用之间安全通信。操作系统级别的这些安全功能旨在确保即使是原生代码也要受应用沙盒的限制。无论相应代码是自带应用行为导致的结果，还是利用应用漏洞导致的结果，系统都能防止违规应用危害其他应用、Android 系统或设备本身。要了解您可以采取哪些措施来增强设备的内核安全性，请参阅内核配置。要了解必需的设置，请参阅 Android 兼容性定义文档 (CDD)。</p>
+<h4 id="Linux-安全"><a href="#Linux-安全" class="headerlink" title="Linux 安全"></a>Linux 安全</h4><p>Android 平台的基础是 Linux 内核。Linux 内核多年来得到了非常广泛的应用，在千百万对安全敏感的环境中都有它的身影。在历经无数攻击以及成千上万的开发者的不断研究和修复之后，Linux 已成为许多公司和安全专业人士信任的一款既稳定又安全的内核。</p>
+<p>作为移动计算环境的基础，Linux 内核为 Android 提供了一些关键的安全功能，其中包括：</p>
+<h4 id="基于用户的权限模式"><a href="#基于用户的权限模式" class="headerlink" title="基于用户的权限模式"></a>基于用户的权限模式</h4><ul>
+<li>进程隔离<br>用于实现安全 IPC 的可扩展机制<br>能够移除内核中不必要的和可能不安全的部分<br>作为一种多用户操作系统，Linux 内核的一个基本安全目标是将用户资源彼此隔离开来。Linux 的安全理念是防范用户资源之间相互侵扰。因此，Linux 可以：</li>
+</ul>
+<p>防止用户 A 读取用户 B 的文件<br>确保用户 A 不会占用用户 B 的内存<br>确保用户 A 不会占用用户 B 的 CPU 资源<br>确保用户 A 不会占用用户 B 的设备（例如，电话、GPS、蓝牙）</p>
+<ul>
+<li>应用沙盒<br>Android 平台利用基于用户的 Linux 保护机制来识别和隔离应用资源。Android 系统会为每个 Android 应用分配一个独一无二的用户 ID (UID)，并使它们以这个用户身份在单独的进程中运行。这种方法与其他操作系统（包括传统的 Linux 配置）采用的方法不同。在其他操作系统中，多个应用会以相同的用户权限运行。</li>
+</ul>
+<p>这样就设置了一个内核级应用沙盒。内核会在进程级别利用标准的 Linux 机制（例如，分配给应用的用户 ID 和组 ID）实现应用和系统之间的安全防护。默认情况下，应用不能彼此交互，而且应用对操作系统的访问权限会受到限制。如果应用 A（一个单独的应用）尝试执行恶意操作，例如在没有权限的情况下读取应用 B 的数据或拨打电话，操作系统会阻止此类操作，因为应用 A 没有适当的用户权限。这一沙盒机制非常简单，可审核，并且基于已有数十年历史的 UNIX 风格的进程用户隔离和文件权限机制。</p>
+<p>由于应用沙盒位于内核层面，因此该安全模型的保护范围扩展到了原生代码和操作系统应用。位于更高层面的所有软件（例如，操作系统库、应用框架、应用运行时环境和所有应用）都会在应用沙盒中运行。在某些平台上，为了执行安全防护机制，会限制开发者只能使用特定的开发框架、API 或语言。在 Android 上，并没有为此而限制开发者必须如何编写应用，在这方面，原生代码与解释型代码一样安全。</p>
+<p>在某些操作系统中，一个应用中的内存异常可能会破坏位于同一内存空间中的其他应用的内存数据，进而导致设备的安全性荡然无存。在 Android 中，由于所有应用及其资源都在操作系统级别的沙盒内，因此，即使出现内存数据损坏，也只能在相应应用的环境内执行代码，而且只能以操作系统确立的权限执行代码。</p>
+<p>与所有安全功能一样，应用沙盒并不是坚不可摧的。不过，要在经过适当配置的设备上攻破应用沙盒这道防线，必须要先攻破 Linux 内核的安全功能。</p>
+<h4 id="系统分区和安全模式"><a href="#系统分区和安全模式" class="headerlink" title="系统分区和安全模式"></a>系统分区和安全模式</h4><p>系统分区包含 Android 的内核，以及操作系统库、应用运行时、应用框架和应用。该分区设为了只读分区。当用户将设备启动到安全模式时，第三方应用可由设备所有者手动启动，但不会默认启动。</p>
+<h4 id="文件系统权限"><a href="#文件系统权限" class="headerlink" title="文件系统权限"></a>文件系统权限</h4><p>在 UNIX 风格的环境中，文件系统权限可确保一个用户不能更改或读取另一个用户的文件。在 Android 中，每个应用都以自己的用户身份运行。除非开发者明确地与其他应用共享文件，否则一个应用不能读取或更改另一个应用创建的文件。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_security_system_security.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_android_security.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_security_android_security.html" itemprop="url">Android应用安全</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-20T00:00:00+00:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Android应用安全"><a href="#Android应用安全" class="headerlink" title="Android应用安全"></a>Android应用安全</h1><h2 id="Android应用安全攻击面看安全"><a href="#Android应用安全攻击面看安全" class="headerlink" title="Android应用安全攻击面看安全"></a>Android应用安全攻击面看安全</h2><p><img src="https://upload-images.jianshu.io/upload_images/11010834-d521981794736749.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="attack_surface.png"></p>
+<p><a href="https://blog.csdn.net/u010651541/article/details/53142252" target="_blank" rel="noopener">https://blog.csdn.net/u010651541/article/details/53142252</a><br><a href="http://colbert337.github.io/2015/08/24/android-attack-surface/" target="_blank" rel="noopener">http://colbert337.github.io/2015/08/24/android-attack-surface/</a></p>
+<h2 id="安全开发生命周期"><a href="#安全开发生命周期" class="headerlink" title="安全开发生命周期"></a>安全开发生命周期</h2><p><a href="https://www.cnblogs.com/shilxfly/p/7196875.html" target="_blank" rel="noopener">https://www.cnblogs.com/shilxfly/p/7196875.html</a></p>
+<ul>
+<li>安全设计</li>
+<li>威胁建模</li>
+<li>安全开发</li>
+<li>安全编码</li>
+<li>安全测试</li>
+<li>代码审计</li>
+</ul>
+<h2 id="安全风险评估Risk-Assessment"><a href="#安全风险评估Risk-Assessment" class="headerlink" title="安全风险评估Risk Assessment"></a>安全风险评估Risk Assessment</h2><h2 id="Android安全基础"><a href="#Android安全基础" class="headerlink" title="Android安全基础"></a>Android安全基础</h2><ul>
+<li>java/c/cpp/vm asm</li>
+<li>android framework基础</li>
+<li>xpose框架/插件/热修复原理</li>
+<li>dex/Odex格式基础/dalvik和art虚拟机</li>
+<li>IDA、GDB、JEB逆向工具</li>
+</ul>
+<h2 id="Android签名机制"><a href="#Android签名机制" class="headerlink" title="Android签名机制"></a>Android签名机制</h2><ul>
+<li>v1签名</li>
+<li>v2签名</li>
+<li>应用多渠道发布</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_security_android_security.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_system_sum.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_system_sum.html" itemprop="url">Android系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-06T00:00:00+00:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-System/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a>Framework</h2><p><a href="http://gityuan.com/android/" target="_blank" rel="noopener">http://gityuan.com/android/</a><br><a href="http://weishu.me/archives/" target="_blank" rel="noopener">http://weishu.me/archives/</a><br><a href="http://androidxref.com/" target="_blank" rel="noopener">http://androidxref.com/</a></p>
+<h3 id="深入理解常见类"><a href="#深入理解常见类" class="headerlink" title="深入理解常见类"></a>深入理解常见类</h3><ul>
+<li>四大组件</li>
+<li>Handler/MessageQueue/Looper</li>
+<li>Binder</li>
+</ul>
+<h3 id="深入理解几个过程"><a href="#深入理解几个过程" class="headerlink" title="深入理解几个过程"></a>深入理解几个过程</h3><ul>
+<li>系统启动系列</li>
+<li>Android进程系列</li>
+<li>图形系统系列</li>
+</ul>
+<h3 id="深入理解AMS、PMS、WMS几个关键的服务"><a href="#深入理解AMS、PMS、WMS几个关键的服务" class="headerlink" title="深入理解AMS、PMS、WMS几个关键的服务"></a>深入理解AMS、PMS、WMS几个关键的服务</h3><ul>
+<li>系统服务篇</li>
+</ul>
+<h3 id="深入理解系统稳定性和内存工具等"><a href="#深入理解系统稳定性和内存工具等" class="headerlink" title="深入理解系统稳定性和内存工具等"></a>深入理解系统稳定性和内存工具等</h3><ul>
+<li>系统稳定性系列</li>
+<li>内存&amp;&amp;存储篇</li>
+<li>工具篇</li>
+</ul>
+<h2 id="JVM-Dalvik-ART虚拟机"><a href="#JVM-Dalvik-ART虚拟机" class="headerlink" title="JVM/Dalvik/ART虚拟机"></a>JVM/Dalvik/ART虚拟机</h2><p>目前从两本书入手，主要包含class/dex文件格式，内存分布，垃圾回收，类加载等方面。</p>
+<ul>
+<li>深入理解JVM虚拟机</li>
+<li>深入解析Android虚拟机 dalvik/art</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/android_system_sum.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_byte_code_execute.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_byte_code_execute.html" itemprop="url">Jvm 字节码执行引擎</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="JVM字节码执行引擎"><a href="#JVM字节码执行引擎" class="headerlink" title="JVM字节码执行引擎"></a>JVM字节码执行引擎</h1><p>　　虚拟机是相对于“物理机”而言的，这两种机器都有代码执行能力，其区别主要是物理机的执行引擎是直接建立在处理器、硬件、指令集和操作系统层面上的，而虚拟机的执行引擎是自己实现的。因此程序员可以自行制定指令集和执行引擎的结构体系，并且能够执行那些不被硬件直接支持的指令集格式。<br>　　在Java虚拟机规范中制定了虚拟机字节码执行引擎的概念模型，这个概念模型称为各种虚拟机执行引擎的统一外观。虚拟机实现中，可能会有两种的执行方式：解释执行（通过解释器执行）和编译执行（通过即时编译器产生本地代码）。有些虚拟机值采用一种执行方式，但是有点采用了两种，甚至有可能包含几个不同级别的编译器执行引擎。<br>　　<strong>所有的Java虚拟机的执行引擎都是一致的：输入的是字节码文件、处理过程是等效字节码解析过程，输出的是执行结果。</strong></p>
+<h2 id="运行时栈帧结构"><a href="#运行时栈帧结构" class="headerlink" title="运行时栈帧结构"></a>运行时栈帧结构</h2><p>　　栈帧（Stack Frame）是一种数据结构，它主要是用来支持虚拟机进行方法调用和方法执行。它是虚拟机运行时数据区的虚拟机栈的栈元素。<br>　　包含内容：栈帧包含了<strong>局部变量表、操作数栈、动态连接、方法返回地址</strong>和<strong>一些额外的附加信息</strong>等。<br>　　执行过程：一个线程中的方法调用链可能会很长，很多方法都同时处于执行状态。在活动线程中，只有栈顶的栈帧才是有效的，称为当前栈帧，这个栈帧所关联的方法称为当前方法，执行引擎所运行的所有的字节码指令都只针对当前栈帧进行操作。<br>　　执行意义：每个方法从调用开始到执行完成的过程，就对应着一个栈帧在虚拟机栈里面从入栈到出栈的过程。</p>
+<p>值得注意的是：在编译程序代码的时候，栈帧需要多大的局部变量表、多深的操作数栈都已经完全确定了，并且写入到方法表的Code属性之中，因此一个栈帧需要分配多大的内存，并不会受到运行期变量数据的影响，而仅仅取决于具体的虚拟机的实现。</p>
+<h3 id="局部变量表"><a href="#局部变量表" class="headerlink" title="局部变量表"></a>局部变量表</h3><p>　　一组变量值存储空间，用于存放方法参数和方法内部定义的局部变量。在Java程序被编译成Class文件时，就在方法的Code属性的max_locals数据项中确定了改方法所需分配的最大局部变量表的容器。<br>　　包含类型：boolean、byte、char、short、int、float、reference或returnAddress类型八种类型。<br>　　容量单位：变量槽（slot）。不过虚拟机中并没有明确确定每一个变量槽所占据的内存空间大小，只是有导向性地说明每个变量槽都应该存放的八种类型：boolean、byte、char、short、int、float、reference或returnAddress类型的数据。这种描述和明确指出“每个Slot占用32位长度的内存空间”有一些差别，它允许Slot的长度随着不同的处理器、操作系统或者虚拟机而发生改变。在64位系统上使用64位长度的内存空间来实现一个slot，虚拟机仍要使用对齐和补白的手段让Slot在外观上看起来与32位虚拟机中的一致。</p>
+<p>　　在Java中占32位以内的数据类型有boolean、byte、char、short、int、float、reference或returnAddress类型等，前六种不解释，而后面的reference是对象的引用。虚拟机规范并没有说明它的长度，也没有明确指出这个引用应有怎样的结构，但一般来说：<strong>虚拟机实现至少都应当能从此引用中直接或间接地查找到对象在Java堆中的起始地址索引和方法区中的对象类型数据</strong>。而returnAddress是为字节码指令jsr、jsr_w和ret服务的，它指向一条字节码指令的地址。<br>对于64为的数据类型，虚拟机会以高位在前的方式为其分配两个连续的Slot空间。即long和double两种类型。做法是将long和double类型速写分割为32位读写的做法。不过由于局部变量表建立在线程的堆栈上，是线程的私有数据，无论读写两个连续的Slot是否是原子操作，都不会引起数据安全问题。</p>
+<p>　　虚拟机索引方式：虚拟机通过索引定位的方式使用局部变量表，索引值的范围是从0开始到局部变量表最大的Slot数量。如果是32为数据类型的数据，索引n就表示使用第n个Slot，如果是64位数据类型的变量，则说明要使用第n和第n+1两个Slot。<br>在方法执行过程中，<strong>虚拟机是使用局部变量表完成参数值到参数变量列表的传递过程</strong>。如果是实例方法（非static方法），那么局部变量表中的第0位索引的Slot默认是用来传递方法所属对象实例的引用，在方法中可以通过关键字“this”来访问这个隐含的参数。其余参数按照参数表的顺序来排列，占用从1开始的局部变量Slot，参数表分配完毕后，再根据方法体内部定义的变量顺序和作用域分配其余的Slot。<br>局部变量表中的Slot是可重用的，方法体中定义的变量，其作用域并不一定会覆盖整个方法体，如果当前字节码PC计数器的值已经超过了某个变量的作用域，那么这个变量相应的Slot就可以交给其他变量去使用。节省栈空间。但也有可能会影响到系统的垃圾收集行为。</p>
+<p>　　还有一点要说明的是：<strong>局部变量不像前面介绍的类变量那样存在“准备阶段”</strong>。我们知道，类变量在加载过程中要经过两次赋初始值的过程：一次在准备阶段，赋予系统初始值，另外一次在初始化阶段，赋予程序员定义的初始值。但局部变量不一样，如果一个局部变量定义了但是没有赋初始值是不能使用的。所有不要认为Java中任何情况下都存在着诸如整型变量默认为0，布尔型变量默认为false之类的默认值。这一点要好好注意一下。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/jvm_art_byte_code_execute.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_params_analysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/jvm_art_params_analysis.html" itemprop="url">Jvm Params配置调优参数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JVM参数类型和调整"><a href="#JVM参数类型和调整" class="headerlink" title="JVM参数类型和调整"></a>JVM参数类型和调整</h1><p>所有线程共享的内存主要有两块：堆内存和方法区。</p>
+<p>其中堆内存分为两块：新生代Young generation（Eden区、From Survivor区、To Survivor区）、老年代Tenured generation。</p>
+<p>方法区有人也称之“永久代”，但是它们并不等同。方法区是JVM的规范，而永久代是该规范的一种实现方式。从jdk1.7开始已经逐步去除“永久代”，在JDK8中取而代之的是“元空间”（Metaspace）。</p>
+<p>元空间与永久代之间最大的区别在于：<strong>元空间并不在虚拟机中，而是使用本地内存</strong>。因此，默认情况下，元空间的大小仅受本地内存限制</p>
+<p>下面是JVM的一些主要参数：</p>
+<h3 id="1-基本参数"><a href="#1-基本参数" class="headerlink" title="1. 基本参数"></a>1. 基本参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-XX:+</td>
+<td>打开</td>
+</tr>
+<tr>
+<td>-XX:-</td>
+<td>关闭</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-内存大小配置参数"><a href="#2-内存大小配置参数" class="headerlink" title="2. 内存大小配置参数"></a>2. 内存大小配置参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-Xms</td>
+<td>初始堆内存大小</td>
+</tr>
+<tr>
+<td>-Xmx</td>
+<td>最大堆内存大小</td>
+</tr>
+<tr>
+<td>-Xmn</td>
+<td>年轻代内存大小</td>
+</tr>
+<tr>
+<td>-Xss</td>
+<td>线程私有的虚拟机栈大小</td>
+</tr>
+<tr>
+<td>-XX:MaxPermSize=64m</td>
+<td>永久代最大值</td>
+</tr>
+<tr>
+<td>-XX:PermSize</td>
+<td>永久代初始值</td>
+</tr>
+<tr>
+<td>-XX:MetaspaceSize</td>
+<td>元空间初始大小</td>
+</tr>
+<tr>
+<td>-XX:MaxMetaspaceSize</td>
+<td>元空间最大值</td>
+</tr>
+<tr>
+<td>-XX:MaxDirectMemorySize</td>
+<td>直接内存大小，默认与Java堆最大值（-Xmx）一样</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-JVM调试参数"><a href="#3-JVM调试参数" class="headerlink" title="3. JVM调试参数"></a>3. JVM调试参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-verbose:gc</td>
+<td>记录GC运行及运行时间</td>
+</tr>
+<tr>
+<td>-XX:+PrintGCDetails</td>
+<td>记录GC运行时的详细数据信息，以及在进程结束时打印当前的内存各区域分配情况。</td>
+</tr>
+<tr>
+<td>-XX:+PrintGCTimeStamps</td>
+<td>打印垃圾收集时间戳</td>
+</tr>
+<tr>
+<td>-Xloggc:{gcLogPath}</td>
+<td>gc日志存放路径</td>
+</tr>
+<tr>
+<td>-XX:+HeapDumpOnOutOfMemoryError</td>
+<td>在内存溢出的时候生成Heap dump文件</td>
+</tr>
+<tr>
+<td>-verbose:class、-XX:+TraceClassLoading</td>
+<td>查看类加载信息(要求Product版虚拟机)</td>
+</tr>
+<tr>
+<td>-XX:+TraceClassUnLoading</td>
+<td>查看类卸载信息(要求FastDebug版虚拟机)</td>
+</tr>
+<tr>
+<td>-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</td>
+<td>用于远程调试</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-垃圾收集器"><a href="#4-垃圾收集器" class="headerlink" title="4. 垃圾收集器"></a>4. 垃圾收集器</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-XX:+UseSerialG</td>
+<td>使用Serial+Serial Old的收集器组合进行内存回收。</td>
+</tr>
+<tr>
+<td>-XX:+UseParNewGC</td>
+<td>使用ParNew+Serial Old的收集器组合进行内存回收。</td>
+</tr>
+<tr>
+<td>-XX:+UseConcMarkSweepGC</td>
+<td>使用ParNew+CMS+Serial Old的收集器组合进行内存回收。Serial Old作为出现Concurrent Mode Failure失败后的后备收集器使用。</td>
+</tr>
+<tr>
+<td>-XX:+UseParallelGC</td>
+<td>使用Parallel Scavenge+Serial Old(PS Mark Sweep)收集器组合进行内存回收。</td>
+</tr>
+<tr>
+<td>-XX:+UseParallelOldGC</td>
+<td>使用Parallel Scavenge+Parallel Old收集器组合进行内存回收。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-JVM调优参数"><a href="#5-JVM调优参数" class="headerlink" title="5. JVM调优参数"></a>5. JVM调优参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-XX:SurvivorRatio</td>
+<td>新生代中Eden区域和Survivor区域（单个Survivor）的容量比值，默认为8</td>
+</tr>
+<tr>
+<td>-XX:NewRatio</td>
+<td>堆内存中老生代和年轻代的容量比值。例：NewRatio=2，表明old：new=2:1</td>
+</tr>
+<tr>
+<td>-XX:PretenureSizeThreshold</td>
+<td>直接晋升到老年代的对象大小，大于该值的对象直接在老年代分配。</td>
+</tr>
+<tr>
+<td>-XX:MaxTenuringThreshold</td>
+<td>对象在新生代中能存活的最大年龄。</td>
+</tr>
+<tr>
+<td>-XX:+UseAdaptiveSizePolicy</td>
+<td>动态调整Java堆中各个区域的大小以及进入老年代的年龄（限Parallel Scaverge收集器）</td>
+</tr>
+<tr>
+<td>-XX:+HandlePromotionFailure</td>
+<td>允许老年代分配担保失败，开启后可以冒险YGC。</td>
+</tr>
+<tr>
+<td>-XX:ParallelGCThreads</td>
+<td>设置并行GC时进行内存回收的线程数</td>
+</tr>
+<tr>
+<td>-XX:GCTimeRatio</td>
+<td>默认为99，即允许1%的GC时间。GC时间占总时间的比例由公式1/(1+GCTimeRatio)得出（限Parallel Scaverge收集器）</td>
+</tr>
+<tr>
+<td>-XX:MaxGCPauseMillis</td>
+<td>设置GC的最大停顿时间（限Parallel Scaverge收集器）</td>
+</tr>
+<tr>
+<td>-XX:+CMSInitialingOccupancyFraction</td>
+<td>设置CMS收集器在老年代空间被使用多少后触发Full GC。默认值是68，即68%。（限CMS收集器）</td>
+</tr>
+<tr>
+<td>-XX:+UseCMSCompactionAtFullCollection</td>
+<td>设置CMS在完成垃圾收集后进行一次内存碎片整理。（限CMS收集器）</td>
+</tr>
+<tr>
+<td>-XX:+CMSFullGCsBeforeCompaction</td>
+<td>设置CMS执行多少次GC后，下次GC时进行一次内存碎片整理，默认为0。即每次都整理。</td>
+</tr>
+<tr>
+<td>-Xnoclassgc</td>
+<td>不回收无用类</td>
+</tr>
+</tbody>
+</table>
+<p>参考：<a href="http://www.cnblogs.com/z-sm/p/6253335.html" target="_blank" rel="noopener">http://www.cnblogs.com/z-sm/p/6253335.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

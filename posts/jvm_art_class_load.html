@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,jvm,class,loader," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Class类文件结构ClassFile结构一个Class类文件是由一个ClassFile结构组成： 123456789101112131415161718ClassFile &amp;#123;    u4             magic;               //魔数，固定值0xCAFEBABE    u2             minor_version;       //次版本号">
+<meta name="keywords" content="java,jvm,class,loader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jvm class结构和加载原理">
+<meta property="og:url" content="https://fitzlee.github.io/posts/jvm_art_class_load.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Class类文件结构ClassFile结构一个Class类文件是由一个ClassFile结构组成： 123456789101112131415161718ClassFile &amp;#123;    u4             magic;               //魔数，固定值0xCAFEBABE    u2             minor_version;       //次版本号">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://gityuan.com/images/jvm/constant_type.png">
+<meta property="og:image" content="https://leibnizhu.gitlab.io/img/jvm/9.png">
+<meta property="og:image" content="https://leibnizhu.gitlab.io/img/jvm/10.png">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.683Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jvm class结构和加载原理">
+<meta name="twitter:description" content="Class类文件结构ClassFile结构一个Class类文件是由一个ClassFile结构组成： 123456789101112131415161718ClassFile &amp;#123;    u4             magic;               //魔数，固定值0xCAFEBABE    u2             minor_version;       //次版本号">
+<meta name="twitter:image" content="http://gityuan.com/images/jvm/constant_type.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/jvm_art_class_load.html"/>
+
+
+
+
+
+  <title>Jvm class结构和加载原理 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_class_load.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jvm class结构和加载原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Class类文件结构"><a href="#Class类文件结构" class="headerlink" title="Class类文件结构"></a>Class类文件结构</h2><h3 id="ClassFile结构"><a href="#ClassFile结构" class="headerlink" title="ClassFile结构"></a>ClassFile结构</h3><p>一个Class类文件是由一个ClassFile结构组成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ClassFile &#123;</span><br><span class="line">    u4             magic;               //魔数，固定值0xCAFEBABE</span><br><span class="line">    u2             minor_version;       //次版本号</span><br><span class="line">    u2             major_version;       //主版本号</span><br><span class="line">    u2             constant_pool_count; //常量的个数</span><br><span class="line">    cp_info        constant_pool[constant_pool_count-1];  //具体的常量池内容</span><br><span class="line">    u2             access_flags;        //访问标识</span><br><span class="line">    u2             this_class;          //当前类索引</span><br><span class="line">    u2             super_class;         //父类索引</span><br><span class="line">    u2             interfaces_count;    //接口的个数</span><br><span class="line">    u2             interfaces[interfaces_count];          //具体的接口内容</span><br><span class="line">    u2             fields_count;        //字段的个数</span><br><span class="line">    field_info     fields[fields_count];                  //具体的字段内容</span><br><span class="line">    u2             methods_count;       //方法的个数</span><br><span class="line">    method_info    methods[methods_count];                //具体的方法内容</span><br><span class="line">    u2             attributes_count;    //属性的个数</span><br><span class="line">    attribute_info attributes[attributes_count];          //具体的属性内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个Class文件的大小：26 + cp_info[] + u2[] + field_info[] + method_info[] + attribute_info[]</p>
+<h3 id="ClassFile文件组成"><a href="#ClassFile文件组成" class="headerlink" title="ClassFile文件组成"></a>ClassFile文件组成</h3><h4 id="3-1-魔数"><a href="#3-1-魔数" class="headerlink" title="3.1 魔数"></a>3.1 魔数</h4><p>每个Class文件头4个字节称为魔数(Magic Number),作用是用于确定这个Class文件是否能被虚拟机所接受，魔数固定值0xCAFEBABE。这是身份识别，比如jpeg等图片文件头也会有魔数。</p>
+<h4 id="3-2-版本号"><a href="#3-2-版本号" class="headerlink" title="3.2 版本号"></a>3.2 版本号</h4><p>紧跟魔数，也占用4个字节。从第5字节到第8字节存储的分别是 次版本号，主版本号。</p>
+<h4 id="3-3-常量池"><a href="#3-3-常量池" class="headerlink" title="3.3 常量池"></a>3.3 常量池</h4><p>常量池是Class文件空间最大的数据项之一，长度不固定。</p>
+<p>a. 常量池长度 用u2类型代表常量池容量计数值，u2紧跟版本号。u2的大小等于常量池的常量个数+1。对于u2=0的特殊情况，代表没有使用常量池。</p>
+<p>b. 常量池内容,格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp_info &#123;</span><br><span class="line">    u1 tag;</span><br><span class="line">    u1 info[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包括两个类常量，字面量和符号引用：</p>
+<ul>
+<li><p>字面量：与Java语言层面的常量概念相近，包含文本字符串、声明为final的常量值等。</p>
+</li>
+<li><p>符号引用：编译语言层面的概念，包括以下3类：</p>
+<ul>
+<li><p>类和接口的全限定名</p>
+</li>
+<li><p>字段的名称和描述符</p>
+</li>
+<li><p>方法的名称和描述符</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>常量池中每一项常量都是一个表结构，每个表的开始第一位是u1类型的标志位tag, 代表当前这个常量的类型。在JDK 1.7.中共有14种不同的表结构的类型，如下：</p>
+<p><img src="http://gityuan.com/images/jvm/constant_type.png" alt="constant_type"></p>
+<p>Class文件都是二进制格式，可通过<code>Jdk/bin/javap.exe</code>工具，分析Class文件字节码。关于javap用法，可通过<code>javap --help</code>来查看。</p>
+<h4 id="3-4访问标识"><a href="#3-4访问标识" class="headerlink" title="3.4访问标识"></a>3.4访问标识</h4><p>2个字节代表，标示用于识别一些类或者接口层次的访问信息.</p>
+<table>
+<thead>
+<tr>
+<th>标识名</th>
+<th>标识值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>声明为public;可以从包外部访问</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>被声明为final;不允许子类修改</td>
+</tr>
+<tr>
+<td>ACC_SUPER</td>
+<td>0x0020</td>
+<td>当被invokespecial指令调用时，将特殊对待父类的方法</td>
+</tr>
+<tr>
+<td>ACC_INTERFACE</td>
+<td>0x0200</td>
+<td>接口标识符</td>
+</tr>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td>声明为abstract;不能被实例化</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>声明为synthetic;不存在于源代码，由编译器生成</td>
+</tr>
+<tr>
+<td>ACC_ANNOTATION</td>
+<td>0x2000</td>
+<td>声明为注释类型</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>声明为枚举类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-5-类-父类索引"><a href="#3-5-类-父类索引" class="headerlink" title="3.5 类/父类索引"></a>3.5 类/父类索引</h4><p>当前类索引和父类索引占用大小都为u2类型，由于一个类智能继承一个父类，故父类索引只有一个。除了java.lang.Object对象的父类索引为0，其他所有类都有父类。</p>
+<h4 id="3-6-接口索引"><a href="#3-6-接口索引" class="headerlink" title="3.6 接口索引"></a>3.6 接口索引</h4><p>一个类可以实现多个接口，故利用interfaces_count来记录该类所实现的接口个数，interfaces[interfaces_count]来记录所有实现的接口内容。</p>
+<h4 id="3-7-字段表"><a href="#3-7-字段表" class="headerlink" title="3.7 字段表"></a>3.7 字段表</h4><p>字段表用于描述类或接口中声明的变量，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">field_info &#123;</span><br><span class="line">    u2             access_flags; //访问标识</span><br><span class="line">    u2             name_index;  //名称索引</span><br><span class="line">    u2             descriptor_index; //描述符索引</span><br><span class="line">    u2             attributes_count; //属性个数</span><br><span class="line">    attribute_info attributes[attributes_count];  //属性表的具体内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字段访问标识如下：(表中加粗项是字段独有的)</p>
+<table>
+<thead>
+<tr>
+<th>标识名</th>
+<th>标识值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>声明为 public; 可以从包外部访问</td>
+</tr>
+<tr>
+<td>ACC_PRIVATE</td>
+<td>0x0002</td>
+<td>声明为 private; 只有定义的类可以访问</td>
+</tr>
+<tr>
+<td>ACC_PROTECTED</td>
+<td>0x0004</td>
+<td>声明为 protected;只有子类和相同package的类可访问</td>
+</tr>
+<tr>
+<td>ACC_STATIC</td>
+<td>0x0008</td>
+<td>声明为 static；属于类变量</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>声明为 final; 对象构造后无法直接修改值</td>
+</tr>
+<tr>
+<td><strong>ACC_VOLATILE</strong></td>
+<td>0x0040</td>
+<td>声明为 volatile; 不会被缓存,直接刷新到主屏幕</td>
+</tr>
+<tr>
+<td><strong>ACC_TRANSIENT</strong></td>
+<td>0x0080</td>
+<td>声明为 transient; 不能被序列化</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>声明为 synthetic; 不存在于源代码，由编译器生成</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>声明为enum</td>
+</tr>
+</tbody>
+</table>
+<p>Java语法中，接口中的字段默认包含ACC_PUBLIC, ACC_STATIC, ACC_FINAL标识。ACC_FINAL，ACC_VOLATILE不能同时选择等规则。</p>
+<p>紧跟其后的name_index和descriptor_index是对常量池的引用，分别代表着字段的简单名和方法的描述符。</p>
+<a id="more"></a>
+<h4 id="3-8方法表"><a href="#3-8方法表" class="headerlink" title="3.8方法表"></a>3.8方法表</h4><p>方法表用于描述类或接口中声明的方法，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">method_info &#123;</span><br><span class="line">    u2             access_flags; //访问标识</span><br><span class="line">    u2             name_index;  //名称索引</span><br><span class="line">    u2             descriptor_index;  //描述符索引</span><br><span class="line">    u2             attributes_count;  //属性个数</span><br><span class="line">    attribute_info attributes[attributes_count]; //属性表的具体内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法访问标识如下：(表中加粗项是方法独有的)</p>
+<table>
+<thead>
+<tr>
+<th>标识名</th>
+<th>标识值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>声明为 public; 可以从包外部访问</td>
+</tr>
+<tr>
+<td>ACC_PRIVATE</td>
+<td>0x0002</td>
+<td>声明为 private; 只有定义的类可以访问</td>
+</tr>
+<tr>
+<td>ACC_PROTECTED</td>
+<td>0x0004</td>
+<td>声明为 protected;只有子类和相同package的类可访问</td>
+</tr>
+<tr>
+<td>ACC_STATIC</td>
+<td>0x0008</td>
+<td>声明为 static；属于类变量</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>声明为 final; 不能被覆写</td>
+</tr>
+<tr>
+<td><strong>ACC_SYNCHRONIZED</strong></td>
+<td>0x0020</td>
+<td>声明为 synchronized; 同步锁包裹</td>
+</tr>
+<tr>
+<td>ACC_BRIDGE</td>
+<td>0x0040</td>
+<td>桥接方法, 由编译器生成</td>
+</tr>
+<tr>
+<td><strong>ACC_VARARGS</strong></td>
+<td>0x0080</td>
+<td>声明为 接收不定长参数</td>
+</tr>
+<tr>
+<td><strong>ACC_NATIVE</strong></td>
+<td>0x0100</td>
+<td>声明为 native; 由非Java语言来实现</td>
+</tr>
+<tr>
+<td><strong>ACC_ABSTRACT</strong></td>
+<td>0x0400</td>
+<td>声明为 abstract; 没有提供实现</td>
+</tr>
+<tr>
+<td><strong>ACC_STRICT</strong></td>
+<td>0x0800</td>
+<td>声明为 strictfp; 浮点模式是FP-strict</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>声明为 synthetic; 不存在于源代码，由编译器生成</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>对于方法里的Java代码，进过编译器编译成字节码指令后，存放在方法属性表集合中“code”的属性内。</li>
+<li>当子类没有覆写父类方法，则方法集合中不会出现父类的方法信息。</li>
+<li>Java语言中重载方法，必须与原方法同名，且特征签名不同。特征签名是指方法中各个参数在常量池的字段符号引用的集合，不包括返回值。当时Class文件格式中，特征签名范围更广，允许方法名和特征签名都相同，但返回值不同的方法，合法地共存子啊同一个Class文件中。</li>
+</ul>
+<h4 id="3-9-属性表"><a href="#3-9-属性表" class="headerlink" title="3.9 属性表"></a>3.9 属性表</h4><p>属性表格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">attribute_info &#123;</span><br><span class="line">    u2 attribute_name_index;   //属性名索引</span><br><span class="line">    u4 attribute_length;       //属性长度</span><br><span class="line">    u1 info[attribute_length]; //属性的具体内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>属性表的限制相对宽松，不需要各个属性表有严格的顺序，只有不与已有的属性名重复，任何自定义的编译器都可以向属性表中写入自定义的属性信息，Java虚拟机运行时会忽略掉无法识别的属性。 关于虚拟机规范中预定义的属性，这里不展开讲了，列举几个常用的。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>使用位置</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td>方法表</td>
+<td>方法体的内容</td>
+</tr>
+<tr>
+<td>ConstantValue</td>
+<td>字段表</td>
+<td>final关键字定义的常量值</td>
+</tr>
+<tr>
+<td>Deprecated</td>
+<td>类、方法表、字段表</td>
+<td>声明为deprecated</td>
+</tr>
+<tr>
+<td>InnerClasses</td>
+<td>类文件</td>
+<td>内部类的列表</td>
+</tr>
+<tr>
+<td>LineNumberTable</td>
+<td>Code属性</td>
+<td>Java源码的行号与字节码指令的对应关系</td>
+</tr>
+<tr>
+<td>LocalVariableTable</td>
+<td>Code属性</td>
+<td>方法的局部变量描述</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>类、方法表、字段表</td>
+<td>用于支持泛型的方法签名，由于Java的泛型采用擦除法，避免类型信息被擦除后导致签名混乱，Signature记录相关信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Code属性</strong> java程序方法体中的代码，经编译后得到的字节码指令存储在Code属性内，Code属性位于方法表的属性集合中。但与native或者abstract的方法则不会存在Code属性中。</p>
+<p>Code属性的格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Code_attribute &#123;</span><br><span class="line">    u2 attribute_name_index; //常量池中的uft8类型的索引，值固定为”Code“</span><br><span class="line">    u4 attribute_length; //属性值长度，为整个属性表长度-6</span><br><span class="line">    u2 max_stack;   //操作数栈的最大深度值，jvm运行时根据该值佩服栈帧</span><br><span class="line">    u2 max_locals;  //局部变量表最大存储空间，单位是slot</span><br><span class="line">    u4 code_length; // 字节码指令的个数</span><br><span class="line">    u1 code[code_length]; // 具体的字节码指令</span><br><span class="line">    u2 exception_table_length; //异常的个数</span><br><span class="line">    &#123;   u2 start_pc;</span><br><span class="line">        u2 end_pc;</span><br><span class="line">        u2 handler_pc; //当字节码在[start_pc, end_pc)区间出现catch_type或子类，则转到handler_pc行继续处理。</span><br><span class="line">        u2 catch_type; //当catch_type=0，则任意异常都需转到handler_pc处理</span><br><span class="line">    &#125; exception_table[exception_table_length]; //具体的异常内容</span><br><span class="line">    u2 attributes_count;     //属性的个数</span><br><span class="line">    attribute_info attributes[attributes_count]; //具体的属性内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>slot是虚拟机未局部变量分配内存使用的最小单位。对于byte/char/float/int/short/boolean/returnAddress等长度不超过32位的局部变量，每个占用1个Slot；对于long和double这两种64位的数据类型则需要2个Slot来存放。</li>
+<li>实例方法中有隐藏参数this, 显式异常处理器的参数，方法体定义的局部变量都使用局部变量表来存放。</li>
+<li>max_locals，不是所有局部变量所占Slot之和，因为Slot可以重用，javac编译器会根据变量的作用域来分配Slot给各个变量使用，从而计算出max_locals大小。</li>
+<li>虚拟机规范限制严格方法不允许超过65535个字节码，否则拒绝编译。</li>
+</ul>
+<p>Code属性是Class文件中最重要的属性，Java程序的幸福课分为代码(方法体中的Java代码)和元数据(包含类、接口、字段、方法定义以及其他信息)两部分。</p>
+<p><strong>ConstantValue属性</strong> ConstantValue属性是指被static关键字修饰的变量（也称为类变量）。</p>
+<ul>
+<li>类变量: 在类构造器方法或者使用ConstantValue属性来赋值</li>
+<li>实例变量：在实例构造器方法进行赋值</li>
+</ul>
+<p>参考:</p>
+<p><a href="http://gityuan.com/2015/10/17/jvm-class-instruction/" target="_blank" rel="noopener">http://gityuan.com/2015/10/17/jvm-class-instruction/</a></p>
+<p><a href="https://www.cnblogs.com/avivahe/p/5747113.html" target="_blank" rel="noopener">https://www.cnblogs.com/avivahe/p/5747113.html</a></p>
+<h2 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h2><ol>
+<li><p>类从加载到虚拟机内存~卸载出内存的生命周期(这些阶段通常是交叉混合进行的):</p>
+<p>加载 –&gt; <a href="https://github.com/wususu/Notes/blob/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/%E8%BF%99%E9%83%A8%E5%88%86%E7%BB%9F%E7%A7%B0%E4%B8%BA%E8%BF%9E%E6%8E%A5" target="_blank" rel="noopener">验证 –&gt; 准备 –&gt; 解析</a> –&gt; 初始化 –&gt; 使用 –&gt; 卸载</p>
+</li>
+<li><p><em>主动引用五种必须立即对类进行初始化的情况:</em></p>
+<ol>
+<li>遇到new(new实例化对象),getstatic,putstatic(读取/修改类属性,final除外)或invokestatic(调用静态方法)这4条字节码指令时</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用时</li>
+<li>初始化某个类,发现其父类未初始化时(对父类立即初始化)</li>
+<li>虚拟机启动时用户指定的执行主类(包含main()的)</li>
+<li>JDK1.7动态语言支持的情况(略)</li>
+</ol>
+</li>
+<li><p><em>除上述五种场景外所有的方式都不会触发初始化,称为被动引用:</em></p>
+<ol>
+<li>通过子类引用父类的类属性,不会触发子类初始化: 对于静态字段,只有直接定义这个字段的类才会被初始化.通过子类引用父类中定义的类属性,只会触发父类的初始化.</li>
+<li>通过类数组定义来引用类,不会触发此类的初始化(SuperClass[] a=new SuperClass[10]): 类数组是由虚拟机自动生成,直接继承于Object的子类,只会触发<code>[SuperClass</code>的初始化.</li>
+<li>使用某一类的常量不会触发该定义类的初始化: 在编译阶段已经将该<code>定义类</code>(定义该常量的类)的常量存储到了<code>调用类</code>(调用此常量的类)的<code>常量池</code>中,以后的每一次引用实际上都转化为<code>调用类</code>对自身常量池的引用.</li>
+<li>一个接口在初始化时,并不要求父接口也全初始化,只有真正使用父接口(如引用接口常量)才会初始化.</li>
+</ol>
+</li>
+</ol>
+<h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p>加载、验证、准备、解析、初始化。</p>
+<ul>
+<li>加载: 根据全限定名来获取定义类的二进制字节流,然后将该字节流所代表的静态结构转化为方法区的运行时数据结构,最后在生成一个代表该类的Class对象,作为方法区这些数据的访问入口.</li>
+<li>验证:主要时为了确保class文件的字节流中包含的信息符合当前虚拟机的要求,并且不会危害虚拟机自身的安全.包含四个阶段的验证过程:</li>
+</ul>
+<ol>
+<li>文件格式验证:保证输入的字节流能够正确地解析并存储在方法区之内,格式上符合描述一个java类型信息的要求</li>
+<li>元数据验证:字节码语义信息的验证,以保证描述的信息符合java语言规范.验证点有:这个类是否有父类等.</li>
+<li>字节码验证:主要是进行数据流和控制流分析,保证被校验类的方法在运行时不会做出危害虚拟机安全的行为.</li>
+<li>符号引用验证:对符号引用转化为直接引用过程的验证.</li>
+</ol>
+<ul>
+<li>准备:为类变量分配内存并设置变量的初始值, 这些内存在方法区进行分配.</li>
+<li>解析:将虚拟机常量池中的符号引用转化为直接引用的过程.解析主要是针对类或接口、字段、类方法、类接口方法四类.</li>
+<li>初始化:执行静态变量的赋值操作以及静态代码块,完成初识化.初始化过程保证了父类中定义的初始化优先于子类的初始化.但接口不需要执行父类的初始化.</li>
+</ul>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载:"></a><em>加载:</em></h3><ul>
+<li><p>加载过程:</p>
+<ol>
+<li>通过类的权限定名获取类的二进制字节流.</li>
+<li>将这个字节流代表的<code>静态存储结构</code>转化为方法区的运行时数据结构.</li>
+<li>在内存中生成代表这个类的Class对象,作为这个类在方法区的各种数据的访问入口.</li>
+</ol>
+</li>
+<li><p>数组类本身不通过类加载器创建,而是由Java虚拟机直接创建的.</p>
+<p>一个数组类的创建遵循以下规则:</p>
+<ol>
+<li>若数组的组件类型是引用类型,则遵循上述加载过程加载这个类型.这个数组将在加载该组件类型的加载器的类名称空间上被标识.</li>
+<li>若数组的组件类型为基本类型,则虚拟机把数组标记为与启动类加载器关联.</li>
+<li>数组可见性与组件类型可见性一致,基本类型默认为public.</li>
+</ol>
+</li>
+<li><p>加载与连接交叉进行(开始时间固定先后).</p>
+</li>
+</ul>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证:"></a><em>验证:</em></h3><p>目的:确保Class文件的字节流中的信息符合当前虚拟机要求,不会危害虚拟机安全.</p>
+<ul>
+<li><p>验证的四个阶段:</p>
+<ol>
+<li>文件格式验证:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">验证字节流是否符合Class文件格式的规范,并且能被当前版本的虚拟机处理:</span><br><span class="line">  a.是否以魔数0xCAFEBABY开头.</span><br><span class="line">  b.主次版本号是否在当前虚拟机处理范围之内.</span><br><span class="line">  c.是否支持常量池中的常量类型(检查常量tag标志).</span><br><span class="line">  d.指向常量的各种索引值是否存在且符合类型.</span><br><span class="line">  e.CONSTANT_Utf8_info型的常量中是否符合UTF8编码.</span><br><span class="line">  f.Class文件中各个部分及文件本身是否有被删除或附加的信息.</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<ol>
+<li>元数据验证:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">对字节码描述的信息进行语义分析,保证其描述的信息符合Java语言规范的要求:</span><br><span class="line">  a.是否有父类(除Object外都须有父类).</span><br><span class="line">  b.是否继承了不允许被继承的类(final).</span><br><span class="line">  c.如果不是抽象类,是否实现了父类或接口中的所有方法.</span><br><span class="line">  d.类中字段,方法是否与父类产生矛盾</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<ol>
+<li>字节码验证:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过数据流和控制流分析,确定程序语义是合法符合逻辑的(最复杂的部分):</span><br><span class="line">  a.保证操作数栈的数据类型与指令代码序列都能配合工作.</span><br><span class="line">  b.保证跳转指令不会跳到方法体之外的字节码.</span><br><span class="line">  c.保证方法体中的类型转换是有效的.</span><br><span class="line">  ....</span><br></pre></td></tr></table></figure>
+<ol>
+<li>符号引用验证:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对类自身以外(常量池中的各种符号引用)的信息进行匹配性校验.发生在虚拟机将符号引用转化为直接引用的时候(在解析阶段发生):</span><br><span class="line">  a.符号引用中通过字符串描述的权限定名是否能够找到对应类.</span><br><span class="line">  b.指定类中是否存在符合方法的字段描述符以及简单名称所描述的方法和字段.</span><br><span class="line">  c.符号引用中的类,字段,方法的访问性是否可被当前类访问.</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p>通过-Xverify:none参数可关闭大部分类的验证措施,缩短加载时间.</p>
+</li>
+</ul>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备:"></a><em>准备:</em></h3><p>正式为类分配内存并设置类变量初始值(数据类型的零值)的阶段,这些变量所使用的内存都将在方法区中进行分配.<br>这时候进行内存分配的仅包括<code>类变量</code>(static修饰的静态变量),而不包括实例变量(实例变量将在对象实例化时随着对象一起分配在Java堆上).</p>
+<p>特殊情况: 如果是被final修饰,则一开始就初始化为其指定的值.</p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析:"></a><em>解析:</em></h3><p>虚拟机将常量池内的符号引用替换为直接引用的过程.</p>
+<p><code>符号引用</code>: 以一组符号来描述所引用的目标,符号可以是任何形式的字面量,能无歧义地定位到目标(未必在内存中).(与虚拟机实现的内存布局无关)</p>
+<p><code>直接引用</code>: 可以是直接指向目标的指针,相对偏移量或是一个能间接定位到目标的句柄.(和虚拟机实现的内存布局相关)</p>
+<ul>
+<li>解析动作:<ol>
+<li>类或接口解析:</li>
+<li>字段解析</li>
+<li>类方法解析</li>
+<li>接口方法解析 (下面三种与动态语言相关)</li>
+<li>方法类型解析</li>
+<li>方法句柄解析</li>
+<li>调用点限定符解析</li>
+</ol>
+</li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化:"></a><em>初始化:</em></h3><p>初始化阶段是根据程序员在程序中制定的主观计划区初始化类变量和其他资源,即执行类构造器()方法的过程.</p>
+<ul>
+<li><p><clinit>执行过程的特点和细节:</clinit></p>
+<ol>
+<li><p><clinit>()是由编译器自动收集类中所有<code>类变量的赋值动作</code>和<code>静态语句块(static{})中的语句</code>合并并而成的. 编译器收集的顺序是由语句在源文件中出现的顺序所决定的 注:静态语句块只能访问到定义静态语句块之前的变量;无法访问在它之后的变量,但却可以赋值.</clinit></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Test&#123;</span><br><span class="line">    static&#123;</span><br><span class="line">  	  i = 0;				//赋值语句正常编译通过</span><br><span class="line">  	  System.out.println(i);			//编译器会提示非法向前引用</span><br><span class="line">    &#125;</span><br><span class="line">    static int i = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>虚拟机会保证在子类<clinit>()方法执行之前,父类的<clinit>()方法已经执行完毕.</clinit></clinit></p>
+</li>
+<li><p>由于父类的<clinit>()先执行,则意味着父类的静态语句块要优先于子类的变量赋值操作.</clinit></p>
+</li>
+<li><p><clinit>()对于类或接口来说并不是必需的,若没有静态语句块,也没有类变量赋值操作,则可以不生成 <clinit>()方法.</clinit></clinit></p>
+</li>
+<li><p>接口与类不同,执行接口的<clinit>方法不需要先执行父接口的<clinit>()方法.只有使用到父接口中的 类变量时,父接口才会初始化(接口实现类初始化也不会执行接口的<clinit>()方法).</clinit></clinit></clinit></p>
+</li>
+<li><p>虚拟机会保证一个类的<clinit>()方法在多线程的情况下能被正确的加锁,同步(如果<clinit>()中有 耗时很长的操作,可能导致多个线程阻塞).</clinit></clinit></p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><ul>
+<li><p>通过一个类的权限定名来获取描述此类的<code>二进制字节流</code>.</p>
+<ol>
+<li><p>类与类加载器:</p>
+<p><code>类与加载它的类加载器</code>一起确立这个类在虚拟机中的唯一性. (来源于同一个class文件的两个类,被同一个虚拟机加载,只要加载的类加载器不同,那这两个类必定不相等)</p>
+</li>
+<li><p>双亲委派模型:</p>
+<ul>
+<li><p>Java虚拟机的角度存在两种类加载器:</p>
+<ol>
+<li><code>启动类加载器</code>Bootstrap ClassLoader(C++实现,虚拟机的一部分).</li>
+<li>其他类加载器(Java语言实现,继承抽象类ClassLoader)</li>
+</ol>
+</li>
+<li><p>开发人员角度存在四种类加载器:</p>
+<ol>
+<li><code>启动类加载器</code>Bootstrap ClassLoader: 加载&lt;JAVA_HOME&gt;\lib目录下,或者被-Xbootclasspath参数指定的路径下的能被虚拟机识别的类库.</li>
+<li><code>扩展类加载器</code>Extension CLassLoader: 加载&lt;JAVA_HOME&gt;\lib\ext目录下,或者被java.ext.dirs变量指定的路径下的类库.</li>
+<li><code>应用程序类加载器</code>Application ClassLoader(默认类加载器): 一般也称为系统类加载器.加载用户类路径(ClassPath)上所指定的类库.</li>
+<li><code>自定义类加载器</code></li>
+</ol>
+</li>
+<li><p>双亲委派模型工作流程:</p>
+<ol>
+<li>一个类加载器收到类加载请求,先把请求<code>委派</code>给<code>父类加载器</code>,因此所有的请求都会传递到顶层的启动类加载器中.</li>
+<li>当父类加载器反馈自己无法完成这个加载请求(它的搜索范围内找不到这个类)时,子加载器才会<code>尝试自己去加载</code>.</li>
+</ol>
+<ul>
+<li><p>优点:</p>
+<p>Java类随着类加载器一起具备了一中带有优先级的层次关系.保证了Java类型体系中的基础行为(唯一性).</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>打破双亲委派模型:  Tomcat 自定义了一套双亲委派模型,当应用使用Spring管理对象时,必然会打破双亲委派模型:  Spring使用线程上下文下载器委托下层加载器加载对象。</li>
+</ol>
+<p>为了解决这个困境，Java设计团队只好引入了一个不太优雅的设计：线程上下文件类加载器(Thread Context ClassLoader)。这个类加载器可以通过java.lang.Thread类的setContextClassLoader()方法进行设置，如果创建线程时还未设置，它将会从父线程中继承一个；如果在应用程序的全局范围内都没有设置过，那么这个类加载器默认就是应用程序类加载器。了有线程上下文类加载器，JNDI服务使用这个线程上下文类加载器去加载所需要的SPI代码，也就是父类加载器请求子类加载器去完成类加载动作，这种行为实际上就是打通了双亲委派模型的层次结构来逆向使用类加载器，已经违背了双亲委派模型，但这也是无可奈何的事情。Java中所有涉及SPI的加载动作基本上都采用这种方式，例如JNDI,JDBC,JCE,JAXB和JBI等。 Dubbo的SPI也是采用这种机制实现。</p>
+<p>参考：</p>
+<p><a href="https://github.com/wususu/Notes/blob/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6.md" target="_blank" rel="noopener">https://github.com/wususu/Notes/blob/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6.md</a></p>
+<p><a href="https://blog.csdn.net/ns_code/article/details/17881581" target="_blank" rel="noopener">https://blog.csdn.net/ns_code/article/details/17881581</a></p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>除了顶层的启动类加载器外,其余的类加载器都应当有自己的父类加载器.顺序依次是:</p>
+<ul>
+<li>Bootstrap ClassLoader: 启动类加载器,加载java_home/lib中的类</li>
+<li>Extension ClassLoader: 扩展类加载器,加载java_home/lib/ext目录下的类库</li>
+<li>Application ClassLoader: 应用程序类加载器,加载用户类路径上指定类库.</li>
+</ul>
+<p>双亲委派模型的工作原理是:如果一个类加载器受到了类加载请求,它首先不会自己去尝试加载这个类,而把这个请求委派给父类加载器去完成,每一层次的类加载器都是如此,因此所有的加载请求最终都应该传送到顶层的启动类加载器中,只有当父类加载器反馈自己无法完成加载请求时,加载器才尝试自己加载.这种方式保证了Oject类(JDK 核心类)在各个加载器加载环境中都是同一个类.</p>
+<h2 id="双亲委派破坏"><a href="#双亲委派破坏" class="headerlink" title="双亲委派破坏"></a>双亲委派破坏</h2><p><a href="https://blog.csdn.net/zhangcanyan/article/details/78993959" target="_blank" rel="noopener">https://blog.csdn.net/zhangcanyan/article/details/78993959</a></p>
+<p>双亲委派模型的式作过程是：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完全这个加载请求时，子加载器才会尝试自己去加载。</p>
+<p>双亲委派模型的第一次“被破坏”其实发生在双亲委派模型出现之前————即 JDK 1.2 发布之前。</p>
+<p>JDK 1.2 之后已不提倡用户再去覆盖 loadClass() 方法，而应当把自己的类加载逻辑写到 findClass() 方法中，在 loadClass() 方法的逻辑里如果父类加载失败，则会调用自己的 findClass() 方法来完成加载，这样就可以保证新写出来的类加载器是符合双亲委派规则的。</p>
+<p>双亲委派模型的第二次“被破坏”是由这个模型自身的缺陷所导致的。如果基础类又要调用回用户的代码，那该怎么办？</p>
+<p><strong>为了解决这个问题，Java设计团队只好引入了一个不太优雅的设计：线程上下文类加载器（ Thread Context ClassLoader）。这个类加载器可以通过java.lang.Thread类的setContextClassLoader方法进行设置，如果创建线程时还未设置，它将会从父线程中继承一个，如果在应用程序的全局范围内都没有设置过的话，那这个类加载器默认是应用类加载器。</strong></p>
+<p>双亲委派模型的第三次“被破坏”是由于用户对程序动态性的追求而导致的。</p>
+<p>OSGi 实现模块化热部署的关键则是它自定义的类加载器机制的实现。每一个程序模块（ OSGi 中称为 Bundle） 都有一个自己的类加载器，当需要更换一个 Bundle 时，就把 Bundle 连同类加载器一起换掉以实现代码的热替换。在 OSGi 环境下，类加载器不再是双亲委派模型中的树状结构，而是进一步发展为更加复杂的网状结构。</p>
+<p>在 Java 程序员中基本有一个共识： OSGi 中对类加载器的使用是很值得学习的，弄懂了 OSGi 的实现，就可以算是掌握了类加载器的精髓。</p>
+<h2 id="编译期优化"><a href="#编译期优化" class="headerlink" title="编译期优化"></a>编译期优化</h2><p>javac对代码的运行效率几乎没有任何优化措施（JDK1.3之后-O优化参数没有意义了），性能优化主要集中在运行期（后端的即时编译期），javac主要进行了一些针对Java语言编码过程的优化，如语法糖。</p>
+<h3 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h3><p>编译过程大概分为3个过程：<br><img src="https://leibnizhu.gitlab.io/img/jvm/9.png" alt="img"><br>javac中的代码是这样的：<br><img src="https://leibnizhu.gitlab.io/img/jvm/10.png" alt="img"></p>
+<ol>
+<li><strong>解析与填充符号表</strong>过程：首先进行词法、语法分析，将源代码的字符流转换为Token集合，然后根据Token序列构造抽象语法树AST，对应parseFiles()方法；然后填充符号表（记录符号地址和符号信息映射关系），符号表中记录的信息在编译的不同阶段都会用到，对应enterTress()方法；</li>
+<li>插入式注解处理器的<strong>注解处理</strong>过程：处理代码中的注解，这个过程中可能影响到语法树的元素，如果影响到了，则要重新回到解析及填充符号表的过程，这样一个循环称作一个Round，直到注解处理器没有对语法树进行修改；</li>
+<li><strong>分析与字节码生成</strong>过程：具体又分为<strong>标注检查</strong>（检查变量使用前是否已生命、变量与赋值之间类型是否匹配等问题，以及常量折叠，如”1”+”2”优化为”12”）、<strong>数据及控制流分析</strong>（检查局部变量使用前是否赋值、每条路径是否都有返回值、异常是否都处理了等问题）、<strong>解语法糖</strong>（由desugar()方法完成）、<strong>字节码生成</strong>（收敛生成<clinit>()方法he <init>()方法，将所有生成的信息转换成字节码写入磁盘）等子过程。</init></clinit></li>
+</ol>
+<h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h3><h4 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h4><p>Java的泛型是伪泛型，只在源码中存在，编译时进行类型擦除变成原生类型（Raw Type），并在调用的地方加上强转类型代码，这是为了兼容旧版本。对于重载方法，如果泛型参数的泛型类型不同而其他参数以及返回类型相同，是不允许重载的，比如以下方法1和方法2不能重载；而如果泛型参数的泛型类型不同，且返回类型不同，则可以重载，比如方法1和方法3（JVM本来就允许）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//方法1和方法2不能重载，方法1和方法3可以重载//方法1public String test(List&lt;Integer&gt;);//方法2public String test(List&lt;String&gt;);//方法3public int test(List&lt;String&gt;);</span><br></pre></td></tr></table></figure>
+<h4 id="自动装箱-拆箱、遍历循环、变长参数"><a href="#自动装箱-拆箱、遍历循环、变长参数" class="headerlink" title="自动装箱/拆箱、遍历循环、变长参数"></a>自动装箱/拆箱、遍历循环、变长参数</h4><p>遍历循环（增强for）的实现是编译时还原为迭代其的实现，因此需要实现Iterable接口。</p>
+<h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><p>java的条件编译通过条件为常量的if语句实现。如下面代码中，编译后的字节码不会包含调用B()方法的指令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;    A();&#125; else &#123;    B();&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行期优化"><a href="#运行期优化" class="headerlink" title="运行期优化"></a>运行期优化</h2><h3 id="解释器与编译器"><a href="#解释器与编译器" class="headerlink" title="解释器与编译器"></a>解释器与编译器</h3><p>许多主流商用JVM包括HotSpot采用解释器与编译器并存的结构，启动的时候使用解释器，保证启动速度，随着运行时间推移，编译器发挥作用，编译为本地代码，提高执行效率。在JVM中这种模式被称为混合模式，可以用<code>-Xint</code>强制JVM运行于解释模式，或用<code>-Xcomp</code>强制JVM运行于编译模式。HotSpot包含两个及时编译器Client Compiler和Server Compiler，一般简称为C1和C2。</p>
+<h3 id="热点探测"><a href="#热点探测" class="headerlink" title="热点探测"></a>热点探测</h3><p>运行过程中被即时编译器编译的<strong>热点代码</strong>包括被多次调用的<strong>方法</strong>或#<strong>循环体</strong>，对于后者编译器还是会以整个方法作为编译对象。<br>判断方法或循环体是否热点代码的行为被称为<strong>热点探测</strong>，目前主要的热点探测方法有两种：</p>
+<ol>
+<li><strong>基于采样的热点探测</strong>。JVM周期性的检查各个线程的栈顶，如果发现某些方法经常出现在栈顶，那么就是热点方法。缺点是容易收到线程阻塞或其他外界因素影响，优点是简单高效；</li>
+<li><strong>基于计数器的热点探测</strong>。为每个方法甚至代码块建立计数器，统计执行次数，超过一定阈值就认为是热点方法。缺点是不能获取导方法的调用关系，优点是精确且严谨。</li>
+</ol>
+<p>HotSpot使用第二种，准备了<strong>方法调用计数器</strong>和<strong>回边计数器</strong>。前者统计方法被调用的次数，默认的阈值：Client模式1500次，Server模式10000次，可以通过<code>-XX:CompileThreshold</code>来设定；后者统计循环体被执行的次数，字节码遇到控制流向后跳转的指令称为回边(Back Edge)，通过<code>-XX:BackEdgeThreshold</code>来手动设置阈值。<br>对于方法调用计数器，一个方法执行时先判断存不存在JIT编译过的版本，存在的话执行编译后版本，不存在的话计数器加一，再判断是否超过阈值，超过的话向即时编译器提交编译申请。其统计的并不是方法被调用的绝对次数，而是一段时间内的调用次数，如果超过一定时间计数器仍不足阈值，则计数值会减少一半，这被成为<strong>热度衰减</strong>(Counter Decay)，这段时间被称为半衰期。热度衰减的动作时在GC时顺便进行的。<br>回边计数器没有计数热度衰减的过程，记录循环体被调用的绝对次数。<br>默认配置下，编译是在后台的编译线程进行的，除非用<code>-XX:-BackgroundCompilation</code>来禁止后台编译，这样提交编译请求的线程会一直等待编译完成。</p>
+<h3 id="编译优化技术"><a href="#编译优化技术" class="headerlink" title="编译优化技术"></a>编译优化技术</h3><p>JVM几乎所有的优化措施都集中在及时编译器中。</p>
+<h4 id="方法内联"><a href="#方法内联" class="headerlink" title="方法内联"></a>方法内联</h4><p>方法内联（Method Inlining）指的是将调用的方法代码替换掉调用者的调用语句。目的：</p>
+<ol>
+<li>取出调用方法的成本，如建立栈帧；</li>
+<li>为其他优化建立良好基础，比如内联可以发现更多的无用代码。</li>
+</ol>
+<p>考虑到多态，方法内联的实现并不简单，在编译器无法得出调用的方法是哪个版本的结论（父类还是子类），需要在运行期确定。<br>JVM引入了类型继承关系分析（Class Hierarchy Analysis，CHA）技术，用于确定目前加载的类中某个接口是否有多于一种的实现、某类是否存在子类、子类是否抽象等信息。进行内联时：</p>
+<ol>
+<li>如果目标方法是非虚方法（私有方法、实力构造器、父类方法、静态方法等），那么直接进行内联；</li>
+<li>对于虚方法，向CHA查询该方法是否有多个版本可选，如果只有一个版本，则直接进行内联，此时属于激进优化，需要预留逃生门（守护内联），此后如果JVM没有加载到改变方法接受者的继承关系的类，则可以继续使用内联优化的版本，否则抛弃已编译的代码、退回到解释状态进行或重新编译；</li>
+<li>如果虚方法有多个版本，则尝试内联缓存（Inline Cache）。发生方法调用前，内联缓存状态为空；第一次调用后，缓存记录下方法接受者的版本信息，每次进行方法调用的时候都比较接受者版本，如果方法接受者版本一样，则继续调用内联缓存进行内联，否则取消内联。</li>
+</ol>
+<h4 id="冗余访问消除"><a href="#冗余访问消除" class="headerlink" title="冗余访问消除"></a>冗余访问消除</h4><p>冗余访问消除（Redundant Loads Elimination）指的是如果能保证一个方法的两次调用之间的代码不会引起其返回值的更改，那么这第二次调用的结果可以直接用第一次调用结果去赋值，比如一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void foo1()&#123;    y=b.value;    //其他调用，不会影响b.value的返回值    z=b.value();&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码可以优化为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void foo1()&#123;    y=b.value;    //其他调用，不会影响b.value的返回值    z=y;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复写传播"><a href="#复写传播" class="headerlink" title="复写传播"></a>复写传播</h4><p>复写传播（Copy Propagation）指的是去掉重复的变量。</p>
+<h4 id="无用代码消除"><a href="#无用代码消除" class="headerlink" title="无用代码消除"></a>无用代码消除</h4><p>无用代码消除（Dead Code Elimination），无用代码指的是永远不会izhixing的代码，或者完全没有意义的代码。</p>
+<h4 id="公共子表达式消除"><a href="#公共子表达式消除" class="headerlink" title="公共子表达式消除"></a>公共子表达式消除</h4><p>Common Subexpression Elimination定义：一个表达式E已经计算过，且计算后到现在E的变量全部没有变化，那么E这次出现成为了公共子表达式，无需重复计算，直接用前面计算结果替换即可。如果消除优化仅限于程序基本块内，则成为局部公共子表达式消除，如果覆盖范围涵盖多个基本块，则成为全局公共子表达式消除。</p>
+<h4 id="数组边界检查消除"><a href="#数组边界检查消除" class="headerlink" title="数组边界检查消除"></a>数组边界检查消除</h4><p>Java访问数组元素时，会对下标进行上下界范围检查，不满足上下界时会抛出ArrayIndexOutOfBoundsException异常。<br>编译器根据数据流分析确定数组长度，并判断小表有无月结；在循环中进行数组访问时，也是可以通过数据流分析判定循环变量的取值是否越界，如果能保证循环体中不越界的话循环体中访问数组的语句可以消除边界检查。<br>还有一种思路时隐式异常处理，将空指针检查和除数为零检查消除，注册一个Segment Fault信号的异常处理器，放在异常处理里面，在这个异常处理器里面再转换为对应的异常并抛出。<br>还有一些其他的消除操作，比如自动装箱消除、安全点消除、消除反射等等。</p>
+<h4 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h4><p>逃逸分析不能直接优化代码，而是为其他优化手段提供优化的依据。逃逸分析指的是分析对象动态作用域：一个对象在方法中被定义后，被外部方法引用，则称为<strong>方法逃逸</strong>，被外部线程引用访问到的话，被称为<strong>线程逃逸</strong>。如果能证明一个对象不会逃逸到方法或线程外，则可以进行以下优化：</p>
+<ol>
+<li><strong>栈上分配</strong>（Stack Allocation）：若确认对象没有方法逃逸，可以将其在栈上分配内存，则其占用内存会随着栈帧出栈而被销毁，减少GC压力，而一般应用中不逃逸的局部对象占很大比例；</li>
+<li><strong>同步消除</strong>（Synchronization Elimination）：若确认对象没有线程逃逸，可以对该变量实时的同步措施消除；</li>
+<li><strong>标量替换</strong>（Scalar Replacement）：<strong>标量</strong>指一个数据无法再分解为更小的数据来表示，如基础数据类型，反之称之为<strong>聚合量</strong>（Aggregate），如对象。若确认一个对象没有逃逸，则可以不创建对象，改为直接创建它会被使用到的成员变量来代替，同时可以保存在栈上，提高读写效率，并为进一步优化创造条件。</li>
+</ol>
+<p>参考：<a href="https://leibnizhu.gitlab.io/2017/06/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9B%9B/index.html" target="_blank" rel="noopener">https://leibnizhu.gitlab.io/2017/06/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9B%9B/index.html</a></p>
+<h2 id="类变量初始化顺序"><a href="#类变量初始化顺序" class="headerlink" title="类变量初始化顺序"></a>类变量初始化顺序</h2><blockquote>
+<p>父类静态属性/父类静态代码块-&gt;子类静态代码块/子类静态属性-&gt;父类普通属性-&gt;父类构造方法-&gt;子类普通属性-&gt;子类构造方法</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/jianggujin/article/details/52228983" target="_blank" rel="noopener">https://blog.csdn.net/jianggujin/article/details/52228983</a></p>
+<h2 id="多态原理"><a href="#多态原理" class="headerlink" title="多态原理"></a>多态原理</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+            <a href="/tags/class/" rel="tag"># class</a>
+          
+            <a href="/tags/loader/" rel="tag"># loader</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/java_jdk_base_scheduler_thread.html" rel="next" title="ScheduledThreadPoolExecutor解析">
+                <i class="fa fa-chevron-left"></i> ScheduledThreadPoolExecutor解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/java_jdk_base_queue.html" rel="prev" title="queue队列等结构源码原理">
+                queue队列等结构源码原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Class类文件结构"><span class="nav-number">1.</span> <span class="nav-text">Class类文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ClassFile结构"><span class="nav-number">1.1.</span> <span class="nav-text">ClassFile结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ClassFile文件组成"><span class="nav-number">1.2.</span> <span class="nav-text">ClassFile文件组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-魔数"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.1 魔数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-版本号"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.2 版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-常量池"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.3 常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4访问标识"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.4访问标识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-类-父类索引"><span class="nav-number">1.2.5.</span> <span class="nav-text">3.5 类/父类索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-接口索引"><span class="nav-number">1.2.6.</span> <span class="nav-text">3.6 接口索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-字段表"><span class="nav-number">1.2.7.</span> <span class="nav-text">3.7 字段表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8方法表"><span class="nav-number">1.2.8.</span> <span class="nav-text">3.8方法表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-9-属性表"><span class="nav-number">1.2.9.</span> <span class="nav-text">3.9 属性表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载时机"><span class="nav-number">2.</span> <span class="nav-text">类加载时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载过程"><span class="nav-number">3.</span> <span class="nav-text">类加载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">3.1.</span> <span class="nav-text">加载:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">3.2.</span> <span class="nav-text">验证:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">3.3.</span> <span class="nav-text">准备:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">3.4.</span> <span class="nav-text">解析:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">3.5.</span> <span class="nav-text">初始化:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器"><span class="nav-number">4.</span> <span class="nav-text">类加载器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">5.</span> <span class="nav-text">双亲委派模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双亲委派破坏"><span class="nav-number">6.</span> <span class="nav-text">双亲委派破坏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译期优化"><span class="nav-number">7.</span> <span class="nav-text">编译期优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译过程"><span class="nav-number">7.1.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法糖"><span class="nav-number">7.2.</span> <span class="nav-text">语法糖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型"><span class="nav-number">7.2.1.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动装箱-拆箱、遍历循环、变长参数"><span class="nav-number">7.2.2.</span> <span class="nav-text">自动装箱/拆箱、遍历循环、变长参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件编译"><span class="nav-number">7.2.3.</span> <span class="nav-text">条件编译</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行期优化"><span class="nav-number">8.</span> <span class="nav-text">运行期优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释器与编译器"><span class="nav-number">8.1.</span> <span class="nav-text">解释器与编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热点探测"><span class="nav-number">8.2.</span> <span class="nav-text">热点探测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译优化技术"><span class="nav-number">8.3.</span> <span class="nav-text">编译优化技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法内联"><span class="nav-number">8.3.1.</span> <span class="nav-text">方法内联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冗余访问消除"><span class="nav-number">8.3.2.</span> <span class="nav-text">冗余访问消除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复写传播"><span class="nav-number">8.3.3.</span> <span class="nav-text">复写传播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无用代码消除"><span class="nav-number">8.3.4.</span> <span class="nav-text">无用代码消除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公共子表达式消除"><span class="nav-number">8.3.5.</span> <span class="nav-text">公共子表达式消除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组边界检查消除"><span class="nav-number">8.3.6.</span> <span class="nav-text">数组边界检查消除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逃逸分析"><span class="nav-number">8.3.7.</span> <span class="nav-text">逃逸分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类变量初始化顺序"><span class="nav-number">9.</span> <span class="nav-text">类变量初始化顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态原理"><span class="nav-number">10.</span> <span class="nav-text">多态原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

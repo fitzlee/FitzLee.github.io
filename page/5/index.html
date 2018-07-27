@@ -1,0 +1,2574 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Security &amp; Android &amp; Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fitz.Lee">
+<meta property="og:url" content="https://fitzlee.github.io/page/5/index.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Security &amp; Android &amp; Java">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fitz.Lee">
+<meta name="twitter:description" content="Security &amp; Android &amp; Java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/page/5/"/>
+
+
+
+
+
+  <title>Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_system_books_recommand.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_security_system_books_recommand.html" itemprop="url">Android系统安全书籍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T00:00:00+00:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#书籍学习<br>外话：用书和文档镇楼，站在巨人的肩膀上，才能进步的更快，才能少踩坑，赶紧阅读吧少年们。</p>
+<p>#Android系统安全<br>ANDROID安全架构深究<br>Android安全攻防权威指南<br>Android安全攻防实战 (南非)keith makan, 崔孝晨;武晓音(译)<br>Android安全技术揭秘与防范<br>Android软件安全与逆向分析_带书签</p>
+<h2 id="Android系统基础"><a href="#Android系统基础" class="headerlink" title="Android系统基础"></a>Android系统基础</h2><p>Android的设计与实现<em>卷1<br>深入理解Android卷1</em>邓凡平<br>深入理解Android卷2_邓凡平<br>深入理解Android卷3_邓凡平<br>Android技术内幕.系统卷<br>Android系统级深入开发.移植与调试<br>Android深度探索（卷2）系统应用源代码分析与ROM定制<br>拨云见日-基于android的内核与系统架构源码分析<br>Android底层开发技术实战详解 内核、移植和驱动 Android源码设计模式解析与实战<br>Android：Wi-Fi NFC和GPS<br>Android系统原理及开发要点详解(韩超,梁泉)<br>ANDROID框架揭秘(带完整书签高清扫描版)</p>
+<h2 id="Linux内核"><a href="#Linux内核" class="headerlink" title="Linux内核"></a>Linux内核</h2><p>ORANGE’S：一个操作系统的实现<br>Linux内核设计与实现_第三版<br>Linux内核设计的艺术<br>Linux内核完全注释V3.0书签版<br>30天自制操作系统.川合秀实</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_system_source_code_read.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_system_source_code_read.html" itemprop="url">Android系统源码解读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T00:00:00+00:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-System/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="源码解读系列"><a href="#源码解读系列" class="headerlink" title="源码解读系列"></a>源码解读系列</h1><p><a href="http://gityuan.com/android/" target="_blank" rel="noopener">http://gityuan.com/android/</a></p>
+<h1 id="binder"><a href="#binder" class="headerlink" title="binder"></a>binder</h1><ul>
+<li>进程间通信方式对比</li>
+<li>servicemanager是独立进程吗</li>
+<li>binder是字符设备驱动，那么共享的策略是什么</li>
+</ul>
+<h1 id="context"><a href="#context" class="headerlink" title="context"></a>context</h1><h1 id="activity"><a href="#activity" class="headerlink" title="activity"></a>activity</h1><h1 id="service"><a href="#service" class="headerlink" title="service"></a>service</h1><h1 id="broadcast"><a href="#broadcast" class="headerlink" title="broadcast"></a>broadcast</h1><h1 id="ams"><a href="#ams" class="headerlink" title="ams"></a>ams</h1><h1 id="pms"><a href="#pms" class="headerlink" title="pms"></a>pms</h1><h1 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h1><h1 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h1><h1 id="view绘制"><a href="#view绘制" class="headerlink" title="view绘制"></a>view绘制</h1><h1 id="view事件传递"><a href="#view事件传递" class="headerlink" title="view事件传递"></a>view事件传递</h1><h1 id="binder原理"><a href="#binder原理" class="headerlink" title="binder原理"></a>binder原理</h1><h1 id="view动画"><a href="#view动画" class="headerlink" title="view动画"></a>view动画</h1><p><a href="https://blog.csdn.net/qq_23547831/article/details/50696046" target="_blank" rel="noopener">https://blog.csdn.net/qq_23547831/article/details/50696046</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_crypto_algo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_security_crypto_algo.html" itemprop="url">常见密码算法原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-06T00:00:00+00:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="PBKDF2是什么？"><a href="#PBKDF2是什么？" class="headerlink" title="PBKDF2是什么？"></a>PBKDF2是什么？</h2><p>PBKDF2(Password-Based Key Derivation Function)是一个用来导出密钥的函数，用来生成加密的密码，增加破解的难度，类似bcrypt/scrypt等，可以用来进行密码或者口令的加密存储。主要是盐值+pwd，经过多轮HMAC算法的计算，产生的密文。<br>PBKDF2函数的定义<br>DK = PBKDF2(PRF, Password, Salt, c, dkLen)<br>• PRF是一个伪随机函数，例如HASH_HMAC函数，它会输出长度为hLen的结果。<br>• Password是用来生成密钥的原文密码。<br>• Salt是一个加密用的盐值。<br>• c是进行重复计算的次数。<br>• dkLen是期望得到的密钥的长度。<br>• DK是最后产生的密钥。<br><a href="https://segmentfault.com/a/1190000004261009" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004261009</a></p>
+<h2 id="DH和ECDH算法"><a href="#DH和ECDH算法" class="headerlink" title="DH和ECDH算法"></a>DH和ECDH算法</h2><p>下面我们以Alice和Bob为例叙述Diffie-Hellman密钥交换的原理。<br>1,Diffie-Hellman交换过程中涉及到的所有参与者定义一个组，在这个组中定义一个大质数p，底数g。<br>2,Diffie-Hellman密钥交换是一个两部分的过程，Alice和Bob都需要一个私有的数字a，b。<br>下面是DH交换的过程图：<br>本图片来自wiki<br>下面我们进行一个实例<br>1.爱丽丝与鲍伯协定使用p=23以及g=5.<br>2.爱丽丝选择一个秘密整数a=6, 计算A = g^a mod p并发送给鲍伯。<br>   A = 5^6 mod 23 = 8.<br>3.鲍伯选择一个秘密整数b=15, 计算B = g^b mod p并发送给爱丽丝。<br>   B = 5^15 mod 23 = 19.<br>4.爱丽丝计算s = B a mod p<br>  19^6 mod 23 = 2.<br>5.鲍伯计算s = A b mod p<br>   8^15 mod 23 = 2.</p>
+<h3 id="ECDH密钥交换："><a href="#ECDH密钥交换：" class="headerlink" title="ECDH密钥交换："></a>ECDH密钥交换：</h3><p>ECDH:<br>       ECC算法和DH结合使用，用于密钥磋商，这个密钥交换算法称为ECDH。交换双方可以在不共享任何秘密的情况下协商出一个密钥。ECC是建立在基于椭圆曲线的离散对数问题上的密码体制，给定椭圆曲线上的一个点P，一个整数k，求解Q=kP很容易；给定一个点P、Q，知道Q=kP，求整数k确是一个难题。ECDH即建立在此数学难题之上。密钥磋商过程：<br>假设密钥交换双方为Alice、Bob，其有共享曲线参数（椭圆曲线E、阶N、基点G）。<br>1) Alice生成随机整数a，计算A=a<em>G。 #生成Alice公钥<br>2) Bob生成随机整数b，计算B=b</em>G。 #生产Bob公钥<br>3) Alice将A传递给Bob。A的传递可以公开，即攻击者可以获取A。<br>    由于椭圆曲线的离散对数问题是难题，所以攻击者不可以通过A、G计算出a。<br>4) Bob将B传递给Alice。同理，B的传递可以公开。<br>5) Bob收到Alice传递的A，计算Q =b<em>A  #Bob通过自己的私钥和Alice的公钥得到对称密钥Q<br>6) Alice收到Bob传递的B，计算Q`=a</em>B  #Alice通过自己的私钥和Bob的公钥得到对称密钥Q’<br>Alice、Bob双方即得Q=b<em>A=b</em>(a<em>G)=(b</em>a)<em>G=(a</em>b)<em>G=a</em>(b<em>G)=a</em>B=Q’ (交换律和结合律)，即双方得到一致的密钥Q。<br>        目前Openssl里面的ECC算法的套件支持是ECDSA/ECDH。在国密的SSL套件中，可以使用ECDSA/ECC(密钥加密传输)，ECDSA/ECDH(密钥磋商)两种套件</p>
+<p>来自 <a href="http://www.cnblogs.com/fishou/p/4206451.html" target="_blank" rel="noopener">http://www.cnblogs.com/fishou/p/4206451.html</a> </p>
+<h2 id="SHA家族的对比"><a href="#SHA家族的对比" class="headerlink" title="SHA家族的对比"></a>SHA家族的对比</h2><p><a href="https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F</a></p>
+<h2 id="RSA算法的理解"><a href="#RSA算法的理解" class="headerlink" title="RSA算法的理解"></a>RSA算法的理解</h2><blockquote>
+<p>I saw different key sizes for RSA algorithm (512, 1024,… [bits] for example) but, is this the length of public key or the length of private key or both are equal in length?<br>It’s the length of the modulus used to compute the RSA key pair. The public key is made of the modulus and the public exponent, while the private key is made of the modulus and the private exponent.<br>but the online tools for generating RSA key pairs have different lengths output!<br>The first picture shows public and private key in PEM format, encoded in Base64 (and not modulus and exponents of the key, which instead are shown in the second picture).<br>The content of the RSA private key is as follows:<br>—–BEGIN RSA PRIVATE KEY—–<br>RSAPrivateKey ::= SEQUENCE {<br>  version           Version,<br>  modulus           INTEGER,  – n<br>  publicExponent    INTEGER,  – e<br>  privateExponent   INTEGER,  – d<br>  prime1            INTEGER,  – p<br>  prime2            INTEGER,  – q<br>  exponent1         INTEGER,  – d mod (p-1)<br>  exponent2         INTEGER,  – d mod (q-1)<br>  coefficient       INTEGER,  – (inverse of q) mod p<br>  otherPrimeInfos   OtherPrimeInfos OPTIONAL<br>}<br>—–END RSA PRIVATE KEY—–<br>while a RSA public key contains only the following data:<br>—–BEGIN RSA PUBLIC KEY—–<br>RSAPublicKey ::= SEQUENCE {<br>    modulus           INTEGER,  – n<br>    publicExponent    INTEGER   – e<br>}<br>—–END RSA PUBLIC KEY—–<br>and this explains why the private key block is larger.<br>Note that a more standard format for non-RSA public keys is<br>—–BEGIN PUBLIC KEY—–<br>PublicKeyInfo ::= SEQUENCE {<br>  algorithm       AlgorithmIdentifier,<br>  PublicKey       BIT STRING<br>}<br>AlgorithmIdentifier ::= SEQUENCE {<br>  algorithm       OBJECT IDENTIFIER,<br>  parameters      ANY DEFINED BY algorithm OPTIONAL<br>}<br>—–END PUBLIC KEY—–<br>More info here.<br>BTW, since you just posted a screenshot of the private key I strongly hope it was just for tests :)</p>
+</blockquote>
+<p>密钥的长度<br>C:\herong&gt;java RsaKeyGenerator 128<br>p: 17902136406704537069<br>q: 17902136406704537077<br>m: 320486487924256034368552058949822333168<br>Modulus: 320486487924256034404356331763231407313<br>Key size: 128<br>Public key: 138184930940463531660820083778072069237<br>Private key: 173448309040289888328993883042709949325<br>C:\herong&gt;java RsaKeyGenerator 256<br>p: 248658744261550238073459677814507557459<br>q: 248658744261550238073459677814507557527<br>m: 618311710977310434529034534762836648859088873902738200302650613…<br>Modulus: 618311710977310434529034534762836648864062048787969205064…<br>Key size: 256<br>Public key: 394190853336940694532345943348534965939075733405768734…<br>Private key: 21429568381701961014089098585280129682302896350728470…</p>
+<p><a href="https://security.stackexchange.com/questions/90169/rsa-public-key-and-private-key-lengths" target="_blank" rel="noopener">https://security.stackexchange.com/questions/90169/rsa-public-key-and-private-key-lengths</a><br><a href="https://stackoverflow.com/questions/2921508/trying-to-understand-java-rsa-key-size&gt;" target="_blank" rel="noopener">https://stackoverflow.com/questions/2921508/trying-to-understand-java-rsa-key-size&gt;</a></p>
+<p><a href="http://www.herongyang.com/Cryptography/RSA-BigInteger-Keys-Generated-by-RsaKeyGenerator-java.html" target="_blank" rel="noopener">http://www.herongyang.com/Cryptography/RSA-BigInteger-Keys-Generated-by-RsaKeyGenerator-java.html</a></p>
+<h3 id="update和doFinal"><a href="#update和doFinal" class="headerlink" title="update和doFinal"></a>update和doFinal</h3><p>update() adds data to the Cipher’s internal buffer, then returns all currently completely encoded blocks. If there are any encoded blocks left over, they remain in the Cipher’s buffer until the next call, or a call to doFinal(). This means that if you call update() with a four byte array to encrypt, and the buffer size is eight bytes, you will not receive encoded data on the return (you’ll get a null instead). If your next call to update() passes five bytes of data in, you will get an 8 byte (the block size) array back, containing the four bytes passed in on the previous call, the first four bytes from the current call – the remaining byte from the current call is left in the Cipher’s buffer.<br>doFinal() on the other hand is much simpler: it encrypts the passed data, pads it out to the necessary length, and then returns it. The Cipher is essentially stateless.</p>
+<p>来自 <a href="https://segmentfault.com/a/1190000006931511" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006931511</a> </p>
+<p>DH算法的中间人攻击<br>在最初的描述中，迪菲－赫尔曼密钥交换本身并没有提供通讯双方的身份验证服务，因此它很容易受到中间人攻击。 一个中间人在信道的中央进行两次迪菲－赫尔曼密钥交换，一次和Alice另一次和Bob，就能够成功的向Alice假装自己是Bob，反之亦然。而攻击者可以解密（读取和存储）任何一个人的信息并重新加密信息，然后传递给另一个人。因此通常都需要一个能够验证通讯双方身份的机制来防止这类攻击。</p>
+<p>优缺点：<br>1、 仅当需要时才生成密钥，减小了将密钥存储很长一段时间而致使遭受攻击的机会。<br>2、 除对全局参数的约定外，密钥交换不需要事先存在的基础结构。<br>然而，该技术也存在许多不足：<br>1、 没有提供双方身份的任何信息。<br>2、 它是计算密集性的，因此容易遭受阻塞性攻击，即对手请求大量的密钥。受攻击者花费了相对多的计算资源来求解无用的幂系数而不是在做真正的工作。<br>3、 没办法防止重演攻击。<br>4、 容易遭受中间人的攻击。第三方C在和A通信时扮演B；和B通信时扮演A。A和B都与C协商了一个密钥，然后C就可以监听和传递通信量。中间人的攻击按如下进行：<br>（1） B在给A的报文中发送他的公开密钥。<br>（2） C截获并解析该报文。C将B的公开密钥保存下来并给A发送报文，该报文具有B的用户ID但使用C的公开密钥YC，仍按照好像是来自B的样子被发送出去。A收到C的报文后，将YC和B的用户ID存储在一块。类似地，C使用YC向B发送好像来自A的报文。<br>（3） B基于私有密钥XB和YC计算秘密密钥K1。A基于私有密钥XA和YC计算秘密密钥K2。C使用私有密钥XC和YB计算K1，并使用XC和YA计算K2。<br>（4） 从现在开始，C就可以转发A发给B的报文或转发B发给A的报文，在途中根据需要修改它们的密文。使得A和B都不知道他们在和C共享通信。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_library_tech_sumup.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_library_tech_sumup.html" itemprop="url">Android框架技术汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T00:00:00+00:00">
+                2017-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="分层架构-MVC-MVVM-MVP"><a href="#分层架构-MVC-MVVM-MVP" class="headerlink" title="分层架构 MVC MVVM MVP"></a>分层架构 MVC MVVM MVP</h2><p><a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="noopener">https://developer.android.com/topic/libraries/architecture/guide.html</a><br><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="noopener">https://github.com/googlesamples/android-architecture</a><br><a href="https://github.com/googlesamples/android-architecture-components" target="_blank" rel="noopener">https://github.com/googlesamples/android-architecture-components</a></p>
+<h2 id="组件化-模块化-容器化-Atlas-small"><a href="#组件化-模块化-容器化-Atlas-small" class="headerlink" title="组件化 模块化 容器化 Atlas small"></a>组件化 模块化 容器化 Atlas small</h2><p><a href="https://yq.aliyun.com/articles/7239" target="_blank" rel="noopener">https://yq.aliyun.com/articles/7239</a></p>
+<h2 id="依赖注入-Dagger2"><a href="#依赖注入-Dagger2" class="headerlink" title="依赖注入 Dagger2"></a>依赖注入 Dagger2</h2><p><a href="https://toutiao.io/posts/5a3fp5/preview" target="_blank" rel="noopener">https://toutiao.io/posts/5a3fp5/preview</a></p>
+<h2 id="AOP面向切面编程-Aspectj"><a href="#AOP面向切面编程-Aspectj" class="headerlink" title="AOP面向切面编程 Aspectj"></a>AOP面向切面编程 Aspectj</h2><p><a href="http://blog.csdn.net/xwh_1230/article/details/78213160" target="_blank" rel="noopener">http://blog.csdn.net/xwh_1230/article/details/78213160</a><br><a href="http://blog.csdn.net/xwh_1230/article/details/78225258" target="_blank" rel="noopener">http://blog.csdn.net/xwh_1230/article/details/78225258</a></p>
+<h2 id="事件驱动-EventBus-otto-EventPoster"><a href="#事件驱动-EventBus-otto-EventPoster" class="headerlink" title="事件驱动 EventBus otto EventPoster"></a>事件驱动 EventBus otto EventPoster</h2><p><a href="http://blog.csdn.net/android2me/article/details/66973037" target="_blank" rel="noopener">http://blog.csdn.net/android2me/article/details/66973037</a></p>
+<h2 id="RxJava数据异步"><a href="#RxJava数据异步" class="headerlink" title="RxJava数据异步"></a>RxJava数据异步</h2><p><a href="http://blog.csdn.net/caihongdao123/article/details/51897793" target="_blank" rel="noopener">http://blog.csdn.net/caihongdao123/article/details/51897793</a><br><a href="https://www.jianshu.com/p/5e93c9101dc5" target="_blank" rel="noopener">https://www.jianshu.com/p/5e93c9101dc5</a></p>
+<h2 id="Http-Restful请求框架Retrofit"><a href="#Http-Restful请求框架Retrofit" class="headerlink" title="Http Restful请求框架Retrofit"></a>Http Restful请求框架Retrofit</h2><p><a href="https://segmentfault.com/a/1190000005638577" target="_blank" rel="noopener">https://segmentfault.com/a/1190000005638577</a></p>
+<h2 id="框架列表"><a href="#框架列表" class="headerlink" title="框架列表"></a>框架列表</h2><p><a href="https://www.ctolib.com/cheatsheets-Android-ch.html" target="_blank" rel="noopener">https://www.ctolib.com/cheatsheets-Android-ch.html</a></p>
+<h2 id="常用的Util"><a href="#常用的Util" class="headerlink" title="常用的Util"></a>常用的Util</h2><p><a href="https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md" target="_blank" rel="noopener">https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md</a></p>
+<h2 id="Android开源项目源码解析"><a href="#Android开源项目源码解析" class="headerlink" title="Android开源项目源码解析"></a>Android开源项目源码解析</h2><p><a href="https://github.com/android-cn/android-open-project-analysis" target="_blank" rel="noopener">https://github.com/android-cn/android-open-project-analysis</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/books_recommand_blockchain.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/books_recommand_blockchain.html" itemprop="url">区块链</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-10T00:00:00+00:00">
+                2017-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/000书籍推荐/" itemprop="url" rel="index">
+                    <span itemprop="name">000书籍推荐</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_best_practise.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_best_practise.html" itemprop="url">Android最佳实践</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-03T00:00:00+00:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##Android版本差异<br><a href="https://developer.android.com/about/versions/oreo/index.html" target="_blank" rel="noopener">https://developer.android.com/about/versions/oreo/index.html</a></p>
+<h2 id="持久化存储方式"><a href="#持久化存储方式" class="headerlink" title="持久化存储方式"></a>持久化存储方式</h2><p><a href="https://segmentfault.com/a/1190000008949310" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008949310</a></p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h2 id="图片缓存"><a href="#图片缓存" class="headerlink" title="图片缓存"></a>图片缓存</h2><p><a href="https://binglumeng.github.io/2017/03/21/%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98LruCache%E5%92%8CDiskLruCache%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">https://binglumeng.github.io/2017/03/21/%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98LruCache%E5%92%8CDiskLruCache%E4%BD%BF%E7%94%A8/</a><br><a href="https://www.kancloud.cn/digest/android222/138556" target="_blank" rel="noopener">https://www.kancloud.cn/digest/android222/138556</a><br><a href="https://www.jianshu.com/p/97455f080065" target="_blank" rel="noopener">https://www.jianshu.com/p/97455f080065</a></p>
+<h2 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h2><p><a href="https://blog.csdn.net/carson_ho/article/details/79522975" target="_blank" rel="noopener">https://blog.csdn.net/carson_ho/article/details/79522975</a></p>
+<h2 id="Android产品研发问题"><a href="#Android产品研发问题" class="headerlink" title="Android产品研发问题"></a>Android产品研发问题</h2><p><a href="https://blog.csdn.net/qq_23547831/article/details/51645787" target="_blank" rel="noopener">https://blog.csdn.net/qq_23547831/article/details/51645787</a></p>
+<h2 id="Android后台优化"><a href="#Android后台优化" class="headerlink" title="Android后台优化"></a>Android后台优化</h2><p><a href="https://developer.android.com/guide/background/index.html" target="_blank" rel="noopener">https://developer.android.com/guide/background/index.html</a><br><a href="https://developer.android.com/topic/performance/background-optimization.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/background-optimization.html</a><br><strong>AlarmManager</strong><br><a href="https://juejin.im/entry/588628e8128fe10065eb62a9" target="_blank" rel="noopener">https://juejin.im/entry/588628e8128fe10065eb62a9</a><br><strong>Broadcast</strong><br><a href="https://www.jianshu.com/p/f01faada90da" target="_blank" rel="noopener">https://www.jianshu.com/p/f01faada90da</a></p>
+<h2 id="保持设备唤醒"><a href="#保持设备唤醒" class="headerlink" title="保持设备唤醒"></a>保持设备唤醒</h2><p><a href="https://developer.android.com/training/scheduling/index.html" target="_blank" rel="noopener">https://developer.android.com/training/scheduling/index.html</a></p>
+<h2 id="进程保活"><a href="#进程保活" class="headerlink" title="进程保活"></a>进程保活</h2><p><a href="https://segmentfault.com/a/1190000006251859" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006251859</a><br><a href="https://github.com/xingda920813/HelloDaemon" target="_blank" rel="noopener">https://github.com/xingda920813/HelloDaemon</a><br><a href="https://blog.csdn.net/xiangzhihong8/article/details/77919053" target="_blank" rel="noopener">https://blog.csdn.net/xiangzhihong8/article/details/77919053</a><br><a href="https://blog.csdn.net/AndrExpert/article/details/75045678" target="_blank" rel="noopener">https://blog.csdn.net/AndrExpert/article/details/75045678</a><br><a href="http://www.infoq.com/cn/articles/wechat-android-background-keep-alive" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/wechat-android-background-keep-alive</a><br><a href="https://juejin.im/entry/58acf391ac502e007e9a0a11" target="_blank" rel="noopener">https://juejin.im/entry/58acf391ac502e007e9a0a11</a></p>
+<h2 id="Android45678区别和改进-App层"><a href="#Android45678区别和改进-App层" class="headerlink" title="Android45678区别和改进 App层"></a>Android45678区别和改进 App层</h2><p><a href="https://www.zhihu.com/question/29639050" target="_blank" rel="noopener">https://www.zhihu.com/question/29639050</a><br><a href="https://blog.csdn.net/qq_14859923/article/details/78257904" target="_blank" rel="noopener">https://blog.csdn.net/qq_14859923/article/details/78257904</a><br><a href="http://www.jensondev.me/2017/07/26/Android%E5%90%84%E7%89%88%E6%9C%AC%E6%96%B0%E5%8A%9F%E8%83%BD%E5%8F%8A%E5%8C%BA%E5%88%AB/" target="_blank" rel="noopener">http://www.jensondev.me/2017/07/26/Android%E5%90%84%E7%89%88%E6%9C%AC%E6%96%B0%E5%8A%9F%E8%83%BD%E5%8F%8A%E5%8C%BA%E5%88%AB/</a><br><a href="https://blog.csdn.net/huang_rong12/article/details/51252186" target="_blank" rel="noopener">https://blog.csdn.net/huang_rong12/article/details/51252186</a></p>
+<h2 id="进程什么时候销毁"><a href="#进程什么时候销毁" class="headerlink" title="进程什么时候销毁"></a>进程什么时候销毁</h2><p><a href="http://www.cnblogs.com/lesliefang/p/5379212.html" target="_blank" rel="noopener">http://www.cnblogs.com/lesliefang/p/5379212.html</a></p>
+<h2 id="Android优化checklist"><a href="#Android优化checklist" class="headerlink" title="Android优化checklist"></a>Android优化checklist</h2><p><a href="https://aeli.gitbooks.io/android-training-course/performance/memory.html" target="_blank" rel="noopener">https://aeli.gitbooks.io/android-training-course/performance/memory.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_perfermance_oom.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_perfermance_oom.html" itemprop="url">Android性能-内存泄漏</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T00:00:00+00:00">
+                2017-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>泄漏原因： </p>
+<ul>
+<li><p>单例造成的内存泄漏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class AppManager &#123;</span><br><span class="line">    private static AppManager instance;</span><br><span class="line">    private Context context;</span><br><span class="line">    private AppManager(Context context) &#123;</span><br><span class="line">        this.context = context;</span><br><span class="line">    &#125;</span><br><span class="line">    public static AppManager getInstance(Context context) &#123;</span><br><span class="line">        if (instance != null) &#123;</span><br><span class="line">            instance = new AppManager(context);</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非静态内部类(匿名类等)创建静态实例造成的内存泄漏 Handler/Thread/AsyncTas等<br>可以使用静态内部类+弱引用避免泄漏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private static TestResource mResource = null;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        if(mResource == null)&#123;</span><br><span class="line">            mResource = new TestResource();</span><br><span class="line">        &#125;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class TestResource &#123;</span><br><span class="line">    //...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>资源未关闭造成的内存泄漏</p>
+</li>
+</ul>
+<p>对于使用了BraodcastReceiver，ContentObserver，File，Cursor，Stream，Bitmap, 属性动画或循环动画等资源，应该在Activity销毁时及时关闭或者注销，否则这些资源将不会被回收，从而造成内存泄漏。<br>其中Bitmap使用不当,bitmap对象使用的内存较大，当我们不再使用Bitmap对象的时候一定要执行recycler方法，这里需要指出的是当我们在代码中执行recycler方法，Bitmap并不会被立即释放掉，其只是通知虚拟机该Bitmap可以被recycler了。</p>
+<ul>
+<li><p>集合容器中的内存泄露<br>我们通常把一些对象的引用加入到了集合容器（比如ArrayList）中，当我们不需要该对象时，并没有把它的引用从集合中清理掉，这样这个集合就会越来越大。如果这个集合是static的话，那情况就更严重了。<br>解决方法：在退出程序之前，将集合里的东西clear，然后置为null，再退出程序。</p>
+</li>
+<li><p>静态变量持有的应用<br>view持有context的</p>
+</li>
+</ul>
+<p><a href="https://blog.csdn.net/north1989/article/details/51999920" target="_blank" rel="noopener">https://blog.csdn.net/north1989/article/details/51999920</a><br><a href="https://blog.csdn.net/u013495603/article/details/50696170" target="_blank" rel="noopener">https://blog.csdn.net/u013495603/article/details/50696170</a><br><a href="https://blog.csdn.net/mxm691292118/article/details/51020023" target="_blank" rel="noopener">https://blog.csdn.net/mxm691292118/article/details/51020023</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_perfermance_anr.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_perfermance_anr.html" itemprop="url">Android性能-ANR</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-20T00:00:00+00:00">
+                2017-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ANR基本分析定位方法"><a href="#ANR基本分析定位方法" class="headerlink" title="ANR基本分析定位方法"></a>ANR基本分析定位方法</h2><p>ANR分析主要是Input、Broadcast、Service三种ANR， 对应的时间主要有以下几种：其中后台时间相对长一些，broadcast可以达到60s，但是前台一般最高10s，后台service是20s。<br>类型                  前台        后台<br>Input                   8s          8s<br>Forground Broadcast      10s         20s<br>Background Broadcast     10s         60s<br>Service                 10s         20s</p>
+<p>定位问题思路是，首先查看anr的进程，类型，cpu占用，iowait等指标<br>activity、broadcast、还是service，是前台还是后台。<br>cpu占用是否过高，iowait是否正常，是否是由于整机问题影响</p>
+<p>查看线程调用栈，main主线程是由于什么原因导致的anr， 等锁lock，是否死锁？ 是否binder卡住了？ 是否no focus windows可能是由于进程被杀，搜索是否有window change查看界面切换的影响？wait和notifiy导致的死锁，查看相关代码？其他卡住的地方File、database、sharepreference可以怀疑文件系统等。</p>
+<p>引起ANR问题的根本原因，总的来说可以归纳为两类：<br>    • 应用进程自身引起的，例如：<br>主线程阻塞、挂起、死循环<br>应用进程的其他线程的CPU占用率高，使得主线程无法抢占到CPU时间片<br>    • 其他进程间接引起的，例如：<br>当前应用进程进行进程间通信请求其他进程，其他进程的操作长时间没有反馈<br>其他进程的CPU占用率高，使得当前应用进程无法抢占到CPU时间片<br>分析ANR问题时，以上述可能的几种原因为线索，通过分析各种日志信息，大多数情况下你就可以很容易找到问题所在了。<br><a href="http://www.cnblogs.com/zl1991/p/5947157.html" target="_blank" rel="noopener">http://www.cnblogs.com/zl1991/p/5947157.html</a></p>
+<h2 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h2><ul>
+<li>ANR原理分析  <a href="http://rayleeya.iteye.com/blog/1955652" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1955652</a></li>
+<li>稳定性问题 <a href="http://gityuan.com/2016/06/19/stability_summary/" target="_blank" rel="noopener">http://gityuan.com/2016/06/19/stability_summary/</a></li>
+<li>ANR超时源码解析 <a href="http://gityuan.com/2016/07/02/android-anr/" target="_blank" rel="noopener">http://gityuan.com/2016/07/02/android-anr/</a></li>
+<li>ANR信息收集 <a href="http://gityuan.com/2016/12/02/app-not-response/" target="_blank" rel="noopener">http://gityuan.com/2016/12/02/app-not-response/</a>  </li>
+<li>ANR input  <a href="http://gityuan.com/2017/01/01/input-anr/" target="_blank" rel="noopener">http://gityuan.com/2017/01/01/input-anr/</a></li>
+</ul>
+<h3 id="anr处理思路"><a href="#anr处理思路" class="headerlink" title="anr处理思路"></a>anr处理思路</h3><p><strong>ANR原因</strong><br>Application Not Responding 三种类型，主线程事件长时间无法执行</p>
+<ul>
+<li>KeyDispatchTimeout(input)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static final int KEY_DISPATCHING_TIMEOUT = 5*1000;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>BroadcastTimeout(broadcast)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static final int BROADCAST_FG_TIMEOUT = 10*1000;  </span><br><span class="line">static final int BROADCAST_BG_TIMEOUT = 60*1000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ServiceTimeout(service)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static final int SERVICE_TIMEOUT = (20*1000);</span><br><span class="line">static final int SERVICE_BACKGROUND_TIMEOUT = SERVICE_TIMEOUT * 10;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>查看日志</strong></p>
+<ol>
+<li>ANR存储路径  /data/anr/ </li>
+<li>dropbox存储路径   /data/system/dropbox/ </li>
+<li>tombstones存储路径  /data/tombstones</li>
+</ol>
+<p>Process: com.android.contacts 进程名字<br>Flags: 0x38d8be4d 应用安装标志，预装还是安装等<br>Package: com.android.contacts v24 (1.2) (报名和版本号)<br>Foreground: Yes (anr在前台还是后台)<br>Activity: com.android.contacts/com.mediatek.contacts.list.ContactListMultiChoiceActivity<br>Subject: Input dispatching timed out (Waiting to send key event because the focused window has not finished processing all of the input events that were previously delivered to it.  Outbound queue length: 0.  Wait queue length: 1.)   （ANR类型信息）<br>Build: D-171117V33:user/release-keys</p>
+<p>CPU usage from 74494ms to 0ms ago (2019-11-09 21:32:06.966 to 2019-11-09 21:33:21.460):<br>  104% 323/mobile_log_d: 17% user + 86% kernel / faults: 2622 minor<br>  56% 1041/system_server: 41% user + 14% kernel / faults: 30698 minor 36 major<br>  34% 1408/com.android.phone: 28% user + 6% kernel / faults: 17027 minor 35 major<br>  15% 5541/android.process.acore: 13% user + 2.3% kernel / faults: 10865 minor 49 major<br>  10% 248/servicemanager: 4.4% user + 6.5% kernel / faults: 63 minor<br>  10% 249/surfaceflinger: 5.1% user + 5.6% kernel / faults: 1645 minor 1 major<br>  8.6% 215/logd: 2.7% user + 5.8% kernel / faults: 310 minor 11 major<br>  5.6% 1848/com.android.contacts: 4.4% user + 1.1% kernel / faults: 9569 minor 677 major<br>  3.7% 1155/com.android.systemui: 2.9% user + 0.7% kernel / faults: 12145 minor 50 major<br>98% TOTAL: 54% user + 42% kernel + 0.1% iowait + 0% softirq<br><strong>单进程信息</strong><br>读取/proc/<pid>/task/<pid>/stat，utime，stime两次相差/两次采样周期的系统uptime；进程差值时间<br>56% 1041/system_server: 41% user + 14% kernel / faults: 30698 minor 36 major<br>cpu占用信息  进程信息: 用户态时间执行比 + kernel执行时间比 / 发生page faults的次数，一个minor，一个是major<br><strong>总TOTAL信息</strong><br>读取/proc/stat信息  <a href="http://www.linuxhowtos.org/System/procstat.htm" target="_blank" rel="noopener">http://www.linuxhowtos.org/System/procstat.htm</a><br>98% TOTAL: 54% user + 42% kernel + 0.1% iowait + 0% softirq<br>user: normal processes executing in user mode<br>nice: niced processes executing in user mode<br>system: processes executing in kernel mode<br>idle: twiddling thumbs<br>iowait: waiting for I/O to complete<br>irq: servicing interrupts<br>softirq: servicing softirqs</pid></pid></p>
+<p><strong>ANR分析套路</strong><br><a href="http://maoao530.github.io/2017/02/21/anr-analyse/" target="_blank" rel="noopener">http://maoao530.github.io/2017/02/21/anr-analyse/</a><br><a href="https://blog.csdn.net/sinat_34157462/article/details/78651870" target="_blank" rel="noopener">https://blog.csdn.net/sinat_34157462/article/details/78651870</a><br><a href="https://blog.csdn.net/wei_lei/article/details/70311702" target="_blank" rel="noopener">https://blog.csdn.net/wei_lei/article/details/70311702</a><br><a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="noopener">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
+<ol>
+<li>trace日志和logcat日志要结合起来看。</li>
+<li>trace中的ANR原因，进程号，时间，首个调用栈等信息非常关键。</li>
+<li>logcat日志中一方面查找对应时间的日志，检查应用的行为，检查具体导致SIG:3发出的原因。</li>
+<li>ANR in XXX也是一个关键字，可以在logcat日志中检索。不过这句日志打印的时间通常要比ANR发生的时间晚一些。找到这部分log后，应该顺着向前继续查找ANR发生的日志。</li>
+<li>线程状态，锁，binder等。</li>
+</ol>
+<p>查看main线程调用栈，确认ANR栈类型，不同栈类型问题分析方法有所差异<br>等锁<br>Binder对端<br>wait栈<br>java标准接口<br>NativePollOnce</p>
+<p>ANR时间点确认：logcat里搜索“anr in”，或者在log_events里直接搜索anr。请注意logcat搜到的anr in时间很可能比anr时间滞后几秒。这么做是为了确认我们anr的时间范围。之前讲过了各种类型的anr时间。结合我们可以知道我们重点要关注的是什么时间段。例如后台广播在后台anr。那么我们重点关注日志范围是 （ANR时间-60秒）~ ANR时间<br>查看kmsgcat-log。确认线程是否D状态、是否多个线程Block<br>可以搜索卡住的线程是否被hungtask打印，hungtask发现D状态会主动触发打印</p>
+<h3 id="crash处理思路"><a href="#crash处理思路" class="headerlink" title="crash处理思路"></a>crash处理思路</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_ssl_verify.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_security_ssl_verify.html" itemprop="url">ssl证书校验机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-15T00:00:00+00:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>2.3    SSL证书校验机制 Https<br>2.3.1    简单解释<br>典型的场景是现在我们常用的 HTTPS 机制。HTTPS 实际上是利用了 Transport Layer<br>Security/Secure Socket Layer（TLS/SSL）来实现可靠的传输。TLS 为 SSL 的升级版本，目前广泛应用的为 TLS 1.0，对应到 SSL 3.1 版本。<br>建立安全连接的具体步骤如下：<br>•    客户端浏览器发送信息到服务器，包括随机数 R1，支持的加密算法类型、协议版本、压缩算法等。注意该过程为明文。<br>•    服务端返回信息，包括随机数 R2、选定加密算法类型、协议版本，以及服务器证书。注意该过程为明文。<br>•    浏览器检查带有该网站公钥的证书。该证书需要由第三方CA 来签发，浏览器和操作系统会预置权威CA 的根证书。如果证书被篡改作假（中间人攻击），很容易通过 CA 的证书验证出来。<br>•    如果证书没问题，则用证书中公钥加密随机数 R3，发送给服务器。此时，只有客户端和服务器都拥有 R1、R2 和 R3 信息，基于 R1、R2 和 R3，生成对称的会话密钥（如 AES算法）。后续通信都通过对称加密进行保护。<br> <a href="https://www.cnblogs.com/Anker/p/6082966.html" target="_blank" rel="noopener">https://www.cnblogs.com/Anker/p/6082966.html</a><br>2.3.2    SSL具体协议分析<br>协议具体内容解释如下：</p>
+<ol>
+<li><p>client_hello<br>（1）支持的协议版本，比如TLS 1.0<br>（2）支持的加密算法(Cipher Specs)<br>（3）客户端生成的随机数1(Challenge)，稍后用于生成”对话密钥”。</p>
+</li>
+<li><p>server_hello<br>（1） 确认使用的协议版本<br>（2） 服务器生成的随机数2，稍后用于生成”对话密钥”<br>（3） session id<br>（4） 确认使用的加密算法<br>Certificate 服务器证书<br>server_key_exchange<br>如果是DH算法，这里发送服务器使用的DH参数。RSA算法不需要这一步。<br>certificate_request 要求客户端提供证书，包括<br>（1）客户端可以提供的证书类型<br>（2）服务器接受的证书distinguished name列表，可以是root CA或者subordinate CA。如果服务器配置了<br>trust keystore, 这里会列出所有在trust keystore中的证书的distinguished name。<br>server_hello_done<br>server hello结束</p>
+</li>
+<li><p>certificate<br>客户端证书<br>client_key_exchange包含premaster secret。客户端生成第三个随机数。如果是采用RSA算法，会生成一个48字节随机数，然后用server的公钥加密之后再放入报文中；如果是DH算法，这里发送的就是客户端的DH参数，之后服务器和客户端根据DH算法，各自计算出相同的premaster secret。<br>certificate_verify<br>发送使用客户端证书给到这一步为止收到和发送的所有握手消息签名结果。<br>change_cipher_spec<br>客户端通知服务器开始使用加密方式发送报文。客户端使用上面的3个随机数client random, server random, premaster secret, 计算出48字节的master secret, 这个就是对称加密算法的密钥。<br>finished<br>客户端发送第一个加密报文。使用HMAC算法计算收到和发送的所有握手消息的摘要，然后通过RFC5246中定义的一个伪函数PRF计算出结果，加密后发送。</p>
+</li>
+</ol>
+<p>4.服务器发送给客户端<br>服务器端发送change_cipher_spec和finished消息。到这里握手结束。</p>
+<p>双向认证协议抓包数据如下：</p>
+<p>2.3.3    基本校验机制</p>
+<p>2.3.4    参考wireshark抓包分析和中间人攻击应用<br>[具体协议wireshark原理]   <a href="http://blog.csdn.net/fw0124/article/details/40983787" target="_blank" rel="noopener">http://blog.csdn.net/fw0124/article/details/40983787</a><br>[中间人攻击-看证书重要性(Man-in-the-middle attack)] <a href="http://www.freebuf.com/sectool/48016.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/48016.html</a></p>
+<p><a href="http://www.freebuf.com/sectool/48016.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/48016.html</a><br><a href="https://g2ex.github.io/2015/05/18/Man-in-the-Middle-Attack/" target="_blank" rel="noopener">https://g2ex.github.io/2015/05/18/Man-in-the-Middle-Attack/</a><br><a href="http://sec.chinabyte.com/221/13821221.shtml" target="_blank" rel="noopener">http://sec.chinabyte.com/221/13821221.shtml</a><br><a href="https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html</a></p>
+<p>3.2    SSL/HttpsUrlConnection流程与证书校验<br>3.2.1    一个完整的应用</p>
+<p>// Load CAs from an InputStream<br>// (could be from a resource or ByteArrayInputStream or …)<br>CertificateFactory cf = CertificateFactory.getInstance(“X.509”);<br>// From <a href="https://www.washington.edu/itconnect/security/ca/load-der.crt" target="_blank" rel="noopener">https://www.washington.edu/itconnect/security/ca/load-der.crt</a><br>InputStream caInput = new BufferedInputStream(new FileInputStream(“load-der.crt”));<br>Certificate ca;<br>try {<br>    ca = cf.generateCertificate(caInput);<br>    System.out.println(“ca=” + ((X509Certificate) ca).getSubjectDN());<br>} finally {<br>    caInput.close();<br>}</p>
+<p>// Create a KeyStore containing our trusted CAs<br>String keyStoreType = KeyStore.getDefaultType();<br>KeyStore keyStore = KeyStore.getInstance(keyStoreType);<br>keyStore.load(null, null);<br>keyStore.setCertificateEntry(“ca”, ca);</p>
+<p>// Create a TrustManager that trusts the CAs in our KeyStore<br>String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();<br>TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);<br>tmf.init(keyStore);</p>
+<p>// Create an SSLContext that uses our TrustManager<br>SSLContext context = SSLContext.getInstance(“TLS”);<br>context.init(null, tmf.getTrustManagers(), null);</p>
+<p>// Tell the URLConnection to use a SocketFactory from our SSLContext<br>URL url = new URL(“<a href="https://certs.cac.washington.edu/CAtest/&quot;)" target="_blank" rel="noopener">https://certs.cac.washington.edu/CAtest/&quot;)</a>;<br>HttpsURLConnection urlConnection =<br>    (HttpsURLConnection)url.openConnection();<br>urlConnection.setSSLSocketFactory(context.getSocketFactory());<br>InputStream in = urlConnection.getInputStream();<br>copyInputStreamToOutputStream(in, System.out);</p>
+<p>3.2.2    JSSE相关类简要说明</p>
+<ol>
+<li>SSL/TLS的Java实现—JSSE<br>请参考： <a href="http://blog.csdn.net/fw0124/article/details/40889167" target="_blank" rel="noopener">http://blog.csdn.net/fw0124/article/details/40889167</a><br><a href="http://www.aneasystone.com/archives/2016/04/java-and-https.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2016/04/java-and-https.html</a><br>写的太好抄一遍来<br>使用SSL/TLS协议通信，客户端和服务器端都可能要设置用于证实自己身份的安全证书，并且还要设置信任对方的哪些安全证书。<br>按照理论上，一共需要准备四个文件，两个keystore文件和两个truststore文件。<br>通信双方分别拥有一个keystore和一个truststore，keystore用于存放自己的密钥和公钥，truststore用于存放所有需要信任方的公钥。<br>当然为了方便可以直接使用keystore替代truststore（免去证书导来导去），因为对方的keystore包含了自己需要的信任公钥。<br>在用JSSE实现SSL通信过程中主要会遇到以下类和接口，由于过程中涉及到加解密、密钥生成等运算的框架和实现，所以也会间接用到JCE包的一些类。如图为JSSE接<br>口的主要类图：</li>
+</ol>
+<p>①  通信核心类——SSLSocket和SSLServerSocket。对于使用过socket进行通信开发的朋友比较好理解，它们对应的就是Socket与ServerSocket，只是表示实现了SSL协议的Socket和ServerSocket，同时它们也是Socket与ServerSocket的子类。SSLSocket负责的事情包括设置加密套件、管理SSL会话、处理握手结束时间、设置客户端模式或服务器模式。<br>②  客户端与服务器端Socket工厂——SSLSocketFactory和SSLServerSocketFactory。在设计模式中工厂模式是专门用于生产出需要的实例，这里也是把SSLSocket、SSLServerSocket对象创建的工作交给这两个工厂类。<br>③  SSL会话——SSLSession。安全通信握手过程需要一个会话，为了提高通信的效率，SSL协议允许多个SSLSocket共享同一个SSL会话，在同一个会话中，只有第一个打开的SSLSocket需要进行SSL握手，负责生成密钥及交换密钥，其余SSLSocket都共享密钥信息。<br>④  SSL上下文——SSLContext。它是对整个SSL/TLS协议的封装，表示了安全套接字协议的实现。主要负责设置安全通信过程中的各种信息，例如跟证书相关的信息。并且负责构建SSLSocketFactory、SSLServerSocketFactory和SSLEngine等工厂类。<br>⑤  SSL非阻塞引擎——SSLEngine。假如你要进行NIO通信，那么将使用这个类，它让通过过程支持非阻塞的安全通信。<br>⑥  密钥管理器——KeyManager。此接口负责选择用于证实自己身份的安全证书，发给通信另一方。KeyManager对象由KeyManagerFactory工厂类生成。<br>⑦  信任管理器——TrustManager。此接口负责判断决定是否信任对方的安全证书，TrustManager对象由TrustManagerFactory工厂类生成。</p>
+<ol start="2">
+<li>SSL握手简单<br>https协议利用SSL协议验证通信双方（客户端、服务器端）的身份、协商加密算法与密钥。Android中HttpsConnection类实现了https协议。SSLSocket相关类实现了SSL协议。HttpsConnection只需通过SocketFactory以及Socket提供的抽象接口就可以启动SSL握手过程。<br>主要由SSLSocket、OpenSSLSocketImpl、SSLParameters、SSLSession、OpenSSLSocketFactoryImpl、OpenSSLSessionImpl、SSLSessionContext实现SSL协议。HttpsConnection使用系统提供的默认工厂SSLSocketFactoryImpl创建OpenSSLSocketImpl。OpenSSLSocketImpl通过JNI调用openSSL库提供的api进行握手。注意握手信息是在SocketImpl对象上传输的。SSLSession类封装了SSL会话信息，它存储了SSL握手的结果。最后SSLSessionContext相当与SSLSession的缓存池。这些类之间的关系如下图所示：图3 SSLSocket类图</li>
+</ol>
+<p>类之间的调用顺序如下： 图4 SSLSocket 时序图<br>3.2.3    Android HttpsUrlConnection流程图解<br>主要流程如下：</p>
+<p>URL. openConnection<br>-&gt; streamHandler.openConnection    -&gt;   setupStreamHandler<br>-&gt; HttpsHandler -&gt; OkHttpClient  open -&gt;  HttpsURLConnectionImpl<br>-&gt; DelegatingHttpsURLConnection</p>
+<p>TrustManagerFactory (TrustManagerFactoryImpl engineGetTrustManagers) -&gt; init (AndroidCAStore default) -&gt; getTrustManagers -&gt; TrustManagerImpl</p>
+<p>TrustManagerImpl     checkTrusted<br>TrustManagerImpl    checkTrustedRecursive<br>TrustManagerImplTest  testLearnIntermediate</p>
+<p>TrustManagerImpl     findAllTrustAnchorsByIssuerAndSignature<br>TrustManagerImpl     findAllIssuers</p>
+<p>TrustedCertificateStore  findCert<br>TrustedCertificateStore  hash</p>
+<p>NativeCrypto.X509_NAME_hash_old</p>
+<p>SSLContext init  (null, tmf.getTrustManagers(), null);<br>getInstance -&gt; SSLContextSpi -&gt; OpenSSLContextImpl -&gt; DefaultSSLContextImpl<br>-&gt; OpenSSLSocketFactoryImpl -&gt; OpenSSLSocketImpl  verifyCertificateChain<br>-&gt; SSLParametersImpl setCertificateValidation<br>-&gt; Platform -&gt; TrustManagerImpl 接上</p>
+<p>这里需要额外说明的是：在执行nativeconnect函数时，已经在openSSL库中执行了握手过程。但openSSL库中不会进行任何验证，因为验证模式被设置为SSL_VERIFY_NONE。因此，Android中身份验证是由checkServerTrusted函数实现的。<br>其中TrustManagerImpl     checkTrusted是验证的主要流程<br>checkServerTrusted –&gt; checkTrusted -&gt; checkTrustedRecursive</p>
+<ol>
+<li>If the current certificate in the chain is self-signed verify the chain as is.</li>
+<li>Try building a chain via any trust anchors that issued the current certificate.</li>
+<li>If we were unable to find additional trusted issuers, verify the current chain.</li>
+<li>Use the certificates provided by the peer to grow the chain.</li>
+<li>Finally try the cached intermediates to handle server that failed to send them.</li>
+<li>We were unable to build a valid chain, throw the last error encountered.</li>
+<li>If no errors were encountered above then verifyChain was never called because it was</li>
+</ol>
+<p>Android系统使用openSSL库来交换证书、协商加密算法，但认证服务器段身份并非由openSSL库完成。Android系统将自己的证书、私钥存储在密钥仓库中。.在进行openSSL握手之前，将私钥以及证书放入SSL_CTX变量中。握手结束后，Android系统从SSLSession中取出服务器的证书，利用可信密钥仓库来检验该证书是否可信。相关类以及类之间的关系如下图所示：图 5 cetificate 类图</p>
+<p>3.2.4    证书校验<br>证书校验算法简单说明如下：参考《公钥基础设施(pki)_实现和管理电子安全.pdf》一书<br>证书验证过程主要包含：证书路径生成和证书路径验证两个步骤，其中具体的验证流程参考代码，还有一些很复杂的交叉证书验证的流程，请参考PKI相关的书籍。<br><a href="https://en.wikipedia.org/wiki/X.509" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/X.509</a><br><a href="https://en.wikipedia.org/wiki/Certification_path_validation_algorithm" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Certification_path_validation_algorithm</a><br><a href="http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf" target="_blank" rel="noopener">http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf</a><br><a href="https://www.ietf.org/rfc/rfc5280.txt" target="_blank" rel="noopener">https://www.ietf.org/rfc/rfc5280.txt</a><br><a href="http://itmyhome.com/java-api/java/security/cert/CertPathBuilder.html" target="_blank" rel="noopener">http://itmyhome.com/java-api/java/security/cert/CertPathBuilder.html</a><br><a href="http://www.beansoft.biz/weblogic/docs92/security/certpath.html" target="_blank" rel="noopener">http://www.beansoft.biz/weblogic/docs92/security/certpath.html</a><br><a href="https://www.entrust.com/wp-content/uploads/2013/05/pathvalidation_wp.pdf" target="_blank" rel="noopener">https://www.entrust.com/wp-content/uploads/2013/05/pathvalidation_wp.pdf</a><br>3.2.5    SSL证书使用的建议<br>参考Wiki案例：Android HttpsSSL证书安全与预制浅析.doc</p>
+<h2 id="中间证书"><a href="#中间证书" class="headerlink" title="中间证书"></a>中间证书</h2><p>如果安全套接字层 (SSL) 证书是在本地生成，那么必须从认证中心 (CA) 获取根 (root.cer) 证书以及任何中间 (intermediate.cer) 证书，然后将这些证书添加到 HTTP Server 密钥库。安装根证书和中间证书会创建信任链，从而使客户机和服务器之间的 SSL 握手能够正常工作。</p>
+<p>中间证书有两种方式验证：<br>•    原理上浏览器预置或缓存这种方法也存在<br>•    客户端自动解析下载(大多数客户端并不支持解析下载，会直接返回错误)<br>•    配置服务器直接把中间证书传给客户端 (一般采用这种方式，配置服务器即可)<br>服务器配置方式参考： <a href="https://whatsmychaincert.com/" target="_blank" rel="noopener">https://whatsmychaincert.com/</a><br>如Apache配置方式：<br>SSLEngine on<br>SSLCertificateKeyFile /path/to/example.com.key<br>SSLCertificateFile /path/to/example.com.crt<br>SSLCertificateChainFile /path/to/example.com.chain.crt</p>
+<p>参考：<br><a href="https://www.myssl.cn/tools/downloadchain.html" target="_blank" rel="noopener">https://www.myssl.cn/tools/downloadchain.html</a><br><a href="https://www.myssl.cn/home/article42.html" target="_blank" rel="noopener">https://www.myssl.cn/home/article42.html</a><br><a href="http://professor.blog.51cto.com/996189/1596985" target="_blank" rel="noopener">http://professor.blog.51cto.com/996189/1596985</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_perfermance_oom.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/android_app_perfermance_oom.html" itemprop="url">Android性能分析与优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-15T00:00:00+00:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h1><ul>
+<li><p>流畅<strong>更快</strong> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 稳定**更稳** ```Crash， ANR</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>节省<strong>更省</strong> <code>内存，CPU，安装包大小，存储，功耗电量，网络</code></p>
+</li>
+</ul>
+<p><a href="https://github.com/openthos/openthos/wiki/understand-android" target="_blank" rel="noopener">https://github.com/openthos/openthos/wiki/understand-android</a><br><a href="https://www.kancloud.cn/kancloud/android-performance/53238" target="_blank" rel="noopener">https://www.kancloud.cn/kancloud/android-performance/53238</a><br><a href="https://developer.android.com/topic/performance/index.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/index.html</a><br><a href="https://developer.android.com/studio/profile/index.html" target="_blank" rel="noopener">https://developer.android.com/studio/profile/index.html</a></p>
+<h2 id="流畅性"><a href="#流畅性" class="headerlink" title="流畅性"></a>流畅性</h2><h3 id="启动速度"><a href="#启动速度" class="headerlink" title="启动速度"></a>启动速度</h3><p><a href="https://developer.android.com/topic/performance/launch-time.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/launch-time.html</a><br><a href="https://juejin.im/post/5874bff0128fe1006b443fa0" target="_blank" rel="noopener">https://juejin.im/post/5874bff0128fe1006b443fa0</a></p>
+<h3 id="页面响应速度优化"><a href="#页面响应速度优化" class="headerlink" title="页面响应速度优化"></a>页面响应速度优化</h3><p><a href="https://www.zhihu.com/question/47702122" target="_blank" rel="noopener">https://www.zhihu.com/question/47702122</a><br><a href="http://www.cnblogs.com/lzl-sml/p/5223704.html" target="_blank" rel="noopener">http://www.cnblogs.com/lzl-sml/p/5223704.html</a></p>
+<h3 id="UI渲染显示速度提升"><a href="#UI渲染显示速度提升" class="headerlink" title="UI渲染显示速度提升"></a>UI渲染显示速度提升</h3><p><a href="https://blog.csdn.net/yanbober/article/details/48394201" target="_blank" rel="noopener">https://blog.csdn.net/yanbober/article/details/48394201</a></p>
+<h2 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h2><ul>
+<li>稳定性问题 <a href="http://gityuan.com/2016/06/19/stability_summary/" target="_blank" rel="noopener">http://gityuan.com/2016/06/19/stability_summary/</a></li>
+<li>ANR分析策略  <a href="http://rayleeya.iteye.com/blog/1955652" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1955652</a></li>
+<li>anr google <a href="https://developer.android.com/topic/performance/vitals/anr.html#fix_the_problems" target="_blank" rel="noopener">https://developer.android.com/topic/performance/vitals/anr.html#fix_the_problems</a></li>
+<li>ANR超时源码解析 <a href="http://gityuan.com/2016/07/02/android-anr/" target="_blank" rel="noopener">http://gityuan.com/2016/07/02/android-anr/</a></li>
+<li>ANR信息收集 <a href="http://gityuan.com/2016/12/02/app-not-response/" target="_blank" rel="noopener">http://gityuan.com/2016/12/02/app-not-response/</a>  </li>
+<li>ANR input  <a href="http://gityuan.com/2017/01/01/input-anr/" target="_blank" rel="noopener">http://gityuan.com/2017/01/01/input-anr/</a></li>
+<li>app crash  <a href="http://gityuan.com/2016/06/24/app-crash/" target="_blank" rel="noopener">http://gityuan.com/2016/06/24/app-crash/</a></li>
+<li>native crash <a href="http://gityu" target="_blank" rel="noopener">http://gityu</a> an.com/2016/06/25/android-native-crash/</li>
+</ul>
+<h3 id="稳定性分析及工具"><a href="#稳定性分析及工具" class="headerlink" title="稳定性分析及工具"></a>稳定性分析及工具</h3><ul>
+<li>Android Profile 工具集 <a href="https://developer.android.com/studio/profile/index.html" target="_blank" rel="noopener">https://developer.android.com/studio/profile/index.html</a></li>
+<li>Device Monitor工具集 <a href="https://developer.android.com/studio/profile/monitor.html#usage" target="_blank" rel="noopener">https://developer.android.com/studio/profile/monitor.html#usage</a></li>
+<li><p>性能优化 <a href="http://rayleeya.iteye.com/blog/1961005" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1961005</a></p>
+</li>
+<li><p>traceview<br><a href="http://gityuan.com/2017/07/11/android_debug/" target="_blank" rel="noopener">http://gityuan.com/2017/07/11/android_debug/</a><br><a href="https://bxbxbai.github.io/2014/10/25/use-trace-view/" target="_blank" rel="noopener">https://bxbxbai.github.io/2014/10/25/use-trace-view/</a><br><a href="https://developer.android.com/studio/profile/traceview.html#overview" target="_blank" rel="noopener">https://developer.android.com/studio/profile/traceview.html#overview</a><br><a href="https://blog.csdn.net/innost/article/details/9008691" target="_blank" rel="noopener">https://blog.csdn.net/innost/article/details/9008691</a><br><a href="https://blog.csdn.net/u011240877/article/details/54347396#2%E4%BD%BF%E7%94%A8-android-studio-%E7%94%9F%E6%88%90-trace-%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">https://blog.csdn.net/u011240877/article/details/54347396#2%E4%BD%BF%E7%94%A8-android-studio-%E7%94%9F%E6%88%90-trace-%E6%96%87%E4%BB%B6</a></p>
+</li>
+<li><p>systrace<br><a href="http://gityuan.com/2016/01/17/systrace/" target="_blank" rel="noopener">http://gityuan.com/2016/01/17/systrace/</a><br><a href="https://developer.android.com/studio/command-line/systrace.html" target="_blank" rel="noopener">https://developer.android.com/studio/command-line/systrace.html</a></p>
+</li>
+<li><p>dumpsys<br><a href="http://gityuan.com/2015/08/22/tool-dumpsys/" target="_blank" rel="noopener">http://gityuan.com/2015/08/22/tool-dumpsys/</a><br><a href="https://developer.android.com/studio/command-line/dumpsys.html" target="_blank" rel="noopener">https://developer.android.com/studio/command-line/dumpsys.html</a></p>
+</li>
+<li><p>dmtracedump<br><a href="https://developer.android.com/studio/command-line/dmtracedump.html" target="_blank" rel="noopener">https://developer.android.com/studio/command-line/dmtracedump.html</a></p>
+</li>
+</ul>
+<p>Android Device Monitor  </p>
+<p>Android Device Monitor is a standalone tool that provides a UI for several Android app debugging and analysis tools.However, most components of the Android Device Monitor are <strong>deprecated</strong> in favor of updated tools available in Android Studio 3.0 and higher. The table below helps you decide which developer tools you should use. </p>
+<p>Android Device Monitor component    What you should use</p>
+<ul>
+<li><p>Dalvik Debug Monitor Server (DDMS)<br>This tool is deprecated. Instead, use Android Profiler in Android Studio 3.0 and higher to profile your app’s CPU, memory, and network usage.<br>If you want to perform other debugging tasks, such as sending commands to a connected device to set up port-forwarding, transfer files, or take screenshots, then use the Android Debug Bridge (adb), Android Emulator, Device File Explorer, or Debugger window.</p>
+</li>
+<li><p>Traceview<br>If you want to inspect existing .trace files, or ones you’ve captured by instrumenting your app with the Debug class, keep using Traceview.<br>If you want to record new method traces and inspect realtime CPU usage of your app’s processes, use Android Studio’s CPU profiler.</p>
+</li>
+<li><p>Systrace<br>If you need to inspect native system processes and address UI jank caused by dropped frames, use systrace from the command line.<br>Otherwise, use Android Studio’s CPU profiler to profile your app’s processes.</p>
+</li>
+<li><p>Tracer for OpenGL ES    Use the Graphics API Debugger.</p>
+</li>
+<li>Hierarchy Viewer<br>If you want to inspect your app’s view hierarchy at runtime, use Layout Inspector.</li>
+</ul>
+<p>If you want to profile the rendering speed of your app’s layout, use Window.OnFrameMetricsAvailableListener as described in this blog post.</p>
+<p>Pixel Perfect    Use Layout Inspector.</p>
+<p><strong>ANR分析套路</strong><br><a href="http://maoao530.github.io/2017/02/21/anr-analyse/" target="_blank" rel="noopener">http://maoao530.github.io/2017/02/21/anr-analyse/</a><br><a href="https://blog.csdn.net/sinat_34157462/article/details/78651870" target="_blank" rel="noopener">https://blog.csdn.net/sinat_34157462/article/details/78651870</a><br><a href="https://blog.csdn.net/wei_lei/article/details/70311702" target="_blank" rel="noopener">https://blog.csdn.net/wei_lei/article/details/70311702</a><br><a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="noopener">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
+<h4 id="crash-内存泄露OutOfMemoryError"><a href="#crash-内存泄露OutOfMemoryError" class="headerlink" title="crash - 内存泄露OutOfMemoryError"></a>crash - 内存泄露OutOfMemoryError</h4><p><a href="https://www.jianshu.com/u/b8dad3885e05" target="_blank" rel="noopener">https://www.jianshu.com/u/b8dad3885e05</a><br><a href="http://rayleeya.iteye.com/blog/1956059" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1956059</a><br><a href="http://www.voidcn.com/article/p-txoxuyet-bqt.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-txoxuyet-bqt.html</a><br><a href="https://juejin.im/entry/59f7ea06f265da43143ffee4" target="_blank" rel="noopener">https://juejin.im/entry/59f7ea06f265da43143ffee4</a><br><a href="http://blog.csdn.net/qyf2010qyf/article/details/52852000" target="_blank" rel="noopener">http://blog.csdn.net/qyf2010qyf/article/details/52852000</a></p>
+<p>##节省性</p>
+<h3 id="减少apk安装包大小"><a href="#减少apk安装包大小" class="headerlink" title="减少apk安装包大小"></a>减少apk安装包大小</h3><p><a href="https://developer.android.com/topic/performance/reduce-apk-size.html#apk-structure" target="_blank" rel="noopener">https://developer.android.com/topic/performance/reduce-apk-size.html#apk-structure</a><br><strong>避免使用枚举</strong><br><a href="https://zhuanlan.zhihu.com/p/25865835" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25865835</a><br><a href="http://www.10tiao.com/html/330/201704/2653578978/2.html" target="_blank" rel="noopener">http://www.10tiao.com/html/330/201704/2653578978/2.html</a><br><a href="https://blog.csdn.net/hp910315/article/details/48975655" target="_blank" rel="noopener">https://blog.csdn.net/hp910315/article/details/48975655</a><br><a href="https://blog.csdn.net/my_truelove/article/details/70519234" target="_blank" rel="noopener">https://blog.csdn.net/my_truelove/article/details/70519234</a></p>
+<h3 id="减少过渡后台，android后台优化"><a href="#减少过渡后台，android后台优化" class="headerlink" title="减少过渡后台，android后台优化"></a>减少过渡后台，android后台优化</h3><p><a href="https://developer.android.com/training/best-background.html" target="_blank" rel="noopener">https://developer.android.com/training/best-background.html</a></p>
+<h3 id="减少view绘制过度"><a href="#减少view绘制过度" class="headerlink" title="减少view绘制过度"></a>减少view绘制过度</h3><p><a href="https://blog.csdn.net/qq_19711823/article/details/65627790" target="_blank" rel="noopener">https://blog.csdn.net/qq_19711823/article/details/65627790</a><br><a href="https://www.jianshu.com/p/2cc6d5842986" target="_blank" rel="noopener">https://www.jianshu.com/p/2cc6d5842986</a><br><a href="https://blog.csdn.net/yanbober/article/details/48394201" target="_blank" rel="noopener">https://blog.csdn.net/yanbober/article/details/48394201</a><br><a href="https://yq.aliyun.com/articles/82572" target="_blank" rel="noopener">https://yq.aliyun.com/articles/82572</a></p>
+<h3 id="减少流量消耗"><a href="#减少流量消耗" class="headerlink" title="减少流量消耗"></a>减少流量消耗</h3><p><a href="https://developer.android.com/topic/performance/vitals/bg-network-usage.html#detect_the_problem" target="_blank" rel="noopener">https://developer.android.com/topic/performance/vitals/bg-network-usage.html#detect_the_problem</a><br><a href="https://developer.android.com/training/basics/network-ops/data-saver.html#monitor-changes" target="_blank" rel="noopener">https://developer.android.com/training/basics/network-ops/data-saver.html#monitor-changes</a></p>
+<h3 id="减少电量消耗"><a href="#减少电量消耗" class="headerlink" title="减少电量消耗"></a>减少电量消耗</h3><p><a href="https://developer.android.com/topic/performance/power/index.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/power/index.html</a></p>
+<h3 id="减少内存占用"><a href="#减少内存占用" class="headerlink" title="减少内存占用"></a>减少内存占用</h3><p><a href="https://developer.android.com/topic/performance/memory.html#code" target="_blank" rel="noopener">https://developer.android.com/topic/performance/memory.html#code</a><br><a href="https://developer.android.com/topic/performance/memory-overview.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/memory-overview.html</a></p>
+<h1 id="性能优化的建议"><a href="#性能优化的建议" class="headerlink" title="性能优化的建议"></a>性能优化的建议</h1><p><a href="https://blog.csdn.net/carson_ho/article/details/79708444" target="_blank" rel="noopener">https://blog.csdn.net/carson_ho/article/details/79708444</a><br><a href="https://juejin.im/post/5a0d30e151882546d71ee49e" target="_blank" rel="noopener">https://juejin.im/post/5a0d30e151882546d71ee49e</a><br><a href="https://www.ctolib.com/docs/sfile/notes-master/Android-Java/AndroidPerformancePatterns.html" target="_blank" rel="noopener">https://www.ctolib.com/docs/sfile/notes-master/Android-Java/AndroidPerformancePatterns.html</a><br><a href="https://github.com/Piasy/notes/blob/master/Android-Java/AndroidPerformancePatterns.md" target="_blank" rel="noopener">https://github.com/Piasy/notes/blob/master/Android-Java/AndroidPerformancePatterns.md</a><br><a href="https://www.jianshu.com/u/fdb392adfbed" target="_blank" rel="noopener">https://www.jianshu.com/u/fdb392adfbed</a><br><a href="https://segmentfault.com/a/1190000012413613" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012413613</a><br><a href="https://zhuanlan.zhihu.com/p/26364608" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26364608</a></p>
+<h1 id="Android优化checklist"><a href="#Android优化checklist" class="headerlink" title="Android优化checklist"></a>Android优化checklist</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

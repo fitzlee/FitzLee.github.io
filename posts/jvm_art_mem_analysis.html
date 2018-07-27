@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,jvm,oom,mem," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="JVM虚拟机内存结构-运行数据区域线程私有：栈区，本地方法栈，pc指针线程共有：方法区，堆区  程序计数器  当前线程所执行的字节码的行号指示器。  Java虚拟机栈  线程私有，与线程具有相同生命周期。用于存储局部变量表、操作数栈、动态链表、方法出口等信息。 局部变量表存放内容：  基本数据类型（boolean、byte、char、short、int、float、long、double） 对象引">
+<meta name="keywords" content="java,jvm,oom,mem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jvm 内存结构">
+<meta property="og:url" content="https://fitzlee.github.io/posts/jvm_art_mem_analysis.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="JVM虚拟机内存结构-运行数据区域线程私有：栈区，本地方法栈，pc指针线程共有：方法区，堆区  程序计数器  当前线程所执行的字节码的行号指示器。  Java虚拟机栈  线程私有，与线程具有相同生命周期。用于存储局部变量表、操作数栈、动态链表、方法出口等信息。 局部变量表存放内容：  基本数据类型（boolean、byte、char、short、int、float、long、double） 对象引">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11010834-349018968e31c9d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11010834-b2af65bb985fd1ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/11010834-1088bcf587b5dec1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/11010834-1a36f5b70b8e1ee2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/568153/201701/568153-20170105140405722-1371693441.png">
+<meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/568153/201701/568153-20170105160932753-379862642.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/568153/201701/568153-20170105152551456-892847674.png">
+<meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/568153/201707/568153-20170710131157259-132221985.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/616953/201602/616953-20160226155344349-887482013.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/616953/201605/616953-20160518141733169-1486000631.png">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jvm 内存结构">
+<meta name="twitter:description" content="JVM虚拟机内存结构-运行数据区域线程私有：栈区，本地方法栈，pc指针线程共有：方法区，堆区  程序计数器  当前线程所执行的字节码的行号指示器。  Java虚拟机栈  线程私有，与线程具有相同生命周期。用于存储局部变量表、操作数栈、动态链表、方法出口等信息。 局部变量表存放内容：  基本数据类型（boolean、byte、char、short、int、float、long、double） 对象引">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11010834-349018968e31c9d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/jvm_art_mem_analysis.html"/>
+
+
+
+
+
+  <title>Jvm 内存结构 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/jvm_art_mem_analysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jvm 内存结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:20+00:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/03JVM-ART/" itemprop="url" rel="index">
+                    <span itemprop="name">03JVM&ART</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JVM虚拟机内存结构-运行数据区域"><a href="#JVM虚拟机内存结构-运行数据区域" class="headerlink" title="JVM虚拟机内存结构-运行数据区域"></a>JVM虚拟机内存结构-运行数据区域</h2><p>线程私有：栈区，本地方法栈，pc指针<br>线程共有：方法区，堆区</p>
+<ol>
+<li>程序计数器</li>
+</ol>
+<p>当前线程所执行的字节码的行号指示器。</p>
+<ol start="2">
+<li>Java虚拟机栈</li>
+</ol>
+<p>线程私有，与线程具有相同生命周期。用于存储<strong>局部变量表、操作数栈、动态链表、方法出口等信息</strong>。</p>
+<p>局部变量表存放内容：</p>
+<ul>
+<li>基本数据类型（boolean、byte、char、short、int、float、long、double）</li>
+<li>对象引用（区别于符号引用，符号引用存放在常量池）</li>
+<li>returnAddress类型（指向一条字节码指令的地址）</li>
+</ul>
+<p>64位长度的long和double类型数据占用2个局部变量空间（slot），其余占用1个slot。</p>
+<p>两种异常：</p>
+<ul>
+<li>StackOverflowError：线程请求的栈深度&gt;虚拟机允许的深度</li>
+<li>OutOfMemoryError: 动态扩展时无法申请到足够内存</li>
+</ul>
+<ol start="3">
+<li>本地方法栈（Native Method Stack）</li>
+</ol>
+<p>与虚拟机栈类似，区别是Native Method Stack服务于Native方法，而虚拟机栈服务于Java方法。</p>
+<ol start="4">
+<li>Java堆（Java Heap）</li>
+</ol>
+<p>所有线程共享，存放<strong>对象实例、数组</strong>。</p>
+<p>垃圾收集器管理的主要区域，也称“GC堆（Garbage Collected Heap）”</p>
+<p>包含新生代（Eden空间、From Survivor空间、To Survivor空间）、老生代。</p>
+<p>可划分出多个线程私有的分配缓冲区（Thread Local Allocation Buffer，TLAB）。</p>
+<p>物理上可以不连续，逻辑上连续。</p>
+<p>可扩展：-Xmx和-Xms控制。-Xmx最大堆内存大小，-Xms初始堆内存大小。</p>
+<p>当堆中没有可用内存完成实例分配，并且也无法再扩展时——OutOfMemoryError</p>
+<ol start="5">
+<li>方法区（别名Non-Heap）</li>
+</ol>
+<p>也是所有线程共享，用于存储<strong>已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据</strong>。</p>
+<p>也称“永久代（Permanent Generation）”，但本质上并不等价。</p>
+<p>永久代有-XX:MaxPermSize的上限。</p>
+<ol start="6">
+<li>运行时常量池（Runtime Constant Pool）</li>
+</ol>
+<p>属于方法区的一部分。</p>
+<ol start="7">
+<li>直接内存（Direct Memory）</li>
+</ol>
+<p>JDK1.4新加入的NIO（New Input/Output）类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O方式，它可使用Native函数库直接分配<strong>堆外内存</strong>。不受Java堆大小（-Xmx）限制，从而可能造成各个内存区域总和大于物理内存限制而造成动态扩展时出现OutOfMemoryError。</p>
+<p>小结：</p>
+<ul>
+<li>1、2、3三种内存区域是各个线程私有的</li>
+<li>4、5是所有线程共有的</li>
+<li>6是5的一部分</li>
+<li>7不是虚拟机运行时数据区的一部分，属于虚拟机的内存区域外的其他物理内存</li>
+</ul>
+<a id="more"></a>
+<h3 id="Java内存结构"><a href="#Java内存结构" class="headerlink" title="Java内存结构"></a>Java内存结构</h3><p><img src="https://upload-images.jianshu.io/upload_images/11010834-349018968e31c9d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>1.PC寄存器/程序计数器：</p>
+<p>　　严格来说是一个数据结构，用于保存当前正在执行的程序的内存地址，由于Java是支持多线程执行的，所以程序执行的轨迹不可能一直都是线性执行。当有多个线程交叉执行时，被中断的线程的程序当前执行到哪条内存地址必然要保存下来，以便用于被中断的线程恢复执行时再按照被中断时的指令地址继续执行下去。为了线程切换后能恢复到正确的执行位置，每个线程都需要有一个独立的程序计数器，各个线程之间计数器互不影响，独立存储，我们称这类内存区域为“线程私有”的内存,这在某种程度上有点类似于“ThreadLocal”，是线程安全的。</p>
+<p>2.Java栈 Java Stack：<br><img src="https://upload-images.jianshu.io/upload_images/11010834-b2af65bb985fd1ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>　　Java栈总是与线程关联在一起的，每当创建一个线程，JVM就会为该线程创建对应的Java栈，在这个Java栈中又会包含多个栈帧(Stack Frame)，这些栈帧是与每个方法关联起来的，每运行一个方法就创建一个栈帧，每个栈帧会含有一些局部变量、操作栈和方法返回值等信息。每当一个方法执行完成时，该栈帧就会弹出栈帧的元素作为这个方法的返回值，并且清除这个栈帧，Java栈的栈顶的栈帧就是当前正在执行的活动栈，也就是当前正在执行的方法，PC寄存器也会指向该地址。只有这个活动的栈帧的本地变量可以被操作栈使用，当在这个栈帧中调用另外一个方法时，与之对应的一个新的栈帧被创建，这个新创建的栈帧被放到Java栈的栈顶，变为当前的活动栈。同样现在只有这个栈的本地变量才能被使用，当这个栈帧中所有指令都完成时，这个栈帧被移除Java栈，刚才的那个栈帧变为活动栈帧，前面栈帧的返回值变为这个栈帧的操作栈的一个操作数。</p>
+<p>　　由于Java栈是与线程对应起来的，Java栈数据不是线程共有的，所以不需要关心其数据一致性，也不会存在同步锁的问题。</p>
+<p>　　在Java虚拟机规范中，对这个区域规定了两种异常状况：如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果虚拟机可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。在Hot Spot虚拟机中，可以使用-Xss参数来设置栈的大小。栈的大小直接决定了函数调用的可达深度。</p>
+<p>3.堆 Heap:</p>
+<p>　　堆是JVM所管理的内存中国最大的一块，是被所有Java线程锁共享的，不是线程安全的，在JVM启动时创建。堆是存储Java对象的地方，这一点Java虚拟机规范中描述是：所有的对象实例以及数组都要在堆上分配。Java堆是GC管理的主要区域，从内存回收的角度来看，由于现在GC基本都采用分代收集算法，所以Java堆还可以细分为：新生代和老年代；新生代再细致一点有Eden空间、From Survivor空间、To Survivor空间等。</p>
+<p>4.方法区Method Area:</p>
+<p>　　方法区存放了要加载的类的信息（名称、修饰符等）、类中的静态常量、类中定义为final类型的常量、类中的Field信息、类中的方法信息，当在程序中通过Class对象的getName.isInterface等方法来获取信息时，这些数据都来源于方法区。方法区是被Java线程锁共享的，不像Java堆中其他部分一样会频繁被GC回收，它存储的信息相对比较稳定，在一定条件下会被GC，当方法区要使用的内存超过其允许的大小时，会抛出OutOfMemory的错误信息。方法区也是堆中的一部分，就是我们通常所说的Java堆中的永久区 Permanet Generation，大小可以通过参数来设置,可以通过-XX:PermSize指定初始值，-XX:MaxPermSize指定最大值。</p>
+<p>5.常量池Constant Pool:</p>
+<p>　　常量池本身是方法区中的一个数据结构。常量池中存储了如字符串、final变量值、类名和方法名常量。常量池在编译期间就被确定，并保存在已编译的.class文件中。一般分为两类：字面量和应用量。字面量就是字符串、final变量等。类名和方法名属于引用量。引用量最常见的是在调用方法的时候，根据方法名找到方法的引用，并以此定为到函数体进行函数代码的执行。引用量包含：类和接口的权限定名、字段的名称和描述符，方法的名称和描述符。</p>
+<p>6.本地方法栈Native Method Stack:</p>
+<p>　　本地方法栈和Java栈所发挥的作用非常相似，区别不过是Java栈为JVM执行Java方法服务，而本地方法栈为JVM执行Native方法服务。本地方法栈也会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/11010834-1088bcf587b5dec1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br><img src="http://upload-images.jianshu.io/upload_images/11010834-1a36f5b70b8e1ee2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>参考：<a href="https://www.zhihu.com/question/29833675" target="_blank" rel="noopener">https://www.zhihu.com/question/29833675</a></p>
+<h3 id="7个区域内存溢出"><a href="#7个区域内存溢出" class="headerlink" title="7个区域内存溢出"></a>7个区域内存溢出</h3><ul>
+<li><p>程序计数器：看做当前线程所执行的字节码行号指示器。是线程私有的内存，且唯一一块不报OutOfMemoryError异常的内存区域。</p>
+</li>
+<li><p>Java虚拟机栈：用于描述java方法的内存模型：每个方法被执行时都会同时创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法被调用直至执行完成的过程就对应着一个栈帧在虚拟机中从入栈到出栈的过程。如果线程请求的栈深度大于虚拟机所允许的深度就报StackOverflowError, 如果虚拟 机栈可以动态扩展，当拓展时无法申请到足够的内存会抛出OutOfMemoryError. 是线程私有的。</p>
+</li>
+<li><p>本地方法栈：与虚拟机栈相似，不同的在于它是为虚拟机使用到Native方法服务的。会抛出StackOverflowError和OutOfMemoryError。是线程私有的。</p>
+</li>
+<li><p>Java堆: 是所有线程共享的一块内存，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。如果堆上没有内存完成实例的分配就会报OutOfMemoryError.</p>
+</li>
+<li><p>方法区（永久代）：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。当方法区无法满足内存分配需求时，会抛出OutOfMemoryError。是共享内存。</p>
+</li>
+<li><p>运行时常量池：用于存放编译器生成的各种字面量和符号引用，是方法区的一部分。无法申请内存时抛出OutOfMemoryError。</p>
+</li>
+<li><p>直接内存：不是虚拟机运行时数据的一部分，也不是java虚拟机规范中定义的区域，是计算机直接的内存空间。这部分也被频繁使用，如JAVA NIO的引入基于通道和缓存区的I/O使用native函数直接分配堆外内存。如果内存不足会报OutOfMemoryError。</p>
+</li>
+</ul>
+<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="JMM三性质"><a href="#JMM三性质" class="headerlink" title="JMM三性质"></a>JMM三性质</h3><p>　　<strong>原子性（Atomicity）</strong>：一个操作不能被打断，要么全部执行完毕，要么不执行。在这点上有点类似于事务操作，要么全部执行成功，要么回退到执行该操作之前的状态。</p>
+<p>　　基本类型数据的访问大都是原子操作，long 和double类型的变量是64位，但是在32位JVM中，32位的JVM会将64位数据的读写操作分为2次32位的读写操作来进行，这就导致了long、double类型的变量在32位虚拟机中是非原子操作，数据有可能会被破坏，也就意味着多个线程在并发访问的时候是线程非安全的。</p>
+<p>　<strong>可见性</strong>：一个线程对共享变量做了修改之后，其他的线程立即能够看到（感知到）该变量这种修改（变化）。</p>
+<p>　　Java内存模型是通过将在工作内存中的变量修改后的值同步到主内存，在读取变量前从主内存刷新最新值到工作内存中，这种依赖主内存的方式来实现可见性的。</p>
+<p>无论是普通变量还是volatile变量都是如此，区别在于：volatile的特殊规则保证了volatile变量值修改后的新值立刻同步到主内存，每次使用volatile变量前立即从主内存中刷新，因此volatile保证了多线程之间的操作变量的可见性，而普通变量则不能保证这一点。</p>
+<p>　　除了volatile关键字能实现可见性之外，还有synchronized,Lock，final也是可以的。</p>
+<p>　　使用synchronized关键字，在同步方法/同步块开始时（Monitor Enter）,使用共享变量时会从主内存中刷新变量值到工作内存中（即从主内存中读取最新值到线程私有的工作内存中），在同步方法/同步块结束时(Monitor Exit),会将工作内存中的变量值同步到主内存中去（即将线程私有的工作内存中的值写入到主内存进行同步）。</p>
+<p>　　使用Lock接口的最常用的实现ReentrantLock(重入锁)来实现可见性：当我们在方法的开始位置执行lock.lock()方法，这和synchronized开始位置（Monitor Enter）有相同的语义，即使用共享变量时会从主内存中刷新变量值到工作内存中（即从主内存中读取最新值到线程私有的工作内存中），在方法的最后finally块里执行lock.unlock()方法，和synchronized结束位置（Monitor Exit）有相同的语义,即会将工作内存中的变量值同步到主内存中去（即将线程私有的工作内存中的值写入到主内存进行同步）。</p>
+<p>　　final关键字的可见性是指：被final修饰的变量，在构造函数数一旦初始化完成，并且在构造函数中并没有把“this”的引用传递出去（“this”引用逃逸是很危险的，其他的线程很可能通过该引用访问到只“初始化一半”的对象），那么其他线程就可以看到final变量的值。</p>
+<p>　　<strong>有序性</strong>：对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p>
+<p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性,volatile关键字本身通过加入内存屏障来禁止指令的重排序，而synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</p>
+<p>在单线程程序中，不会发生“指令重排”和“工作内存和主内存同步延迟”现象，只在多线程程序中出现。</p>
+<h3 id="happens-before原则"><a href="#happens-before原则" class="headerlink" title="happens-before原则"></a>happens-before原则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、程序次序规则：在一个单独的线程中，按照程序代码的执行流顺序，（时间上）先执行的操作happen—before（时间上）后执行的操作。</span><br><span class="line"></span><br><span class="line">2、管理锁定规则：一个unlock操作happen—before后面（时间上的先后顺序，下同）对同一个锁的lock操作。</span><br><span class="line"></span><br><span class="line">3、volatile变量规则：对一个volatile变量的写操作happen—before后面对该变量的读操作。</span><br><span class="line"></span><br><span class="line">4、线程启动规则：Thread对象的start（）方法happen—before此线程的每一个动作。</span><br><span class="line"></span><br><span class="line">5、线程终止规则：线程的所有操作都happen—before对此线程的终止检测，可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。</span><br><span class="line"></span><br><span class="line">6、线程中断规则：对线程interrupt（）方法的调用happen—before发生于被中断线程的代码检测到中断时事件的发生。</span><br><span class="line"></span><br><span class="line">7、对象终结规则：一个对象的初始化完成（构造函数执行结束）happen—before它的finalize（）方法的开始。</span><br><span class="line"></span><br><span class="line">8、传递性：如果操作A happen—before操作B，操作B happen—before操作C，那么可以得出A happen—before操作C。</span><br></pre></td></tr></table></figure>
+<p>原则分析：</p>
+<p><a href="https://blog.csdn.net/ns_code/article/details/17348313" target="_blank" rel="noopener">https://blog.csdn.net/ns_code/article/details/17348313</a><br><a href="https://www.cnblogs.com/lewis0077/p/5143268.html" target="_blank" rel="noopener">https://www.cnblogs.com/lewis0077/p/5143268.html</a></p>
+<h2 id="JVM内存分配"><a href="#JVM内存分配" class="headerlink" title="JVM内存分配"></a>JVM内存分配</h2><p>总的来说，JVM管理的内存包括堆内存和非堆内存。堆就是Java代码可及的内存，是留给开发人员使用的；非堆就是JVM留给自己用的，所以方法区、JVM内部处理或优化所需的内存(如JIT编译后的代码缓存)、每个类结构(如运行时常数池、字段和方法数据)以及方法和构造方法的代码都在非堆内存中。</p>
+<p>因此这里所说的内存分配是指堆内存的分配，即我们程序中生成的对象的分配。<strong>以下所述针对的是HotSpot虚拟机</strong>。</p>
+<h3 id="1、Java堆结构"><a href="#1、Java堆结构" class="headerlink" title="1、Java堆结构"></a>1、Java堆结构</h3><p>以HotSpot为例，如下图：</p>
+<p><img src="https://images2015.cnblogs.com/blog/568153/201701/568153-20170105140405722-1371693441.png" alt="点击全屏显示"></p>
+<h4 id="1-1、年轻代"><a href="#1-1、年轻代" class="headerlink" title="1.1、年轻代"></a>1.1、年轻代</h4><p>年轻代（或称新生代，Young、New）通常用来放新生成的对象（但不绝对，如可以通过-XX:PretenureSizeThreadshold配置将大对象直接分配在老年代）。年轻代的目标就是尽可能快速地收集掉那些生命周期短的对象。</p>
+<p>年轻代分3个区，1个Eden区，2个Survivor区（from 和 to），但每次只使用Eden和一个Survivor区，另一个Survivor区空着。空Survivor区用来放MinorGC时从Eden和在使用的Survivor区中复制来的活着的对象。</p>
+<p>针对年轻代的GC为Minor GC或称Young GC，在Eden剩余空间不足以分配新对象时触发</p>
+<h4 id="1-2、老年代"><a href="#1-2、老年代" class="headerlink" title="1.2、老年代"></a>1.2、老年代</h4><p>老年代（Old、Tenure）通常用来存放从年轻代复制过来的对象（也可直接在老年代分配对象）。老年代中存放的是一些生命周期较长的对象。</p>
+<p>针对老年代的GC为Major GC或称Full GC，在老年代剩余空间不足以容纳新对象时触发。Major GC经常会伴随至少一次的Minor GC（但非绝对，如下面所说的HandlePromotionFailure策略，有可能直接进行Major GC；Parallel Scavenge收集器提供了直接进行Major GC的策略选择），Major GC一般比Minor GC慢10倍以上。</p>
+<p><strong>永久代</strong></p>
+<p>通常还可以听到<strong>永久代（PermGen space）</strong>的概念，其实它并不在Java堆。有时永久代又被称为元空间（Metaspace）或方法区，比较乱。它们的区别是：方法区为JVM的规范，永久代、元空间分别是方法区在HotSpot中的一种实现，对于其他类型的虚拟机实现，如 JRockit（BEA）、J9（IBM），其并没有这些概念。</p>
+<h3 id="2、堆内存分配过程"><a href="#2、堆内存分配过程" class="headerlink" title="2、堆内存分配过程　　"></a>2、堆内存分配过程　　</h3><p>对象的内存分配，绝大部分都是在堆上分配（少数经过JIT编译后被拆散为标量类型并间接在栈上分配），这里介绍在堆上的分配。</p>
+<p>生成对象（为对象分配内存）的过程如下：</p>
+<ol>
+<li>首先看Eden剩余空间是否足够分配该对象，若够则直接在Eden分配；</li>
+<li>否则进行MinorGC：将Eden和在使用的Survivor区中活着的对象复制到另一个Survivor区，并回收Eden和使用着的Survivor区。然后把对象分配到Eden，以后另一个Survivor成为使用的Survivor区；</li>
+<li>若另一个Survivor区不能完全容纳复制过来的对象，则能放下的放入该Survivor，把放不下的放到老年代（即进行分配担保）；</li>
+<li>若老年代剩余空间不够了则进行Full GC，</li>
+<li>若Full GC后仍不够则抛出OOM异常。</li>
+</ol>
+<p>具体可以分为：</p>
+<ul>
+<li>分配过程（优先在Eden分配）</li>
+<li>分配担保（垃圾回收时Survivor放不下的存活对象移到老年代）</li>
+<li>提前移动的配置（大对象、对象年龄、动态年龄）</li>
+</ul>
+<p>以下示例所用JDK为1.8.0_45。</p>
+<h4 id="2-1、对象优先在Eden区分配"><a href="#2-1、对象优先在Eden区分配" class="headerlink" title="2.1、对象优先在Eden区分配"></a>2.1、对象优先在Eden区分配</h4><p>对象优先分配在Eden区，如果Eden区没有足够的空间时，虚拟机执行一次Minor GC。</p>
+<p>示例代码：</p>
+<p><img src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="点击全屏显示"> View Code</p>
+<p>GC日志：</p>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[GC (Allocation Failure) [DefNew: 7291K-&gt;508K(9216K), 0.0035043 secs] 7291K-&gt;6652K(19456K), 0.0035385 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span><br><span class="line">Heap</span><br><span class="line"> def new generation   total 9216K, used 4687K [0x00000000fec00000, 0x00000000ff600000, 0x00000000ff600000)</span><br><span class="line">  eden space 8192K,  51% used [0x00000000fec00000, 0x00000000ff014930, 0x00000000ff400000)</span><br><span class="line">  from space 1024K,  49% used [0x00000000ff500000, 0x00000000ff57f390, 0x00000000ff600000)</span><br><span class="line">  to   space 1024K,   0% used [0x00000000ff400000, 0x00000000ff400000, 0x00000000ff500000)</span><br><span class="line"> tenured generation   total 10240K, used 6144K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)</span><br><span class="line">   the space 10240K,  60% used [0x00000000ff600000, 0x00000000ffc00030, 0x00000000ffc00200, 0x0000000100000000)</span><br><span class="line"> Metaspace       used 2559K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 274K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<p>说明：新生代可用的空间为9M = 8M（Eden容量） + 1M（一个survivor容量），分配完allocation1、allocation2、allocation3之后，无法再分配allocation4，会发生分配失败，则需要进行一次Minor GC，survivor to区域的容量为1M，无法容纳总量为6M的三个对象，则会通过担保机制将allocation1、allocation2、allocation3转移到老年代，然后再将allocation4分配在Eden区。</p>
+<h4 id="2-2、空间分配担保"><a href="#2-2、空间分配担保" class="headerlink" title="2.2、空间分配担保"></a>2.2、空间分配担保</h4><p>空间分配担保（Handle Promotion，意译成<strong>对象存储位置晋升</strong>还差不多，分配担保…什么鬼）即让老年代空间来存放年轻代中的对象，其前提是老年代还有容纳的空间。</p>
+<p>在发生Minor GC时，虚拟机会检查老年代连续的空闲区域是否大于新生代所有对象的总和，若成立，则说明Minor GC是安全的，否则，虚拟机需要查看HandlePromotionFailure的值，看是否允许担保失败，若允许，则虚拟机继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，若大于，将尝试进行一次Minor GC；若小于或者HandlePromotionFailure设置不运行冒险，那么此时将改成一次Full GC。</p>
+<p>以上是JDK Update 24之前的策略，之后的策略改变了，只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则将进行Full GC。</p>
+<p>冒险是指经过一次Minor GC后有大量对象存活，而新生代的survivor区很小，放不下这些大量存活的对象，所以需要老年代进行分配担保，把survivor区无法容纳的对象直接进入老年代。</p>
+<p>该策略的意义之一在于减少不必要的MinorGC。具体的流程图如下：</p>
+<p><img src="https://images2015.cnblogs.com/blog/568153/201701/568153-20170105160932753-379862642.png" alt="点击全屏显示"><img src="https://images2015.cnblogs.com/blog/568153/201701/568153-20170105152551456-892847674.png" alt="点击全屏显示"></p>
+<p>示例代码：</p>
+<p><img src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="点击全屏显示"> View Code</p>
+<p>GC日志（没在老JDK上跑，可能与期望的有点出入）：</p>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[GC (Allocation Failure) [DefNew: 7291K-&gt;508K(9216K), 0.0042361 secs] 7291K-&gt;4604K(19456K), 0.0042750 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span><br><span class="line">[GC (Allocation Failure) [DefNew: 6811K-&gt;508K(9216K), 0.0007200 secs] 10907K-&gt;4604K(19456K), 0.0007436 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span><br><span class="line">Heap</span><br><span class="line"> def new generation   total 9216K, used 2638K [0x00000000fec00000, 0x00000000ff600000, 0x00000000ff600000)</span><br><span class="line">  eden space 8192K,  26% used [0x00000000fec00000, 0x00000000fee14930, 0x00000000ff400000)</span><br><span class="line">  from space 1024K,  49% used [0x00000000ff400000, 0x00000000ff47f0e0, 0x00000000ff500000)</span><br><span class="line">  to   space 1024K,   0% used [0x00000000ff500000, 0x00000000ff500000, 0x00000000ff600000)</span><br><span class="line"> tenured generation   total 10240K, used 4096K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)</span><br><span class="line">   the space 10240K,  40% used [0x00000000ff600000, 0x00000000ffa00020, 0x00000000ffa00200, 0x0000000100000000)</span><br><span class="line"> Metaspace       used 2560K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 274K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<p>说明：</p>
+<p>发生了两Minor次GC，第一次发生在给allocation4分配内存空间时，由于老年代的连续可用空间大于存活的对象总和，所以allocation2、allocation3将会进入老年代，allocation1的空间将被回收，allocation4分配在新生代；第二次发生在给allocation7分配内存空间时，此次GC将allocation4、allocation5、allocation6所占的内存全部回收。最后，allocation2、allocation3在老年代，allocation7在新生代。 </p>
+<h4 id="2-3、大对象直接进入老年代"><a href="#2-3、大对象直接进入老年代" class="headerlink" title="2.3、大对象直接进入老年代"></a>2.3、大对象直接进入老年代</h4><p>需要大量连续内存空间的Java对象称为大对象，大对象的出现会导致提前触发垃圾收集以获取更大的连续的空间来进行大对象的分配。虚拟机提供了-XX:PretenureSizeThreadshold（仅对Serial和ParNew收集器有效）参数来设置大对象的阈值，超过阈值的对象直接分配到老年代。这样做的目的是避免在Eden区和两个 Survivor区之间发生大量的内存拷贝（新生代采用复制算法收集内存）。</p>
+<p>示例代码：</p>
+<p><img src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="点击全屏显示"> View Code</p>
+<p>GC日志：</p>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Heap</span><br><span class="line"> def new generation   total 9216K, used 1311K [0x00000000fec00000, 0x00000000ff600000, 0x00000000ff600000)</span><br><span class="line">  eden space 8192K,  16% used [0x00000000fec00000, 0x00000000fed47f80, 0x00000000ff400000)</span><br><span class="line">  from space 1024K,   0% used [0x00000000ff400000, 0x00000000ff400000, 0x00000000ff500000)</span><br><span class="line">  to   space 1024K,   0% used [0x00000000ff500000, 0x00000000ff500000, 0x00000000ff600000)</span><br><span class="line"> tenured generation   total 10240K, used 4096K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)</span><br><span class="line">   the space 10240K,  40% used [0x00000000ff600000, 0x00000000ffa00010, 0x00000000ffa00200, 0x0000000100000000)</span><br><span class="line"> Metaspace       used 2559K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 274K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<p>说明：4MB对象超过PretenureSizeThreshold阈值（3MB），直接分配在了老年代。</p>
+<h4 id="2-4、长期存活的对象进入老年代"><a href="#2-4、长期存活的对象进入老年代" class="headerlink" title="2.4、长期存活的对象进入老年代"></a>2.4、长期存活的对象进入老年代</h4><p>每个对象有一个对象年龄计数器，与对象头标记字中的GC分代年龄对应。对象出生在Eden区、经过一次Minor GC后仍然存活，并能够被Survivor容纳，设置年龄为1，对象在Survivor区每次经过一次Minor GC，年龄就加1，当年龄达到一个阈值（默认15），下次触发Minor GC时就被移到老年代（即配置的是最多被在Survivor间移动几次，达到阈值后下一次GC时不移动而是直接晋升了）。虚拟机提供了-XX:MaxTenuringThreshold来进行设置。</p>
+<p>示例代码：</p>
+<p><img src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="点击全屏显示"> View Code</p>
+<p>GC日志：</p>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[GC (Allocation Failure) [DefNew Desired survivor size 524288 bytes, new threshold 1 (max 1)- age   1:     783256 bytes,     783256 total: 5499K-&gt;764K(9216K), 0.0024536 secs] 5499K-&gt;4860K(19456K), 0.0024878 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span><br><span class="line">[GC (Allocation Failure) [DefNew Desired survivor size 524288 bytes, new threshold 1 (max 1): 4860K-&gt;0K(9216K), 0.0006581 secs] 8956K-&gt;4860K(19456K), 0.0006864 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span><br><span class="line">Heap</span><br><span class="line"> def new generation   total 9216K, used 4178K [0x00000000fec00000, 0x00000000ff600000, 0x00000000ff600000)</span><br><span class="line">  eden space 8192K,  51% used [0x00000000fec00000, 0x00000000ff014930, 0x00000000ff400000)</span><br><span class="line">  from space 1024K,   0% used [0x00000000ff400000, 0x00000000ff400000, 0x00000000ff500000)</span><br><span class="line">  to   space 1024K,   0% used [0x00000000ff500000, 0x00000000ff500000, 0x00000000ff600000)</span><br><span class="line"> tenured generation   total 10240K, used 4860K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)</span><br><span class="line">   the space 10240K,  47% used [0x00000000ff600000, 0x00000000ffabf120, 0x00000000ffabf200, 0x0000000100000000)</span><br><span class="line"> Metaspace       used 2560K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 274K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<p>说明：发生了两次Minor GC，第一次是在给allocation3进行分配的时候会出现一次Minor GC，此时survivor区域不能容纳allocation2，但是可以容纳allocation1，所以allocation1将会进入survivor区域并且年龄为1，达到了阈值，将在下一次GC时晋升到老年代，而allocation2则会通过担保机制进入老年代。第二次发生GC是在第二次给allocation3分配空间时，这时，allocation1的晋升到老年代，此次GC也可以清理出原来allocation3占据的4MB空间，将allocation3分配在Eden区。所以，最后的结果是allocation1、allocation2在老年代，allocation3在Eden区。</p>
+<h4 id="2-5、动态判断对象年龄"><a href="#2-5、动态判断对象年龄" class="headerlink" title="2.5、动态判断对象年龄"></a>2.5、动态判断对象年龄</h4><p>对象的年龄到达了MaxTenuringThreshold可以进入老年代，同时，如果在survivor区中相同年龄所有对象大小的总和大于survivor区的一半，年龄大于等于该年龄的对象就可以直接进入老年代。无需等到MaxTenuringThreshold中要求的年龄。</p>
+<p>示例代码：</p>
+<p><img src="https://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="点击全屏显示"> View Code</p>
+<p>GC日志：</p>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[GC (Allocation Failure) [DefNew Desired survivor size 524288 bytes, new threshold 1 (max 15)- age   1:    1045416 bytes,    1045416 total: 5755K-&gt;1020K(9216K), 0.0027553 secs] 5755K-&gt;5116K(19456K), 0.0028017 secs] [Times: user=0.00 sys=0.02, real=0.00 secs] </span><br><span class="line">[GC (Allocation Failure) [DefNew Desired survivor size 524288 bytes, new threshold 15 (max 15): 5116K-&gt;0K(9216K), 0.0009216 secs] 9212K-&gt;5116K(19456K), 0.0009399 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </span><br><span class="line">Heap</span><br><span class="line"> def new generation   total 9216K, used 4178K [0x00000000fec00000, 0x00000000ff600000, 0x00000000ff600000)</span><br><span class="line">  eden space 8192K,  51% used [0x00000000fec00000, 0x00000000ff014930, 0x00000000ff400000)</span><br><span class="line">  from space 1024K,   0% used [0x00000000ff400000, 0x00000000ff400000, 0x00000000ff500000)</span><br><span class="line">  to   space 1024K,   0% used [0x00000000ff500000, 0x00000000ff500000, 0x00000000ff600000)</span><br><span class="line"> tenured generation   total 10240K, used 5116K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)</span><br><span class="line">   the space 10240K,  49% used [0x00000000ff600000, 0x00000000ffaff130, 0x00000000ffaff200, 0x0000000100000000)</span><br><span class="line"> Metaspace       used 2559K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 274K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+<p><a href="javascript:void(0" target="_blank" rel="noopener"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<p>说明：发生了两次Minor GC，第一次发生在给allocation4分配内存时，此时allocation1、allocation2将会进入survivor区，而allocation3通过担保机制将会进入老年代。第二次发生在第二次给allocation4分配内存时，此时，survivor区的allocation1、allocation2达到了survivor区容量的一半，将会进入老年代，此次GC可以清理出allocation4原来的4MB空间，并将allocation4分配在Eden区。最终，allocation1、allocation2、allocation3在老年代，allocation4在Eden区。、</p>
+<h3 id="3、堆内存分配参数设置"><a href="#3、堆内存分配参数设置" class="headerlink" title="3、堆内存分配参数设置"></a>3、堆内存分配参数设置</h3><p>见 <a href="http://www.cnblogs.com/z-sm/p/6253335.html#autoid-2-4-0" target="_blank" rel="noopener">HotSpot JVM各区域内存分配参数设置-MarchOn</a></p>
+<ul>
+<li>-Xmx3550m：等价于-XX:MaxHeapSize，设置JVM最大堆内存为3550M。</li>
+<li>-Xms3550m：等价于-XX:InitialHeapSize，设置JVM初始堆内存为3550M。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。</li>
+<li>-Xmn2g：设置年轻代大小为2G。在整个堆内存大小确定的情况下，增大年轻代将会减小年老代，反之亦然。此值关系到JVM垃圾回收，对系统性能影响较大，官方推荐配置为整个堆大小的3/8。</li>
+<li>-XX:NewSize=1024m：设置年轻代初始值为1024M。</li>
+<li>-XX:MaxNewSize=1024m：设置年轻代最大值为1024M。</li>
+<li>-XX:SurvivorRatio=4：设置年轻代中Eden区与一个Survivor区的比值。表示Edgen为一个Survivor的4倍，即1个Survivor区占整个年轻代大小的1/6。默认为8。</li>
+<li>-XX:NewRatio=4：设置老年代与年轻代（包括1个Eden和2个Survivor区）的比值。表示老年代是年轻代的4倍。</li>
+<li>-XX:PretenureSizeThreadshold=1024：设置让大于此阈值的对象直接分配在老年代（只对Serial、ParNew收集器有效），单位为字节</li>
+<li>-XX:MaxTenuringThreshold=7：表示一个对象如果在Survivor区移动了7次那下次MinorGC时就进入老年代。如果设置为0的话，则年轻代对象不经过Survivor区，直接进入年老代，对于需要大量常驻内存的应用，这样做可以提高效率。如果将此值设置为一个较大值，则年轻代对象会在Survivor区进行多次复制，这样可以增加对象在年轻代存活时间，增加对象在年轻代被垃圾回收的概率，减少Full GC的频率，可以在某种程度上提高服务稳定性</li>
+</ul>
+<p>copy from ：<a href="http://www.cnblogs.com/z-sm/p/6252245.html" target="_blank" rel="noopener">http://www.cnblogs.com/z-sm/p/6252245.html</a></p>
+<h2 id="JVM对象创建和内存布局"><a href="#JVM对象创建和内存布局" class="headerlink" title="JVM对象创建和内存布局"></a>JVM对象创建和内存布局</h2><h3 id="1、对象创建的过程"><a href="#1、对象创建的过程" class="headerlink" title="1、对象创建的过程"></a>1、对象创建的过程</h3><p>　　1、类加载、解析、初始化：虚拟机遇到new时先检查此指令的参数是否能在常量池中找到类的符号引用，并检查符号引用代表的类是否被加载、解析、初始化，若没有则先进行类加载。</p>
+<p>　　2、对象内存分配：类加载检查通过后，虚拟机为新生对象分配内存，对象所需内存大小在类加载完成后便可完全确定。分配内存的任务等同于从堆中分出一块确定大小的内存。（具体分配策略见：<a href="http://www.cnblogs.com/z-sm/p/6252245.html" target="_blank" rel="noopener">JVM内存分配策略-MarchOn</a>）</p>
+<p>　　　　根据内存是否规整（即用的放一边，空闲的放另一边，是否如此与所使用的垃圾收集器是否带有压缩整理Compact功能有关），分配方式分为指针碰撞（Serial、ParNe等收集器）和空闲列表（CMS收集器等）两种</p>
+<p>　　　　并发控制：可能多个对象同时从堆中分配内存因此需要同步，两种解决方案：虚拟机用CAS配上失败重试保证原子操作；把内存分配动作按线程划分在不同空间中进行，即每个线程预先分配一块线程本地缓冲区TLAB，各线程在各自TLAB为各自对象分配内存。</p>
+<p>　　3、对象的初始化：对象头和对象实例数据的初始化</p>
+<h3 id="2、对象的内存布局"><a href="#2、对象的内存布局" class="headerlink" title="2、对象的内存布局"></a>2、对象的内存布局</h3><p><strong>布局：</strong></p>
+<ol>
+<li>对象头：标记字（32位虚拟机4B，64位虚拟机8B） + 类型指针（32位虚拟机4B，64位虚拟机8B）+ [数组长（对于数组对象才需要此部分信息）]</li>
+<li>实例数据</li>
+<li>对齐填充：对于64位虚拟机来说，对象大小必须是8B的整数倍，不够的话需要占位填充</li>
+</ol>
+<p><img src="https://images2015.cnblogs.com/blog/568153/201707/568153-20170710131157259-132221985.png" alt="点击全屏显示"></p>
+<ul>
+<li>对象头用于存储对象的元数据信息：<ul>
+<li>Mark Word 部分数据的长度在32位和64位虚拟机（未开启压缩指针）中分别为32bit和64bit，存储对象自身的运行时数据如哈希值等。Mark Word一般被设计为非固定的数据结构，以便存储更多的数据信息和复用自己的存储空间。</li>
+<li>类型指针 指向它的类元数据的指针，用于判断对象属于哪个类的实例。</li>
+</ul>
+</li>
+<li>实例数据存储的是真正有效数据，如各种字段内容，各字段的分配策略为longs/doubles、ints、shorts/chars、bytes/boolean、oops(ordinary object pointers)，相同宽度的字段总是被分配到一起，便于之后取数据。父类定义的变量会出现在子类定义的变量的前面。</li>
+<li>对齐填充部分仅仅起到占位符的作用，并非必须。</li>
+</ul>
+<p><strong>示例（以HashMap&lt;Long,Long&gt;为例）：</strong></p>
+<p>其只有Key和Value是有效数据，共2<em>8B=16B，包装成Long对象后分别具有了8B标记字和8B的类型指针，共24B</em>2=48B；两个对象组成Map.Entry后多了16B对象头、一个8B的next字段、4B的int类型的hash字段，还必须添加4B的空白填充。共32B；最后还有对HashMap中对此Entry的8B的引用。所以空间利用率为 16B / (48B+32B+8B) ≈ 18%</p>
+<p><strong>32位虚拟机 VS 64位虚拟机：</strong></p>
+<p>由于指针膨胀和各种数据类型对齐补白的原因，运行于64位系统上的Java应用需要消耗更多的内存（通常比32位的增加10%~30%的内存开销） ；此外，64位虚拟机的运行速度比32位的大约有15%左右的性能差距。</p>
+<p>不过，64位虚拟机也有它的优势：首先能管理更多的内存，32位最多4GB，实际上还受OS允许进程最大内存的限制（Windows下2GB）；其次，随着硬件技术的发展，计算机终究会完全过渡到64位，虚拟机也将过渡到64位。</p>
+<h3 id="3、对象的访问定位"><a href="#3、对象的访问定位" class="headerlink" title="3、对象的访问定位"></a>3、对象的访问定位</h3><p>对象的访问定位也取决于具体的虚拟机实现。当我们在堆上创建一个对象实例后，就要通过虚拟机栈中的reference类型数据来操作堆上的对象。现在主流的访问方式有两种（HotSpot虚拟机采用的是第二种）：</p>
+<ol>
+<li>使用句柄访问对象。即reference中存储的是对象句柄的地址，而句柄中包含了对象实例数据与类型数据的具体地址信息，相当于二级指针。</li>
+<li>直接指针访问对象。即reference中存储的就是对象地址，相当于一级指针<strong>。</strong></li>
+</ol>
+<p>　　两种方式有各自的优缺点。当垃圾回收移动对象时，对于方式一而言，reference中存储的地址是稳定的地址，不需要修改，仅需要修改对象句柄的地址；而对于方式二，则需要修改reference中存储的地址。从访问效率上看，方式二优于方式一，因为方式二只进行了一次指针定位，节省了时间开销，而这也是HotSpot采用的实现方式。下图是句柄访问与指针访问的示意图。</p>
+<p><img src="https://images2015.cnblogs.com/blog/616953/201602/616953-20160226155344349-887482013.png" alt="点击全屏显示">    <img src="https://images2015.cnblogs.com/blog/616953/201605/616953-20160518141733169-1486000631.png" alt="点击全屏显示"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+            <a href="/tags/oom/" rel="tag"># oom</a>
+          
+            <a href="/tags/mem/" rel="tag"># mem</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/java_jdk_base_runtime.html" rel="next" title="runtime的理解">
+                <i class="fa fa-chevron-left"></i> runtime的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/jvm_art_gc_analysis.html" rel="prev" title="Jvm GC 垃圾回收">
+                Jvm GC 垃圾回收 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM虚拟机内存结构-运行数据区域"><span class="nav-number">1.</span> <span class="nav-text">JVM虚拟机内存结构-运行数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java内存结构"><span class="nav-number">1.1.</span> <span class="nav-text">Java内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7个区域内存溢出"><span class="nav-number">1.2.</span> <span class="nav-text">7个区域内存溢出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM模型"><span class="nav-number">2.</span> <span class="nav-text">JMM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JMM三性质"><span class="nav-number">2.1.</span> <span class="nav-text">JMM三性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#happens-before原则"><span class="nav-number">2.2.</span> <span class="nav-text">happens-before原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存分配"><span class="nav-number">3.</span> <span class="nav-text">JVM内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Java堆结构"><span class="nav-number">3.1.</span> <span class="nav-text">1、Java堆结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1、年轻代"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1、年轻代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2、老年代"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2、老年代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、堆内存分配过程"><span class="nav-number">3.2.</span> <span class="nav-text">2、堆内存分配过程　　</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、对象优先在Eden区分配"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1、对象优先在Eden区分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、空间分配担保"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2、空间分配担保</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3、大对象直接进入老年代"><span class="nav-number">3.2.3.</span> <span class="nav-text">2.3、大对象直接进入老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4、长期存活的对象进入老年代"><span class="nav-number">3.2.4.</span> <span class="nav-text">2.4、长期存活的对象进入老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5、动态判断对象年龄"><span class="nav-number">3.2.5.</span> <span class="nav-text">2.5、动态判断对象年龄</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、堆内存分配参数设置"><span class="nav-number">3.3.</span> <span class="nav-text">3、堆内存分配参数设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM对象创建和内存布局"><span class="nav-number">4.</span> <span class="nav-text">JVM对象创建和内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、对象创建的过程"><span class="nav-number">4.1.</span> <span class="nav-text">1、对象创建的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、对象的内存布局"><span class="nav-number">4.2.</span> <span class="nav-text">2、对象的内存布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、对象的访问定位"><span class="nav-number">4.3.</span> <span class="nav-text">3、对象的访问定位</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="安全,密码算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="PBKDF2是什么？PBKDF2(Password-Based Key Derivation Function)是一个用来导出密钥的函数，用来生成加密的密码，增加破解的难度，类似bcrypt/scrypt等，可以用来进行密码或者口令的加密存储。主要是盐值+pwd，经过多轮HMAC算法的计算，产生的密文。PBKDF2函数的定义DK = PBKDF2(PRF, Password, Salt, c, d">
+<meta name="keywords" content="安全,密码算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见密码算法原理">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_security_crypto_algo.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="PBKDF2是什么？PBKDF2(Password-Based Key Derivation Function)是一个用来导出密钥的函数，用来生成加密的密码，增加破解的难度，类似bcrypt/scrypt等，可以用来进行密码或者口令的加密存储。主要是盐值+pwd，经过多轮HMAC算法的计算，产生的密文。PBKDF2函数的定义DK = PBKDF2(PRF, Password, Salt, c, d">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见密码算法原理">
+<meta name="twitter:description" content="PBKDF2是什么？PBKDF2(Password-Based Key Derivation Function)是一个用来导出密钥的函数，用来生成加密的密码，增加破解的难度，类似bcrypt/scrypt等，可以用来进行密码或者口令的加密存储。主要是盐值+pwd，经过多轮HMAC算法的计算，产生的密文。PBKDF2函数的定义DK = PBKDF2(PRF, Password, Salt, c, d">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_security_crypto_algo.html"/>
+
+
+
+
+
+  <title>常见密码算法原理 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_crypto_algo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常见密码算法原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-06T00:00:00+00:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="PBKDF2是什么？"><a href="#PBKDF2是什么？" class="headerlink" title="PBKDF2是什么？"></a>PBKDF2是什么？</h2><p>PBKDF2(Password-Based Key Derivation Function)是一个用来导出密钥的函数，用来生成加密的密码，增加破解的难度，类似bcrypt/scrypt等，可以用来进行密码或者口令的加密存储。主要是盐值+pwd，经过多轮HMAC算法的计算，产生的密文。<br>PBKDF2函数的定义<br>DK = PBKDF2(PRF, Password, Salt, c, dkLen)<br>• PRF是一个伪随机函数，例如HASH_HMAC函数，它会输出长度为hLen的结果。<br>• Password是用来生成密钥的原文密码。<br>• Salt是一个加密用的盐值。<br>• c是进行重复计算的次数。<br>• dkLen是期望得到的密钥的长度。<br>• DK是最后产生的密钥。<br><a href="https://segmentfault.com/a/1190000004261009" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004261009</a></p>
+<h2 id="DH和ECDH算法"><a href="#DH和ECDH算法" class="headerlink" title="DH和ECDH算法"></a>DH和ECDH算法</h2><p>下面我们以Alice和Bob为例叙述Diffie-Hellman密钥交换的原理。<br>1,Diffie-Hellman交换过程中涉及到的所有参与者定义一个组，在这个组中定义一个大质数p，底数g。<br>2,Diffie-Hellman密钥交换是一个两部分的过程，Alice和Bob都需要一个私有的数字a，b。<br>下面是DH交换的过程图：<br>本图片来自wiki<br>下面我们进行一个实例<br>1.爱丽丝与鲍伯协定使用p=23以及g=5.<br>2.爱丽丝选择一个秘密整数a=6, 计算A = g^a mod p并发送给鲍伯。<br>   A = 5^6 mod 23 = 8.<br>3.鲍伯选择一个秘密整数b=15, 计算B = g^b mod p并发送给爱丽丝。<br>   B = 5^15 mod 23 = 19.<br>4.爱丽丝计算s = B a mod p<br>  19^6 mod 23 = 2.<br>5.鲍伯计算s = A b mod p<br>   8^15 mod 23 = 2.</p>
+<h3 id="ECDH密钥交换："><a href="#ECDH密钥交换：" class="headerlink" title="ECDH密钥交换："></a>ECDH密钥交换：</h3><p>ECDH:<br>       ECC算法和DH结合使用，用于密钥磋商，这个密钥交换算法称为ECDH。交换双方可以在不共享任何秘密的情况下协商出一个密钥。ECC是建立在基于椭圆曲线的离散对数问题上的密码体制，给定椭圆曲线上的一个点P，一个整数k，求解Q=kP很容易；给定一个点P、Q，知道Q=kP，求整数k确是一个难题。ECDH即建立在此数学难题之上。密钥磋商过程：<br>假设密钥交换双方为Alice、Bob，其有共享曲线参数（椭圆曲线E、阶N、基点G）。<br>1) Alice生成随机整数a，计算A=a<em>G。 #生成Alice公钥<br>2) Bob生成随机整数b，计算B=b</em>G。 #生产Bob公钥<br>3) Alice将A传递给Bob。A的传递可以公开，即攻击者可以获取A。<br>    由于椭圆曲线的离散对数问题是难题，所以攻击者不可以通过A、G计算出a。<br>4) Bob将B传递给Alice。同理，B的传递可以公开。<br>5) Bob收到Alice传递的A，计算Q =b<em>A  #Bob通过自己的私钥和Alice的公钥得到对称密钥Q<br>6) Alice收到Bob传递的B，计算Q`=a</em>B  #Alice通过自己的私钥和Bob的公钥得到对称密钥Q’<br>Alice、Bob双方即得Q=b<em>A=b</em>(a<em>G)=(b</em>a)<em>G=(a</em>b)<em>G=a</em>(b<em>G)=a</em>B=Q’ (交换律和结合律)，即双方得到一致的密钥Q。<br>        目前Openssl里面的ECC算法的套件支持是ECDSA/ECDH。在国密的SSL套件中，可以使用ECDSA/ECC(密钥加密传输)，ECDSA/ECDH(密钥磋商)两种套件</p>
+<p>来自 <a href="http://www.cnblogs.com/fishou/p/4206451.html" target="_blank" rel="noopener">http://www.cnblogs.com/fishou/p/4206451.html</a> </p>
+<h2 id="SHA家族的对比"><a href="#SHA家族的对比" class="headerlink" title="SHA家族的对比"></a>SHA家族的对比</h2><p><a href="https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F</a></p>
+<h2 id="RSA算法的理解"><a href="#RSA算法的理解" class="headerlink" title="RSA算法的理解"></a>RSA算法的理解</h2><blockquote>
+<p>I saw different key sizes for RSA algorithm (512, 1024,… [bits] for example) but, is this the length of public key or the length of private key or both are equal in length?<br>It’s the length of the modulus used to compute the RSA key pair. The public key is made of the modulus and the public exponent, while the private key is made of the modulus and the private exponent.<br>but the online tools for generating RSA key pairs have different lengths output!<br>The first picture shows public and private key in PEM format, encoded in Base64 (and not modulus and exponents of the key, which instead are shown in the second picture).<br>The content of the RSA private key is as follows:<br>—–BEGIN RSA PRIVATE KEY—–<br>RSAPrivateKey ::= SEQUENCE {<br>  version           Version,<br>  modulus           INTEGER,  – n<br>  publicExponent    INTEGER,  – e<br>  privateExponent   INTEGER,  – d<br>  prime1            INTEGER,  – p<br>  prime2            INTEGER,  – q<br>  exponent1         INTEGER,  – d mod (p-1)<br>  exponent2         INTEGER,  – d mod (q-1)<br>  coefficient       INTEGER,  – (inverse of q) mod p<br>  otherPrimeInfos   OtherPrimeInfos OPTIONAL<br>}<br>—–END RSA PRIVATE KEY—–<br>while a RSA public key contains only the following data:<br>—–BEGIN RSA PUBLIC KEY—–<br>RSAPublicKey ::= SEQUENCE {<br>    modulus           INTEGER,  – n<br>    publicExponent    INTEGER   – e<br>}<br>—–END RSA PUBLIC KEY—–<br>and this explains why the private key block is larger.<br>Note that a more standard format for non-RSA public keys is<br>—–BEGIN PUBLIC KEY—–<br>PublicKeyInfo ::= SEQUENCE {<br>  algorithm       AlgorithmIdentifier,<br>  PublicKey       BIT STRING<br>}<br>AlgorithmIdentifier ::= SEQUENCE {<br>  algorithm       OBJECT IDENTIFIER,<br>  parameters      ANY DEFINED BY algorithm OPTIONAL<br>}<br>—–END PUBLIC KEY—–<br>More info here.<br>BTW, since you just posted a screenshot of the private key I strongly hope it was just for tests :)</p>
+</blockquote>
+<p>密钥的长度<br>C:\herong&gt;java RsaKeyGenerator 128<br>p: 17902136406704537069<br>q: 17902136406704537077<br>m: 320486487924256034368552058949822333168<br>Modulus: 320486487924256034404356331763231407313<br>Key size: 128<br>Public key: 138184930940463531660820083778072069237<br>Private key: 173448309040289888328993883042709949325<br>C:\herong&gt;java RsaKeyGenerator 256<br>p: 248658744261550238073459677814507557459<br>q: 248658744261550238073459677814507557527<br>m: 618311710977310434529034534762836648859088873902738200302650613…<br>Modulus: 618311710977310434529034534762836648864062048787969205064…<br>Key size: 256<br>Public key: 394190853336940694532345943348534965939075733405768734…<br>Private key: 21429568381701961014089098585280129682302896350728470…</p>
+<p><a href="https://security.stackexchange.com/questions/90169/rsa-public-key-and-private-key-lengths" target="_blank" rel="noopener">https://security.stackexchange.com/questions/90169/rsa-public-key-and-private-key-lengths</a><br><a href="https://stackoverflow.com/questions/2921508/trying-to-understand-java-rsa-key-size&gt;" target="_blank" rel="noopener">https://stackoverflow.com/questions/2921508/trying-to-understand-java-rsa-key-size&gt;</a></p>
+<p><a href="http://www.herongyang.com/Cryptography/RSA-BigInteger-Keys-Generated-by-RsaKeyGenerator-java.html" target="_blank" rel="noopener">http://www.herongyang.com/Cryptography/RSA-BigInteger-Keys-Generated-by-RsaKeyGenerator-java.html</a></p>
+<h3 id="update和doFinal"><a href="#update和doFinal" class="headerlink" title="update和doFinal"></a>update和doFinal</h3><p>update() adds data to the Cipher’s internal buffer, then returns all currently completely encoded blocks. If there are any encoded blocks left over, they remain in the Cipher’s buffer until the next call, or a call to doFinal(). This means that if you call update() with a four byte array to encrypt, and the buffer size is eight bytes, you will not receive encoded data on the return (you’ll get a null instead). If your next call to update() passes five bytes of data in, you will get an 8 byte (the block size) array back, containing the four bytes passed in on the previous call, the first four bytes from the current call – the remaining byte from the current call is left in the Cipher’s buffer.<br>doFinal() on the other hand is much simpler: it encrypts the passed data, pads it out to the necessary length, and then returns it. The Cipher is essentially stateless.</p>
+<p>来自 <a href="https://segmentfault.com/a/1190000006931511" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006931511</a> </p>
+<p>DH算法的中间人攻击<br>在最初的描述中，迪菲－赫尔曼密钥交换本身并没有提供通讯双方的身份验证服务，因此它很容易受到中间人攻击。 一个中间人在信道的中央进行两次迪菲－赫尔曼密钥交换，一次和Alice另一次和Bob，就能够成功的向Alice假装自己是Bob，反之亦然。而攻击者可以解密（读取和存储）任何一个人的信息并重新加密信息，然后传递给另一个人。因此通常都需要一个能够验证通讯双方身份的机制来防止这类攻击。</p>
+<p>优缺点：<br>1、 仅当需要时才生成密钥，减小了将密钥存储很长一段时间而致使遭受攻击的机会。<br>2、 除对全局参数的约定外，密钥交换不需要事先存在的基础结构。<br>然而，该技术也存在许多不足：<br>1、 没有提供双方身份的任何信息。<br>2、 它是计算密集性的，因此容易遭受阻塞性攻击，即对手请求大量的密钥。受攻击者花费了相对多的计算资源来求解无用的幂系数而不是在做真正的工作。<br>3、 没办法防止重演攻击。<br>4、 容易遭受中间人的攻击。第三方C在和A通信时扮演B；和B通信时扮演A。A和B都与C协商了一个密钥，然后C就可以监听和传递通信量。中间人的攻击按如下进行：<br>（1） B在给A的报文中发送他的公开密钥。<br>（2） C截获并解析该报文。C将B的公开密钥保存下来并给A发送报文，该报文具有B的用户ID但使用C的公开密钥YC，仍按照好像是来自B的样子被发送出去。A收到C的报文后，将YC和B的用户ID存储在一块。类似地，C使用YC向B发送好像来自A的报文。<br>（3） B基于私有密钥XB和YC计算秘密密钥K1。A基于私有密钥XA和YC计算秘密密钥K2。C使用私有密钥XC和YB计算K1，并使用XC和YA计算K2。<br>（4） 从现在开始，C就可以转发A发给B的报文或转发B发给A的报文，在途中根据需要修改它们的密文。使得A和B都不知道他们在和C共享通信。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+            <a href="/tags/密码算法/" rel="tag"># 密码算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/android_system_sum.html" rel="next" title="Android系统">
+                <i class="fa fa-chevron-left"></i> Android系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/android_system_source_code_read.html" rel="prev" title="Android系统源码解读">
+                Android系统源码解读 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PBKDF2是什么？"><span class="nav-number">1.</span> <span class="nav-text">PBKDF2是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DH和ECDH算法"><span class="nav-number">2.</span> <span class="nav-text">DH和ECDH算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ECDH密钥交换："><span class="nav-number">2.1.</span> <span class="nav-text">ECDH密钥交换：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SHA家族的对比"><span class="nav-number">3.</span> <span class="nav-text">SHA家族的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA算法的理解"><span class="nav-number">4.</span> <span class="nav-text">RSA算法的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#update和doFinal"><span class="nav-number">4.1.</span> <span class="nav-text">update和doFinal</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

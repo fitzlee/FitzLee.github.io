@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Security &amp; Android &amp; Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fitz.Lee">
+<meta property="og:url" content="https://fitzlee.github.io/page/8/index.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Security &amp; Android &amp; Java">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fitz.Lee">
+<meta name="twitter:description" content="Security &amp; Android &amp; Java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/page/8/"/>
+
+
+
+
+
+  <title>Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/design_pattern_list_anylysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/design_pattern_list_anylysis.html" itemprop="url">设计模式分析精华</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-02T00:00:00+00:00">
+                2016-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/02DesignPattern/" itemprop="url" rel="index">
+                    <span itemprop="name">02DesignPattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p><a href="http://java-design-patterns.com/patterns/" target="_blank" rel="noopener">http://java-design-patterns.com/patterns/</a><br><a href="https://gof.quanke.name/" target="_blank" rel="noopener">https://gof.quanke.name/</a><br><a href="http://vivianking6855.github.io/2017/12/14/Design_Pattern/" target="_blank" rel="noopener">http://vivianking6855.github.io/2017/12/14/Design_Pattern/</a><br><a href="http://yuanfentiank789.github.io/2016/06/20/java_principle/" target="_blank" rel="noopener">http://yuanfentiank789.github.io/2016/06/20/java_principle/</a><br><a href="https://fangjian0423.github.io/2017/03/26/design-pattern/" target="_blank" rel="noopener">https://fangjian0423.github.io/2017/03/26/design-pattern/</a><br><a href="https://zeshaoaaa.github.io/%E5%9B%BE%E8%A7%A3-Android-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">https://zeshaoaaa.github.io/%E5%9B%BE%E8%A7%A3-Android-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a></p>
+<p><strong>原则</strong></p>
+<ol>
+<li>开闭原则（Open Close Principle）<br>开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</li>
+<li>里氏代换原则（Liskov Substitution Principle）<br>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科</li>
+<li>依赖倒转原则（Dependence Inversion Principle）<br>这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。</li>
+<li>接口隔离原则（Interface Segregation Principle）<br>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</li>
+<li>迪米特法则（最少知道原则）（Demeter Principle）<br>为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。</li>
+<li>合成复用原则（Composite Reuse Principle<br>原则是尽量使用合成/聚合的方式，而不是使用继承。</li>
+</ol>
+<p><strong>分类</strong></p>
+<ol>
+<li>创建型模式，共五种：<br>工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。</li>
+<li>结构型模式，共七种：<br>适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。</li>
+<li>行为型模式，共十一种：<br>策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。</li>
+<li>其实还有两类：并发型模式和线程池模式</li>
+</ol>
+<p><strong>关系和对比</strong><br><img src="https://upload-images.jianshu.io/upload_images/11010834-d9f32d09cb719877.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p><strong>JDK中的设计模式</strong><br><a href="https://clarkdo.js.org/design%20patterns%20stories/2014/10/20/46/" target="_blank" rel="noopener">https://clarkdo.js.org/design%20patterns%20stories/2014/10/20/46/</a><br><a href="https://blog.csdn.net/lovelion/article/details/8765177" target="_blank" rel="noopener">https://blog.csdn.net/lovelion/article/details/8765177</a><br><a href="http://www.cnblogs.com/octobershiner/articles/2236843.html" target="_blank" rel="noopener">http://www.cnblogs.com/octobershiner/articles/2236843.html</a></p>
+<p><strong>Andriod源码设计模式</strong><br><a href="https://pgzxc.github.io/2017/12/24/Android%E4%B8%AD%E7%9A%8423%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">https://pgzxc.github.io/2017/12/24/Android%E4%B8%AD%E7%9A%8423%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a><br><a href="http://weiqianghu.github.io/2016/10/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">http://weiqianghu.github.io/2016/10/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/</a><br><a href="https://wdpm.github.io/20160327/android-common-design-patterns/" target="_blank" rel="noopener">https://wdpm.github.io/20160327/android-common-design-patterns/</a></p>
+<p><strong>常见框架中设计模式</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_tree.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_tree.html" itemprop="url">树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-10T00:00:00+00:00">
+                2016-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>AVL树，红黑树，B树，B+树，Trie树都分别应用在哪些现实场景中？<br><a href="https://www.zhihu.com/question/30527705" target="_blank" rel="noopener">https://www.zhihu.com/question/30527705</a></p>
+<p>从B树、B+树、B*树谈到R 树<br><a href="http://blog.csdn.net/v_JULY_v/article/details/6530142/" target="_blank" rel="noopener">http://blog.csdn.net/v_JULY_v/article/details/6530142/</a></p>
+<p>B树、B-树、B+树、B*树 定义<br><a href="https://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html" target="_blank" rel="noopener">https://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html</a></p>
+<h2 id="AVL树："><a href="#AVL树：" class="headerlink" title="AVL树："></a>AVL树：</h2><p><a href="https://zh.wikipedia.org/wiki/AVL%E6%A0%91" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/AVL%E6%A0%91</a><br><strong>特点</strong><br>在AVL树中任何节点的两个子树的高度最大差别为1，所以它也被称为<strong>高度平衡树</strong>。查找、插入和删除在平均和最坏情况下的o(n)复杂度。<br><strong>旋转</strong><br>以下图表以四列表示四种情况，每行表示在该种情况下要进行的操作。在左左和右右的情况下，只需要进行一次旋转操作；在左右和右左的情况下，需要进行两次旋转操作。<br><img src="https://upload-images.jianshu.io/upload_images/11010834-1f978dff9019b5bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>点数计算</strong><br><img src="https://upload-images.jianshu.io/upload_images/11010834-88fcc40b33371628.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>##伸展树Splay：<br><a href="https://blog.csdn.net/u014634338/article/details/49586689" target="_blank" rel="noopener">https://blog.csdn.net/u014634338/article/details/49586689</a><br><a href="http://www.cnblogs.com/skywang12345/p/3604286.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3604286.html</a><br><a href="https://www.cnblogs.com/kuangbin/archive/2012/10/07/2714068.html" target="_blank" rel="noopener">https://www.cnblogs.com/kuangbin/archive/2012/10/07/2714068.html</a><br><strong>背景和特点</strong><br>考虑到局部性原理（刚被访问的内容下次可能仍会被访问，查找次数多的内容可能下一次会被访问），为了使整个查找时间更小，被查频率高的那些节点应当经常处于靠近树根的位置。这样，很容易得想到以下这个方案：每次查找节点之后对树进行重构，把被查找的节点搬移到树根，这种自调整形式的二叉查找树就是伸展树。每次对伸展树进行操作后，它均会通过旋转的方法把被访问节点旋转到树根的位置。<br>特点是不会保证树一直是平衡的，被访问节点旋转到树根，我们通常将节点自底向上旋转，直至该节点成为树根为止。“旋转”的巧妙之处就是在不打乱数列中数据大小关系（指中序遍历结果是全序的）情况下，所有基本操作的平摊复杂度仍为O（log n）</p>
+<p><strong>旋转思路参考</strong><br><a href="https://blog.csdn.net/u014634338/article/details/49586689" target="_blank" rel="noopener">https://blog.csdn.net/u014634338/article/details/49586689</a></p>
+<p><strong>效率对比</strong><br>伸展树(splay tree)，它对于m次连续搜索操作有很好的效率。伸展树会在一次搜索后，对树进行一些特殊的操作。这些操作的理念与AVL树有些类似，即通过旋转，来改变树节点的分布，并减小树的深度。但伸展树并没有AVL的平衡要求，任意节点的左右子树可以相差任意深度。与二叉搜索树类似，伸展树的单次搜索也可能需要n次操作。但伸展树可以保证，m次的连续搜索操作的复杂度为mlog(n)的量级，而不是mn量级。<br><a href="https://www.cnblogs.com/wxgblogs/p/5506234.html" target="_blank" rel="noopener">https://www.cnblogs.com/wxgblogs/p/5506234.html</a></p>
+<ol>
+<li>优势<br><strong>可靠的性能</strong>——它的平均效率不输于其他[平衡树]<br><strong>存储所需的内存少</strong>——伸展树无需记录额外的什么值来维护树的信息，相对于其他平衡树，内存占用要小。<br>由于Splay Tree仅仅是不断调整，并没有引入额外的标记，因而树结构与标准红黑树没有任何不同，从空间角度来看，它比<a href="https://baike.baidu.com/item/Treap" target="_blank" rel="noopener">Treap</a>、<a href="https://baike.baidu.com/item/SBT" target="_blank" rel="noopener">SBT</a>、AVL要高效得多。因为结构不变，因此只要是通过左旋和右旋进行的操作对Splay Tree性质都没有丝毫影响，因而它也提供了BST中最丰富的功能，包括快速的拆分和合并，并且实现极为便捷。这一点是其它结构较难实现的。其时间效率也相当稳定，和Treap基本相当，常数较高。</li>
+<li>缺点<br>伸展树最显著的缺点是它有可能会变成一条。这种情况可能发生在以非降顺序访问n个元素之后。然而均摊的最坏情况是对数级的——O(log<em>n</em>)</li>
+</ol>
+<h2 id="treap树"><a href="#treap树" class="headerlink" title="treap树"></a>treap树</h2><p><a href="https://blog.csdn.net/chen_tr/article/details/50924073" target="_blank" rel="noopener">https://blog.csdn.net/chen_tr/article/details/50924073</a><br><a href="https://blog.csdn.net/u014634338/article/details/49612159" target="_blank" rel="noopener">https://blog.csdn.net/u014634338/article/details/49612159</a><br><a href="https://blog.csdn.net/yang_yulei/article/details/46005845" target="_blank" rel="noopener">https://blog.csdn.net/yang_yulei/article/details/46005845</a><br><strong>特点和背景</strong><br>Treap，顾名思义就是Tree+Heap。这么命名的原因就是它使用了二叉堆的性质来保持二叉树的平衡。<br>我们知道，一个二叉（大根）堆满足这样的性质：一个节点的两个儿子的值都小于节点本身的值。如果一个二叉查找树满足这样的性质，那么它就被称作Treap。 Treap并不是二叉堆，二叉堆必须是完全二叉树，而Treap可以并不一定是。<br>但是等等，这样的设定似乎和二叉查找树矛盾啊。一个要求节点值小于右儿子的值，一个要求节点值大于右儿子的值，这显然是不可能做到的。<br>只有一种方法能够解决，就是让每个节点有2个值，其中一个满足二叉查找树的性质，一个满足大根堆的性质。为方便起见，下面把满足二叉查找树性质的值称作key，把满足大根堆性质的值称作prio（priority的简称）。<br>每个节点的key我们是无法改变了，为了保证Treap的平衡性，我们需要在prio上做一点文章。其实也没有什么复杂的，就是让每个节点的prio都取一个随机值，这样我们就可以保证这棵树“基本平衡”。</p>
+<p><strong>旋转</strong><br>分类：左旋转和右旋转<br>方法：一般先按照二叉查找方法，找到对应节点的位置，随机选取一个prio值，如果此时不满足堆得特性，那么就进行旋转</p>
+<h2 id="SBTree树"><a href="#SBTree树" class="headerlink" title="SBTree树"></a>SBTree树</h2><p><a href="http://www.cnblogs.com/gtarcoder/p/4724288.html" target="_blank" rel="noopener">http://www.cnblogs.com/gtarcoder/p/4724288.html</a><br><a href="https://blog.csdn.net/murmured/article/details/17029131" target="_blank" rel="noopener">https://blog.csdn.net/murmured/article/details/17029131</a><br><a href="https://www.cnblogs.com/zgmf_x20a/archive/2008/11/14/1333205.html" target="_blank" rel="noopener">https://www.cnblogs.com/zgmf_x20a/archive/2008/11/14/1333205.html</a></p>
+<p><strong>特点</strong><br>  Size Balanced Tree(SBT)是目前速度最快的平衡二叉搜索树，且能够进行多种搜索操作，区间操作；和AVL、红黑树、伸展树、Treap类似，SBT也是通过对节点的旋转来维持树的平衡，而相比其他平衡树，SBT维持平衡所需要的额外数据很少，只需要维持以当前节点为根的子树的大小；且SBT的编写复杂度低。因此具有空间优势、速度优势、编写优势。</p>
+<h2 id="RBTree-红黑树"><a href="#RBTree-红黑树" class="headerlink" title="RBTree 红黑树"></a>RBTree 红黑树</h2><p><a href="http://www.cnblogs.com/Lynn-Zhang/p/5653943.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lynn-Zhang/p/5653943.html</a><br><a href="https://tech.meituan.com/redblack-tree.html" target="_blank" rel="noopener">https://tech.meituan.com/redblack-tree.html</a><br><a href="https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md" target="_blank" rel="noopener">https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md</a><br><a href="http://www.cnblogs.com/skywang12345/p/3245399.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3245399.html</a></p>
+<p><strong>特点</strong><br>黑树的查找、插入、删除的时间复杂度最坏为O(log n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1）每个结点要么是红的，要么是黑的。  </span><br><span class="line">2）根结点是黑的。  </span><br><span class="line">3）每个叶结点（叶结点即指树尾端NIL指针或NULL结点）是黑的。  </span><br><span class="line">4）如果一个结点是红的，那么它的俩个儿子都是黑的。  </span><br><span class="line">5）对于任一结点而言，其到叶结点树尾端NIL指针的每一条路径都包含相同数目的黑结点。</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11010834-89eea2b464178aa4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><strong>旋转和着色变换</strong><br>基本操作是左旋转和右旋转。<br><a href="http://www.cnblogs.com/Lynn-Zhang/p/5653943.html" target="_blank" rel="noopener">http://www.cnblogs.com/Lynn-Zhang/p/5653943.html</a></p>
+<p><strong>算法复杂度证明</strong></p>
+<ol>
+<li>证明：一棵有 n 个内部节点的红黑树的高度至多为 2lg(n+1)</li>
+<li>最长路径至多是最短路径的两倍</li>
+<li>内部节点最多，内部节点最少</li>
+</ol>
+<p>参考：<a href="https://blog.csdn.net/lanchunhui/article/details/75905478" target="_blank" rel="noopener">https://blog.csdn.net/lanchunhui/article/details/75905478</a></p>
+<h2 id="B-树-R树"><a href="#B-树-R树" class="headerlink" title="B+树 R树"></a>B+树 R树</h2><p>AVL树，红黑树，B树，B+树，Trie树都分别应用在哪些现实场景中？<br><a href="https://www.zhihu.com/question/30527705" target="_blank" rel="noopener">https://www.zhihu.com/question/30527705</a><br>从B树、B+树、B<em>树谈到R 树<br><a href="http://blog.csdn.net/v_JULY_v/article/details/6530142/" target="_blank" rel="noopener">http://blog.csdn.net/v_JULY_v/article/details/6530142/</a><br>B树、B-树、B+树、B</em>树 定义<br><a href="https://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html" target="_blank" rel="noopener">https://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html</a></p>
+<h2 id="区间树"><a href="#区间树" class="headerlink" title="区间树"></a>区间树</h2><h2 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h2><p>大根堆，小根堆</p>
+<h2 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h2><p>前缀树，后缀树</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_dynamic.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_dynamic.html" itemprop="url">动态规划</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-07T00:00:00+00:00">
+                2016-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_array_linklist.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_array_linklist.html" itemprop="url">数组和链表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-07T00:00:00+00:00">
+                2016-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数组和链表"><a href="#数组和链表" class="headerlink" title="数组和链表"></a>数组和链表</h1><p><a href="https://www.cnblogs.com/cici-new/archive/2013/08/04/3237276.html" target="_blank" rel="noopener">https://www.cnblogs.com/cici-new/archive/2013/08/04/3237276.html</a></p>
+<h3 id="三大数据结构的实现方式"><a href="#三大数据结构的实现方式" class="headerlink" title="三大数据结构的实现方式"></a>三大数据结构的实现方式</h3><table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>栈</td>
+<td>数组/单链表</td>
+</tr>
+<tr>
+<td>队列</td>
+<td>数组/双端链表</td>
+</tr>
+<tr>
+<td>优先级队列</td>
+<td>数组/堆/有序链表</td>
+</tr>
+<tr>
+<td>双端队列</td>
+<td>双向链表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><h3 id="双端链表"><a href="#双端链表" class="headerlink" title="双端链表"></a>双端链表</h3><h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p>Java单链表、双端链表、有序链表实现<br><a href="http://blog.csdn.net/a19881029/article/details/22695289" target="_blank" rel="noopener">http://blog.csdn.net/a19881029/article/details/22695289</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_graph.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_graph.html" itemprop="url">图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-07T00:00:00+00:00">
+                2016-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_details.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_details.html" itemprop="url">算法与数据结构详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-06T00:00:00+00:00">
+                2016-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据结构和算法<br>以weiss的数据结构和算法，以及算法导论为纲，另外参考July和左程云的书籍和代码。</p>
+<p><a href="https://github.com/julycoding/The-Art-Of-Programming-By-July" target="_blank" rel="noopener">https://github.com/julycoding/The-Art-Of-Programming-By-July</a></p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p><a href="http://www.cnblogs.com/wangyingli/p/5928258.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangyingli/p/5928258.html</a><br><a href="http://www.cnblogs.com/flash610/archive/2013/05/14/3078251.html" target="_blank" rel="noopener">http://www.cnblogs.com/flash610/archive/2013/05/14/3078251.html</a><br><a href="https://blog.csdn.net/u010275850/article/details/46011951" target="_blank" rel="noopener">https://blog.csdn.net/u010275850/article/details/46011951</a><br><a href="https://blog.csdn.net/ajian005/article/details/53196224" target="_blank" rel="noopener">https://blog.csdn.net/ajian005/article/details/53196224</a><br><a href="https://blog.csdn.net/judyge/article/details/42396079" target="_blank" rel="noopener">https://blog.csdn.net/judyge/article/details/42396079</a><br>可分为：单链表，双向链表，双端链表，循环链表。<br>双向和双端区别：<a href="https://blog.csdn.net/qq_29606255/article/details/76408285" target="_blank" rel="noopener">https://blog.csdn.net/qq_29606255/article/details/76408285</a></p>
+<table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>栈</td>
+<td>数组/单链表</td>
+</tr>
+<tr>
+<td>队列</td>
+<td>数组/双端链表</td>
+</tr>
+<tr>
+<td>优先级队列</td>
+<td>数组/堆/有序链表</td>
+</tr>
+<tr>
+<td>双端队列</td>
+<td>双向链表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="栈Stack、队列Queue"><a href="#栈Stack、队列Queue" class="headerlink" title="栈Stack、队列Queue"></a>栈Stack、队列Queue</h3><p>栈比较简单：Stack，LinkedList等<br>队列几种特殊的：<br><a href="https://blog.csdn.net/beautiful_face/article/details/76693412" target="_blank" rel="noopener">https://blog.csdn.net/beautiful_face/article/details/76693412</a><br><a href="https://blog.csdn.net/u011983531/article/details/78651466" target="_blank" rel="noopener">https://blog.csdn.net/u011983531/article/details/78651466</a><br><a href="https://www.cnblogs.com/lemon-flm/p/7877898.html" target="_blank" rel="noopener">https://www.cnblogs.com/lemon-flm/p/7877898.html</a><br>Queue的实现</p>
+<ol>
+<li><p>没有实现的阻塞接口的LinkedList： 实现了java.util.Queue接口和java.util.AbstractQueue接口<br>　　内置的不阻塞队列： PriorityQueue 和 ConcurrentLinkedQueue<br>　　PriorityQueue 和 ConcurrentLinkedQueue 类在 Collection Framework 中加入两个具体集合实现。<br>　　PriorityQueue 类实质上维护了一个有序列表。加入到 Queue 中的元素根据它们的天然排序（通过其 java.util.Comparable 实现）或者根据传递给构造函数的 java.util.Comparator 实现来定位。<br>　　ConcurrentLinkedQueue 是基于链接节点的、线程安全的队列。并发访问不需要同步。因为它在队列的尾部添加元素并从头部删除它们，所以只要不需要知道队列的大 小，　　　　    　　ConcurrentLinkedQueue 对公共集合的共享访问就可以工作得很好。收集关于队列大小的信息会很慢，需要遍历队列。</p>
+</li>
+<li><p>实现阻塞接口的：<br>　　java.util.concurrent 中加入了 BlockingQueue 接口和五个阻塞队列类。它实质上就是一种带有一点扭曲的 FIFO 数据结构。不是立即从队列中添加或者删除元素，线程执行操作阻塞，直到有空间或者元素可用。<br>五个队列所提供的各有不同：<br>　　<em> ArrayBlockingQueue ：一个由数组支持的有界队列。
+　　</em> LinkedBlockingQueue ：一个由链接节点支持的可选有界队列。<br>　　<em> PriorityBlockingQueue ：一个由优先级堆支持的无界优先级队列。
+　　</em> DelayQueue ：一个由优先级堆支持的、基于时间的调度队列。<br>　　* SynchronousQueue ：一个利用 BlockingQueue 接口的简单聚集（rendezvous）机制。</p>
+</li>
+</ol>
+<h3 id="优先队列-堆"><a href="#优先队列-堆" class="headerlink" title="优先队列(堆)"></a>优先队列(堆)</h3><p><a href="https://www.cnblogs.com/wuchanming/p/3809496.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuchanming/p/3809496.html</a><br>可分为：二叉堆，d-堆，左式堆，斜堆，二项队列</p>
+<h3 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h3><p><a href="https://www.cnblogs.com/a8457013/p/8251967.html" target="_blank" rel="noopener">https://www.cnblogs.com/a8457013/p/8251967.html</a></p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树的分类<br><a href="https://zh.wikipedia.org/wiki/AVL%E6%A0%91" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/AVL%E6%A0%91</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- 二叉树	</span><br><span class="line">**二叉查找树（BST）** 笛卡尔树 MVP树 Top tree T树</span><br><span class="line">- 自平衡二叉查找树	</span><br><span class="line">AA树 **AVL树** 左倾红黑树 **红黑树** 替罪羊树 **伸展树** 树堆 加权平衡树</span><br><span class="line">- B树	</span><br><span class="line">**B+树** B*树 Bx树 UB树 2-3树 2-3-4树 (a,b)-树 Dancing tree H树</span><br><span class="line">- 堆	</span><br><span class="line">**二叉堆** 二项堆 斐波那契堆 左偏树 配对堆 斜堆 Van Emde Boas tree</span><br><span class="line">- Trie	</span><br><span class="line">**后缀树** 基数树 三叉查找树 X-快速前缀树 Y-快速前缀树</span><br></pre></td></tr></table></figure></p>
+<p>以上标黑的为重点关注项<br>AVL树：<a href="https://zh.wikipedia.org/wiki/AVL%E6%A0%91" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/AVL%E6%A0%91</a><br>伸展树Splay:<br>Treap树：<br>SBTree树<br>RBTree树<br>B树<br>R树<br>区间树<br>二叉堆<br>Trie树</p>
+<h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p><strong>图的分类</strong><br><a href="http://www.cnblogs.com/wangyingli/p/5974508.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangyingli/p/5974508.html</a><br><a href="https://blog.csdn.net/xujingzhou/article/details/79874835" target="_blank" rel="noopener">https://blog.csdn.net/xujingzhou/article/details/79874835</a></p>
+<p><strong>图算法</strong><br><a href="https://blog.csdn.net/simanstar/article/details/78906825" target="_blank" rel="noopener">https://blog.csdn.net/simanstar/article/details/78906825</a><br><a href="https://blog.csdn.net/wsh6759/article/details/7008407" target="_blank" rel="noopener">https://blog.csdn.net/wsh6759/article/details/7008407</a><br><a href="https://blog.csdn.net/gqtcgq/article/details/45618279" target="_blank" rel="noopener">https://blog.csdn.net/gqtcgq/article/details/45618279</a></p>
+<p>最短路径的Floyd算法<br>拓扑排序<br>union-find算法<br>无环加权有向图的最短路径算法<br>关键路径<br>计算无向图中连通分量的Kosaraju算法<br>有向图中含必经点的最短路径问题<br>TSP问题<br>还有A*算法</p>
+<h3 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h3><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h3><p><a href="http://www.cnblogs.com/wangyingli/p/5994282.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangyingli/p/5994282.html</a></p>
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p><a href="http://www.cnblogs.com/wangyingli/p/5994256.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangyingli/p/5994256.html</a></p>
+<h3 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h3><h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3><h3 id="随机化算法"><a href="#随机化算法" class="headerlink" title="随机化算法"></a>随机化算法</h3><h2 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h2><p>1.分治法：</p>
+<p>   将问题分成单独的阶段，每个阶段互相不干扰很独立，如10米长的木棍，切成10段，每段去解决每一段的问题。（阶段没有关系）</p>
+<p>2.贪心法</p>
+<pre><code>站在全局的角度，也是将问题堪称分为多个阶段，只不过阶段和阶段之间有一定的递进关系，如从5毛，1元，2毛，1毛，2元中，去找最少的钱币构成10块钱。首先是站在全局的角度，先从中取其最大值，为第一阶段，然后在从剩余的当中在找最大值，构成第二阶段。。。。。。如此往复，这就是贪心法。
+</code></pre><p>3.动态规划</p>
+<pre><code>是阶段和阶段之间有重复，举例说明：求一个数组的最长递增子序列。假设数组有10个元素，那么如何求解呢？将10个元素划分成10个阶段，第一个阶段，从第一个元素中求解，第二个阶段在第一个阶段求其解，第三个阶段在第一个，第二个阶段综合的基础上求解，第四个阶段在第1,2,3个阶段求其解，最后。。。。第k个阶段在第1,2....k-1个阶段求其最优解。
+</code></pre><p>4.递归算法</p>
+<pre><code>个人感觉和动态规划反着来的样子，有点像，问题规模为10，转化为问题规模为9的问题，，问题规模为9的问题，转化为8.。。。。。
+</code></pre><p>5.回溯法和分支限界法</p>
+<p>  都属于组合优化问题，就是按照过程向下面去寻找最优解，在寻找最优解的过程，不断的剪取枝条，来减少搜索情况。不行就换思路。</p>
+<p>  递推，搜索，贪心和动态规划的思想都是通过拆分问题，定义状态和状态之间的关系，从而最初阶段的状态到达最终状态的方式解决问题。</p>
+<p>每个阶段只有一个状态－&gt;递推</p>
+<p>每个阶段的所有状态都计算出来，从中选取最优的－&gt;搜索</p>
+<p>每个阶段的最优状态都是由上一个阶段的最优状态得到的－&gt;贪心</p>
+<p>每个阶段的最优状态可以从之前的某个阶段的某个（或某些）状态直接得到－&gt;动态规划</p>
+<p>一个问题会有多种状态的定义和阶段的划分，某一种定义有后效性不代表该问题不适合用哪种方法。</p>
+<p>贪心，动归这类的问题本质都是对搜索的剪枝</p>
+<p>适用于哪种方法来解决，在于你怎么看待这个世界～</p>
+<p><a href="https://segmentfault.com/a/1190000006022019#articleHeader11" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006022019#articleHeader11</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_recursion_iter.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_recursion_iter.html" itemprop="url">迭代递归</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-06T00:00:00+00:00">
+                2016-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h1><p>四则运算符=&gt;运算解释<br>四则运算符=&gt;二叉树</p>
+<ul>
+<li>递归<br><a href="https://blog.csdn.net/benweizhu/article/details/7730473" target="_blank" rel="noopener">https://blog.csdn.net/benweizhu/article/details/7730473</a><br><a href="https://blog.csdn.net/nkuhjp/article/details/53365036" target="_blank" rel="noopener">https://blog.csdn.net/nkuhjp/article/details/53365036</a></li>
+<li>迭代<br><a href="https://www.cnblogs.com/xiaobingqianrui/p/8894253.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaobingqianrui/p/8894253.html</a> </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_complex_analyse.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_complex_analyse.html" itemprop="url">算法复杂度</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-06T00:00:00+00:00">
+                2016-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="算法重要特性"><a href="#算法重要特性" class="headerlink" title="算法重要特性"></a>算法重要特性</h3><ul>
+<li><p>确定性: 算法中每一种运算都是确定的，有明确的定义，运算执行是清楚得无二义。</p>
+</li>
+<li><p>能行性: 每一种运算能由人用纸和笔在有限的时间内完成。</p>
+</li>
+<li><p>输入：算法有0或多个输入，算法开始前提前给出</p>
+</li>
+<li><p>输出：算法又一个或多个输出，同输入又某种特定的关系</p>
+</li>
+<li><p>有穷性： 总是在执行有穷步得运算后终止</p>
+</li>
+</ul>
+<p>凡是算法必须满足以上5中特性</p>
+<h3 id="算法的主要内容"><a href="#算法的主要内容" class="headerlink" title="算法的主要内容"></a>算法的主要内容</h3><ul>
+<li>如何设计算法</li>
+<li>如何表示算法 (Spark等算法描述语言)</li>
+<li>如何确认算法 (合法得输入可以得到正确得结果)</li>
+<li>如何分析算法 (计算时间和存储空间定量分析)</li>
+<li>如何测试程序 (调试和作时空分布图，调试只能指出错误，但不能证明他们不存在错误；做时空分布图用各种数据执行调试来确认算法得正确性，准确的计算出结果所需要花费得时间和空间。)</li>
+</ul>
+<h3 id="分析算法"><a href="#分析算法" class="headerlink" title="分析算法"></a>分析算法</h3><p>算法的时间复杂度：</p>
+<ul>
+<li>复杂度计算时，基本运算定义为加减乘除，均为固定常数时间</li>
+<li>多项式复杂度 1 &lt; log(n) &lt; n &lt; nlog(n) &lt; n^2 &lt; n^3</li>
+<li>指数级复杂度 2^n &lt; n! &lt; n^n</li>
+<li>当数量级增大时指数级复杂度增长迅速，所以应尽可能降低为多项式复杂度以节省运算时间。        </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>logn</th>
+<th>n</th>
+<th>nlogn</th>
+<th>n^2</th>
+<th>n^3</th>
+<th>2^n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>16</td>
+<td>64</td>
+<td>16</td>
+</tr>
+<tr>
+<td>4</td>
+<td>16</td>
+<td>64</td>
+<td>256</td>
+<td>4096</td>
+<td>65536</td>
+</tr>
+<tr>
+<td>5</td>
+<td>32</td>
+<td>160</td>
+<td>1024</td>
+<td>32768</td>
+<td>4294967296</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>算法时间表示：<br>上界(最坏)、下界(最好)、平均</li>
+</ul>
+<p>几个计算复杂度得例子：</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/ds_algo_books_recommand.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ds_algo_books_recommand.html" itemprop="url">算法与数据结构书籍推荐</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-05T00:00:00+00:00">
+                2016-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/01Ds-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">01Ds&Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#数据结构<br>数据结构与算法分析_Java语言描述(第2版)</p>
+<p>#算法<br>计算机算法基础<br>算法导论<br>编程之法_面试和算法心得</p>
+<p>#coding<br>程序员代码面试指南_IT名企算法与数据结构题目最优解<br>LeetCode/LintCode</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_source_read.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/java_jdk_source_read.html" itemprop="url">jdk源码解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-23T00:00:00+00:00">
+                2016-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="jdk-source-read"><a href="#jdk-source-read" class="headerlink" title="jdk source read"></a>jdk source read</h1><h2 id="java-collection集合"><a href="#java-collection集合" class="headerlink" title="java collection集合"></a>java collection集合</h2><p><a href="https://github.com/CarpenterLee/JCFInternals" target="_blank" rel="noopener">https://github.com/CarpenterLee/JCFInternals</a><br><a href="http://calvin1978.blogcn.com/articles/collection.html" target="_blank" rel="noopener">http://calvin1978.blogcn.com/articles/collection.html</a><br><a href="http://wiki.jikexueyuan.com/project/java-collection/hashmap.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-collection/hashmap.html</a><br><a href="http://wiki.jikexueyuan.com/project/java-enhancement/java-twentytwo.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-enhancement/java-twentytwo.html</a><br><a href="https://zhuanlan.zhihu.com/p/32997606" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32997606</a><br><a href="https://blog.csdn.net/qq_34448345/article/details/79835190" target="_blank" rel="noopener">https://blog.csdn.net/qq_34448345/article/details/79835190</a></p>
+<h2 id="java-concurrent"><a href="#java-concurrent" class="headerlink" title="java concurrent"></a>java concurrent</h2><p><a href="https://blog.csdn.net/qq_34448345/article/details/80087738" target="_blank" rel="noopener">https://blog.csdn.net/qq_34448345/article/details/80087738</a><br><a href="http://wiki.jikexueyuan.com/project/java-memory-model/basic.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-memory-model/basic.html</a><br><a href="http://wiki.jikexueyuan.com/project/java-concurrent/introduction.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-concurrent/introduction.html</a><br><a href="http://wiki.jikexueyuan.com/project/java-concurrency/concurrency-multithreading.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-concurrency/concurrency-multithreading.html</a><br><a href="https://blog.csdn.net/column/details/wenniuwuren-jdk.html" target="_blank" rel="noopener">https://blog.csdn.net/column/details/wenniuwuren-jdk.html</a></p>
+<h2 id="java-nio"><a href="#java-nio" class="headerlink" title="java nio"></a>java nio</h2><p><a href="http://wiki.jikexueyuan.com/project/java-nio-zh/" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-nio-zh/</a><br><a href="http://wiki.jikexueyuan.com/project/java-nio/" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/java-nio/</a></p>
+<h2 id="java-io"><a href="#java-io" class="headerlink" title="java io"></a>java io</h2><p><a href="https://zhuanlan.zhihu.com/p/27931572" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27931572</a><br><a href="https://zhuanlan.zhihu.com/p/28008754" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28008754</a><br><a href="http://ifeve.com/java-io/" target="_blank" rel="noopener">http://ifeve.com/java-io/</a></p>
+<h2 id="java-lang"><a href="#java-lang" class="headerlink" title="java lang"></a>java lang</h2><p><a href="https://blog.csdn.net/qq_34448345/article/details/79955527" target="_blank" rel="noopener">https://blog.csdn.net/qq_34448345/article/details/79955527</a></p>
+<ul>
+<li>exception</li>
+<li>thread</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/java_jdk_source_read.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

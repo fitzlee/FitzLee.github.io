@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,安全,应用安全," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Android应用安全Android应用安全攻击面看安全 https://blog.csdn.net/u010651541/article/details/53142252http://colbert337.github.io/2015/08/24/android-attack-surface/ 安全开发生命周期https://www.cnblogs.com/shilxfly/p/7196875.">
+<meta name="keywords" content="Android,安全,应用安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android应用安全">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_security_android_security.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Android应用安全Android应用安全攻击面看安全 https://blog.csdn.net/u010651541/article/details/53142252http://colbert337.github.io/2015/08/24/android-attack-surface/ 安全开发生命周期https://www.cnblogs.com/shilxfly/p/7196875.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11010834-d521981794736749.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android应用安全">
+<meta name="twitter:description" content="Android应用安全Android应用安全攻击面看安全 https://blog.csdn.net/u010651541/article/details/53142252http://colbert337.github.io/2015/08/24/android-attack-surface/ 安全开发生命周期https://www.cnblogs.com/shilxfly/p/7196875.">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11010834-d521981794736749.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_security_android_security.html"/>
+
+
+
+
+
+  <title>Android应用安全 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_android_security.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android应用安全</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-20T00:00:00+00:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android应用安全"><a href="#Android应用安全" class="headerlink" title="Android应用安全"></a>Android应用安全</h1><h2 id="Android应用安全攻击面看安全"><a href="#Android应用安全攻击面看安全" class="headerlink" title="Android应用安全攻击面看安全"></a>Android应用安全攻击面看安全</h2><p><img src="https://upload-images.jianshu.io/upload_images/11010834-d521981794736749.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="attack_surface.png"></p>
+<p><a href="https://blog.csdn.net/u010651541/article/details/53142252" target="_blank" rel="noopener">https://blog.csdn.net/u010651541/article/details/53142252</a><br><a href="http://colbert337.github.io/2015/08/24/android-attack-surface/" target="_blank" rel="noopener">http://colbert337.github.io/2015/08/24/android-attack-surface/</a></p>
+<h2 id="安全开发生命周期"><a href="#安全开发生命周期" class="headerlink" title="安全开发生命周期"></a>安全开发生命周期</h2><p><a href="https://www.cnblogs.com/shilxfly/p/7196875.html" target="_blank" rel="noopener">https://www.cnblogs.com/shilxfly/p/7196875.html</a></p>
+<ul>
+<li>安全设计</li>
+<li>威胁建模</li>
+<li>安全开发</li>
+<li>安全编码</li>
+<li>安全测试</li>
+<li>代码审计</li>
+</ul>
+<h2 id="安全风险评估Risk-Assessment"><a href="#安全风险评估Risk-Assessment" class="headerlink" title="安全风险评估Risk Assessment"></a>安全风险评估Risk Assessment</h2><h2 id="Android安全基础"><a href="#Android安全基础" class="headerlink" title="Android安全基础"></a>Android安全基础</h2><ul>
+<li>java/c/cpp/vm asm</li>
+<li>android framework基础</li>
+<li>xpose框架/插件/热修复原理</li>
+<li>dex/Odex格式基础/dalvik和art虚拟机</li>
+<li>IDA、GDB、JEB逆向工具</li>
+</ul>
+<h2 id="Android签名机制"><a href="#Android签名机制" class="headerlink" title="Android签名机制"></a>Android签名机制</h2><ul>
+<li>v1签名</li>
+<li>v2签名</li>
+<li>应用多渠道发布</li>
+</ul>
+<a id="more"></a>
+<h2 id="Android加固原理"><a href="#Android加固原理" class="headerlink" title="Android加固原理"></a>Android加固原理</h2><ul>
+<li>应用加固<br>应用加固<br><a href="http://jiagu.360.cn/1101141392.php?dtid=1101141786&amp;did=1101262105" target="_blank" rel="noopener">http://jiagu.360.cn/1101141392.php?dtid=1101141786&amp;did=1101262105</a><br><a href="https://jaq.alibaba.com/community/art/show?articleid=1127" target="_blank" rel="noopener">https://jaq.alibaba.com/community/art/show?articleid=1127</a><br><a href="http://www.520monkey.com/archives/1118" target="_blank" rel="noopener">http://www.520monkey.com/archives/1118</a><br><a href="http://secwiki.neu.edu.cn/wiki/images/1/1e/%E8%B0%88%E8%B0%88%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%8A%A0%E5%9B%BA_LBE.pdf" target="_blank" rel="noopener">http://secwiki.neu.edu.cn/wiki/images/1/1e/%E8%B0%88%E8%B0%88%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%8A%A0%E5%9B%BA_LBE.pdf</a><br><a href="https://chaman.gitbooks.io/techblog/Android/apk-enchance/apk-enchance.html" target="_blank" rel="noopener">https://chaman.gitbooks.io/techblog/Android/apk-enchance/apk-enchance.html</a></li>
+</ul>
+<p>加固方案对比： <a href="https://www.niwoxuexi.com/blog/android/article/233.html" target="_blank" rel="noopener">https://www.niwoxuexi.com/blog/android/article/233.html</a><br>dex全量加固：<br><a href="https://juejin.im/entry/5a5c55426fb9a01c9f5b65ed" target="_blank" rel="noopener">https://juejin.im/entry/5a5c55426fb9a01c9f5b65ed</a><br><a href="https://blog.csdn.net/jiangwei0910410003/article/details/48415225/" target="_blank" rel="noopener">https://blog.csdn.net/jiangwei0910410003/article/details/48415225/</a></p>
+<p>Android中apk加固完善篇之内存加载dex方案实现原理(不落地方式加载dex)<br><a href="http://www.10tiao.com/html/465/201606/2649229971/1.html" target="_blank" rel="noopener">http://www.10tiao.com/html/465/201606/2649229971/1.html</a></p>
+<ul>
+<li>so加固</li>
+<li>代码资源混淆机制</li>
+</ul>
+<h2 id="Android逆向"><a href="#Android逆向" class="headerlink" title="Android逆向"></a>Android逆向</h2><ul>
+<li>apktool和jadx</li>
+<li>xposed hook机制frida/Xposed</li>
+<li>脱壳zjdroid</li>
+<li>native hook cydia substrace</li>
+<li>静态逆向</li>
+<li>动态调试smali</li>
+<li>ida调试so</li>
+</ul>
+<h2 id="Android网络协议安全"><a href="#Android网络协议安全" class="headerlink" title="Android网络协议安全"></a>Android网络协议安全</h2><h2 id="Android数据安全"><a href="#Android数据安全" class="headerlink" title="Android数据安全"></a>Android数据安全</h2><h2 id="Android重要的CVE分析"><a href="#Android重要的CVE分析" class="headerlink" title="Android重要的CVE分析"></a>Android重要的CVE分析</h2><h2 id="重要的安全博客"><a href="#重要的安全博客" class="headerlink" title="重要的安全博客"></a>重要的安全博客</h2><p><a href="http://blogs.360.cn/360mobile/" target="_blank" rel="noopener">http://blogs.360.cn/360mobile/</a><br><a href="http://jaq.alibaba.com/?spm=a313e.7837752.1000000.1.44ff69b1P4qoom" target="_blank" rel="noopener">http://jaq.alibaba.com/?spm=a313e.7837752.1000000.1.44ff69b1P4qoom</a><br><a href="http://www.freebuf.com/articles/terminal" target="_blank" rel="noopener">http://www.freebuf.com/articles/terminal</a><br><a href="http://www.cnblogs.com/2014asm/" target="_blank" rel="noopener">http://www.cnblogs.com/2014asm/</a><br><a href="http://www.droidsec.cn/" target="_blank" rel="noopener">http://www.droidsec.cn/</a><br><a href="https://www.anquanke.com/#" target="_blank" rel="noopener">https://www.anquanke.com/#</a><br><a href="https://blog.flanker017.me/" target="_blank" rel="noopener">https://blog.flanker017.me/</a><br><a href="https://security.tencent.com/index.php/blog" target="_blank" rel="noopener">https://security.tencent.com/index.php/blog</a><br><a href="https://blog.csdn.net/u010651541" target="_blank" rel="noopener">https://blog.csdn.net/u010651541</a>        </p>
+<h2 id="攻击-漏洞挖掘原理和机制"><a href="#攻击-漏洞挖掘原理和机制" class="headerlink" title="攻击-漏洞挖掘原理和机制"></a>攻击-漏洞挖掘原理和机制</h2><h2 id="业界通用的安全思想实践"><a href="#业界通用的安全思想实践" class="headerlink" title="业界通用的安全思想实践"></a>业界通用的安全思想实践</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+            <a href="/tags/应用安全/" rel="tag"># 应用安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/android_review_frame_library.html" rel="next" title="Android查缺补漏-流行框架">
+                <i class="fa fa-chevron-left"></i> Android查缺补漏-流行框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/source_read_list.html" rel="prev" title="源码阅读汇总">
+                源码阅读汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android应用安全"><span class="nav-number">1.</span> <span class="nav-text">Android应用安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android应用安全攻击面看安全"><span class="nav-number">1.1.</span> <span class="nav-text">Android应用安全攻击面看安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全开发生命周期"><span class="nav-number">1.2.</span> <span class="nav-text">安全开发生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全风险评估Risk-Assessment"><span class="nav-number">1.3.</span> <span class="nav-text">安全风险评估Risk Assessment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android安全基础"><span class="nav-number">1.4.</span> <span class="nav-text">Android安全基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android签名机制"><span class="nav-number">1.5.</span> <span class="nav-text">Android签名机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android加固原理"><span class="nav-number">1.6.</span> <span class="nav-text">Android加固原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android逆向"><span class="nav-number">1.7.</span> <span class="nav-text">Android逆向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android网络协议安全"><span class="nav-number">1.8.</span> <span class="nav-text">Android网络协议安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android数据安全"><span class="nav-number">1.9.</span> <span class="nav-text">Android数据安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android重要的CVE分析"><span class="nav-number">1.10.</span> <span class="nav-text">Android重要的CVE分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要的安全博客"><span class="nav-number">1.11.</span> <span class="nav-text">重要的安全博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击-漏洞挖掘原理和机制"><span class="nav-number">1.12.</span> <span class="nav-text">攻击-漏洞挖掘原理和机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业界通用的安全思想实践"><span class="nav-number">1.13.</span> <span class="nav-text">业界通用的安全思想实践</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,书籍推荐,内存泄漏,性能分析,性能指标,优化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="性能指标 流畅更快 1- 稳定**更稳** ```Crash， ANR  节省更省 内存，CPU，安装包大小，存储，功耗电量，网络   https://github.com/openthos/openthos/wiki/understand-androidhttps://www.kancloud.cn/kancloud/android-performance/53238https://develo">
+<meta name="keywords" content="Android,书籍推荐,内存泄漏,性能分析,性能指标,优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能分析与优化">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_app_perfermance_oom.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="性能指标 流畅更快 1- 稳定**更稳** ```Crash， ANR  节省更省 内存，CPU，安装包大小，存储，功耗电量，网络   https://github.com/openthos/openthos/wiki/understand-androidhttps://www.kancloud.cn/kancloud/android-performance/53238https://develo">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能分析与优化">
+<meta name="twitter:description" content="性能指标 流畅更快 1- 稳定**更稳** ```Crash， ANR  节省更省 内存，CPU，安装包大小，存储，功耗电量，网络   https://github.com/openthos/openthos/wiki/understand-androidhttps://www.kancloud.cn/kancloud/android-performance/53238https://develo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_app_perfermance_oom.html"/>
+
+
+
+
+
+  <title>Android性能分析与优化 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_app_perfermance_oom.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android性能分析与优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-15T00:00:00+00:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/10Android-App/" itemprop="url" rel="index">
+                    <span itemprop="name">10Android_App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h1><ul>
+<li><p>流畅<strong>更快</strong> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 稳定**更稳** ```Crash， ANR</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>节省<strong>更省</strong> <code>内存，CPU，安装包大小，存储，功耗电量，网络</code></p>
+</li>
+</ul>
+<p><a href="https://github.com/openthos/openthos/wiki/understand-android" target="_blank" rel="noopener">https://github.com/openthos/openthos/wiki/understand-android</a><br><a href="https://www.kancloud.cn/kancloud/android-performance/53238" target="_blank" rel="noopener">https://www.kancloud.cn/kancloud/android-performance/53238</a><br><a href="https://developer.android.com/topic/performance/index.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/index.html</a><br><a href="https://developer.android.com/studio/profile/index.html" target="_blank" rel="noopener">https://developer.android.com/studio/profile/index.html</a></p>
+<h2 id="流畅性"><a href="#流畅性" class="headerlink" title="流畅性"></a>流畅性</h2><h3 id="启动速度"><a href="#启动速度" class="headerlink" title="启动速度"></a>启动速度</h3><p><a href="https://developer.android.com/topic/performance/launch-time.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/launch-time.html</a><br><a href="https://juejin.im/post/5874bff0128fe1006b443fa0" target="_blank" rel="noopener">https://juejin.im/post/5874bff0128fe1006b443fa0</a></p>
+<h3 id="页面响应速度优化"><a href="#页面响应速度优化" class="headerlink" title="页面响应速度优化"></a>页面响应速度优化</h3><p><a href="https://www.zhihu.com/question/47702122" target="_blank" rel="noopener">https://www.zhihu.com/question/47702122</a><br><a href="http://www.cnblogs.com/lzl-sml/p/5223704.html" target="_blank" rel="noopener">http://www.cnblogs.com/lzl-sml/p/5223704.html</a></p>
+<h3 id="UI渲染显示速度提升"><a href="#UI渲染显示速度提升" class="headerlink" title="UI渲染显示速度提升"></a>UI渲染显示速度提升</h3><p><a href="https://blog.csdn.net/yanbober/article/details/48394201" target="_blank" rel="noopener">https://blog.csdn.net/yanbober/article/details/48394201</a></p>
+<h2 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h2><ul>
+<li>稳定性问题 <a href="http://gityuan.com/2016/06/19/stability_summary/" target="_blank" rel="noopener">http://gityuan.com/2016/06/19/stability_summary/</a></li>
+<li>ANR分析策略  <a href="http://rayleeya.iteye.com/blog/1955652" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1955652</a></li>
+<li>anr google <a href="https://developer.android.com/topic/performance/vitals/anr.html#fix_the_problems" target="_blank" rel="noopener">https://developer.android.com/topic/performance/vitals/anr.html#fix_the_problems</a></li>
+<li>ANR超时源码解析 <a href="http://gityuan.com/2016/07/02/android-anr/" target="_blank" rel="noopener">http://gityuan.com/2016/07/02/android-anr/</a></li>
+<li>ANR信息收集 <a href="http://gityuan.com/2016/12/02/app-not-response/" target="_blank" rel="noopener">http://gityuan.com/2016/12/02/app-not-response/</a>  </li>
+<li>ANR input  <a href="http://gityuan.com/2017/01/01/input-anr/" target="_blank" rel="noopener">http://gityuan.com/2017/01/01/input-anr/</a></li>
+<li>app crash  <a href="http://gityuan.com/2016/06/24/app-crash/" target="_blank" rel="noopener">http://gityuan.com/2016/06/24/app-crash/</a></li>
+<li>native crash <a href="http://gityu" target="_blank" rel="noopener">http://gityu</a> an.com/2016/06/25/android-native-crash/</li>
+</ul>
+<h3 id="稳定性分析及工具"><a href="#稳定性分析及工具" class="headerlink" title="稳定性分析及工具"></a>稳定性分析及工具</h3><ul>
+<li>Android Profile 工具集 <a href="https://developer.android.com/studio/profile/index.html" target="_blank" rel="noopener">https://developer.android.com/studio/profile/index.html</a></li>
+<li>Device Monitor工具集 <a href="https://developer.android.com/studio/profile/monitor.html#usage" target="_blank" rel="noopener">https://developer.android.com/studio/profile/monitor.html#usage</a></li>
+<li><p>性能优化 <a href="http://rayleeya.iteye.com/blog/1961005" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1961005</a></p>
+</li>
+<li><p>traceview<br><a href="http://gityuan.com/2017/07/11/android_debug/" target="_blank" rel="noopener">http://gityuan.com/2017/07/11/android_debug/</a><br><a href="https://bxbxbai.github.io/2014/10/25/use-trace-view/" target="_blank" rel="noopener">https://bxbxbai.github.io/2014/10/25/use-trace-view/</a><br><a href="https://developer.android.com/studio/profile/traceview.html#overview" target="_blank" rel="noopener">https://developer.android.com/studio/profile/traceview.html#overview</a><br><a href="https://blog.csdn.net/innost/article/details/9008691" target="_blank" rel="noopener">https://blog.csdn.net/innost/article/details/9008691</a><br><a href="https://blog.csdn.net/u011240877/article/details/54347396#2%E4%BD%BF%E7%94%A8-android-studio-%E7%94%9F%E6%88%90-trace-%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">https://blog.csdn.net/u011240877/article/details/54347396#2%E4%BD%BF%E7%94%A8-android-studio-%E7%94%9F%E6%88%90-trace-%E6%96%87%E4%BB%B6</a></p>
+</li>
+<li><p>systrace<br><a href="http://gityuan.com/2016/01/17/systrace/" target="_blank" rel="noopener">http://gityuan.com/2016/01/17/systrace/</a><br><a href="https://developer.android.com/studio/command-line/systrace.html" target="_blank" rel="noopener">https://developer.android.com/studio/command-line/systrace.html</a></p>
+</li>
+<li><p>dumpsys<br><a href="http://gityuan.com/2015/08/22/tool-dumpsys/" target="_blank" rel="noopener">http://gityuan.com/2015/08/22/tool-dumpsys/</a><br><a href="https://developer.android.com/studio/command-line/dumpsys.html" target="_blank" rel="noopener">https://developer.android.com/studio/command-line/dumpsys.html</a></p>
+</li>
+<li><p>dmtracedump<br><a href="https://developer.android.com/studio/command-line/dmtracedump.html" target="_blank" rel="noopener">https://developer.android.com/studio/command-line/dmtracedump.html</a></p>
+</li>
+</ul>
+<p>Android Device Monitor  </p>
+<p>Android Device Monitor is a standalone tool that provides a UI for several Android app debugging and analysis tools.However, most components of the Android Device Monitor are <strong>deprecated</strong> in favor of updated tools available in Android Studio 3.0 and higher. The table below helps you decide which developer tools you should use. </p>
+<p>Android Device Monitor component    What you should use</p>
+<ul>
+<li><p>Dalvik Debug Monitor Server (DDMS)<br>This tool is deprecated. Instead, use Android Profiler in Android Studio 3.0 and higher to profile your app’s CPU, memory, and network usage.<br>If you want to perform other debugging tasks, such as sending commands to a connected device to set up port-forwarding, transfer files, or take screenshots, then use the Android Debug Bridge (adb), Android Emulator, Device File Explorer, or Debugger window.</p>
+</li>
+<li><p>Traceview<br>If you want to inspect existing .trace files, or ones you’ve captured by instrumenting your app with the Debug class, keep using Traceview.<br>If you want to record new method traces and inspect realtime CPU usage of your app’s processes, use Android Studio’s CPU profiler.</p>
+</li>
+<li><p>Systrace<br>If you need to inspect native system processes and address UI jank caused by dropped frames, use systrace from the command line.<br>Otherwise, use Android Studio’s CPU profiler to profile your app’s processes.</p>
+</li>
+<li><p>Tracer for OpenGL ES    Use the Graphics API Debugger.</p>
+</li>
+<li>Hierarchy Viewer<br>If you want to inspect your app’s view hierarchy at runtime, use Layout Inspector.</li>
+</ul>
+<p>If you want to profile the rendering speed of your app’s layout, use Window.OnFrameMetricsAvailableListener as described in this blog post.</p>
+<p>Pixel Perfect    Use Layout Inspector.</p>
+<p><strong>ANR分析套路</strong><br><a href="http://maoao530.github.io/2017/02/21/anr-analyse/" target="_blank" rel="noopener">http://maoao530.github.io/2017/02/21/anr-analyse/</a><br><a href="https://blog.csdn.net/sinat_34157462/article/details/78651870" target="_blank" rel="noopener">https://blog.csdn.net/sinat_34157462/article/details/78651870</a><br><a href="https://blog.csdn.net/wei_lei/article/details/70311702" target="_blank" rel="noopener">https://blog.csdn.net/wei_lei/article/details/70311702</a><br><a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="noopener">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
+<h4 id="crash-内存泄露OutOfMemoryError"><a href="#crash-内存泄露OutOfMemoryError" class="headerlink" title="crash - 内存泄露OutOfMemoryError"></a>crash - 内存泄露OutOfMemoryError</h4><p><a href="https://www.jianshu.com/u/b8dad3885e05" target="_blank" rel="noopener">https://www.jianshu.com/u/b8dad3885e05</a><br><a href="http://rayleeya.iteye.com/blog/1956059" target="_blank" rel="noopener">http://rayleeya.iteye.com/blog/1956059</a><br><a href="http://www.voidcn.com/article/p-txoxuyet-bqt.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-txoxuyet-bqt.html</a><br><a href="https://juejin.im/entry/59f7ea06f265da43143ffee4" target="_blank" rel="noopener">https://juejin.im/entry/59f7ea06f265da43143ffee4</a><br><a href="http://blog.csdn.net/qyf2010qyf/article/details/52852000" target="_blank" rel="noopener">http://blog.csdn.net/qyf2010qyf/article/details/52852000</a></p>
+<p>##节省性</p>
+<h3 id="减少apk安装包大小"><a href="#减少apk安装包大小" class="headerlink" title="减少apk安装包大小"></a>减少apk安装包大小</h3><p><a href="https://developer.android.com/topic/performance/reduce-apk-size.html#apk-structure" target="_blank" rel="noopener">https://developer.android.com/topic/performance/reduce-apk-size.html#apk-structure</a><br><strong>避免使用枚举</strong><br><a href="https://zhuanlan.zhihu.com/p/25865835" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25865835</a><br><a href="http://www.10tiao.com/html/330/201704/2653578978/2.html" target="_blank" rel="noopener">http://www.10tiao.com/html/330/201704/2653578978/2.html</a><br><a href="https://blog.csdn.net/hp910315/article/details/48975655" target="_blank" rel="noopener">https://blog.csdn.net/hp910315/article/details/48975655</a><br><a href="https://blog.csdn.net/my_truelove/article/details/70519234" target="_blank" rel="noopener">https://blog.csdn.net/my_truelove/article/details/70519234</a></p>
+<h3 id="减少过渡后台，android后台优化"><a href="#减少过渡后台，android后台优化" class="headerlink" title="减少过渡后台，android后台优化"></a>减少过渡后台，android后台优化</h3><p><a href="https://developer.android.com/training/best-background.html" target="_blank" rel="noopener">https://developer.android.com/training/best-background.html</a></p>
+<h3 id="减少view绘制过度"><a href="#减少view绘制过度" class="headerlink" title="减少view绘制过度"></a>减少view绘制过度</h3><p><a href="https://blog.csdn.net/qq_19711823/article/details/65627790" target="_blank" rel="noopener">https://blog.csdn.net/qq_19711823/article/details/65627790</a><br><a href="https://www.jianshu.com/p/2cc6d5842986" target="_blank" rel="noopener">https://www.jianshu.com/p/2cc6d5842986</a><br><a href="https://blog.csdn.net/yanbober/article/details/48394201" target="_blank" rel="noopener">https://blog.csdn.net/yanbober/article/details/48394201</a><br><a href="https://yq.aliyun.com/articles/82572" target="_blank" rel="noopener">https://yq.aliyun.com/articles/82572</a></p>
+<h3 id="减少流量消耗"><a href="#减少流量消耗" class="headerlink" title="减少流量消耗"></a>减少流量消耗</h3><p><a href="https://developer.android.com/topic/performance/vitals/bg-network-usage.html#detect_the_problem" target="_blank" rel="noopener">https://developer.android.com/topic/performance/vitals/bg-network-usage.html#detect_the_problem</a><br><a href="https://developer.android.com/training/basics/network-ops/data-saver.html#monitor-changes" target="_blank" rel="noopener">https://developer.android.com/training/basics/network-ops/data-saver.html#monitor-changes</a></p>
+<h3 id="减少电量消耗"><a href="#减少电量消耗" class="headerlink" title="减少电量消耗"></a>减少电量消耗</h3><p><a href="https://developer.android.com/topic/performance/power/index.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/power/index.html</a></p>
+<h3 id="减少内存占用"><a href="#减少内存占用" class="headerlink" title="减少内存占用"></a>减少内存占用</h3><p><a href="https://developer.android.com/topic/performance/memory.html#code" target="_blank" rel="noopener">https://developer.android.com/topic/performance/memory.html#code</a><br><a href="https://developer.android.com/topic/performance/memory-overview.html" target="_blank" rel="noopener">https://developer.android.com/topic/performance/memory-overview.html</a></p>
+<h1 id="性能优化的建议"><a href="#性能优化的建议" class="headerlink" title="性能优化的建议"></a>性能优化的建议</h1><p><a href="https://blog.csdn.net/carson_ho/article/details/79708444" target="_blank" rel="noopener">https://blog.csdn.net/carson_ho/article/details/79708444</a><br><a href="https://juejin.im/post/5a0d30e151882546d71ee49e" target="_blank" rel="noopener">https://juejin.im/post/5a0d30e151882546d71ee49e</a><br><a href="https://www.ctolib.com/docs/sfile/notes-master/Android-Java/AndroidPerformancePatterns.html" target="_blank" rel="noopener">https://www.ctolib.com/docs/sfile/notes-master/Android-Java/AndroidPerformancePatterns.html</a><br><a href="https://github.com/Piasy/notes/blob/master/Android-Java/AndroidPerformancePatterns.md" target="_blank" rel="noopener">https://github.com/Piasy/notes/blob/master/Android-Java/AndroidPerformancePatterns.md</a><br><a href="https://www.jianshu.com/u/fdb392adfbed" target="_blank" rel="noopener">https://www.jianshu.com/u/fdb392adfbed</a><br><a href="https://segmentfault.com/a/1190000012413613" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012413613</a><br><a href="https://zhuanlan.zhihu.com/p/26364608" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26364608</a></p>
+<h1 id="Android优化checklist"><a href="#Android优化checklist" class="headerlink" title="Android优化checklist"></a>Android优化checklist</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/书籍推荐/" rel="tag"># 书籍推荐</a>
+          
+            <a href="/tags/内存泄漏/" rel="tag"># 内存泄漏</a>
+          
+            <a href="/tags/性能分析/" rel="tag"># 性能分析</a>
+          
+            <a href="/tags/性能指标/" rel="tag"># 性能指标</a>
+          
+            <a href="/tags/优化/" rel="tag"># 优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/android_security_ssl_verify.html" rel="next" title="ssl证书校验机制">
+                <i class="fa fa-chevron-left"></i> ssl证书校验机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/android_app_perfermance_anr.html" rel="prev" title="Android性能-ANR">
+                Android性能-ANR <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#性能指标"><span class="nav-number">1.</span> <span class="nav-text">性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#流畅性"><span class="nav-number">1.1.</span> <span class="nav-text">流畅性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动速度"><span class="nav-number">1.1.1.</span> <span class="nav-text">启动速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面响应速度优化"><span class="nav-number">1.1.2.</span> <span class="nav-text">页面响应速度优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI渲染显示速度提升"><span class="nav-number">1.1.3.</span> <span class="nav-text">UI渲染显示速度提升</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稳定性"><span class="nav-number">1.2.</span> <span class="nav-text">稳定性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#稳定性分析及工具"><span class="nav-number">1.2.1.</span> <span class="nav-text">稳定性分析及工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#crash-内存泄露OutOfMemoryError"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">crash - 内存泄露OutOfMemoryError</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少apk安装包大小"><span class="nav-number">1.2.2.</span> <span class="nav-text">减少apk安装包大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少过渡后台，android后台优化"><span class="nav-number">1.2.3.</span> <span class="nav-text">减少过渡后台，android后台优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少view绘制过度"><span class="nav-number">1.2.4.</span> <span class="nav-text">减少view绘制过度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少流量消耗"><span class="nav-number">1.2.5.</span> <span class="nav-text">减少流量消耗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少电量消耗"><span class="nav-number">1.2.6.</span> <span class="nav-text">减少电量消耗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少内存占用"><span class="nav-number">1.2.7.</span> <span class="nav-text">减少内存占用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能优化的建议"><span class="nav-number">2.</span> <span class="nav-text">性能优化的建议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android优化checklist"><span class="nav-number">3.</span> <span class="nav-text">Android优化checklist</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

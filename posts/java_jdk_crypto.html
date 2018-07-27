@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,密码," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Java密码参考 Java加解密艺术这本书进行整理如下 对称加密 symmetric AesCbcUtils 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960package com.security.symmetric;imp">
+<meta name="keywords" content="java,密码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java密码">
+<meta property="og:url" content="https://fitzlee.github.io/posts/java_jdk_crypto.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="Java密码参考 Java加解密艺术这本书进行整理如下 对称加密 symmetric AesCbcUtils 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960package com.security.symmetric;imp">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java密码">
+<meta name="twitter:description" content="Java密码参考 Java加解密艺术这本书进行整理如下 对称加密 symmetric AesCbcUtils 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960package com.security.symmetric;imp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/java_jdk_crypto.html"/>
+
+
+
+
+
+  <title>Java密码 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/java_jdk_crypto.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java密码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-03T00:00:00+00:00">
+                2016-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/00Java-JDK/" itemprop="url" rel="index">
+                    <span itemprop="name">00Java&JDK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java密码"><a href="#Java密码" class="headerlink" title="Java密码"></a>Java密码</h1><p>参考 Java加解密艺术这本书进行整理如下</p>
+<h2 id="对称加密-symmetric"><a href="#对称加密-symmetric" class="headerlink" title="对称加密 symmetric"></a>对称加密 symmetric</h2><ul>
+<li><p>AesCbcUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import javax.crypto.spec.IvParameterSpec;</span><br><span class="line">import javax.crypto.spec.SecretKeySpec;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * aes cbc and iv demo.</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version  1.0.0</span><br><span class="line"> */</span><br><span class="line">public class AesCbcUtils &#123;</span><br><span class="line"></span><br><span class="line">    // aes cipher mode</span><br><span class="line">    public static final String CIPHER_ALGORITHM = &quot;AES/CBC/NoPadding&quot;;</span><br><span class="line"></span><br><span class="line">    // public static final String CIPHER_ALGORITHM = &quot;AES/CBC/PKCS5Padding&quot;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * encrypt</span><br><span class="line">     * @param plain 16B</span><br><span class="line">     * @param key 16B</span><br><span class="line">     * @param iv 16B</span><br><span class="line">     * @return byte[] 16B</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public static byte[] encrypt(byte[] plain, byte[] key, byte[] iv) throws Exception &#123;</span><br><span class="line">        if (key == null || key.length != 16 || iv == null || iv.length != 16) &#123;</span><br><span class="line">            throw new Exception(&quot;key or iv error&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        SecretKeySpec sKeySpec = new SecretKeySpec(key, &quot;AES&quot;);</span><br><span class="line">        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);</span><br><span class="line">        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, sKeySpec, ivParameterSpec);</span><br><span class="line">        byte[] encrypted = cipher.doFinal(plain);</span><br><span class="line">        return encrypted;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * decrypt</span><br><span class="line">     * @param crypt 16B</span><br><span class="line">     * @param key 16B</span><br><span class="line">     * @param iv 16B</span><br><span class="line">     * @return byte[] 16B</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public static byte[] decrypt(byte[] crypt, byte[] key, byte[] iv) throws Exception &#123;</span><br><span class="line">        if (key == null || key.length != 16 || iv == null || iv.length != 16) &#123;</span><br><span class="line">            throw new Exception(&quot;key or iv error&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        SecretKeySpec sKeySpec = new SecretKeySpec(key, &quot;AES&quot;);</span><br><span class="line">        sKeySpec.getClass().getSimpleName();</span><br><span class="line">        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);</span><br><span class="line">        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, sKeySpec, ivParameterSpec);</span><br><span class="line">        byte[] original = cipher.doFinal(crypt);</span><br><span class="line">        return original;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AesUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class AesUtils &#123;</span><br><span class="line">    private static final String KEY_TYPE = &quot;AES&quot;;</span><br><span class="line">    private static final String CIPER_MODE = &quot;AES/ECB/PKCS5PADDING&quot;;</span><br><span class="line"></span><br><span class="line">    private static SecretKey generateSecretKey() throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_TYPE);</span><br><span class="line">        return keyGenerator.generateKey();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] encrypt(SecretKey key, byte[] data) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.encrypt(key, data, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] decrypt(SecretKey key, byte[] cipherText) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.decrypt(key, cipherText, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CipherAsymmetricUtils</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.Key;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public abstract class CipherAsymmetricUtils &#123;</span><br><span class="line">    public enum KeyTypeEnum &#123;</span><br><span class="line">        AES(&quot;AES&quot;), DES(&quot;DES&quot;), DESede(&quot;DESede&quot;), IDEA(&quot;IDEA&quot;);</span><br><span class="line">        private String keyType;</span><br><span class="line">        private KeyTypeEnum(String keyType) &#123;</span><br><span class="line">            this.keyType = keyType;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public enum WorkTypeEnum &#123;</span><br><span class="line">        ECB(&quot;ECB&quot;), CBC(&quot;CBC&quot;);</span><br><span class="line">        private String workType;</span><br><span class="line">        private WorkTypeEnum(String workType) &#123;</span><br><span class="line">            this.workType = workType;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public enum PaddingTypeEnum &#123;</span><br><span class="line">        NOPadding(&quot;NOPadding&quot;), PKCS5Padding(&quot;PKCS5Padding&quot;), PKCS7Padding(&quot;PKCS7Padding&quot;);</span><br><span class="line">        private String paddingType;</span><br><span class="line">        private PaddingTypeEnum(String paddingType) &#123;</span><br><span class="line">            this.paddingType = paddingType;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] encrypt(Key key, byte[] data, String cipherType) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(cipherType);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key);</span><br><span class="line">        return cipher.doFinal(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decrypt(Key key, byte[] cipherText, String cipherType) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(cipherType);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key);</span><br><span class="line">        return cipher.doFinal(cipherText);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static SecretKey generateSecretKey(String keyType) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(keyType);</span><br><span class="line">        return keyGenerator.generateKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Des3Utils</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class Des3Utils &#123;</span><br><span class="line">    private static final String KEY_TYPE = &quot;DESede&quot;;</span><br><span class="line">    private static final String CIPER_MODE = &quot;DESede/ECB/PKCS5PADDING&quot;;</span><br><span class="line"></span><br><span class="line">    private static SecretKey generateSecretKey() throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_TYPE);</span><br><span class="line">        return keyGenerator.generateKey();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] encrypt(SecretKey key, byte[] data) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.encrypt(key, data, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] decrypt(SecretKey key, byte[] cipherText) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.decrypt(key, cipherText, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>DesUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class DesUtils &#123;</span><br><span class="line">    private static final String KEY_TYPE = &quot;DES&quot;;</span><br><span class="line">    private static final String CIPER_MODE = &quot;DES/ECB/PKCS5PADDING&quot;;</span><br><span class="line"></span><br><span class="line">    private static SecretKey generateSecretKey() throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_TYPE);</span><br><span class="line">        return keyGenerator.generateKey();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] encrypt(SecretKey key, byte[] data) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.encrypt(key, data, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] decrypt(SecretKey key, byte[] cipherText) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.decrypt(key, cipherText, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CCM</p>
+</li>
+<li><p>IdeaUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class IdeaUtils &#123;</span><br><span class="line">    private static final String KEY_TYPE = &quot;IDEA&quot;;</span><br><span class="line">    private static final String CIPER_MODE = &quot;IDEA/ECB/PKCS5PADDING&quot;;</span><br><span class="line"></span><br><span class="line">    private static SecretKey generateSecretKey() throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_TYPE);</span><br><span class="line">        return keyGenerator.generateKey();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] encrypt(SecretKey key, byte[] data) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.encrypt(key, data, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] decrypt(SecretKey key, byte[] cipherText) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.decrypt(key, cipherText, CIPER_MODE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>PbeUtils</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import javax.crypto.spec.PBEKeySpec;</span><br><span class="line">import javax.crypto.spec.PBEParameterSpec;</span><br><span class="line">import java.security.InvalidAlgorithmParameterException;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.security.SecureRandom;</span><br><span class="line">import java.security.spec.InvalidKeySpecException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class PbeUtils &#123;</span><br><span class="line">    /**</span><br><span class="line">     * &lt;pre&gt;</span><br><span class="line">     * PBEWithMD5AndDES</span><br><span class="line">     * PBEWithMD5AndTripleDES</span><br><span class="line">     * PBEWithSHA1AndDESede</span><br><span class="line">     * PBEWithSHA1AndRC2_40</span><br><span class="line">     * &lt;/pre&gt;</span><br><span class="line">     */</span><br><span class="line">    private static final String ALGORITHM = &quot;PBEWithMD5AndTripleDES&quot;;</span><br><span class="line">    private static final int ITERATION_COUNT = 100;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static SecretKey generateSecrectKey(String passwd) throws NoSuchAlgorithmException, InvalidKeySpecException &#123;</span><br><span class="line">        PBEKeySpec pbeKeySpec = new PBEKeySpec(passwd.toCharArray());</span><br><span class="line">        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(ALGORITHM);</span><br><span class="line">        return secretKeyFactory.generateSecret(pbeKeySpec);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] generateSalt() &#123;</span><br><span class="line">        SecureRandom random = new SecureRandom();</span><br><span class="line">        return random.generateSeed(8);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] encrypt(SecretKey key, byte[] data, byte[] salt) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(ALGORITHM);</span><br><span class="line">        PBEParameterSpec pbeParameterSpec = new PBEParameterSpec(salt, ITERATION_COUNT);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key, pbeParameterSpec);</span><br><span class="line">        return cipher.doFinal(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decrypt(SecretKey key, byte[] cipherText, byte[] salt) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(ALGORITHM);</span><br><span class="line">        PBEParameterSpec pbeParameterSpec = new PBEParameterSpec(salt, ITERATION_COUNT);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key, pbeParameterSpec);</span><br><span class="line">        return cipher.doFinal(cipherText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SecretKeyUtils<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package com.security.symmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import javax.crypto.SecretKeyFactory;</span><br><span class="line">import javax.crypto.spec.SecretKeySpec;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.security.spec.InvalidKeySpecException;</span><br><span class="line">import java.security.spec.KeySpec;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class SecretKeyUtils &#123;</span><br><span class="line">    public SecretKey getSecretKey(byte[] keyBytes, String keyType) &#123;</span><br><span class="line">        SecretKey secretKey = new SecretKeySpec(keyBytes, keyType);</span><br><span class="line">        return secretKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public SecretKey generateSecretKey(String keyType, KeySpec keySpec) throws NoSuchAlgorithmException, InvalidKeySpecException &#123;</span><br><span class="line">        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(keyType);</span><br><span class="line">        return secretKeyFactory.generateSecret(keySpec);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><ul>
+<li><p>CipherAsymmetricUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.*;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.Key;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public abstract class CipherAsymmetricUtils &#123;</span><br><span class="line">    public enum KeyTypeEnum &#123;</span><br><span class="line">        RSA(&quot;RSA&quot;), ECC(&quot;ECC&quot;);</span><br><span class="line">        private String keyType;</span><br><span class="line">        private KeyTypeEnum(String keyType) &#123;</span><br><span class="line">            this.keyType = keyType;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public enum WorkTypeEnum &#123;</span><br><span class="line">        ECB(&quot;ECB&quot;), CBC(&quot;CBC&quot;);</span><br><span class="line">        private String workType;</span><br><span class="line">        private WorkTypeEnum(String workType) &#123;</span><br><span class="line">            this.workType = workType;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public enum PaddingTypeEnum &#123;</span><br><span class="line">        NOPadding(&quot;NoPadding&quot;), PKCS5Padding(&quot;PKCS5Padding&quot;), PKCS7Padding(&quot;PKCS7Padding&quot;);</span><br><span class="line">        private String paddingType;</span><br><span class="line">        private PaddingTypeEnum(String paddingType) &#123;</span><br><span class="line">            this.paddingType = paddingType;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] encrypt(Key key, byte[] data, String cipherType) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(cipherType);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, key);</span><br><span class="line">        return cipher.doFinal(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decrypt(Key key, byte[] cipherText, String cipherType) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(cipherType);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, key);</span><br><span class="line">        return cipher.doFinal(cipherText);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DhKeyAgreementUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import com.security.util.ByteUtils;</span><br><span class="line">import org.bouncycastle.crypto.digests.SHA1Digest;</span><br><span class="line">import org.bouncycastle.crypto.generators.KDF1BytesGenerator;</span><br><span class="line">import org.bouncycastle.crypto.params.ISO18033KDFParameters;</span><br><span class="line"></span><br><span class="line">import javax.crypto.KeyAgreement;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import java.math.BigInteger;</span><br><span class="line">import java.security.*;</span><br><span class="line">import java.security.spec.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class DhKeyAgreementUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static final String KEY_AGREEMENT_ALGORITHM_DH = &quot;DH&quot;;</span><br><span class="line">    public static final String KEY_AGREEMENT_ALGORITHM_ECDH = &quot;ECDH&quot;;</span><br><span class="line">    public static final String SECRET_KEY_ALGORITHM = &quot;AES&quot;;</span><br><span class="line"></span><br><span class="line">    public SecretKey generateSecretKey(PublicKey publicKey, PrivateKey privateKey, String keyAgreementType) throws Exception &#123;</span><br><span class="line">        KeyAgreement ka = KeyAgreement.getInstance(keyAgreementType);</span><br><span class="line">        ka.init(privateKey);</span><br><span class="line">        ka.doPhase(publicKey, true);</span><br><span class="line">        SecretKey key = ka.generateSecret(SECRET_KEY_ALGORITHM);</span><br><span class="line">        return key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public byte[] generateSessionKeyPki(PublicKey publicKey, PrivateKey privateKey) throws Exception &#123;</span><br><span class="line">        KeyAgreement ka = KeyAgreement.getInstance(&quot;ECDH&quot;);   //EcDhWithNistKdf256</span><br><span class="line">        ka.init(privateKey);</span><br><span class="line">        ka.doPhase(publicKey, true);</span><br><span class="line">        byte[] secret = ka.generateSecret();</span><br><span class="line">        KDF1BytesGenerator kdf1sha1 = new KDF1BytesGenerator(new SHA1Digest());</span><br><span class="line">        kdf1sha1.init(new ISO18033KDFParameters(secret));</span><br><span class="line">        byte[] key = new byte[16];</span><br><span class="line">        kdf1sha1.generateBytes(key,0,key.length);</span><br><span class="line">        return key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void generateDiffHellmanKeys(String keyType, int keySize) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(keyType);</span><br><span class="line">        keyPairGenerator.initialize(keySize);</span><br><span class="line">        KeyPair keyPair = keyPairGenerator.generateKeyPair();</span><br><span class="line"></span><br><span class="line">        // A privateKey &amp; publicKey</span><br><span class="line">        PrivateKey privateKeyA = keyPair.getPrivate();</span><br><span class="line">        PublicKey publicKeyA = keyPair.getPublic();</span><br><span class="line"></span><br><span class="line">        // B privateKey &amp; publicKey</span><br><span class="line">        keyPair = keyPairGenerator.generateKeyPair();</span><br><span class="line">        PrivateKey privateKeyB = keyPair.getPrivate();</span><br><span class="line">        PublicKey publicKeyB = keyPair.getPublic();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EccCipherUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.BadPaddingException;</span><br><span class="line">import javax.crypto.IllegalBlockSizeException;</span><br><span class="line">import javax.crypto.NoSuchPaddingException;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.security.interfaces.ECPrivateKey;</span><br><span class="line">import java.security.interfaces.ECPublicKey;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class EccCipherUtils &#123;</span><br><span class="line">    private static final String CIPHER_ALGORITHM = &quot;ECC/ECB/PKCS5Padding&quot;;</span><br><span class="line"></span><br><span class="line">    public static byte[] encrypt(ECPublicKey publicKey, byte[] data, String cipherType) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.encrypt(publicKey, data, cipherType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decrypt(ECPrivateKey privateKey, byte[] cipherText, String cipherType) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.decrypt(privateKey, cipherText, cipherType);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EccKeyGenerateUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import org.bouncycastle.util.encoders.Hex;</span><br><span class="line"></span><br><span class="line">import java.math.BigInteger;</span><br><span class="line">import java.security.*;</span><br><span class="line">import java.security.spec.ECGenParameterSpec;</span><br><span class="line">import java.security.spec.ECParameterSpec;</span><br><span class="line">import java.security.spec.ECPoint;</span><br><span class="line">import java.security.spec.ECPublicKeySpec;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class EccKeyGenerateUtils &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * generate keypair</span><br><span class="line">     * @param keyType</span><br><span class="line">     * @param size</span><br><span class="line">     * @return KeyPair</span><br><span class="line">     *         can use KeyPair&apos;s getPublic or getPrivate</span><br><span class="line">     * @throws NoSuchAlgorithmException</span><br><span class="line">     */</span><br><span class="line">    public KeyPair generateKey(String keyType, int size) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(keyType);</span><br><span class="line">        keyPairGenerator.initialize(size);</span><br><span class="line">        return keyPairGenerator.generateKeyPair();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public PublicKey getPublicKey(String x, String y) throws Exception &#123;</span><br><span class="line">        ECPoint ecPoint = new ECPoint(new BigInteger(Hex.decode(x)), new BigInteger(Hex.decode(y)));</span><br><span class="line">        AlgorithmParameters parameters = AlgorithmParameters.getInstance(&quot;EC&quot;, &quot;BC&quot;);</span><br><span class="line">        parameters.init(new ECGenParameterSpec(&quot;secp256r1&quot;));</span><br><span class="line">        ECParameterSpec ecParameters = parameters.getParameterSpec(ECParameterSpec.class);</span><br><span class="line">        return KeyFactory.getInstance (&quot;EC&quot;).generatePublic(new ECPublicKeySpec(ecPoint, ecParameters));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RsaBlockUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import java.io.ByteArrayOutputStream;</span><br><span class="line">import java.security.Key;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * no use, just for test block</span><br><span class="line"> * @author fitz</span><br><span class="line"> */</span><br><span class="line">public class RsaBlockUtils &#123;</span><br><span class="line">    public static final String CIPHER_ALGORITHM = &quot;RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // for rsa 2048</span><br><span class="line">    private static final int KEY_SIZE = 2048;</span><br><span class="line">    private static final int BLOCK_SIZE = 245;</span><br><span class="line">    private static final int OUTPUT_BLOCK_SIZE = 256;</span><br><span class="line"></span><br><span class="line">    // for rsa 1024</span><br><span class="line">    // private static final int KEY_SIZE = 1024;</span><br><span class="line">    // private static final int BLOCK_SIZE = 117;</span><br><span class="line">    // private static final int OUTPUT_BLOCK_SIZE = 128;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * encryptByPublicKey</span><br><span class="line">     * @param data</span><br><span class="line">     * @param publicKey</span><br><span class="line">     * @return</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public static byte[] encryptByPublicKey(byte[] data, Key publicKey) throws Exception &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, publicKey);</span><br><span class="line">        int blocks = data.length / BLOCK_SIZE;</span><br><span class="line">        int lastBlockSize = data.length % BLOCK_SIZE;</span><br><span class="line">        byte[] encryptedData = new byte[(lastBlockSize == 0 ? blocks : blocks + 1) * OUTPUT_BLOCK_SIZE];</span><br><span class="line">        for (int i = 0; i &lt; blocks; i++) &#123;</span><br><span class="line">            cipher.doFinal(data, i * BLOCK_SIZE, BLOCK_SIZE, encryptedData, i * OUTPUT_BLOCK_SIZE);</span><br><span class="line">        &#125;</span><br><span class="line">        if (lastBlockSize != 0) &#123;</span><br><span class="line">            cipher.doFinal(data, blocks * BLOCK_SIZE, lastBlockSize, encryptedData, blocks</span><br><span class="line">                    * OUTPUT_BLOCK_SIZE);</span><br><span class="line">        &#125;</span><br><span class="line">        return encryptedData;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * decryptByPrivateKey</span><br><span class="line">     * @param decoded</span><br><span class="line">     * @param privateKey</span><br><span class="line">     * @return</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public static byte[] decryptByPrivateKey(byte[] decoded, Key privateKey) throws Exception &#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);</span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, privateKey);</span><br><span class="line">        int blocks = decoded.length / OUTPUT_BLOCK_SIZE;</span><br><span class="line">        ByteArrayOutputStream decodedStream = new ByteArrayOutputStream(decoded.length);</span><br><span class="line">        for (int i = 0; i &lt; blocks; i++) &#123;</span><br><span class="line">            decodedStream.write(cipher.doFinal(decoded, i * OUTPUT_BLOCK_SIZE, OUTPUT_BLOCK_SIZE));</span><br><span class="line">        &#125;</span><br><span class="line">        return decodedStream.toByteArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RsaCipherUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import javax.crypto.BadPaddingException;</span><br><span class="line">import javax.crypto.Cipher;</span><br><span class="line">import javax.crypto.IllegalBlockSizeException;</span><br><span class="line">import javax.crypto.NoSuchPaddingException;</span><br><span class="line">import javax.crypto.spec.OAEPParameterSpec;</span><br><span class="line">import javax.crypto.spec.PSource;</span><br><span class="line">import java.security.*;</span><br><span class="line">import java.security.spec.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class RsaCipherUtils &#123;</span><br><span class="line">    private static final String CIPHER_ALGORITHM = &quot;RSA/ECB/PKCS5Padding&quot;;</span><br><span class="line"></span><br><span class="line">    public static byte[] encrypt(PublicKey publicKey, byte[] data, String cipherType) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.encrypt(publicKey, data, cipherType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decrypt(PrivateKey privateKey, byte[] cipherText, String cipherType) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException &#123;</span><br><span class="line">        return CipherAsymmetricUtils.decrypt(privateKey, cipherText, cipherType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] encryptOaep(byte[] data, PublicKey publicKey) throws NoSuchProviderException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidParameterSpecException &#123;</span><br><span class="line">        AlgorithmParameters algp = AlgorithmParameters.getInstance(&quot;OAEP&quot;, &quot;BC&quot;);</span><br><span class="line">        AlgorithmParameterSpec paramSpec = new OAEPParameterSpec(&quot;SHA-1&quot;, &quot;MGF1&quot;, MGF1ParameterSpec.SHA1, PSource.PSpecified.DEFAULT);</span><br><span class="line">        algp.init(paramSpec);</span><br><span class="line">        Cipher oaepFromAlgo = Cipher.getInstance(&quot;RSA/ECB/OAEPWITHSHA-1ANDMGF1PADDING&quot;);</span><br><span class="line">        oaepFromAlgo.init(Cipher.ENCRYPT_MODE, publicKey, algp);  //algp</span><br><span class="line">        byte[] ct = oaepFromAlgo.doFinal(data);</span><br><span class="line">        return ct;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RsaKeyGenerateUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">package com.security.asymmetric;</span><br><span class="line"></span><br><span class="line">import java.math.BigInteger;</span><br><span class="line">import java.security.*;</span><br><span class="line">import java.security.interfaces.RSAPrivateKey;</span><br><span class="line">import java.security.interfaces.RSAPublicKey;</span><br><span class="line">import java.security.spec.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class RsaKeyGenerateUtils &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * generate keypair</span><br><span class="line">     * @param keyType</span><br><span class="line">     * @param size</span><br><span class="line">     * @return KeyPair</span><br><span class="line">     *         can use KeyPair&apos;s getPublic or getPrivate</span><br><span class="line">     * @throws NoSuchAlgorithmException</span><br><span class="line">     */</span><br><span class="line">    public KeyPair generateKey(String keyType, int size) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(keyType);</span><br><span class="line">        keyPairGenerator.initialize(size);</span><br><span class="line">        return keyPairGenerator.generateKeyPair();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Key toPrivateKey(String type, byte[] keyBytes) throws NoSuchAlgorithmException, InvalidKeySpecException &#123;</span><br><span class="line">        PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);</span><br><span class="line">        KeyFactory keyFactory = KeyFactory.getInstance(type);</span><br><span class="line">        return keyFactory.generatePrivate(pkcs8EncodedKeySpec);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Key toPublicKey(String type, byte[] keyBytes) throws NoSuchAlgorithmException, InvalidKeySpecException &#123;</span><br><span class="line">        X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(keyBytes);</span><br><span class="line">        KeyFactory keyFactory = KeyFactory.getInstance(type);</span><br><span class="line">        return keyFactory.generatePublic(x509EncodedKeySpec);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Generate public key according to modulus and public exponent java Cipher*</span><br><span class="line">     * @param modulus modulus</span><br><span class="line">     * @param exponent public exponent</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static RSAPublicKey getPublicKey(String modulus, String exponent) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            BigInteger b1 = new BigInteger(modulus, 16);</span><br><span class="line">            BigInteger b2 = new BigInteger(exponent, 16);</span><br><span class="line">            KeyFactory keyFactory = KeyFactory.getInstance(&quot;RSA&quot;);</span><br><span class="line">            RSAPublicKeySpec keySpec = new RSAPublicKeySpec(b1, b2);</span><br><span class="line">            return (RSAPublicKey) keyFactory.generatePublic(keySpec);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Generate private key according to modulus and private exponent java</span><br><span class="line">     * @param modulus modulus</span><br><span class="line">     * @param exponent private exponent</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static RSAPrivateKey getPrivateKey(String modulus, String exponent) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            BigInteger b1 = new BigInteger(modulus, 16);</span><br><span class="line">            BigInteger b2 = new BigInteger(exponent, 16);</span><br><span class="line">            KeyFactory keyFactory = KeyFactory.getInstance(&quot;RSA&quot;);</span><br><span class="line">            RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(b1, b2);</span><br><span class="line">            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EccParams</p>
+</li>
+<li>RsaParams</li>
+<li>KdfUtils</li>
+</ul>
+<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><ul>
+<li><p>KeyUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package com.security.signature;</span><br><span class="line"></span><br><span class="line">import java.security.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class KeyUtils &#123;</span><br><span class="line">    public static final String ALGORITHM = &quot;DSA&quot;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * generate keypair</span><br><span class="line">     * @param keyType</span><br><span class="line">     * @param size</span><br><span class="line">     * @return KeyPair</span><br><span class="line">     *         can use KeyPair&apos;s getPublic or getPrivate</span><br><span class="line">     * @throws NoSuchAlgorithmException</span><br><span class="line">     */</span><br><span class="line">    public KeyPair generateKey(String keyType, int size) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(keyType);</span><br><span class="line">        keyPairGenerator.initialize(size);</span><br><span class="line">        return keyPairGenerator.generateKeyPair();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EcdsaUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package com.security.signature;</span><br><span class="line"></span><br><span class="line">import java.security.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class EcdsaUtils &#123;</span><br><span class="line">    private static final String KEY_ALGORITHM = &quot;ECDSA&quot;;</span><br><span class="line">    /**</span><br><span class="line">     * NONEwithECDSA</span><br><span class="line">     * RIPEMD160withECDSA</span><br><span class="line">     * SHA1withECDSA</span><br><span class="line">     * SHA224withECDSA</span><br><span class="line">     * SHA256withECDSA</span><br><span class="line">     * SHA384withECDSA</span><br><span class="line">     * SHA512withECDSA</span><br><span class="line">     */</span><br><span class="line">    private static final String SIGNATURE_ALGORITHM = &quot;SHA512withECDSA&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static byte[] sign(PrivateKey privateKey, byte[] data) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException &#123;</span><br><span class="line">        return SignatureUtils.sign(privateKey, data, SIGNATURE_ALGORITHM);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean verify(PublicKey publicKey, byte[] data, byte[] sign) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException &#123;</span><br><span class="line">        return SignatureUtils.verify(publicKey, data, sign, SIGNATURE_ALGORITHM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RsaSignUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.security.signature;</span><br><span class="line"></span><br><span class="line">import java.security.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class RsaSignUtils &#123;</span><br><span class="line">    public static final String KEY_ALGORITHM = &quot;RSA&quot;;</span><br><span class="line">    public static final String SIGNATURE_ALGORITHM = &quot;SHA1withRSA&quot;;</span><br><span class="line"></span><br><span class="line">    public static byte[] sign(PrivateKey privateKey, byte[] data) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException &#123;</span><br><span class="line">        return SignatureUtils.sign(privateKey, data, SIGNATURE_ALGORITHM);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean verify(PublicKey publicKey, byte[] data, byte[] sign) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException &#123;</span><br><span class="line">        return SignatureUtils.verify(publicKey, data, sign, SIGNATURE_ALGORITHM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SignatureUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package com.security.signature;</span><br><span class="line"></span><br><span class="line">import java.security.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class SignatureUtils &#123;</span><br><span class="line">    public static final String SIGNATURE_ALGORITHM = &quot;SHA1withRSA&quot;;</span><br><span class="line"></span><br><span class="line">    public static byte[] sign(PrivateKey privateKey, byte[] data, String signatureType) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException &#123;</span><br><span class="line">        Signature signature = Signature.getInstance(signatureType);</span><br><span class="line">        signature.initSign(privateKey);</span><br><span class="line">        signature.update(data);</span><br><span class="line">        return signature.sign();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean verify(PublicKey publicKey, byte[] data, byte[] sign, String signatureType) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException &#123;</span><br><span class="line">        Signature signature = Signature.getInstance(signatureType);</span><br><span class="line">        signature.initVerify(publicKey);</span><br><span class="line">        signature.update(data);</span><br><span class="line">        return signature.verify(sign);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><ul>
+<li><p>Base64BcUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.security.base64;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import org.bouncycastle.util.encoders.Base64;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class Base64BcUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static byte[] encode(byte[] bytes) &#123;</span><br><span class="line">        return Base64.encode(bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decode(byte[] bytes) &#123;</span><br><span class="line">        return Base64.decode(bytes);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Base64Utils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.security.base64;</span><br><span class="line"></span><br><span class="line">import java.util.Base64;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class Base64Utils &#123;</span><br><span class="line"></span><br><span class="line">    public static byte[] encode(byte[] bytes) &#123;</span><br><span class="line">        return Base64.getEncoder().encode(bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] decode(byte[] bytes) &#123;</span><br><span class="line">        return Base64.getDecoder().decode(bytes);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>UrlBase64Coder</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package com.security.base64;</span><br><span class="line"></span><br><span class="line">import org.bouncycastle.util.encoders.UrlBase64;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public abstract class UrlBase64Coder &#123;</span><br><span class="line"></span><br><span class="line">    public final static String ENCODING = &quot;UTF-8&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static String encode(String data) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        byte[] b = UrlBase64.encode(data.getBytes(ENCODING));</span><br><span class="line"></span><br><span class="line">        return new String(b, ENCODING);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static String decode(String data) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        byte[] b = UrlBase64.decode(data.getBytes(ENCODING));</span><br><span class="line"></span><br><span class="line">        return new String(b, ENCODING);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><ul>
+<li>crc</li>
+<li><p>MacStreamUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">package com.security.hash;</span><br><span class="line"></span><br><span class="line">import org.apache.commons.codec.digest.DigestUtils;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.security.DigestInputStream;</span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class MacStreamUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static byte[] digest(FileInputStream fis, String type) throws NoSuchAlgorithmException, IOException &#123;</span><br><span class="line">        DigestInputStream dis = new DigestInputStream(fis, MessageDigest.getInstance(type));</span><br><span class="line"></span><br><span class="line">        int bufLen = 1024;</span><br><span class="line">        byte[] buffer = new byte[bufLen];</span><br><span class="line">        while (dis.read(buffer, 0, bufLen) &gt; -1) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        dis.close();</span><br><span class="line"></span><br><span class="line">        MessageDigest md = dis.getMessageDigest();</span><br><span class="line">        // can compare with DigestUtils.md5(fis);</span><br><span class="line">        DigestUtils.md5(fis);</span><br><span class="line">        return md.digest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] digest1(FileInputStream fis, String type) throws NoSuchAlgorithmException, IOException &#123;</span><br><span class="line">        MessageDigest md = MessageDigest.getInstance(type);</span><br><span class="line">        updateDigest(md, fis);</span><br><span class="line">        return md.digest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * ref: DigestUtils md5</span><br><span class="line">     * @param digest</span><br><span class="line">     * @param data</span><br><span class="line">     * @return</span><br><span class="line">     * @throws IOException</span><br><span class="line">     */</span><br><span class="line">    public static MessageDigest updateDigest(final MessageDigest digest, final InputStream data) throws IOException &#123;</span><br><span class="line">        final int STREAM_BUFFER_LENGTH = 1024;</span><br><span class="line">        final byte[] buffer = new byte[STREAM_BUFFER_LENGTH];</span><br><span class="line">        int read = data.read(buffer, 0, STREAM_BUFFER_LENGTH);</span><br><span class="line"></span><br><span class="line">        while (read &gt; -1) &#123;</span><br><span class="line">            digest.update(buffer, 0, read);</span><br><span class="line">            read = data.read(buffer, 0, STREAM_BUFFER_LENGTH);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return digest;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MacUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.security.hash;</span><br><span class="line"></span><br><span class="line">import javax.crypto.KeyGenerator;</span><br><span class="line">import javax.crypto.Mac;</span><br><span class="line">import javax.crypto.SecretKey;</span><br><span class="line">import java.security.InvalidKeyException;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * mac utils</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class MacUtils &#123;</span><br><span class="line"></span><br><span class="line">    private static final String HmacMD2 = &quot;HmacMD2&quot;;</span><br><span class="line">    private static final String HmacMD4 = &quot;HmacMD4&quot;;</span><br><span class="line">    private static final String HmacSHA224 = &quot;HmacSHA224&quot;;</span><br><span class="line">    private static final String HmacSHA256 = &quot;HmacSHA256&quot;;</span><br><span class="line">    private static final String HmacRipeMD128 = &quot;HmacRipeMD128&quot;;</span><br><span class="line">    private static final String HmacRipeMD160 = &quot;HmacRipeMD160&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static SecretKey generateSecretKey(String type) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        KeyGenerator keyGenerator = KeyGenerator.getInstance(type);</span><br><span class="line">        return keyGenerator.generateKey();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] mac(SecretKey key, byte[] bytes) throws NoSuchAlgorithmException, InvalidKeyException &#123;</span><br><span class="line">        Mac mac = Mac.getInstance(key.getAlgorithm());</span><br><span class="line">        mac.init(key);</span><br><span class="line">        return mac.doFinal(bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MessageDigestUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package com.security.hash;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * message digest utils.</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class MessageDigestUtils &#123;</span><br><span class="line">    private static final String MD2 =&quot;MD2&quot;;</span><br><span class="line">    private static final String MD5 =&quot;MD5&quot;;</span><br><span class="line">    private static final String SHA =&quot;SHA&quot;;</span><br><span class="line">    private static final String SHA_256 =&quot;SHA-256&quot;;</span><br><span class="line">    private static final String SHA_384 =&quot;SHA-384&quot;;</span><br><span class="line">    private static final String SHA_512 =&quot;SHA-512&quot;;</span><br><span class="line"></span><br><span class="line">    public static byte[] md2(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(MD2, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] md5(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(MD5, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] sha1(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(SHA, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] sha256(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(SHA_256, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] sha384(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(SHA_384, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static byte[] sha512(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(SHA_512, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] md(String type, byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        MessageDigest md = MessageDigest.getInstance(type);</span><br><span class="line">        return md.digest(bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>OtherMessageDigestUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.security.hash;</span><br><span class="line"></span><br><span class="line">import org.bouncycastle.jce.provider.BouncyCastleProvider;</span><br><span class="line"></span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.NoSuchAlgorithmException;</span><br><span class="line">import java.security.Security;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author fitz</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class OtherMessageDigestUtils &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        if(Security.getProvider(&quot;BC&quot;) == null ) &#123;</span><br><span class="line">            Security.addProvider(new BouncyCastleProvider());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static final String RipeMD128 =&quot;RipeMD128&quot;;</span><br><span class="line">    private static final String RipeMD160 =&quot;RipeMD160&quot;;</span><br><span class="line">    private static final String RipeMD256 =&quot;RipeMD256&quot;;</span><br><span class="line">    private static final String RipeMD320 =&quot;RipeMD320&quot;;</span><br><span class="line">    private static final String Tiger =&quot;Tiger&quot;;</span><br><span class="line">    private static final String Whirlpool =&quot;Whirlpool&quot;;</span><br><span class="line">    private static final String GOST3411 =&quot;GOST3411&quot;;</span><br><span class="line"></span><br><span class="line">    public static byte[] RipeMD256(byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        return md(RipeMD256, bytes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static byte[] md(String type, byte[] bytes) throws NoSuchAlgorithmException &#123;</span><br><span class="line">        MessageDigest md = MessageDigest.getInstance(type);</span><br><span class="line">        return md.digest(bytes);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="certificate"><a href="#certificate" class="headerlink" title="certificate"></a>certificate</h2><ul>
+<li><p>证书生成 openssl 和 keytool操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">echo off</span><br><span class="line"></span><br><span class="line">echo 构建目录</span><br><span class="line"></span><br><span class="line">mkdir certs</span><br><span class="line">mkdir crl</span><br><span class="line">mkdir newcerts</span><br><span class="line">mkdir private</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo 构建文件</span><br><span class="line">echo 0 &gt; index.txt</span><br><span class="line">echo 01 &gt; serial</span><br><span class="line"></span><br><span class="line">echo 构建随机数</span><br><span class="line">openssl.exe rand -out private/.rand 1000</span><br><span class="line"></span><br><span class="line">echo 产生私钥</span><br><span class="line">openssl.exe genrsa -out private/ca.key.pem 2048</span><br><span class="line">openssl.exe genrsa -out private/ca1.key.pem 2048</span><br><span class="line">!openssl.exe genrsa -aes256 -out private/ca.key.pem 2048</span><br><span class="line"></span><br><span class="line">echo 生成根证书请求 ca.csr</span><br><span class="line">openssl.exe req -new -key private/ca.key.pem -out private/ca.csr -subj &quot;/C=CN/ST=SH/L=PD/O=COM/OU=ANDROID/CN=com.android.security&quot;</span><br><span class="line">openssl.exe req -new -key private/ca1.key.pem -out private/ca1.csr -subj &quot;/C=CN/ST=SH/L=PD/O=COM/OU=ANDROID/CN=com.android.security1&quot;</span><br><span class="line"></span><br><span class="line">echo 签发根证书 ca.cer</span><br><span class="line">openssl.exe x509 -req -days 10000 -sha1 -extensions v3_ca -signkey private/ca.key.pem -in private/ca.csr -out certs/ca.cer</span><br><span class="line">openssl.exe x509 -req -days 10000 -sha1 -extensions v3_ca -signkey private/ca1.key.pem -in private/ca1.csr -out certs/ca1.cer</span><br><span class="line"></span><br><span class="line">echo 根证书转换 ca.p12</span><br><span class="line">openssl.exe pkcs12 -export -clcerts -in certs/ca.cer -inkey private/ca.key.pem -out certs/ca.p12</span><br><span class="line"></span><br><span class="line">echo 颁发服务器证书</span><br><span class="line">openssl.exe genrsa -out private/server.key.pem 2048</span><br><span class="line"></span><br><span class="line">echo 生成服务器证书请求 server.csr</span><br><span class="line">openssl.exe req -new -key private/server.key.pem -out private/server.csr -subj &quot;/C=CN/ST=SH/L=PD/O=COM  /OU=ANDROID/CN=com.android.security.server&quot;</span><br><span class="line"></span><br><span class="line">echo 签发服务器证书 server.cer</span><br><span class="line">openssl.exe x509 -req -days 3650 -sha1 -extensions v3_req -CA certs/ca.cer -CAkey private/ca.key.pem -CAserial ca.srl -CAcreateserial -in private/server.csr -out certs/server.cer</span><br><span class="line"></span><br><span class="line">echo 服务器证书转换 server.p12</span><br><span class="line">openssl.exe pkcs12 -export -clcerts -in certs/server.cer -inkey private/server.key.pem -out certs/server.p12</span><br><span class="line"></span><br><span class="line">echo 产生客户私钥</span><br><span class="line">openssl.exe genrsa -out private/client.key.pem 2048</span><br><span class="line"></span><br><span class="line">echo 生成客户证书请求 client.csr</span><br><span class="line">openssl.exe req -new -key private/client.key.pem -out private/client.csr -subj &quot;/C=CN/ST=SH/L=PD/O=COM/OU=ANDROID/CN=com.android.security.client&quot;</span><br><span class="line"></span><br><span class="line">echo 签发客户证书 client.cer</span><br><span class="line">openssl.exe x509 -req -days 3650 -sha1 -extensions v3_req -CA certs/ca.cer -CAkey private/ca.key.pem -CAserial ca.srl -CAcreateserial -in private/client.csr -out certs/client.cer</span><br><span class="line">openssl.exe x509 -req -days 3650 -sha1 -extensions v3_req -CA certs/ca1.cer -CAkey private/ca1.key.pem -CAserial ca.srl -CAcreateserial -in private/client.csr -out certs/client.cer</span><br><span class="line">!openssl.exe ca -in private/client.csr -days 3650 -out certs/client.cer -cert certs/ca.cer -keyfile private/ca.key.pem -notext</span><br><span class="line"></span><br><span class="line">echo 客户证书转换 client.p12</span><br><span class="line">openssl.exe pkcs12 -export -inkey private/client.key.pem -in certs/client.cer -out certs/client.p12</span><br><span class="line"></span><br><span class="line">echo 根密钥库转换 ca.keystore</span><br><span class="line">keytool -importkeystore -v -srckeystore certs/ca.p12 -srcstorepass 123456 -destkeystore certs/ca.keystore -srcstoretype pkcs12 -deststorepass 123456</span><br><span class="line">keytool -list -keystore certs/ca.keystore -v -storepass 123456</span><br><span class="line"></span><br><span class="line">echo 服务器密钥库转换 server.keystore</span><br><span class="line">keytool -importkeystore -v -srckeystore certs/server.p12 -srcstorepass 123456 -destkeystore certs/server.keystore -srcstoretype pkcs12 -deststorepass 123456</span><br><span class="line">keytool -list -keystore certs/server.keystore -v -storepass 123456</span><br><span class="line"></span><br><span class="line">echo 客户密钥库转换 client.keystore</span><br><span class="line">keytool -importkeystore -v -srckeystore certs/client.p12 -srcstorepass 123456 -destkeystore certs/client.keystore -srcstoretype pkcs12 -deststorepass 123456</span><br><span class="line">keytool -list -keystore certs/client.keystore -v -storepass 123456</span><br><span class="line"></span><br><span class="line">pause</span><br><span class="line"></span><br><span class="line">echo on</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>UdpSocket</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">package com.security.certificate.udpsocket;</span><br><span class="line"></span><br><span class="line">import java.io.ByteArrayOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.DatagramPacket;</span><br><span class="line">import java.net.DatagramSocket;</span><br><span class="line">import java.net.InetAddress;</span><br><span class="line">import java.net.InetSocketAddress;</span><br><span class="line">import java.net.SocketException;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class UdpSocket &#123;</span><br><span class="line"></span><br><span class="line">    private byte[] buffer = new byte[1024];</span><br><span class="line"></span><br><span class="line">    private DatagramSocket receiveSocket;</span><br><span class="line"></span><br><span class="line">    private DatagramSocket sendSocket;</span><br><span class="line"></span><br><span class="line">    private String remoteHost;</span><br><span class="line"></span><br><span class="line">    private int sendPort;</span><br><span class="line"></span><br><span class="line">    public UdpSocket(String localHost, String remoteHost, int receivePort,</span><br><span class="line">                     int sendPort) throws SocketException &#123;</span><br><span class="line">        this.remoteHost = remoteHost;</span><br><span class="line">        this.sendPort = sendPort;</span><br><span class="line"></span><br><span class="line">        this.receiveSocket = new DatagramSocket(new InetSocketAddress(</span><br><span class="line">                localHost, receivePort));</span><br><span class="line">        this.sendSocket = new DatagramSocket();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public byte[] receive() throws IOException &#123;</span><br><span class="line">        DatagramPacket dp = new DatagramPacket(buffer, buffer.length);</span><br><span class="line"></span><br><span class="line">        receiveSocket.receive(dp);</span><br><span class="line"></span><br><span class="line">        ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">        baos.write(dp.getData(), 0, dp.getLength());</span><br><span class="line">        byte[] data = baos.toByteArray();</span><br><span class="line">        baos.flush();</span><br><span class="line">        baos.close();</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void send(byte[] data) throws IOException &#123;</span><br><span class="line">        DatagramPacket dp = new DatagramPacket(buffer, buffer.length,</span><br><span class="line">                InetAddress.getByName(remoteHost), sendPort);</span><br><span class="line">        dp.setData(data);</span><br><span class="line">        sendSocket.send(dp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void close() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line"></span><br><span class="line">            if (receiveSocket.isConnected()) &#123;</span><br><span class="line">                receiveSocket.disconnect();</span><br><span class="line">                receiveSocket.close();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (sendSocket.isConnected()) &#123;</span><br><span class="line">                sendSocket.disconnect();</span><br><span class="line">                sendSocket.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception ex) &#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">- client server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>package com.security.certificate.clientserver;</p>
+<p>import com.security.certificate.CertificateUtils;</p>
+<p>import javax.net.ssl.<em>;<br>import java.io.</em>;<br>import java.security.KeyStore;<br>import java.security.KeyStoreException;<br>import java.security.NoSuchAlgorithmException;<br>import java.security.SecureRandom;<br>import java.security.cert.CertificateException;<br>import java.security.cert.X509Certificate;</p>
+<p>/**</p>
+<ul>
+<li>@author fitz</li>
+<li><p>@version 1.0<br>*/<br>public class Client implements Runnable {<br> public static final String PROTOCOL = “TLS”;<br> private static final String PASSWD = “123456”;<br> private static final String ip = “127.0.0.1”;<br> private static final int port = Server.PORT;<br> private SSLSocketFactory socketFactory;</p>
+<p> public Client() throws Exception {</p>
+<pre><code>// key manager
+KeyStore keyStore = getKeyManagerStore();
+KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+keyManagerFactory.init(keyStore, PASSWD.toCharArray());
+
+// trust manager
+KeyStore trustStore = getTrustManagerStore();
+TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+trustManagerFactory.init(trustStore);
+
+// socket init
+SSLContext sslContext = SSLContext.getInstance(PROTOCOL);
+sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
+socketFactory = sslContext.getSocketFactory();
+</code></pre><p> }</p>
+<p> private static KeyStore getKeyManagerStore() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {</p>
+<pre><code>InputStream inputStream = Client.class.getResourceAsStream(&quot;/certs/client.p12&quot;);
+KeyStore keyStore = CertificateUtils.getKeyStore(inputStream, &quot;123456&quot;);
+inputStream.close();
+return keyStore;
+</code></pre><p> }</p>
+<p> private static KeyStore getTrustManagerStore() throws KeyStoreException, CertificateException, IOException, NoSuchAlgorithmException {</p>
+<pre><code>KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+InputStream inputStream = Server.class.getResourceAsStream(&quot;/certs/ca.cer&quot;);
+X509Certificate certificate = (X509Certificate) CertificateUtils.getCertificate(inputStream, &quot;X.509&quot;);
+keyStore.load(null, null);
+keyStore.setCertificateEntry(&quot;ca&quot;, certificate);
+return keyStore;
+</code></pre><p> }</p>
+<p> @Override<br> public void run() {</p>
+<pre><code>int i = 0;
+while(i++ &lt;= 1) {
+    try {
+        SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket(ip, port);
+        InputStream is = sslSocket.getInputStream();
+        OutputStream os = sslSocket.getOutputStream();
+        DataOutputStream out = new DataOutputStream(os);
+        out.writeUTF(&quot;GET /index.html HTTP/1.0&quot;);
+        out.flush();
+
+        DataInputStream bin = new DataInputStream(is);
+        String ln;
+        if ((ln = bin.readUTF()) != null) {
+            System.out.println(ln);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><p> }<br>}</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>package com.security.certificate.clientserver;</p>
+<p>import com.security.certificate.CertificateUtils;</p>
+<p>import javax.net.ssl.<em>;<br>import java.io.</em>;<br>import java.security.KeyStore;<br>import java.security.KeyStoreException;<br>import java.security.NoSuchAlgorithmException;<br>import java.security.SecureRandom;<br>import java.security.cert.CertificateException;<br>import java.security.cert.X509Certificate;</p>
+<p>/**</p>
+<ul>
+<li>@author fitz</li>
+<li><p>@version 1.0<br>*/<br>public class Server implements Runnable {<br> private SSLServerSocket serverSocket;<br> public static final String PROTOCOL = “TLS”;<br> private static final String PASSWD = “123456”;<br> public static final int PORT = 6666;</p>
+<p> public Server() throws Exception {</p>
+<pre><code>// key manager
+KeyStore keyStore = getKeyManagerStore();
+KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+keyManagerFactory.init(keyStore, PASSWD.toCharArray());
+
+// trust manager
+KeyStore trustStore = getTrustManagerStore();
+TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+trustManagerFactory.init(trustStore);
+
+// ssl server init
+SSLContext sslContext = SSLContext.getInstance(PROTOCOL);
+sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
+SSLServerSocketFactory serverSocketFactory = sslContext.getServerSocketFactory();
+serverSocket = (SSLServerSocket) serverSocketFactory.createServerSocket(PORT);
+serverSocket.setNeedClientAuth(true);
+</code></pre><p> }</p>
+<p> private static KeyStore getKeyManagerStore() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {</p>
+<pre><code>InputStream inputStream = Server.class.getResourceAsStream(&quot;/certs/server.p12&quot;);
+KeyStore keyStore = CertificateUtils.getKeyStore(inputStream, &quot;123456&quot;);
+inputStream.close();
+return keyStore;
+</code></pre><p> }</p>
+<p> private static KeyStore getTrustManagerStore() throws KeyStoreException, CertificateException, IOException, NoSuchAlgorithmException {</p>
+<pre><code>KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+InputStream inputStream = Server.class.getResourceAsStream(&quot;/certs/ca.cer&quot;);
+X509Certificate certificate = (X509Certificate) CertificateUtils.getCertificate(inputStream, &quot;X.509&quot;);
+keyStore.load(null, null);
+keyStore.setCertificateEntry(&quot;ca&quot;, certificate);
+return keyStore;
+</code></pre><p> }</p>
+</li>
+</ul>
+<pre><code>@Override
+public void run() {
+    while (true) {
+        try {
+
+            SSLSocket socket = (SSLSocket) serverSocket.accept();
+            socket.startHandshake();
+</code></pre><p>//                new Thread(new Runnable() {<br>//                    @Override<br>//                    public void run() {<br>//                        try {<br>//                            //socket.startHandshake();<br>//<br>//<br>//                        } catch (IOException e) {<br>//                            e.printStackTrace();<br>//                        }<br>//                    }<br>//                });</p>
+<pre><code>            OutputStream outputStream = socket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
+            DataOutputStream out = new DataOutputStream(outputStream);
+            DataInputStream bin = new DataInputStream(inputStream);
+            String str = null;
+            if((str = bin.readUTF()) != null) {
+                System.out.println(str);
+            }
+
+            out.writeUTF(&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;hello world&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+            out.flush();
+            out.close();
+            bin.close();
+            socket.close();
+            System.out.println(Thread.currentThread().getName());
+
+            System.out.println(&quot;ssl socket...&quot;);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>package com.security.certificate.clientserver;</p>
+<p>/**</p>
+<ul>
+<li>@author fitz</li>
+<li>@version 1.0<br>*/<br>public class ClientServerMain {<br> public static void main(String[] args) throws Exception {<pre><code>Thread serverThread = new Thread(new Server());
+serverThread.start();
+new Thread(new Client()).start();
+</code></pre> }<br>}</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- CertificateUtils</span><br></pre></td></tr></table></figure>
+<p>package com.security.certificate;</p>
+<p>import com.security.signature.SignatureUtils;</p>
+<p>import java.io.FileInputStream;<br>import java.io.FileOutputStream;<br>import java.io.IOException;<br>import java.io.InputStream;<br>import java.security.*;<br>import java.security.cert.Certificate;<br>import java.security.cert.CertificateException;<br>import java.security.cert.CertificateFactory;<br>import java.security.cert.X509Certificate;</p>
+<p>/**</p>
+<ul>
+<li>@author fitz</li>
+<li><p>@version 1.0<br>*/<br>public class CertificateUtils {</p>
+<p> /**</p>
+<ul>
+<li>p12</li>
+<li>@param keyStorePath</li>
+<li>@param passwd</li>
+<li>@return</li>
+<li>@throws KeyStoreException</li>
+<li>@throws IOException</li>
+<li>@throws CertificateException</li>
+<li><p>@throws NoSuchAlgorithmException<br>*/<br>public static KeyStore getKeyStore(String keyStorePath, String passwd) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {<br> KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());<br> FileInputStream fis = new FileInputStream(keyStorePath);<br> keyStore.load(fis, passwd.toCharArray());<br> fis.close();<br> return keyStore;<br>}</p>
+<p>public static KeyStore getKeyStore(InputStream fis, String passwd) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {<br> KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());<br> keyStore.load(fis, passwd.toCharArray());<br> return keyStore;<br>}</p>
+<p>/**</p>
+</li>
+<li>p12</li>
+<li>@param keyStorePath</li>
+<li>@param passwd</li>
+<li>@return</li>
+<li>@throws KeyStoreException</li>
+<li>@throws CertificateException</li>
+<li>@throws NoSuchAlgorithmException</li>
+<li><p>@throws IOException<br>*/<br>public static KeyStore createKeyStore(String keyStorePath, String passwd) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {<br> KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());<br> keyStore.load(null, passwd.toCharArray());<br> FileOutputStream out = new FileOutputStream(keyStorePath);<br> keyStore.store(out, passwd.toCharArray());<br> out.close();<br> return keyStore;<br>}</p>
+<p>public static void storeKey(KeyStore keyStore, Key key, String alias, String passwd) throws KeyStoreException {<br> keyStore.setKeyEntry(alias, key, passwd.toCharArray(),null);<br>}</p>
+<p>public static void storeCertificate(KeyStore keyStore, Certificate certificate, String alias) throws KeyStoreException {<br> keyStore.setCertificateEntry(alias, certificate);<br>}</p>
+<p>public static PrivateKey getPrivateKey(KeyStore keyStore, String alias, String passwd) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException {<br> return (PrivateKey) keyStore.getKey(alias, passwd.toCharArray());<br>}</p>
+<p>public static Certificate getCertificate(KeyStore keyStore, String alias) throws KeyStoreException {<br> return keyStore.getCertificate(alias);<br>}</p>
+<p>public static PublicKey getPublicKey(Certificate cert) {<br> return cert.getPublicKey();<br>}</p>
+<p>/*<em>
+</em></p>
+</li>
+<li>@param certPath</li>
+<li>@param certType</li>
+<li>can be “X.509”</li>
+<li>@return</li>
+<li>@throws CertificateException</li>
+<li><p>@throws IOException<br>*/<br>public static Certificate getCertificate(String certPath, String certType) throws CertificateException, IOException {<br> CertificateFactory certificateFactory = CertificateFactory.getInstance(certType);<br> FileInputStream in = new FileInputStream(certPath);<br> Certificate certificate = certificateFactory.generateCertificate(in);<br> in.close();<br> return certificate;<br>}</p>
+<p>public static Certificate getCertificate(InputStream is, String certType) throws CertificateException, IOException {<br> CertificateFactory certificateFactory = CertificateFactory.getInstance(certType);<br> Certificate certificate = certificateFactory.generateCertificate(is);<br> return certificate;<br>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>public static byte[] sign(KeyStore keyStore, String alias, String passwd, byte[] data) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, SignatureException, InvalidKeyException {
+    PrivateKey privateKey = getPrivateKey(keyStore, alias, passwd);
+    X509Certificate certificate = (X509Certificate) getCertificate(keyStore, alias);
+    return SignatureUtils.sign(privateKey, data, certificate.getSigAlgName());
+}
+
+public static boolean verify(X509Certificate certificate, byte[] data, byte[] sign) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+    Signature signature = Signature.getInstance(certificate.getSigAlgName());
+    signature.initVerify(certificate);
+    return signature.verify(sign);
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- HttpsCertificate</span><br></pre></td></tr></table></figure>
+<p>package com.security.certificate;</p>
+<p>import javax.net.ssl.*;<br>import java.io.BufferedInputStream;<br>import java.io.FileInputStream;<br>import java.io.InputStream;<br>import java.net.URL;<br>import java.security.KeyStore;<br>import java.security.SecureRandom;<br>import java.security.cert.Certificate;<br>import java.security.cert.CertificateFactory;<br>import java.security.cert.X509Certificate;</p>
+<p>/**</p>
+<ul>
+<li>@author fitz</li>
+<li><p>@version 1.0<br>*/<br>public class HttpsCertificate {</p>
+<p> public static final String PROTOCOL = “TLS”;</p>
+</li>
+</ul>
+<pre><code>/**
+ * ssl https best practice
+ * ref: https://developer.android.com/training/articles/security-ssl.html?hl=zh-cn
+ * @throws Exception
+ */
+public static void androidHttps() throws Exception {
+    CertificateFactory cf = CertificateFactory.getInstance(&quot;X.509&quot;);
+    // From https://www.washington.edu/itconnect/security/ca/load-der.crt
+    InputStream caInput = new BufferedInputStream(new FileInputStream(&quot;load-der.crt&quot;));
+    Certificate ca;
+    try {
+        ca = cf.generateCertificate(caInput);
+        System.out.println(&quot;ca=&quot; + ((X509Certificate) ca).getSubjectDN());
+    } finally {
+        caInput.close();
+    }
+
+    // Create a KeyStore containing our trusted CAs
+    String keyStoreType = KeyStore.getDefaultType();
+    KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+    keyStore.load(null, null);
+    keyStore.setCertificateEntry(&quot;ca&quot;, ca);
+
+    // Create a TrustManager that trusts the CAs in our KeyStore
+    String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+    TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+    tmf.init(keyStore);
+
+    // Create an SSLContext that uses our TrustManager
+    SSLContext context = SSLContext.getInstance(&quot;TLS&quot;);
+    context.init(null, tmf.getTrustManagers(), null);
+
+    // Tell the URLConnection to use a SocketFactory from our SSLContext
+    URL url = new URL(&quot;https://certs.cac.washington.edu/CAtest/&quot;);
+    HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+    urlConnection.setSSLSocketFactory(context.getSocketFactory());
+    InputStream in = urlConnection.getInputStream();
+}
+
+
+/**
+ * First and major difference between trustStore and keyStore is that trustStore is used by TrustManager
+ * and keyStore is used by KeyManager class in Java. KeyManager and TrustManager performs different job
+ * in Java, TrustManager determines whether remote connection should be trusted or not i.e. whether remote
+ * party is who it claims to and KeyManager decides which authentication credentials should be sent to the
+ * remote host for authentication during SSL handshake. if you are an SSL Server you will use private key
+ * during key exchange algorithm and send certificates corresponding to your public keys to client, this
+ * certificate is acquired from keyStore. On SSL client side, if its written in Java, it will use certificates
+ * stored in trustStore to verify identity of Server.
+ *
+ * @param password
+ * @param keyStorePath
+ * @param trustStorePath
+ * @return
+ * @throws Exception
+ */
+private static SSLSocketFactory getSSLSocketFactory(String password,
+                                                    String keyStorePath, String trustStorePath) throws Exception {
+
+    KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+
+    KeyStore keyStore = CertificateUtils.getKeyStore(keyStorePath, password);
+
+    keyManagerFactory.init(keyStore, password.toCharArray());
+
+    TrustManagerFactory trustManagerFactory = TrustManagerFactory
+            .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+
+    KeyStore trustStore = CertificateUtils.getKeyStore(trustStorePath, password);
+
+    trustManagerFactory.init(trustStore);
+
+    SSLContext ctx = SSLContext.getInstance(PROTOCOL);
+
+    ctx.init(keyManagerFactory.getKeyManagers(), trustManagerFactory
+            .getTrustManagers(), new SecureRandom());
+
+    return ctx.getSocketFactory();
+
+}
+
+
+public static void configSSLSocketFactory(HttpsURLConnection conn,
+                                          String password, String keyStorePath, String trustKeyStorePath) throws Exception {
+
+    // 获得SSLSocketFactory
+    SSLSocketFactory sslSocketFactory = getSSLSocketFactory(password,
+            keyStorePath, trustKeyStorePath);
+
+    // 设置SSLSocketFactory
+    conn.setSSLSocketFactory(sslSocketFactory);
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## asn1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## util</span><br></pre></td></tr></table></figure>
+<p>package com.security.util;</p>
+<p>/**</p>
+<ul>
+<li>@author fitz</li>
+<li><p>@version 1.0<br>*/<br>public class ByteUtils {<br> public static byte[] stringToBytes(String s) {</p>
+<pre><code>if(s == null || s.length() % 2 != 0) {
+    return null;
+}
+int len = s.length();
+byte[] data = new byte[len / 2];
+for (int i = 0; i &lt; len; i += 2) {
+    data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) &lt;&lt; 4)
+            + Character.digit(s.charAt(i+1), 16));
+}
+return data;
+</code></pre><p> }</p>
+<p> public static String bytesToString(byte[] bytes) {</p>
+<pre><code>final char[] hexChars = {&apos;0&apos;,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;,&apos;7&apos;,&apos;8&apos;,&apos;9&apos;,&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;};
+char[] chars = new char[bytes.length * 2];
+int byteValue;
+for (int j = 0; j &lt; bytes.length; j++) {
+    byteValue = bytes[j] &amp; 0xFF;
+    chars[j * 2] = hexChars[byteValue &gt;&gt;&gt; 4];
+    chars[j * 2 + 1] = hexChars[byteValue &amp; 0x0F];
+}
+return new String(chars);
+</code></pre><p> }<br>}</p>
+</li>
+</ul>
+<p><code>`</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/密码/" rel="tag"># 密码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/java_jdk_thread_concurrent.html" rel="next" title="Java线程和并发">
+                <i class="fa fa-chevron-left"></i> Java线程和并发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/java_jdk_programe_opti.html" rel="prev" title="Java程序优化">
+                Java程序优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java密码"><span class="nav-number">1.</span> <span class="nav-text">Java密码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密-symmetric"><span class="nav-number">1.1.</span> <span class="nav-text">对称加密 symmetric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对称加密"><span class="nav-number">1.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#签名"><span class="nav-number">1.3.</span> <span class="nav-text">签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-number">1.4.</span> <span class="nav-text">base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">1.5.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#certificate"><span class="nav-number">1.6.</span> <span class="nav-text">certificate</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

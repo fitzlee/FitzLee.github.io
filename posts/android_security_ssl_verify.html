@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="安全,证书,ssl,verify," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="2.3    SSL证书校验机制 Https2.3.1    简单解释典型的场景是现在我们常用的 HTTPS 机制。HTTPS 实际上是利用了 Transport LayerSecurity/Secure Socket Layer（TLS/SSL）来实现可靠的传输。TLS 为 SSL 的升级版本，目前广泛应用的为 TLS 1.0，对应到 SSL 3.1 版本。建立安全连接的具体步骤如下：•">
+<meta name="keywords" content="安全,证书,ssl,verify">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssl证书校验机制">
+<meta property="og:url" content="https://fitzlee.github.io/posts/android_security_ssl_verify.html">
+<meta property="og:site_name" content="Fitz.Lee">
+<meta property="og:description" content="2.3    SSL证书校验机制 Https2.3.1    简单解释典型的场景是现在我们常用的 HTTPS 机制。HTTPS 实际上是利用了 Transport LayerSecurity/Secure Socket Layer（TLS/SSL）来实现可靠的传输。TLS 为 SSL 的升级版本，目前广泛应用的为 TLS 1.0，对应到 SSL 3.1 版本。建立安全连接的具体步骤如下：•">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T18:27:20.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ssl证书校验机制">
+<meta name="twitter:description" content="2.3    SSL证书校验机制 Https2.3.1    简单解释典型的场景是现在我们常用的 HTTPS 机制。HTTPS 实际上是利用了 Transport LayerSecurity/Secure Socket Layer（TLS/SSL）来实现可靠的传输。TLS 为 SSL 的升级版本，目前广泛应用的为 TLS 1.0，对应到 SSL 3.1 版本。建立安全连接的具体步骤如下：•">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fitzlee.github.io/posts/android_security_ssl_verify.html"/>
+
+
+
+
+
+  <title>ssl证书校验机制 | Fitz.Lee</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fitz.Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/resume/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fitzlee.github.io/posts/android_security_ssl_verify.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fitz.Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fitz.Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ssl证书校验机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-15T00:00:00+00:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/11Android-Security/" itemprop="url" rel="index">
+                    <span itemprop="name">11Android_Security</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2.3    SSL证书校验机制 Https<br>2.3.1    简单解释<br>典型的场景是现在我们常用的 HTTPS 机制。HTTPS 实际上是利用了 Transport Layer<br>Security/Secure Socket Layer（TLS/SSL）来实现可靠的传输。TLS 为 SSL 的升级版本，目前广泛应用的为 TLS 1.0，对应到 SSL 3.1 版本。<br>建立安全连接的具体步骤如下：<br>•    客户端浏览器发送信息到服务器，包括随机数 R1，支持的加密算法类型、协议版本、压缩算法等。注意该过程为明文。<br>•    服务端返回信息，包括随机数 R2、选定加密算法类型、协议版本，以及服务器证书。注意该过程为明文。<br>•    浏览器检查带有该网站公钥的证书。该证书需要由第三方CA 来签发，浏览器和操作系统会预置权威CA 的根证书。如果证书被篡改作假（中间人攻击），很容易通过 CA 的证书验证出来。<br>•    如果证书没问题，则用证书中公钥加密随机数 R3，发送给服务器。此时，只有客户端和服务器都拥有 R1、R2 和 R3 信息，基于 R1、R2 和 R3，生成对称的会话密钥（如 AES算法）。后续通信都通过对称加密进行保护。<br> <a href="https://www.cnblogs.com/Anker/p/6082966.html" target="_blank" rel="noopener">https://www.cnblogs.com/Anker/p/6082966.html</a><br>2.3.2    SSL具体协议分析<br>协议具体内容解释如下：</p>
+<ol>
+<li><p>client_hello<br>（1）支持的协议版本，比如TLS 1.0<br>（2）支持的加密算法(Cipher Specs)<br>（3）客户端生成的随机数1(Challenge)，稍后用于生成”对话密钥”。</p>
+</li>
+<li><p>server_hello<br>（1） 确认使用的协议版本<br>（2） 服务器生成的随机数2，稍后用于生成”对话密钥”<br>（3） session id<br>（4） 确认使用的加密算法<br>Certificate 服务器证书<br>server_key_exchange<br>如果是DH算法，这里发送服务器使用的DH参数。RSA算法不需要这一步。<br>certificate_request 要求客户端提供证书，包括<br>（1）客户端可以提供的证书类型<br>（2）服务器接受的证书distinguished name列表，可以是root CA或者subordinate CA。如果服务器配置了<br>trust keystore, 这里会列出所有在trust keystore中的证书的distinguished name。<br>server_hello_done<br>server hello结束</p>
+</li>
+<li><p>certificate<br>客户端证书<br>client_key_exchange包含premaster secret。客户端生成第三个随机数。如果是采用RSA算法，会生成一个48字节随机数，然后用server的公钥加密之后再放入报文中；如果是DH算法，这里发送的就是客户端的DH参数，之后服务器和客户端根据DH算法，各自计算出相同的premaster secret。<br>certificate_verify<br>发送使用客户端证书给到这一步为止收到和发送的所有握手消息签名结果。<br>change_cipher_spec<br>客户端通知服务器开始使用加密方式发送报文。客户端使用上面的3个随机数client random, server random, premaster secret, 计算出48字节的master secret, 这个就是对称加密算法的密钥。<br>finished<br>客户端发送第一个加密报文。使用HMAC算法计算收到和发送的所有握手消息的摘要，然后通过RFC5246中定义的一个伪函数PRF计算出结果，加密后发送。</p>
+</li>
+</ol>
+<p>4.服务器发送给客户端<br>服务器端发送change_cipher_spec和finished消息。到这里握手结束。</p>
+<p>双向认证协议抓包数据如下：</p>
+<p>2.3.3    基本校验机制</p>
+<p>2.3.4    参考wireshark抓包分析和中间人攻击应用<br>[具体协议wireshark原理]   <a href="http://blog.csdn.net/fw0124/article/details/40983787" target="_blank" rel="noopener">http://blog.csdn.net/fw0124/article/details/40983787</a><br>[中间人攻击-看证书重要性(Man-in-the-middle attack)] <a href="http://www.freebuf.com/sectool/48016.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/48016.html</a></p>
+<p><a href="http://www.freebuf.com/sectool/48016.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/48016.html</a><br><a href="https://g2ex.github.io/2015/05/18/Man-in-the-Middle-Attack/" target="_blank" rel="noopener">https://g2ex.github.io/2015/05/18/Man-in-the-Middle-Attack/</a><br><a href="http://sec.chinabyte.com/221/13821221.shtml" target="_blank" rel="noopener">http://sec.chinabyte.com/221/13821221.shtml</a><br><a href="https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html</a></p>
+<p>3.2    SSL/HttpsUrlConnection流程与证书校验<br>3.2.1    一个完整的应用</p>
+<p>// Load CAs from an InputStream<br>// (could be from a resource or ByteArrayInputStream or …)<br>CertificateFactory cf = CertificateFactory.getInstance(“X.509”);<br>// From <a href="https://www.washington.edu/itconnect/security/ca/load-der.crt" target="_blank" rel="noopener">https://www.washington.edu/itconnect/security/ca/load-der.crt</a><br>InputStream caInput = new BufferedInputStream(new FileInputStream(“load-der.crt”));<br>Certificate ca;<br>try {<br>    ca = cf.generateCertificate(caInput);<br>    System.out.println(“ca=” + ((X509Certificate) ca).getSubjectDN());<br>} finally {<br>    caInput.close();<br>}</p>
+<p>// Create a KeyStore containing our trusted CAs<br>String keyStoreType = KeyStore.getDefaultType();<br>KeyStore keyStore = KeyStore.getInstance(keyStoreType);<br>keyStore.load(null, null);<br>keyStore.setCertificateEntry(“ca”, ca);</p>
+<p>// Create a TrustManager that trusts the CAs in our KeyStore<br>String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();<br>TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);<br>tmf.init(keyStore);</p>
+<p>// Create an SSLContext that uses our TrustManager<br>SSLContext context = SSLContext.getInstance(“TLS”);<br>context.init(null, tmf.getTrustManagers(), null);</p>
+<p>// Tell the URLConnection to use a SocketFactory from our SSLContext<br>URL url = new URL(“<a href="https://certs.cac.washington.edu/CAtest/&quot;)" target="_blank" rel="noopener">https://certs.cac.washington.edu/CAtest/&quot;)</a>;<br>HttpsURLConnection urlConnection =<br>    (HttpsURLConnection)url.openConnection();<br>urlConnection.setSSLSocketFactory(context.getSocketFactory());<br>InputStream in = urlConnection.getInputStream();<br>copyInputStreamToOutputStream(in, System.out);</p>
+<p>3.2.2    JSSE相关类简要说明</p>
+<ol>
+<li>SSL/TLS的Java实现—JSSE<br>请参考： <a href="http://blog.csdn.net/fw0124/article/details/40889167" target="_blank" rel="noopener">http://blog.csdn.net/fw0124/article/details/40889167</a><br><a href="http://www.aneasystone.com/archives/2016/04/java-and-https.html" target="_blank" rel="noopener">http://www.aneasystone.com/archives/2016/04/java-and-https.html</a><br>写的太好抄一遍来<br>使用SSL/TLS协议通信，客户端和服务器端都可能要设置用于证实自己身份的安全证书，并且还要设置信任对方的哪些安全证书。<br>按照理论上，一共需要准备四个文件，两个keystore文件和两个truststore文件。<br>通信双方分别拥有一个keystore和一个truststore，keystore用于存放自己的密钥和公钥，truststore用于存放所有需要信任方的公钥。<br>当然为了方便可以直接使用keystore替代truststore（免去证书导来导去），因为对方的keystore包含了自己需要的信任公钥。<br>在用JSSE实现SSL通信过程中主要会遇到以下类和接口，由于过程中涉及到加解密、密钥生成等运算的框架和实现，所以也会间接用到JCE包的一些类。如图为JSSE接<br>口的主要类图：</li>
+</ol>
+<p>①  通信核心类——SSLSocket和SSLServerSocket。对于使用过socket进行通信开发的朋友比较好理解，它们对应的就是Socket与ServerSocket，只是表示实现了SSL协议的Socket和ServerSocket，同时它们也是Socket与ServerSocket的子类。SSLSocket负责的事情包括设置加密套件、管理SSL会话、处理握手结束时间、设置客户端模式或服务器模式。<br>②  客户端与服务器端Socket工厂——SSLSocketFactory和SSLServerSocketFactory。在设计模式中工厂模式是专门用于生产出需要的实例，这里也是把SSLSocket、SSLServerSocket对象创建的工作交给这两个工厂类。<br>③  SSL会话——SSLSession。安全通信握手过程需要一个会话，为了提高通信的效率，SSL协议允许多个SSLSocket共享同一个SSL会话，在同一个会话中，只有第一个打开的SSLSocket需要进行SSL握手，负责生成密钥及交换密钥，其余SSLSocket都共享密钥信息。<br>④  SSL上下文——SSLContext。它是对整个SSL/TLS协议的封装，表示了安全套接字协议的实现。主要负责设置安全通信过程中的各种信息，例如跟证书相关的信息。并且负责构建SSLSocketFactory、SSLServerSocketFactory和SSLEngine等工厂类。<br>⑤  SSL非阻塞引擎——SSLEngine。假如你要进行NIO通信，那么将使用这个类，它让通过过程支持非阻塞的安全通信。<br>⑥  密钥管理器——KeyManager。此接口负责选择用于证实自己身份的安全证书，发给通信另一方。KeyManager对象由KeyManagerFactory工厂类生成。<br>⑦  信任管理器——TrustManager。此接口负责判断决定是否信任对方的安全证书，TrustManager对象由TrustManagerFactory工厂类生成。</p>
+<ol start="2">
+<li>SSL握手简单<br>https协议利用SSL协议验证通信双方（客户端、服务器端）的身份、协商加密算法与密钥。Android中HttpsConnection类实现了https协议。SSLSocket相关类实现了SSL协议。HttpsConnection只需通过SocketFactory以及Socket提供的抽象接口就可以启动SSL握手过程。<br>主要由SSLSocket、OpenSSLSocketImpl、SSLParameters、SSLSession、OpenSSLSocketFactoryImpl、OpenSSLSessionImpl、SSLSessionContext实现SSL协议。HttpsConnection使用系统提供的默认工厂SSLSocketFactoryImpl创建OpenSSLSocketImpl。OpenSSLSocketImpl通过JNI调用openSSL库提供的api进行握手。注意握手信息是在SocketImpl对象上传输的。SSLSession类封装了SSL会话信息，它存储了SSL握手的结果。最后SSLSessionContext相当与SSLSession的缓存池。这些类之间的关系如下图所示：图3 SSLSocket类图</li>
+</ol>
+<p>类之间的调用顺序如下： 图4 SSLSocket 时序图<br>3.2.3    Android HttpsUrlConnection流程图解<br>主要流程如下：</p>
+<p>URL. openConnection<br>-&gt; streamHandler.openConnection    -&gt;   setupStreamHandler<br>-&gt; HttpsHandler -&gt; OkHttpClient  open -&gt;  HttpsURLConnectionImpl<br>-&gt; DelegatingHttpsURLConnection</p>
+<p>TrustManagerFactory (TrustManagerFactoryImpl engineGetTrustManagers) -&gt; init (AndroidCAStore default) -&gt; getTrustManagers -&gt; TrustManagerImpl</p>
+<p>TrustManagerImpl     checkTrusted<br>TrustManagerImpl    checkTrustedRecursive<br>TrustManagerImplTest  testLearnIntermediate</p>
+<p>TrustManagerImpl     findAllTrustAnchorsByIssuerAndSignature<br>TrustManagerImpl     findAllIssuers</p>
+<p>TrustedCertificateStore  findCert<br>TrustedCertificateStore  hash</p>
+<p>NativeCrypto.X509_NAME_hash_old</p>
+<p>SSLContext init  (null, tmf.getTrustManagers(), null);<br>getInstance -&gt; SSLContextSpi -&gt; OpenSSLContextImpl -&gt; DefaultSSLContextImpl<br>-&gt; OpenSSLSocketFactoryImpl -&gt; OpenSSLSocketImpl  verifyCertificateChain<br>-&gt; SSLParametersImpl setCertificateValidation<br>-&gt; Platform -&gt; TrustManagerImpl 接上</p>
+<p>这里需要额外说明的是：在执行nativeconnect函数时，已经在openSSL库中执行了握手过程。但openSSL库中不会进行任何验证，因为验证模式被设置为SSL_VERIFY_NONE。因此，Android中身份验证是由checkServerTrusted函数实现的。<br>其中TrustManagerImpl     checkTrusted是验证的主要流程<br>checkServerTrusted –&gt; checkTrusted -&gt; checkTrustedRecursive</p>
+<ol>
+<li>If the current certificate in the chain is self-signed verify the chain as is.</li>
+<li>Try building a chain via any trust anchors that issued the current certificate.</li>
+<li>If we were unable to find additional trusted issuers, verify the current chain.</li>
+<li>Use the certificates provided by the peer to grow the chain.</li>
+<li>Finally try the cached intermediates to handle server that failed to send them.</li>
+<li>We were unable to build a valid chain, throw the last error encountered.</li>
+<li>If no errors were encountered above then verifyChain was never called because it was</li>
+</ol>
+<p>Android系统使用openSSL库来交换证书、协商加密算法，但认证服务器段身份并非由openSSL库完成。Android系统将自己的证书、私钥存储在密钥仓库中。.在进行openSSL握手之前，将私钥以及证书放入SSL_CTX变量中。握手结束后，Android系统从SSLSession中取出服务器的证书，利用可信密钥仓库来检验该证书是否可信。相关类以及类之间的关系如下图所示：图 5 cetificate 类图</p>
+<p>3.2.4    证书校验<br>证书校验算法简单说明如下：参考《公钥基础设施(pki)_实现和管理电子安全.pdf》一书<br>证书验证过程主要包含：证书路径生成和证书路径验证两个步骤，其中具体的验证流程参考代码，还有一些很复杂的交叉证书验证的流程，请参考PKI相关的书籍。<br><a href="https://en.wikipedia.org/wiki/X.509" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/X.509</a><br><a href="https://en.wikipedia.org/wiki/Certification_path_validation_algorithm" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Certification_path_validation_algorithm</a><br><a href="http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf" target="_blank" rel="noopener">http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf</a><br><a href="https://www.ietf.org/rfc/rfc5280.txt" target="_blank" rel="noopener">https://www.ietf.org/rfc/rfc5280.txt</a><br><a href="http://itmyhome.com/java-api/java/security/cert/CertPathBuilder.html" target="_blank" rel="noopener">http://itmyhome.com/java-api/java/security/cert/CertPathBuilder.html</a><br><a href="http://www.beansoft.biz/weblogic/docs92/security/certpath.html" target="_blank" rel="noopener">http://www.beansoft.biz/weblogic/docs92/security/certpath.html</a><br><a href="https://www.entrust.com/wp-content/uploads/2013/05/pathvalidation_wp.pdf" target="_blank" rel="noopener">https://www.entrust.com/wp-content/uploads/2013/05/pathvalidation_wp.pdf</a><br>3.2.5    SSL证书使用的建议<br>参考Wiki案例：Android HttpsSSL证书安全与预制浅析.doc</p>
+<h2 id="中间证书"><a href="#中间证书" class="headerlink" title="中间证书"></a>中间证书</h2><p>如果安全套接字层 (SSL) 证书是在本地生成，那么必须从认证中心 (CA) 获取根 (root.cer) 证书以及任何中间 (intermediate.cer) 证书，然后将这些证书添加到 HTTP Server 密钥库。安装根证书和中间证书会创建信任链，从而使客户机和服务器之间的 SSL 握手能够正常工作。</p>
+<p>中间证书有两种方式验证：<br>•    原理上浏览器预置或缓存这种方法也存在<br>•    客户端自动解析下载(大多数客户端并不支持解析下载，会直接返回错误)<br>•    配置服务器直接把中间证书传给客户端 (一般采用这种方式，配置服务器即可)<br>服务器配置方式参考： <a href="https://whatsmychaincert.com/" target="_blank" rel="noopener">https://whatsmychaincert.com/</a><br>如Apache配置方式：<br>SSLEngine on<br>SSLCertificateKeyFile /path/to/example.com.key<br>SSLCertificateFile /path/to/example.com.crt<br>SSLCertificateChainFile /path/to/example.com.chain.crt</p>
+<p>参考：<br><a href="https://www.myssl.cn/tools/downloadchain.html" target="_blank" rel="noopener">https://www.myssl.cn/tools/downloadchain.html</a><br><a href="https://www.myssl.cn/home/article42.html" target="_blank" rel="noopener">https://www.myssl.cn/home/article42.html</a><br><a href="http://professor.blog.51cto.com/996189/1596985" target="_blank" rel="noopener">http://professor.blog.51cto.com/996189/1596985</a> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+            <a href="/tags/证书/" rel="tag"># 证书</a>
+          
+            <a href="/tags/ssl/" rel="tag"># ssl</a>
+          
+            <a href="/tags/verify/" rel="tag"># verify</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/android_app_plugin_hotfix.html" rel="next" title="Android中间件-插件化和热补丁等">
+                <i class="fa fa-chevron-left"></i> Android中间件-插件化和热补丁等
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/android_app_perfermance_oom.html" rel="prev" title="Android性能分析与优化">
+                Android性能分析与优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Fitz.Lee" />
+          <p class="site-author-name" itemprop="name">Fitz.Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">Security & Android & Java</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">144</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fitzlee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fitz.lee@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/c7757daadf27" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      JianShu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.anquanke.com/" title="Anquanke" target="_blank">Anquanke</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.gityuan.com/" title="Gityuan" target="_blank">Gityuan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#中间证书"><span class="nav-number">1.</span> <span class="nav-text">中间证书</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fitz.Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
